@@ -1,0 +1,1054 @@
+ 
+\vspace{250pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algebraic Properties of Maximal Cardy Fibrations}
+
+This section will be devoted to describing in detail the stack of boundary conditions $\mathscr{B}$. The idea is to describe all posible branes for a given category; to accomplish this, we shall first deal with morphisms and later with the whole category.
+
+As we are only interested in maximal fibrations, we introduce them now. Given a category ${\bf X}$, recall that $\opnm{sk}{\bf X}$ denotes its skeleton.
+
+\begin{defi}\label{maximal}
+A Cardy fibration $\scr{B}$ over a manifold $M$ is said to be \emph{maximal} if given another Cardy fibration $\scr{B}'$ over $M$, then there exists an injective map $\opnm{sk}\scr{B}'\to \opnm{sk}\scr{B}$.
+\end{defi}
+
+Our first goal now is to show that the stalks of a Cardy fibration are maximal categories in the sense of Moore and Segal. The idea is to pick a point $x\in M$ and prove that all the fibres over $x$ of the sheaves involved in this discussions define a brane category as discussed in \cite{moore_segal1}. This approach will let us generalize all the results to Cardy fibrations.
+
+Let us fix a point $x\in M$ and an index $\alpha$ such that $U_\alpha$ is semisimple and $x\in U_\alpha$. Given arbitrary labels $a,b\in \mathscr{B}(U_\alpha )$, let us denote by $E_{ab}$ the fibre over $x$ for the sheaf $\Gamma_{ab}$ (we omit reference to the point $x$ to keep the notation as simple as possible). We need to show that the vector spaces $T_xM$ and $E_{ab}$, together with the appropriate morphisms, form a {\sc cy} category in the sense of Moore and Segal.
+
+Let us denote by $p_{ab}$ (or just $p$ if the labels are clear) the sequence of proyections
+\begin{equation}\label{proy}
+\Gamma_{ab}(U_\alpha )\longrightarrow \Gamma_{ab,x}\longrightarrow E_{ab},
+\end{equation}
+where $\Gamma_{ab,x}$ is the stalk over $x$ of the sheaf $\Gamma_{ab}$. Let $1_a$ be the unit in $\Gamma_{aa}(U_\alpha )$; let us identify a label $a\in \scr{B}(U_\alpha )$ with $1_a$, and denote $p_{aa}(1_a)$ by $\overline{a}$. We now define the category of boundary conditions $\overline{\scr{B}}_x$; its objects are given by
+$$\operatorname{Obj}\overline{\mathscr{B}}_x=\{\overline{a}=p_{aa}(1_a) \; | \; a\in \mathscr{B}(U_\alpha )\}.$$
+If $\overline{a},\overline{b}\in \overline{\mathscr{B}}_x$, consider the corresponding units $1_a\in \Gamma_{aa}(U_\alpha )$ and $1_b\in \Gamma_{bb}(U_\alpha )$. Then
+$$\operatorname{Hom}_{\overline{\mathscr{B}}_x}(\overline{a},\overline{b}):=E_{ab}.$$
+With this definition, $\operatorname{Hom}_{\overline{\mathscr{B}}_x}(\overline{a},\overline{b})$ is a $\comp$-vector space, with dimension equal to the rank of $\Gamma_{ab}$. We shall denote this vector space by $O_{\overline{a}\overline{b}}$.
+
+We also have the linear forms $\theta :\scr{T}_M\to \scr{O}$ and $\theta_a:\Gamma_{aa}\to \scr{O}$ which induce linear maps on the fibres
+$$
+\begin{aligned}
+\overline{\theta}_x &: T_xM\longrightarrow \comp \\
+\theta_{\overline{a}} &: O_{\overline{a}\overline{a}}\longrightarrow \comp \\
+\end{aligned}
+$$
+ which provide $T_xM$ and $O_{\overline{a}\overline{a}}$ with a Frobenius $\comp$-algebra structure.
+
+In the same fashion, the transition morphisms $\iota_a$ and $\iota^a$ induce maps
+$$T_xM\stackrel{\iota_{\overline{a}}}{\longleftarrow}O_{\overline{a}\overline{a}}\stackrel{\iota^{\overline{a}}}{\longrightarrow}T_xM.$$
+
+\begin{lemma}
+Let $x_0,x_1\in U_\alpha$. Then the categories $\overline{\scr{B}}_{x_0}$ and $\overline{\scr{B}}_{x_1}$ are isomorphic.
+\end{lemma}
+\begin{proof}
+Let us consider two labels $a,b\in \scr{B}(U_\alpha )$; to distinguish between the two fibres, let us go back to the previous notation: $F_x(\scr{M})$ is the fibre over $x$ of the locally free module $\scr{M}$; likewise, let us denote by $p_{aa}^0$ (for $x_0$) or $p_{aa}^1$ (for $x_1$) the projection \eqref{proy}. By connectivity assumptions, the ranks of $\Gamma_{aa}$ and $\Gamma_{ab}$ are constant and we can therefore fix isomorphisms
+$$\phi_{aa}:F_{x_0}(\Gamma_{aa})\cong F_{x_1}(\Gamma_{aa})\quad \text{and} \quad \phi_{ab} :F_{x_0}(\Gamma_{ab})\cong F_{x_1}(\Gamma_{ab})$$
+such that the diagrams
+$$
+\xymatrix{
+ & F_{x_0}(\Gamma_{aa}) \ar[dd]^{\phi_{aa}} \\
+\Gamma_{aa}(U_\alpha )\ar[ur] \ar[dr] & \\
+ & F_{x_1}(\Gamma_{aa})}
+\xymatrix{
+ & F_{x_0}(\Gamma_{ab}) \ar[dd]^{\phi_{ab}} \\
+\Gamma_{ab}(U_\alpha )\ar[ur] \ar[dr] & \\
+ & F_{x_1}(\Gamma_{ab})}
+$$
+commute, where the unlabelled arrows are canonical projections. In particular, this commutativity implies that, for example, $p_{aa}^0(1_a)\in F_{x_0}(\Gamma_{aa})$ is mapped onto $p_{aa}^1(1_a)$.
+
+We now define a functor $F:\overline{\scr{B}}_{x_0}\to \overline{\scr{B}}_{x_1}$; on objects, if $\overline{a}_0:=p_{aa}^0(1_a)$, then
+$$F(\overline{a}_0)=\phi_{aa}(\overline{a}_0).$$
+Let now $\sigma :\overline{a}_0\to \overline{b}_0$ be an arrow in $\overline{\scr{B}}_{x_0}$. That is, $\sigma$ is an element of $F_{x_0}(\Gamma_{ab})$. Then we define
+$$F (\sigma )=\phi_{ab}(\sigma ).$$
+The inverse of this functor is constructed in the same way, by considering $\phi_{aa}^{-1}$ and $\phi_{ab}^{-1}$.
+\end{proof}
+
+\begin{theorem}\label{ms_over_point}
+The category $\overline{\mathscr{B}}_x$, together with the Frobenius algebra $T_xM$ and the structure maps $\overline{\theta}_x$, $\theta_{\overline{a}}$, $\iota_{\overline{a}}$ and $\iota^{\overline{a}}$ ($\overline{a}\in \overline{\scr{B}}_x$) defines a brane category in the sense of Moore and Segal.
+\end{theorem}
+\begin{proof}
+Given objects $\overline{a}$ and $\overline{b}$, by definition $\operatorname{Hom}_{\overline{\mathscr{B}}}(\overline{a},\overline{b})=E_{ab}$ is a $\comp$-vector space. Thus, $\overline{\scr{B}}_x$ is $\comp$-linear. All remaining properties for a brane category can be proved by following the definition of the Cardy fibration $\scr{B}$.
+\end{proof}
+
+From theorem \ref{ms_over_point} we can deduce the following
+
+\begin{theorem}\label{theorem2}
+Let $a\in \scr{B}(U_\alpha )$. Then, the sheaf $\Gamma_{aa}$ is locally isomorphic to a sum $\bigoplus_i\operatorname{M}_{d(a,i)}(\mathscr{O}_{U_\alpha})$ of matrix algebras.
+\end{theorem}
+\begin{proof}
+Fix $x_0\in U_\alpha$ and let $\{e_1,\dots ,e_n\}$ be a frame of orthogonal, idempotent sections in $\scr{T}(U_\alpha )$. Then, for the category $\overline{\scr{B}}_{x_0}$, we have Moore and Segal's Theorem 2 (\ref{theorem_2}) at our disposal. We have that $O_{\overline{a}\overline{a}}=\bigoplus_i\iota_{\overline{a}}(e_i(x_0))O_{\overline{a}\overline{a}}$; by \ref{theorem_2},
+\begin{equation}\label{theorem2_ms_point}
+O_{\overline{a}\overline{a}}=\operatorname{Hom}_{\overline{\scr{B}}_{x_0}}(\overline{a},\overline{a})\cong \bigoplus_{i=1}^n\text{M}_{d(x_0,\overline{a},i)}(\comp );
+\end{equation}
+moreover, the matrix algebra $\opnm{M}_{d(x_0,\overline{a},i)}(\comp )$ corresponds to the summand $\iota_{\overline{a}}(e_i(x_0))O_{\overline{a}\overline{a}}$. On the other hand, we have that, locally around $x_0$, the sheaf $\Gamma_{aa}$ is isomorphic to $\scr{O}^{n_a}_{U_\alpha}$ for some integer $n_a$. But the previous properties together with remark \ref{algebra_fibres} implies that the algebra isomorphism \eqref{theorem2_ms_point} extends to a neighborhood of $x_0$, as we wanted to prove.
+\end{proof}
+
+\begin{obs}\label{remark_summands}
+From the previous result we can also deduce that the matrix algebra $M_{d(a,i)}(\scr{O}_V)$ corresponds (locally) to the subalgebra $\iota_a(e_i)\Gamma_{aa}$.
+\end{obs}
+
+For $a,b\in \scr{B}(U_\alpha )$, and again by the {\sc cy} structure of $\overline{\scr{B}}_x$, we have an isomorphism
+$$O_{\overline{a}\overline{b}}=\operatorname{Hom}_{\overline{\scr{B}}_x}(\overline{a},\overline{b})\cong \bigoplus_{i=1}^n\operatorname{Hom}_\comp \left (\comp^{d(\overline{a},i)},\comp^{d(\overline{b},i)}\right ),$$
+and thus the following result, which is proved following the same procedure of the previous theorem (note that in this case we have the idempotent morphism $L_i:\Gamma_{ab}\to \Gamma_{ab}$, $L_i(\sigma )=\iota_b(e_i)\sigma$ which, by the centrality condition \eqref{centrality}, coincides with the morphism $\Gamma_{ab}\to \Gamma_{ab}$ given by $\sigma \mapsto \sigma \iota_a(e_i)$). 
+
+\begin{theorem}\label{theorem2bis}
+In the situation of theorem \ref{theorem2}, for $a,b\in \mathscr{B}(U_\alpha )$ we have a local isomorphism between $\Gamma_{ab}$ and $\bigoplus_{i=1}^n\operatorname{Hom}_{\mathscr{O}_{U_\alpha}}\left (\mathscr{O}_{U_\alpha}^{d(a,i)},\mathscr{O}_{U_\alpha}^{d(b,i)}\right )$.
+\end{theorem}
+
+\begin{obs}\label{remark_summands_2}
+Observe that the dimensions $d(a,i)$ in theorem \ref{theorem2bis} are the same as the ones in \ref{theorem2}; this is deduced form the proof of Moore and Segal's theorem 2 in \cite{moore_segal1}. And also in this case, the summand $\operatorname{Hom}_{\mathscr{O}_V}\left (\mathscr{O}_V^{d(a,i)},\mathscr{O}_V^{d(b,i)}\right )$ corresponds to the submodule $\iota_b(e_i)\Gamma_{ab}|_V=\Gamma_{ab}|_V\iota_a(e_i)$.
+\end{obs}
+
+From these last results, and following the same procedures done in section \ref{subsec_boundary_semisimple}, we can derive local expressions for the morphisms $\theta_a$, $\iota^a$ and $\pi^a_b$. Let $a,b\in \scr{B}(U_\alpha)$ and let $x\in U_\alpha$. Assume that $U\ni x$ is a neighborhood such that $\Gamma_{aa}|_U$ is isomorphic to a sum $\bigoplus_i\opnm{M}_{d(a,i)}(\scr{O}_U)$ (in that case an element $\sigma \in \Gamma_{aa}|_U$ can be represented as a tuple $(\sigma_i)$, where $\sigma_i\in \opnm{M}_{d(a,i)}(\scr{O}_U)$). If $\{e_1,\dots ,e_n\}$ is a frame of orthogonal, idempotent sections for $\scr{T}_M$ over $U_\alpha$, then we have the following expressions for $\theta_a$, $\iota^a$ and $\pi^a_b$ over $U$:
+\begin{equation}\label{local_expressions}
+\begin{aligned}
+\theta_a (\sigma ) &= \sum_i\sqrt{\theta (e_i)} \opnm{tr}(\sigma_i), \\
+\iota^a(\sigma )   &= \sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}e_i, \\
+\pi_b^a(\sigma )   &= \sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}\iota_b(e_i). \\
+\end{aligned}
+\end{equation}
+
+In \cite{moore_segal1}, Moore and Segal also prove that a maximal category of boundary conditions is equivalent to the product $\tsf{Vect}^n$, where $n$ is the dimension of the commutative algebra corresponding to the closed sector, which is assumed to be semisimple (see section \ref{max_cat_moore_segal}). We shall show in the next sections that the localization process described above can be reversed to give an analogous result for our maximal Cardy fibrations.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties of Maximal Cardy Fibrations}
+\label{maximal_cardy_fibrations}
+
+In the following sections we shall study certain ways of constructing new labels from given ones. By definition of maximality, these new labels should be considered as objects of a maximal category. This constructions shall reveal more structure which any maximal category should enjoy and, in the last section of this chapter, a characterization of maximal fibrations is given, showing that these constructions are also sufficient to construct a maximal category.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Additive Structure}
+
+Let $U\subset M$ be any open subset and $a,b,c\in \scr{B}(U)$; based on properties of modules, we shall define a new label $a\oplus b$; we put
+$$
+\begin{aligned}
+\Gamma_{(a\oplus b)c}:=\Gamma_{ac}\oplus \Gamma_{bc}, \\
+\Gamma_{c(a\oplus b)}:=\Gamma_{ca}\oplus \Gamma_{cb}.\\
+\end{aligned}
+$$
+A morphism $a\oplus b\to c$ shall be represented as a row matrix $\left ( \begin{smallmatrix} \sigma & \tau \\ \end{smallmatrix} \right )$, where $\sigma :a\to c$, $\tau :b\to c$. Likewise, an arrow $c\to a\oplus b$ is a column matrix $\left ( \begin{smallmatrix} \sigma \\ \tau \\ \end{smallmatrix} \right )$, for $\sigma :c\to a$, $\tau :c\to b$. Thus, a map $a_1\oplus a_2\to b_1\oplus b_2$ can be represented as a matrix $\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right )$, where $\sigma_{ij}:a_i\to b_j$. Composition of maps is then given by multiplying matrices. As a consequence, we obtain thus a structure of additive category for each $\scr{B}(U)$.
+
+For a new object $a\oplus b$ we define $\theta_{a\oplus b}:\Gamma_{(a\oplus b)(a\oplus b)}\to \scr{O}_U$ by
+\begin{equation}\label{linear_form_additive}
+\theta_{a\oplus b}\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right )=\theta_{a}(\sigma_{11})+\theta_b(\sigma_{22}).
+\end{equation}
+
+Regarding nondegeneracy of the linear forms we have the following
+
+\begin{proposition}\label{nondeg_additive}
+The diagram
+$$
+\xymatrix{
+\Gamma_{(a\oplus b)c}\otimes \Gamma_{c(a\oplus b)}\ar[d]\ar[r] & \Gamma_{(a\oplus b)(a\oplus b)}\ar[r]^-{\theta_{a\oplus b}} & \scr{O}_U\ar@{=}[d] \\
+\Gamma_{c(a\oplus b)}\otimes \Gamma_{(a\oplus b)c}\ar[r] & \Gamma_{cc} \ar[r]^{\theta_c} & \scr{O}_U}
+$$
+is commutative, and the top and botton composite bilinear maps are non-degenerate parings (the vertical arrow on the left is the twisting map).
+\end{proposition}
+\begin{proof}
+Let $\tau \in \Gamma_{(a\oplus b)c}$ and $\sigma \in \Gamma_{c(a\oplus b)}$ be given by $\tau =\left (\begin{smallmatrix} \tau_{11} & \tau_{21} \\ \end{smallmatrix} \right )$ and $\sigma =\left (\begin{smallmatrix} \sigma_{11} \\ \sigma_{12} \\ \end{smallmatrix} \right )$. Then, the bottom row is
+$$(\sigma ,\tau) \longmapsto \theta_c(\tau_{11}\sigma_{11})+\theta_c(\tau_{21}\sigma_{12}),$$
+and hence the commutativity of the diagram follows from the known analogous identities for the pairings involving the labels $a,c$ and $b,c$.
+
+Assume now that $\theta_{a\oplus b}(\sigma \tau )=0$ for each $\tau$; put
+$$\sigma =\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right )\quad \text{and} \quad \tau =\left (\begin{smallmatrix} \tau_{11} & \tau_{21} \\ \tau_{12} & \tau_{22} \\ \end{smallmatrix} \right ).$$
+Then
+$$\theta_{a\oplus b}(\sigma \tau )=\theta_a(\sigma_{11}\tau_{11}+\sigma_{21}\tau_{12})+\theta_b(\sigma_{12}\tau_{21}+\sigma_{22}\tau_{22})=0$$
+no matter which maps $\tau_{ij}$ we choose. Taking, for example, $\tau =\left (\begin{smallmatrix} \tau_{11} & 0 \\ 0 & 0 \\ \end{smallmatrix} \right )$ we obtain $\sigma_{11}=0$ by nondegeneracy of the pairing $\Gamma_{ac}\otimes \Gamma_{ca}\to \scr{O}_U$. The rest of the proof can be completed in the same fashion.
+\end{proof}
+
+\begin{obs}\label{remark_trace_sum}
+Note that the previous proposition readily implies that
+$$\theta_{a\oplus b}\left (\begin{smallmatrix} 0 & \sigma_{21} \\ 0 & 0 \\ \end{smallmatrix}\right )=\theta_{a\oplus b}\left (\begin{smallmatrix} 0 & 0 \\ \sigma_{12} & 0 \\ \end{smallmatrix}\right )=0;$$
+just consider the equality $\theta_{a\oplus b}(\tau \sigma )=\theta_{a\oplus b}(\sigma \tau )$ and multiply by the matrices $\left (\begin{smallmatrix} 1_a & 0 \\ 0 & 0 \\ \end{smallmatrix}\right )$ and $\left (\begin{smallmatrix} 0 & 0 \\ 0 & 1_b \end{smallmatrix}\right )$.
+\end{obs}
+
+For labels $a,b,c\in \scr{B}(U_\alpha )$, note that $\Gamma_{(a\oplus b)c}$ (and also $\Gamma_{c(a\oplus b)}$ by duality) is also locally free.
+
+We now define the transition morphisms $\iota_{a\oplus b}:\scr{T}_{U_\alpha }\to \Gamma_{(a\oplus b)(a\oplus b)}$ and $\iota^{a\oplus b}:\Gamma_{(a\oplus b)(a\oplus b)}\to \scr{T}_{U_\alpha }$ by the equations
+\begin{equation}\label{transition_additive}
+\begin{aligned}
+\iota_{(a\oplus b)}(X) &= \left (\begin{smallmatrix} \iota_a(X) & 0 \\ 0 & \iota_b(X) \\ \end{smallmatrix} \right ), \\
+\iota^{(a\oplus b)}\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right ) &=\iota^a(\sigma_{11})+\iota^b(\sigma_{22}).\\
+\end{aligned}
+\end{equation}
+In particular, note that both $\iota_{a\oplus b}$ and $\iota^{a\oplus b}$ are $\scr{O}_{U_\alpha }$-linear, and $\iota_{a\oplus b}$ is an algebra homomorphism which preserves the unit.
+
+The following result shall be useful to prove the Cardy condition.
+
+\begin{lemma}\label{cardy_additive}
+For the maps $\pi^{a\oplus b}_c$ and $\pi^a_{b\oplus c}$ the following equalities hold
+$$
+\begin{aligned}
+\pi^{a\oplus b}_c &= \pi^a_c+\pi^b_c \\
+\pi^a_{b\oplus c} &= \left (\begin{smallmatrix} \pi^a_b & 0 \\ 0 & \pi^a_c \\ \end{smallmatrix} \right ). \\
+\end{aligned}
+$$
+\end{lemma}
+\begin{proof}
+First note that if $\overline{\theta}_{c(a\oplus b)}:\Gamma_{c(a\oplus b)}\cong \Gamma_{(a\oplus b)c}^*$ is the isomorphism induced by the pairing between $\Gamma_{c(a\oplus b)}$ and $\Gamma_{(a\oplus b)c}$, then
+$$
+\begin{aligned}
+\overline{\theta}_{c(a\oplus b)} &= \left (\begin{smallmatrix} \overline{\theta}_{ca} & \overline{\theta}_{cb}\end{smallmatrix} \right ), \\
+\overline{\theta}_{c(a\oplus b)}^{-1} &= \left (\begin{smallmatrix} \overline{\theta}_{ca}^{-1} \\ \overline{\theta}_{cb}^{-1} \end{smallmatrix} \right ).
+\end{aligned}
+$$
+Take now a local basis for $\Gamma_{(a\oplus b)c}$ of the form $\{\left (\begin{smallmatrix} \tau_i & 0 \\ \end{smallmatrix} \right ), \left (\begin{smallmatrix} 0 & \eta_j \\ \end{smallmatrix} \right )\}$, where $\{\tau_i\}$ is a local basis for $\Gamma_{ac}$ and $\{\eta_j\}$ for $\Gamma_{bc}$. For $\sigma =\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\\end{smallmatrix} \right )\in \Gamma_{(a\oplus b)(a\oplus b)}$ we thus have
+$$
+\begin{aligned}
+\pi^{(a\oplus b)}_c(\sigma ) &= \sum_i \left (\begin{smallmatrix} \tau_i & 0 \end{smallmatrix} \right )\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right ) \left (\begin{smallmatrix} \overline{\theta}_{ca}^{-1}(\tau^i) \\ 0 \\ \end{smallmatrix} \right ) + \sum_j \left (\begin{smallmatrix} 0 & \eta_j \end{smallmatrix} \right )\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right ) \left (\begin{smallmatrix} 0 \\ \overline{\theta}_{cb}^{-1}(\eta^j) \\ \end{smallmatrix} \right ) \\
+														 &= \sum_i \tau_i\sigma_{11}\overline{\theta}^{-1}_{ca}(\tau^i) + \sum_j\eta_j\sigma_{22}\overline{\theta}^{-1}_{cb}(\eta^j) \\
+														 &= \pi^a_c(\sigma_{11})+\pi^b_c(\sigma_{22}). \\
+\end{aligned}
+$$
+The other equality is completely analogous; in this case we have that $\overline{\theta}_{(b\oplus c)a}:\Gamma_{(b\oplus c)a}\to \Gamma_{a(b\oplus c)}^*$ and its inverse are given by
+$$
+\begin{aligned}
+\overline{\theta}_{(b\oplus c)a} &= \left (\begin{smallmatrix} \overline{\theta}_{ba} \\ \overline{\theta}_{ca} \\ \end{smallmatrix} \right ) \\
+\overline{\theta}_{(b\oplus c)a}^{-1} &= \left (\begin{smallmatrix} \overline{\theta}_{ba}^{-1} & \overline{\theta}_{ca}^{-1} \\ \end{smallmatrix} \right ). \\
+\end{aligned}
+$$
+If $\left \{\left (\begin{smallmatrix} \tau_i \\ 0 \\ \end{smallmatrix} \right ), \left (\begin{smallmatrix} 0 \\ \eta_j \\ \end{smallmatrix} \right )\right \}$ is a local basis for $\Gamma_{a(b\oplus c)}\cong \Gamma_{ab}\oplus \Gamma_{ac}$, where $\{\tau_i\}$ is a basis for $\Gamma_{ab}$ and $\{\eta_j\}$ for $\Gamma_{ac}$, then
+$$
+\begin{aligned}
+\pi^a_{(b\oplus c)} &= \sum_i\left (\begin{smallmatrix} \tau_i \\ 0 \\ \end{smallmatrix} \right )\sigma \left (\begin{smallmatrix} \overline{\theta}^{-1}_{ba}(\tau^i) & 0 \\ \end{smallmatrix} \right ) + \sum_i\left (\begin{smallmatrix} 0 \\ \eta_j \\ \end{smallmatrix} \right )\sigma \left (\begin{smallmatrix} 0 & \overline{\theta}^{-1}_{ca}(\eta^j) \\ \end{smallmatrix} \right ) \\
+									  &= \sum_i \left (\begin{smallmatrix} \tau_i\sigma \overline{\theta}^{-1}_{ba}(\tau^i) & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) + \sum_j \left (\begin{smallmatrix} 0 & 0 \\ 0 & \eta_j\sigma \overline{\theta}^{-1}_{ca}(\eta^j) \\ \end{smallmatrix} \right ) \\
+										&= \left (\begin{smallmatrix} \pi^a_b(\sigma ) & 0 \\ 0 & \pi^ a_c(\sigma ) \\ \end{smallmatrix} \right ). \\
+\end{aligned}
+$$
+\end{proof}
+
+
+
+\begin{theorem}\label{maximal_additive}
+Given $a,b \in \scr{B}(U_\alpha )$, the maps $\theta_{a\oplus b}$, $\iota_{(a\oplus b)}$ and $\iota^{(a\oplus b)}$ verify the centrality, adjoint and Cardy conditions.
+\end{theorem}
+
+\begin{proof}
+For the centrality condition, take $\sigma :a\oplus b\to c$, which can be represented by a matrix $\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \end{smallmatrix}\right )$. Then
+$$
+\begin{aligned}
+\sigma \iota_{a\oplus b}(X) &= \left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \end{smallmatrix}\right ) \left (\begin{smallmatrix} \iota_a(X) & 0 \\ 0 & \iota_b(X) \\ \end{smallmatrix}\right )\\
+									          &= \left (\begin{smallmatrix} \sigma_{11}\iota_a(X) & \sigma_{21}\iota_b(X) \\ \end{smallmatrix}\right ).
+\end{aligned}
+$$
+The equality $\sigma \iota_{a\oplus b}(X)=\iota_c(X)\sigma$ now follows from the centrality condition for the morphisms $\iota_a,\iota_c$ and $\iota_b,\iota_c$.
+
+We now verify the adjoint relation $\theta_{a\oplus b}\left (\sigma \iota_{a\oplus b}(X)\right )=\theta \left (\iota^{a\oplus b}(\sigma )X\right )$; so let $\sigma :a\oplus b\to a\oplus b$ be given by $(\sigma_{ij})^t$. Then the adjoint relation between $\iota_a,\iota^a$ and the one between $\iota_b\iota^b$ let us write
+$$
+\begin{aligned}
+\theta_{a\oplus b}\left (\sigma \iota_{a\oplus b}(X)\right ) &= \theta_{a\oplus b}\left (\begin{smallmatrix} \sigma_{11}\iota_a(X) & \sigma_{21}\iota_b(X) \\ \sigma_{12}\iota_a(X) & \sigma_{22}\iota_b(X) \\ \end{smallmatrix} \right ) \\
+																											       &= \theta_a\left (\sigma_{11}\iota_a(X)\right )+\theta_b\left (\sigma_{22}\iota_b(X)\right ) \\
+																														 &= \theta \left (\iota^a(\sigma_{11})X\right )+\theta \left (\iota^b(\sigma_{22})X\right ) \\
+																														 &= \theta \left (\left (\iota^a(\sigma_{11})+\iota^b(\sigma_{22})\right )X\right ) \\
+																														 &= \theta \left (\iota^{a\oplus b}(\sigma )X\right ), \\
+\end{aligned}
+$$
+as desired.
+
+For the Cardy condition, we now check that $\pi^{a\oplus b}_{c\oplus d}=\iota_{c\oplus d}\iota^{a\oplus b}$. The right hand side is
+$$
+\begin{aligned}
+\iota_{c\oplus d}\iota^{a\oplus b}\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right ) &= \iota_{c\oplus d}\left (\iota^a(\sigma_{11}) + \iota^b(\sigma_{22})\right ) \\
+				  &= \left (\begin{smallmatrix} \iota_c\left (\iota^a(\sigma_{11})+\iota^b(\sigma_{22})\right ) & 0 \\ 0 & \iota_d\left (\iota^a(\sigma_{11})+\iota^b(\sigma_{22})\right ) \\ \end{smallmatrix} \right ) \\
+					&= \left (\begin{smallmatrix} \pi^a_c(\sigma_{11})+\pi^b_c(\sigma_{22}) & 0 \\ 0 & \pi^a_d(\sigma_{11})+\pi^b_d(\sigma_{22}) \\ \end{smallmatrix} \right ), \\
+\end{aligned}
+$$
+where in the last equality we used the Cardy condition. The rest now follows from lemma \ref{cardy_additive}.
+\end{proof}
+
+\begin{cor}
+Any maximal Cardy fibration is additive.
+\end{cor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Action of the Category of Locally Free Modules}
+
+In this section we shall prove that another enlargement of the category $\scr{B}$ can be made, by considering a label of the form $\scr{M}\otimes a$, where $\scr{M}$ is a locally free $\scr{O}_U$-module and $a\in \scr{B}(U)$. A consequence of this construction is that every maximal fibration enjoys, besides an additive structure, an action of the (fibred) category of locally free modules, which is compatible with the additive structure.
+
+So let the locally free $\scr{O}_U$-module $\mathscr{M}$ be given, as well as a brane $a\in \scr{B}(U)$ over $U$. The new product brane $\scr{M}\otimes a$ is defined by
+\begin{equation}\label{product_brane}
+\begin{aligned}
+\Gamma_{(\scr{M}\otimes a)b} &= \scr{M}^*\otimes \Gamma_{ab}, \\
+\Gamma_{b(\scr{M}\otimes a)} &= \scr{M} \otimes \Gamma_{ba}, \\
+\end{aligned}
+\end{equation}
+where the tensor product is taken over $\scr{O}_U$. In particular, we also have that
+$$\Gamma_{(\scr{M}\otimes a)(\scr{N}\otimes b)}=\underline{\opnm{Hom}}(\scr{M},\scr{N})\otimes \Gamma_{ab},$$
+by the canonical identification between $\scr{M}^*\otimes \scr{N}$ and $\underline{\opnm{Hom}}(\scr{M},\scr{N})$ (so an object of the form $\varphi \otimes x$ shall be regarded as a homomorphism $\scr{M}\to \scr{N}$). Note that this definition let us also define a restriction $(\scr{M}\otimes a)|_V:=\scr{M}|_V\otimes a|_V$. Moreover, if we work on a semisimple subset $U_\alpha \in \mathfrak{U}$, then $\Gamma_{(\scr{M}\otimes a)b}$ and $\Gamma_{b(\scr{M}\otimes a)}$ are locally free.
+
+The composition pairing
+\begin{equation}\label{pairing_prod}
+\Gamma_{(\scr{M}\otimes a)(\scr{N}\otimes b)}\otimes \Gamma_{(\scr{N}\otimes b)(\scr{P}\otimes c)}\longrightarrow \Gamma_{(\scr{M}\otimes a)(\scr{P}\otimes c)}
+\end{equation}
+can be also written as
+$$\scr{M}^*\otimes \scr{N} \otimes \scr{N}^* \otimes \scr{P}\otimes \Gamma_{ab}\otimes \Gamma_{bc}\longrightarrow \scr{M}^*\otimes \scr{P}\otimes \Gamma_{ac};$$
+hence, the map \eqref{pairing_prod} is built from two composition pairings, the one corresponding to composition of module homomorphisms, namely $\scr{M}^*\otimes \scr{N}\otimes \scr{N}^*\otimes \scr{P}\to \scr{M}^*\otimes \scr{P}$, and the one corresponding to composition of maps of branes, $\Gamma_{ab}\otimes \Gamma_{bc}\to \Gamma_{ac}$.
+
+\begin{lemma}
+We have a duality isomorphism $\Gamma_{(\scr{M}\otimes a)b}\cong \Gamma_{b\otimes (\scr{M}\otimes a)}^*$.
+\end{lemma}
+\begin{proof}
+This follows by definition of $\Gamma_{(\scr{M}\otimes a)b}$, from the duality between $\Gamma_{ab}$ and $\Gamma_{ba}$ and from corollary \ref{tensor_hom_dual}.
+\end{proof}
+
+\begin{proposition}
+The correspondence $(\scr{M},a)\mapsto \scr{M}\otimes a$ defines an action
+$$\tsf{LF}_{\scr{O}_U}\times \scr{B}(U)\longrightarrow \scr{B}(U)$$
+which is compatible with the additive structure.
+\end{proposition}
+\begin{proof}
+This is mainly a consequence of properties of the tensor product for modules. As we have defined product branes in terms of their morphisms, we should check any statement involving products by considering maps: if $a,b$ are fixed branes such that the modules $\Gamma_{ac}$ and $\Gamma_{bc}$ are isomorphic for each $c$, then necessarily $a\cong b$.
+
+We first check that $\scr{M}\otimes (\scr{N}\otimes a)\cong (\scr{M}\otimes \scr{N})\otimes a$ by studying morphisms to an arbitrary object $b$. We have
+$$
+\begin{aligned}
+\Gamma_{(\scr{M}\otimes (\scr{N}\otimes a))b} &= \scr{M}^*\otimes \Gamma_{(\scr{N}\otimes a)b} \\
+																							&\cong \scr{M}^*\otimes \left (\scr{N}^*\otimes \Gamma_{ab}\right ) \\
+																							&\cong \left (\scr{M}^*\otimes \scr{N}^*\right )\otimes \Gamma_{ab} \\
+																							&\cong (\scr{M}\otimes \scr{N})^*\otimes \Gamma_{ab} \\
+																							&= \Gamma_{((\scr{M}\otimes \scr{N})\otimes a)b}. \\
+\end{aligned}
+$$
+In a similar fashion we now check that $\scr{M}(a\oplus b)\cong (\scr{M}\otimes a)\oplus (\scr{M}\otimes b)$:
+$$
+\begin{aligned}
+\Gamma_{(\scr{M}\otimes (a\oplus b))c} &= \scr{M}^*\otimes \Gamma_{(a\oplus b)c} \\
+																			 &\cong (\scr{M}^*\otimes \Gamma_{ac})\oplus (\scr{M}^*\otimes \Gamma_{bc}) \\
+																			 &\cong \Gamma_{(\scr{M}\otimes a)c}\oplus \Gamma_{(\scr{M}\otimes b)c} \\
+																			 &= \Gamma_{((\scr{M}\otimes a)\oplus (\scr{M}\otimes b))c}.\\
+\end{aligned}
+$$
+The isomorphisms $\scr{O}\otimes a\cong a$ and $\scr{M}\otimes 0\cong 0$ (where $0$ is the zero object of the additive category $\scr{B}(U)$) are proved in the same way.
+\end{proof}
+
+Let now $\overline{a}=\scr{M}\otimes a$. Then, $\Gamma_{\overline{a}\overline{a}}=\underline{\operatorname{End}}_{\scr{O}_U}(\scr{M})\otimes \Gamma_{aa}$, and we define the trace $\theta_{\overline{a}}:\Gamma_{\overline{a}\overline{a}}\to \scr{O}_U$ as the following composite map
+$$
+\xymatrix{
+\underline{\operatorname{End}}_{\scr{O}_U}(\scr{M})\otimes \Gamma_{aa} \ar[rr]^{\operatorname{tr}\otimes \operatorname{id}} & & \scr{O}_U\otimes \Gamma_{aa}\cong \Gamma_{aa} \ar[r]^-{\theta_a} & \scr{O}_U;}
+$$
+equivalently, $\theta_{\overline{a}}(f\otimes \sigma )=\operatorname{tr}(f)\theta_a(\sigma )$.
+
+Before proving the relevant results, let us recall some basic notions about traces. Assume that $f:\scr{M}\to \scr{M}$ is an endomorphism of the locally free $\scr{O}_M$-module $\scr{M}$. Let $U\subset M$ be an open subset such that $\scr{M}|_U\cong \scr{O}_U^n$ and $B_U=\{e_1,\dots ,e_n\}$ a local basis. In the same fashion as for vector spaces, we can define the matrix $M_B(f)$ of $f$ in $B$, and then its trace
+$$\opnm{tr}\left (M_{B_U}(f)\right )\in \scr{O}(U).$$
+If $B'_U$ is another basis, then the change-of-basis formula $M_{B'_U}(f)=C_{B_UB'_U}M_{B_U}(f)C_{B_UB'_U}^{-1}$ holds also in this case, and
+$$\opnm{tr}\left (M_{B_U}(f)\right )=\opnm{tr}\left (M_{B'_U}(f)\right ).$$
+If $V\subset M$ is an open subset where $\scr{M}|_V\cong \scr{O}_V^n$ and $U\cap V\neq \emptyset$, then the previous formula implies that $\opnm{tr}\left (M_{B_V}(f)\right )=\opnm{tr}\left (M_{B_U}(f)\right )$ over $U\cap V$. Thus, if $M$ is connected, the \emph{trace} $\opnm{tr}(f)$ is well-defined globally on $M$.
+
+Regarding maps $\scr{M}\to \scr{M}$ as objects of the tensor product $\scr{M}^*\otimes \scr{M}$, the trace is described as follows: as in the previous paragraph, let $B_U=\{e_1,\dots ,e_n\}$ be a local basis for $\scr{M}$ and let $B_U^*=\{e^1,\dots ,e^n\}$ be its dual basis. If $\varphi \otimes u $ is a section of $\scr{M}^*\otimes \scr{M}$ over $U$, then we can write
+$$\varphi \otimes u =\left (\sum_i \alpha_ie^i\right )\otimes \left (\sum_j\beta_je_j\right )=\sum_{i,j}\alpha_i\beta_j(e^i\otimes e_j).$$
+The endomorphism $e^i\otimes e_j$ is defined by the relations
+$$\left (e^i\otimes e_j\right )(e_k)=e^i(e_k)e_j=\delta_{ik}e_j$$ 
+and thus its trace is $\opnm{tr}(e^i\otimes e_j)=\delta_{ij}$. We can then conclude that
+$$\opnm{tr}(\varphi \otimes u)=\sum_i\alpha_i\beta_i.$$
+
+\begin{proposition}
+The diagram
+$$
+\xymatrix{
+\Gamma_{\overline{a}b}\otimes \Gamma_{b\overline{a}}\ar[d]\ar[r] & \Gamma_{\overline{a}\overline{a}}\ar[r]^-{\theta_{\overline{a}}} & \scr{O}_U\ar@{=}[d] \\
+\Gamma_{b\overline{a}}\otimes \Gamma_{\overline{a}b}\ar[r] & \Gamma_{bb} \ar[r]^{\theta_b} & \scr{O}_U}
+$$
+is commutative, and the top and botton composite bilinear maps are non-degenerate parings (the vertical arrow on the left is the twisting map).
+\end{proposition}
+\begin{proof}
+Commutativity of the diagram follows from the definition of the maps involved and from the equality $\theta_a(\tau \sigma )=\theta_b(\sigma \tau )$. To prove the nondegeneracy we assume that
+\begin{equation}\label{trace_nondeg_tensor}
+\opnm{tr}(\varphi \otimes u)\theta_a(\tau \sigma )=0
+\end{equation}
+for each $u\otimes \tau \in \Gamma_{b(\scr{M}\otimes a)}$; we then need to prove that $\varphi \otimes \sigma =0$; we can work on the stalk over some $x\in U$, as the maps $\varphi$ and $\sigma$ are fixed. Equation \eqref{trace_nondeg_tensor} implies that $\opnm{tr}(\varphi_x\otimes u_x)\theta_{a,x}(\tau_x\sigma_x)=0$ in $\scr{O}_x$. Pick a local basis $\{e_i\}$ for $\scr{M}$ around $x$ and let $\{e^i\}$ be its dual basis. Write $\varphi =\sum_i\alpha_ie^i$. We now assume that $\alpha_i(x)\neq 0$, and hence also its germ $\alpha_{i,x}$. Define $u_x=\frac{e_i}{\alpha_i}$. Therefore, $\varphi_x\otimes u_x=e^i_x\otimes e_{i,x}$ and $\opnm{tr}(\varphi_x\otimes u_x)=1$. This implies, by nondegeneracy of the pairing $\Gamma_{ab}\otimes \Gamma_{ba}\to \scr{O}_U$, that $\sigma_x=0$ and hence $\sigma =0$. 
+\end{proof}
+
+We now work on a semisimple subset $U_\alpha \in \mathfrak{U}$; the transition map $\iota_{\overline{a}}:\scr{T}_{U_\alpha}\to \Gamma_{\overline{a}\overline{a}}$ is defined by the equation $\iota_{\overline{a}}(X) = \text{id}_{\scr{M}}\otimes \iota_a (X)$ and $\iota^{\overline{a}}:\Gamma_{\overline{a}\overline{a}}\to \scr{T}_{U_\alpha}$ by the following chain of morphisms
+$$
+\xymatrix{
+\underline{\operatorname{End}}_{\scr{O}_{U_\alpha}}(\scr{M})\otimes \Gamma_{aa} \ar[rr]^{\operatorname{tr}\otimes \operatorname{id}} & & \scr{O}_{U_\alpha}\otimes \Gamma_{aa}\cong \Gamma_{aa} \ar[r]^-{\iota^a} & \scr{T}_{U_\alpha};}
+$$
+i.e. $\iota^{\overline{a}}(f\otimes \sigma )=\operatorname{tr}(f)\iota^a(\sigma )$.
+
+Let $\scr{M}$ and $\scr{N}$ be two locally free $\scr{O}_M$-modules and assume that $U\subset M$ is an open subset over which $\scr{M}$ and $\scr{N}$ are isomorphic to $\scr{O}^n_U$ and $\scr{O}^k_U$ respectively. Then the modules $\underline{\opnm{Hom}}_{\scr{O}_M}(\scr{M},\scr{N})$ and $\underline{\opnm{Hom}}_{\scr{O}_M}(\scr{M},\scr{N})^*$ are also trivial over $U$, the first one isomorphic to $\scr{O}^{nk}_U$, whose objects can be regarded as $k\times n$ matrices with coefficients in $\scr{O}_U$. Fix a basis $\{f_{ij}\}$ for $\underline{\opnm{Hom}}_{\scr{O}_M}(\scr{M}.\scr{N})$ over $U$ and let $\{f^{ij}\}$ be its dual basis. Define the linear map $\pi_U:\underline{\opnm{End}}_{\scr{O}_U}(\scr{M}|_U)\to \underline{\opnm{End}}_{\scr{O}_U}(\scr{N}|_U)$ by the equation
+$$\pi_U(f)=\sum_{i,j}f_{ij}f\overline{\theta}^{-1}(f^{ij}),$$
+where $\overline{\theta}:\underline{\opnm{Hom}}_{\scr{O}_U}(\scr{N}|_U,\scr{M}|_U)\to \underline{\opnm{Hom}}_{\scr{O}_U}(\scr{M}|_U,\scr{N}|_U)^*$ is the isomorphism given by $\overline{\theta}(f)(g)=\opnm{tr}(gf)$. A straightforward adaptation to proposition \ref{cardy_well_def} shows that this morphism $\pi_U$ does not depend on the choice of basis $\{f_{ij}\}$ and then the same conclusion as for the maps $\pi^a_b$ applies here: we have a globally defined linear map
+$$\pi^{\scr{M}}_{\scr{N}}:\underline{\opnm{End}}_{\scr{O}_M}(\scr{M})\longrightarrow \underline{\opnm{End}}_{\scr{O}_M}(\scr{N}).$$
+
+\begin{lemma}
+If $f:\scr{M}\to \scr{M}$ is a linear endomorphism, then
+$$\pi^{\scr{M}}_{\scr{N}}(f)=\opnm{tr}(f)\opnm{id}_{\scr{N}}.$$
+\end{lemma}
+\begin{proof}
+It only suffices to consider $\scr{M}=\scr{O}^n_M$ and $\scr{N}=\scr{O}^k_M$. Before proving the result, let us fix some notation:
+\begin{itemize}
+\item We will supress the subscript $M$ in $\scr{O}_M$ and denote $\pi^{\scr{M}}_{\scr{N}}$ by $\pi^n_k$.
+\item The basis $\{f_{ij}\}$ of $\underline{\opnm{Hom}}(\scr{O}^n,\scr{O}^k)$ will consist of elementary matrices. And then $\{f_{ij}^t\}$ is the basis of elementary matrices for $\underline{\opnm{Hom}}(\scr{O}^k,\scr{O}^n)$.
+\item $\{e_{rl}\}$ will be also the canonical basis but for $\underline{\opnm{End}}(\scr{O}^n)$ and $\{e'_{st}\}$ for $\underline{\opnm{End}}(\scr{O}^k)$.
+\end{itemize}
+The previous choices, which are made just for simplicity, are justified by proposition \ref{cardy_well_def}.
+
+We have the trace map $\overline{\theta}:\underline{\opnm{Hom}}(\scr{O}^k,\scr{O}^n)\to \underline{\opnm{Hom}}(\scr{O}^n,\scr{O}^k)^*$; assume now that $\overline{\theta}^{-1}(f^{ij})=\sum_{a,b} \lambda^{(ij)}_{ab}f^t_{ab}$. Applying $\overline{\theta}$ at both sides, we have $f^{ij}=\sum_{a,b} \lambda^{(ij)}_{ab}\overline{\theta}(f^t_{ab})$; evaluating this expression in $f_{cd}$ we obtain
+$$
+\begin{aligned}
+\delta^{ic}_{jd} =f^{ij}(f_{cd}) &= \sum_{a,b}\lambda^{(ij)}_{ab}\opnm{tr}(f_{cd}f^t_{ab}) \\
+                                 &= \sum_{a,b}\lambda^{(ij)}_{db}\opnm{tr}(e'_{cb}) \\
+                                 &= \lambda^{(ij)}_{dc}, \\
+\end{aligned}
+$$
+and thus $\overline{\theta}^{-1}(f^{ij})=\lambda^{(ij)}_{ji}f^t_{ji}=f^t_{ji}$. We now compute
+$$
+\begin{aligned}
+\pi^n_k(e_{rl}) &= \sum_{i,j}f_{ij}e_{rl}f_{ij}^t \\
+                &= \sum_if_{il}f^t_{ir} \\
+                &= \delta_{rl}\sum_ie'_{ii},
+\end{aligned}
+$$
+as desired.
+\end{proof}
+
+\begin{theorem}\label{action_cy}
+With the previous definitions, the action $\tsf{LF}_{\scr{O}_U}\times_U\scr{B}|_U\to \scr{B}|_U$ is compatible with all the structures in a Cardy fibration. 
+\end{theorem}
+\begin{proof}
+We work on a semisimple subset $U_\alpha$, and we need to verify the centrality condition, the adjoint relation and the Cardy condition. Let us fix a notation for this proof: given locally free modules $\scr{M},\scr{N}$ over $U_\alpha$ and labels $a,b\in \scr{B}(U_\alpha )$ we define $\overline{a}:=\scr{M}\otimes a$ and $\overline{b}:=\scr{N}\otimes b$.
+
+For the centrality condition we need to check that $\iota_{\overline{b}}(X)(f\otimes \sigma )=(f\otimes \sigma )\iota_{\overline{a}}(X)$ for $f:\scr{M}\to \scr{N}$ and $\sigma :a\to b$. Then
+$$
+\begin{aligned}
+\iota_{\overline{b}}(X)(f\otimes \sigma ) &= f\otimes \iota_b(X)\sigma \\
+                                          &= f\otimes \sigma \iota_a(X) \\
+                                          &= (f\otimes \sigma )\iota_{\overline{a}}(X), \\
+\end{aligned}
+$$
+where in the second step we used the centrality condition for $\iota_a$ and $\iota_b$.
+
+For the adjoint relation, we have
+$$
+\begin{aligned}
+\theta (\iota^{\overline{a}}(f\otimes \sigma )X) &= \theta (\operatorname{tr}(f)\iota^a(\sigma )X) \\
+&= \operatorname{tr}(f)\theta (\iota^a(\sigma )X) \\
+&= \operatorname{tr}(f)\theta_a(\sigma \iota_a(X)) \\
+&= \theta_{\overline{a}}(f\otimes \sigma \iota_a(X))\\
+&= \theta_{\overline{a}}((f\otimes \sigma )\iota_{\overline{a}}(X)),\\
+\end{aligned}
+$$
+where in the third step we used the adjoint relation for $\iota_a$ and $\iota^a$.
+
+For the Cardy condition, we must check that $\pi^{\overline{a}}_{\overline{b}}:\Gamma_{\overline{a}\overline{a}}\to \Gamma_{\overline{b}\overline{b}}$ verifies $\pi^{\overline{a}}_{\overline{b}}=\iota_{\overline{b}}\iota^{\overline{a}}$. The right hand side is
+$$
+\begin{aligned}
+\iota_{\overline{b}}\iota^{\overline{a}}(f\otimes \sigma ) &= \iota_{\overline{b}}(\operatorname{tr}(f)\iota^a(\sigma )) \\
+&= \text{id}_{\scr{N}}\otimes (\operatorname{tr}(f)\iota_b(\iota^a(\sigma ))) \\
+&= \operatorname{tr}(f) \; \text{id}_{\scr{N}}\otimes \pi^a_b(\sigma ). \\
+\end{aligned}
+$$
+For the left hand side, let $\{e_{ij}\}$ be a local basis for $\underline{\operatorname{Hom}}_{\scr{O}_U}(\scr{M},\scr{N})$ and let $\{e^{ij}\}$ be the local basis of $\underline{\operatorname{Hom}}_{\scr{O}_U}(\scr{N},\scr{M})\cong \underline{\operatorname{Hom}}_{\scr{O}_U}(\scr{M},\scr{N})^*$ dual to $\{e_{ij}\}$. Then, if $\{\sigma_k\}$ is a local basis for $\Gamma_{ab}$, we have that $\{e_{ij}\otimes \sigma_k\}$ is a local basis for $\Gamma_{\overline{a}\overline{b}}$ and $\{e^{ij}\otimes \sigma^k\}$ its dual. Thus
+$$
+\begin{aligned}
+\pi^{\overline{a}}_{\overline{b}}(f\otimes \sigma ) &= \sum_{i,j,k}(e_{ij}\otimes \sigma_k)(f\otimes \sigma )(e^{ij}\otimes \sigma^k) \\
+&= \Bigl (\sum_{i,j}e_{ij}fe^{ij}\Bigr )\otimes \Bigl (\sum_k\sigma_k\sigma \sigma^k \Bigr ) \\
+&= \pi^{\scr{M}}_{\scr{N}}(f)\otimes \pi^a_b(\sigma ), \\
+\end{aligned}
+$$
+and the Cardy condition then follows from the previous lemma.
+\end{proof}
+
+We thus obtain the following
+
+\begin{cor}
+Any maximal {\sc cy} category $\scr{B}$ over $M$ comes equipped with a linear action $\tsf{LF}_{\scr{O}_M}\times \scr{B}\to \scr{B}$.
+\end{cor}  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Pseudo-Abelian Structure}
+
+We shall now show that besides the additive structure and the action of the category of locally free sheaves, any maximal Cardy fibration should be pseudo-abelian (for generalities on pseudo-abelian categories see section \ref{sheaf_boundary_conditions}). That is to say, given $a\in \scr{B}(U)$ and an arrow $\sigma_0 :a\to a$ such that $\sigma_0^2=\sigma_0$, we shall assume that there exists branes $K_0:=\opnm{Ker}\sigma_0$ and $I_0:=\opnm{Im}\sigma_0$ (which can also be taken as $\opnm{Ker}(1_a-\sigma_0 )$) such that
+\begin{itemize}
+\item The brane $a$ decomposes as a sum $a\cong K_0 \oplus I_0$ and
+\item using matrix notation, the map $\sigma_0$ is given by $\left (\begin{smallmatrix} 0 & 0 \\ 0 & 1_a \\ \end{smallmatrix} \right )$.
+\end{itemize}
+ As was done for the additive structure and the action of the category of locally free modules, the enlargement of the category of branes by adding kernels should be done by defining all the structure maps for this new object $K_0$, namely $\theta_{K_0}$, $\iota_{K_0}$, $\iota^{K_0}$, along with the verification of their properties. In particular, it should be noted that this definitions should agree with the additive structure.
+
+First note that an arrow $K_0\to K_0$ is a composite of the form
+$$K_0\stackrel{i_1}{\longrightarrow}K_0\oplus I_0\stackrel{\sigma}{\longrightarrow}K_0\oplus I_0\stackrel{\pr_1}{\longrightarrow}K_0$$
+for some arrow $\sigma :a\to a$, and hence $\Gamma_{K_0K_0}\subset \Gamma_{aa}$ is a submodule. In fact, we have that
+$$\Gamma_{aa}=\Gamma_{K_0K_0}\oplus \Gamma_{K_0I_0}\oplus \Gamma_{I_0K_0}\oplus \Gamma_{I_0I_0}.$$
+For $a\in \scr{B}(U_\alpha )$, consider the homomorphism $\rho :\Gamma_{aa}\to \Gamma_{aa}$ given by
+$$\rho \left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \end{smallmatrix} \right )=\left (\begin{smallmatrix} 0 & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \end{smallmatrix} \right ).$$
+Then $\rho$ is clearly a projection with kernel $\Gamma_{K_0K_0}$ which is then locally-free. A similar argument can be used to prove that for any label $b\in \scr{B}(U_\alpha )$, $\Gamma_{K_0b}$ is also locally free; consider $\Gamma_{ab}=\Gamma_{K_0b}\oplus \Gamma_{I_0b}$ and the map $\eta :\Gamma_{ab}\to \Gamma_{ab}$ which projects to $\Gamma_{I_0b}$. Proposition \ref{non_deg_pseudoab} shows that also $\Gamma_{bK_0}\cong \Gamma_{K_0b}^*$ is locally free.
+
+We now turn to the structure maps. If $a\cong K_0\oplus I_0$, the fact that
+$$\theta_a\left (\begin{smallmatrix} 0 & \sigma_{21} \\ 0 & 0 \end{smallmatrix} \right )=\theta_a\left (\begin{smallmatrix} 0 & 0 \\ \sigma_{12} & 0 \end{smallmatrix} \right )=0$$
+(see remark \ref{remark_trace_sum}) suggests the definition of the linear form $\theta_{K_0}:\Gamma_{K_0K_0}\to \scr{O}_U$ by
+$$\theta_{K_0}(\sigma )=\theta_a\left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \end{smallmatrix} \right ).$$
+
+\begin{proposition}\label{non_deg_pseudoab}
+The diagram
+$$
+\xymatrix{
+\Gamma_{K_0b}\otimes \Gamma_{bK_0}\ar[d]\ar[r] & \Gamma_{K_0K_0}\ar[r]^-{\theta_{K_0}} & \scr{O}_U\ar@{=}[d] \\
+\Gamma_{bK_0}\otimes \Gamma_{K_0b}\ar[r] & \Gamma_{bb} \ar[r]^{\theta_b} & \scr{O}_U}
+$$
+is commutative, and the top and botton composite bilinear maps are non-degenerate parings (the vertical arrow on the left is the twisting map).
+\end{proposition}
+\begin{proof}
+Let $\sigma \in \Gamma_{K_0b}$ and $\tau \in \Gamma_{bK_0}$; as morphisms $a\to b$ and $b\to a$ respectively, these maps can be written as matrices $\left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right )$ and  $\left (\begin{smallmatrix} \tau \\ 0 \\ \end{smallmatrix}\right )$, respectively. The top arrow is then given by the correspondence
+$$\sigma \otimes \tau \longmapsto \theta_a \left (\begin{smallmatrix} \sigma \tau & 0 \\ 0 & 0 \\ \end{smallmatrix}\right )=\theta_a\left ( \left (\begin{smallmatrix} \tau \\ 0 \\ \end{smallmatrix}\right )\left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right )\right ),$$
+which is equal to $\theta_b\left ( \left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right )\left (\begin{smallmatrix} \tau \\ 0 \\ \end{smallmatrix}\right )\right )$.
+
+Assume now that $\theta_{K_0}(\tau \sigma )=0$ for each map $\tau :b\to K_0$; this is equivalent to the statement that $\theta_a\left ( \left (\begin{smallmatrix} \tau \\ 0 \\ \end{smallmatrix}\right )\left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right )\right )=0$ for each $\tau$. Write a map $\tau':b\to a\cong K_0\oplus I_0$ as $\left (\begin{smallmatrix} \tau_{11} \\ \tau_{12} \\ \end{smallmatrix}\right )$. Then
+$$
+\begin{aligned}
+\theta_a\left ( \left (\begin{smallmatrix} \tau_{11} \\ \tau_{12} \\ \end{smallmatrix}\right )\left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right )\right ) &= \theta_a \left (\begin{smallmatrix} \tau_{11}\sigma & 0 \\ \tau_{12}\sigma & 0 \\ \end{smallmatrix}\right ) \\
+                                  &= \theta_a \left (\begin{smallmatrix} \tau_{11}\sigma & 0 \\ 0 & 0 \\ \end{smallmatrix}\right )+\theta_a \left (\begin{smallmatrix} 0 & 0 \\ \tau_{12}\sigma & 0 \\ \end{smallmatrix}\right ) = \theta_a \left (\begin{smallmatrix} \tau_{11}\sigma & 0 \\ 0 & 0 \\ \end{smallmatrix}\right ). \\
+\end{aligned}
+$$
+This implies that $\theta_a\left (\tau'\left (\begin{smallmatrix} \sigma & 0 \\ \end{smallmatrix}\right ) \right )=0$ for each map $\tau'$ and hence $\sigma=0$, as desired.
+\end{proof}
+
+As was done with $\theta_a$, we shall now relate the expression of $\iota_a$ with the decomposition $a\cong K_0\oplus I_0$. So assume that for a vector field $X$ over $U_\alpha$,
+$$\iota_a(X)=\left (\begin{smallmatrix} \varphi_{11} & \varphi_{21} \\ \varphi_{12} & \varphi_{22} \\ \end{smallmatrix} \right ).$$
+
+\begin{lemma}
+We have $\varphi_{12}=\varphi_{21}=0$.
+\end{lemma}
+\begin{proof}
+The result follows from the centrality condition $\iota_a(X)\sigma =\sigma \iota_a(X)$, taking $\sigma = \left (\begin{smallmatrix} \sigma_{11} & 0 \\ 0 & 0 \\ \end{smallmatrix} \right )$.
+\end{proof}
+
+We then define $\iota_{K_0}:\scr{T}_U\to \Gamma_{K_0K_0}$, $\iota^{K_0}:\Gamma_{K_0K_0}\to \scr{T}_U$ by
+$$
+\begin{aligned}
+\iota_{K_0}(X) &= \varphi_{11} \\
+\iota^{K_0}(\sigma ) &= \iota^a \left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ).\\
+\end{aligned}
+$$
+The previous lemma and the additive structure motivate the definition of $\iota_{K_0}$ while the adjoint relation, and also the additive structure, motivate that of $\iota^{K_0}$.
+
+\begin{theorem}
+The maps $\theta_{K_0}$, $\iota_{K_0}$ and $\iota^{K_0}$ satisfy the centrality, adjoint and Cardy conditions.
+\end{theorem}
+\begin{proof}
+For the centrality condition, let $\sigma: b\to K_0$ and assume, for another idempotent $\sigma_0':b\to b$, that $b\cong K_0'\oplus I_0'$, where $K_0'$ and $I_0'$ are the kernel and image of $\sigma_0'$, respectively. Assume also that
+$$\iota_b(X)=\left (\begin{smallmatrix} \varphi_{11}' & 0 \\ 0 & \varphi_{22}' \end{smallmatrix} \right ),$$
+and put $\sigma':=i_1\sigma :b\to a$. If $\sigma$ is represented by the matrix $\sigma =\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \end{smallmatrix} \right )$, then $\sigma'=\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ 0 & 0 \end{smallmatrix} \right )$. The centrality condition tells us that $\iota_a(X)\sigma'=\sigma'\iota_b(X)$. Expanding this equality in matrix terms we obtain
+\begin{equation}\label{cent_matrix}
+\left (\begin{smallmatrix} \varphi_{11}\sigma_{11} & \varphi_{11}\sigma_{21} \\ 0 & 0 \end{smallmatrix} \right ) = \left (\begin{smallmatrix} \sigma_{11}\varphi_{11}' & \sigma_{21}\varphi_{22}' \\ 0 & 0 \end{smallmatrix} \right ).
+\end{equation}
+ The centrality condition $\iota_{K_0}(X)\sigma =\sigma \iota_b(X)$ follows by noting that $\iota_{K_0}(X)\sigma$ is precisely the first row of the matrix in the left hand side of equation \eqref{cent_matrix} and $\sigma \iota_b(X)$ the first row of the right hand side.
+
+We now need to check the adjoint relation $\theta_{K_0}\left( \sigma \iota_{K_0}(X)\right )=\theta \left (\iota^{K_0}(\sigma )X\right )$ foe each vector field $X$ and $\sigma :K_0\to K_0$. Assume that $\iota_a(X)=\left (\begin{smallmatrix} \varphi_{11} & 0 \\ 0 & \varphi_{22} \\ \end{smallmatrix} \right )$. Then
+$$
+\begin{aligned}
+\theta_{K_0}\left( \sigma \iota_{K_0}(X)\right ) &= \theta_{K_0}(\sigma \varphi_{11}) \\
+																								 &= \theta_a \left (\begin{smallmatrix} \sigma \varphi_{11} & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) \\
+																								 &= \theta_a  \left ( \left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right )\left (\begin{smallmatrix} \varphi_{11} & 0 \\ 0 & \varphi_{22} \\ \end{smallmatrix} \right ) \right )  \\
+																								 &= \theta \left (\iota^a\left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right )X\right ) \\
+																								 &= \theta \left (\iota^{K_0}(\sigma )X\right ), \\
+\end{aligned}
+$$
+where in the fourth line we used the adjoint relation for $\iota_a$ and $\iota^a$.
+
+We now turn to the Cardy condition; for the equality $\pi^{K_0}_b=\iota_b\iota^{K_0}$, consider a basis $\{\left (\begin{smallmatrix} \tau_i & 0 \\ \end{smallmatrix} \right ), \left (\begin{smallmatrix} 0 & \eta_j  \\ \end{smallmatrix} \right )\}$ for $\Gamma_{ab}\cong \Gamma_{K_0b}\oplus \Gamma_{I_0b}$, where $\{\sigma_i\}$ is a basis for $\Gamma_{K_0b}$ and $\{\eta_j\}$ for $\Gamma_{I_0b}$. We have
+$$
+\begin{aligned}
+\iota_b\iota^{K_0}(\sigma ) &= \iota_b\iota^a \left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) = \pi^a_b \left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) \\
+														&= \sum_i\left (\begin{smallmatrix} \tau_i & 0 \\ \end{smallmatrix} \right )\left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) \left (\begin{smallmatrix} \overline{\theta}_{bK_0}^{-1}(\tau^i) \\ 0 \\ \end{smallmatrix} \right ) + \sum_j \left (\begin{smallmatrix} 0 & \eta_j \\ \end{smallmatrix} \right )\left (\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix} \right ) \left (\begin{smallmatrix} 0 \\ \overline{\theta}_{bI_0}^{-1}(\eta^j) \\ \end{smallmatrix} \right ) \\
+														&= \pi_b^{K_0}(\sigma ). \\
+\end{aligned}
+$$
+Consider now the equality $\pi^b_a=\iota_a\iota^b$; taking into account the decomposition $a\cong K_0\oplus I_0$ we have
+\begin{equation}\label{rhs_cardy_pa}
+\iota_a\iota^b(\sigma ) = \iota_{K_0\oplus I_0}\iota^b(\sigma ) = \left (\begin{smallmatrix} \iota_{K_0}\left (\iota^b(\sigma )\right ) & 0 \\ 0 & \iota_{I_0}\left (\iota^b(\sigma )\right ) \\ \end{smallmatrix} \right ).
+\end{equation}
+On the other hand, by lemma \ref{cardy_additive},
+\begin{equation}\label{lhs_cardy_pa}
+\pi^b_a(\sigma )= \pi^b_{K_0\oplus I_0} (\sigma )=\left (\begin{smallmatrix} \pi^b_{K_0}(\sigma ) & 0 \\ 0 & \pi^b_{I_0}(\sigma ) \\ \end{smallmatrix} \right ).
+\end{equation}
+Comparing equations \eqref{rhs_cardy_pa} and \eqref{lhs_cardy_pa} we obtain $\pi^b_{K_0}=\iota_{K_0}\iota^b$, as desired.
+\end{proof}
+
+Hence, we obtain the following
+
+\begin{cor}
+Any maximal {\sc cy} category $\scr{B}$ over $M$ is pseudo-abelian.
+\end{cor}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Local Structure}
+\label{ss_local_structure}
+
+The following definition shall be useful.
+
+\begin{defi}
+Let $U\subset M$ be a semisimple open subset. We shall say that a label $a\in \scr{B}(U)$ is \emph{supported on an index $i_0$} if
+$$\iota_{a}(e_{i_0})=1_a.$$
+Equivalently, $\iota_a(e_j)=0$ for each $j\neq i_0$. 
+\end{defi}
+
+\begin{lemma}\label{support_ij}
+Let $i\neq j$ be two indices, $1\leqslant i,j\leqslant n$ and let $a,b$ be labels over a semisimple open subset of $M$. If $a$ and $b$ are supported on $i$ and $j$ respectively, then $\Gamma_{ab}=0$.
+\end{lemma}
+\begin{proof}
+Pick an arrow $\sigma \in \Gamma_{ab}$. Then
+$$\sigma =\sigma 1_a=\sigma \iota_a(e_i)=\iota_b(e_i)\sigma =0,$$
+as claimed.
+\end{proof}
+
+\begin{lemma}\label{existence_support}
+Let $\scr{B}$ be a maximal category of branes and $U$ a semisimple open subset. For each index $i$, $1\leqslant i\leqslant n$, there exists a label $\xi_i$ supported on $i$.
+\end{lemma}
+\begin{proof}
+Assume that this statement is false. We shall see that the maximality of $\scr{B}$ will not allow this to happen.
+
+So we first assume that $\iota_a(e_j)=0$ for each index $j$ and each $a\in \scr{B}(U)$. We define a new category $\scr{C}$: the objects of $\scr{C}(U)$ are objects of $\scr{B}(U)$ plus one label, which we denote by $\xi_i$. We also define
+\begin{itemize}
+\item $\Gamma_{\xi_i\xi_i}=\scr{O}_U$.
+\item $\Gamma_{\xi_ia}=\Gamma_{a\xi_i}=0$; this definition is motivated by lemma \ref{support_ij}.
+\item $\theta_{\xi_i}:\Gamma_{\xi_i\xi_i}=\scr{O}_U \to \scr{O}_U$ is the identity.
+\item Let $X=\sum_j\lambda_je_j$ be a local vector field. Then $\iota_{\xi_i}:\scr{T}_U\to \Gamma_{\xi_i\xi_i}$ and $\iota^{\xi_i}:\Gamma_{\xi_i\xi_i}\to \scr{T}_U$ are given by
+$$\iota_{\xi_i}(X)=\lambda_i \quad \text{and} \quad \iota^{\xi_i}(\lambda )=\lambda e_i.$$
+\end{itemize}
+These definitions make $\scr{C}$ a Cardy fibration, contradicting the maximality of $\scr{B}$.
+\end{proof}
+
+\begin{proposition}\label{invertibles}
+Let $U$ be a semisimple neighborhood. For each index $i=1,\dots ,n$, there exists a label $\xi_i\in \scr{B}(U)$ supported on $i$ such that $\Gamma_{\xi_i\xi_i}\cong \scr{O}_U$.
+\end{proposition}
+\begin{proof}
+Let $i$ be an index, $1\leqslant i\leqslant n$. By lemma \ref{existence_support}, we can pick a label $a_i$ supported in $i$. If $\Gamma_{a_ia_i}\cong \scr{O}_U$, then $\xi_i:=a_i$ is the label we are looking for. If not, we have that $\Gamma_{a_ia_i}$ can be taken to be a matrix algebra $\opnm{M}_{d_i}(\scr{O}_U)$ (the construction of such a label is assured by maximality of the category of branes, and can be proved by following exactly the same procedure used in the proof of lemma \ref{existence_support}). Let then $\sigma \in \Gamma_{a_ia_i}$ be an idempotent matrix, which can be regarded as a morphism $\sigma :\scr{O}_U^{d_i}\to \scr{O}_U^{d_i}$. Moreover, assume that $\sigma$ is the projection
+$$\sigma (\lambda_1,\dots ,\lambda_n)=(\lambda_1,\dots ,\lambda_{i-1},0,\lambda_{i+1},\dots ,\lambda_n).$$
+Then, as the category of branes is pseudo-abelian, we have that $\opnm{Ker}\sigma \cong \scr{O}_U\in \scr{B}(U)$. As $\scr{O}_U$ is indecomposable, we should have $\Gamma_{\opnm{Ker}\sigma\opnm{Ker}\sigma}\cong \scr{O}_U$, and hence $\xi_i:=\opnm{Ker}\sigma$ is the object we were looking for.
+\end{proof}
+
+\begin{lemma}\label{simple_mods}
+$\Gamma_{\xi_i\xi_j}=0$ for $i\neq j$.
+\end{lemma}
+\begin{proof}
+This is an immediate consequence of lemma \ref{support_ij}.
+\end{proof}
+
+We shall need the following decomposition for $\Gamma_{ab}$.
+
+\begin{proposition}\label{decomposition}
+For labels $a,b\in \mathscr{B}(U)$, with $U$ a semisimple neighborhood, we have an isomorphism
+$$\Gamma_{ab}\cong \bigoplus_i\Gamma_{a\xi_i}\otimes\Gamma_{\xi_ib}.$$
+\end{proposition}
+\begin{proof}
+Define the map $\phi :\bigoplus_i\Gamma_{a\xi_i}\otimes\Gamma_{\xi_ib}\rightarrow\Gamma_{ab}$ by
+\begin{equation}\label{iso_decomp}
+\phi (\sigma_1\otimes \tau_1,\dots ,\sigma_n\otimes \tau_n)=\sum_i\tau_i\sigma_i.
+\end{equation}
+Using the characterization given in \ref{theorem2bis}, we have a local isomorphism
+$$
+\bigoplus_i\Gamma_{a\xi_i}\otimes\Gamma_{\xi_ib} \cong \bigoplus_i \left (\bigoplus_j\underline{\operatorname{Hom}}_{\scr{O}_U}\left (\mathscr{O}_U^{d(a,j)},\mathscr{O}_U^{d(\xi_i,j)}\right )\right )\otimes \left (\bigoplus_k\underline{\operatorname{Hom}}_{\mathscr{O}_U}\left (\mathscr{O}_U^{d(\xi_i,k)},\mathscr{O}_U^{d(b,k)}\right )\right ).
+$$
+By \ref{simple_mods}, we have that $d(\xi_i,k)=\delta_{ik}$, and thus
+$$
+\bigoplus_i\Gamma_{a\xi_i}\otimes\Gamma_{\xi_ib} \cong \bigoplus_i \underline{\operatorname{Hom}}_{\scr{O}_U}\left (\mathscr{O}_U^{d(a,i)},\mathscr{O}_U\right )\otimes \underline{\operatorname{Hom}}_{\scr{O}_U}\left (\mathscr{O}_U,\mathscr{O}_U^{d(b,i)}\right ).
+$$
+On the other hand, by \ref{theorem2}, we also have that, locally, $\Gamma_{ab}\cong \bigoplus_i\underline{\operatorname{Hom}}_{\scr{O}_U}\left (\mathscr{O}_U^{d(a,i)},\mathscr{O}_U^{d(b,i)}\right )$. Combining these facts with \eqref{iso_decomp} we conclude that the stalk maps $\phi_x$ are in fact bijections for each $x\in U$.  
+\end{proof}
+
+A useful consequence of \ref{decomposition} is the following
+
+\begin{cor}\label{linear_comb}
+For each label $b$ over $U$, we have an isomorphism
+$$b\cong \bigoplus_i\Gamma_{\xi_ib}\otimes \xi_i.$$
+\end{cor}
+\begin{proof}
+Take any label $c$. By equations \eqref{product_brane} and duality we have
+$$
+\begin{aligned}
+\underline{\operatorname{Hom}}_U\Bigl (\bigoplus_i\Gamma_{\xi_ib}\otimes \xi_i,c\Bigr ) &\cong \bigoplus_i\Gamma_{b\xi_i}\otimes \underline{\operatorname{Hom}}_U(\xi_i,c) \\
+&\cong \bigoplus_i\Gamma_{b\xi_i}\otimes\Gamma_{\xi_ic} \\
+&\cong \Gamma_{bc}.\\
+\end{aligned}
+$$
+As $c$ is arbitrary, the result follows.
+\end{proof}
+
+Note that the coefficient modules in the previous result are unique, up to isomorphism: if $b\cong \bigoplus_i\scr{M}_i\otimes \xi_i$, then
+$$\Gamma_{\xi_jb}\cong \bigoplus_i\scr{M}_i\otimes\Gamma_{\xi_j\xi_i}\cong\scr{M}_j.$$
+
+The next result addresses some uniqueness issues.
+
+\begin{proposition}\label{uniqueness_labels}
+Let $\xi_i\in \scr{B}(U)$ be as in \ref{invertibles}, where $U$ is semisimple.
+\begin{enumerate}[(1)]
+\item Let $\eta_i$ be a label with the same properties as $\xi_i$. Then, there exists an invertible sheaf $\scr{L}$ over $U$ such that
+$$\eta_i\cong \scr{L}\otimes \xi_i.$$
+The converse statement also holds.
+\item If $\scr{M}$ is a locally-free module such that $\scr{M}\otimes \xi_i\cong \xi_i$, then $\scr{M}\cong \scr{O}_U$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For the first item, by \ref{support_ij} and \ref{linear_comb}, we have that
+$$
+\begin{aligned}
+\eta_i &\cong \bigoplus_j\Gamma_{\xi_j\eta_i}\otimes \xi_j \\
+       &\cong \Gamma_{\xi_i\eta_i}\otimes \xi_i. \\
+\end{aligned}
+$$
+Let $\scr{M}_i:=\Gamma_{\xi_i\eta_i}$. Then,
+$$
+\begin{aligned}
+\scr{O}_U &\cong \Gamma_{\eta_i\eta_i} \cong \Gamma_{\left (\scr{M}_i\otimes \xi_i \right )\left (\scr{M}_i\otimes \xi_i \right )} \\
+          &\cong \scr{M}_i^*\otimes \scr{M}_i\otimes \Gamma_{\xi_i\xi_i} \\
+					&\cong \Gamma_{\xi_i\eta_i}^*\otimes \Gamma_{\xi_i\eta_i}.\\
+\end{aligned}
+$$
+The converse is immediate by properties of the action $\scr{L}\otimes \xi_i$.
+
+For (2), as $\scr{M}\otimes \xi_i \cong \xi_i$, the modules $\Gamma_{\xi_i\xi_i}$ and $\Gamma_{\xi_i\left (\scr{M}\otimes \xi_i\right )}$ are isomorphic. Hence,
+$$\scr{O}_U\cong \Gamma_{\xi_i\left (\scr{M}\otimes \xi_i\right )}\cong \scr{M}\otimes \Gamma_{\xi_i\xi_i}\cong \scr{M},$$
+as desired.
+\end{proof}
+
+\begin{theorem}\label{equivalences}
+There exists an open cover $\mathfrak{U}$ of $M$ and an equivalence of categories
+\begin{equation}\label{equiv_2vb}
+\mathscr{B}(U)\simeq \tsf{LF}^n_{\scr{O}_U}
+\end{equation}
+for each $U\in \mathfrak{U}$, where $\tsf{LF}^n_{\scr{O}_U}$ denotes the $n$-fold fibred product of $\tsf{LF}_{\scr{O}_U}$.
+\end{theorem}
+\begin{proof}
+Let $\mathfrak{U}=\{U_\alpha \}$ be an open cover of $M$, where each $U_\alpha$ is semisimple. Define $F_\alpha:\mathscr{B}(U_\alpha )\rightarrow \tsf{LF}^n_{\scr{O}_{U_\alpha}}$ on objects by
+$$F_\alpha (a)=(\Gamma_{\xi_1a},\dots ,\Gamma_{\xi_na}),$$
+where the objects $\xi_i$ are the ones of proposition \ref{invertibles}, and on arrows by $F_\alpha (\sigma )=\sigma_*$; that is, if $\sigma :a\to b$, then $F_\alpha (\sigma )(\tau_1,\dots ,\tau_n)=(\sigma \tau_1,\dots ,\sigma \tau_n)$. We now define $G_\alpha:\tsf{LF}^n_{\scr{O}_{U_\alpha}}\rightarrow\scr{B}(U_\alpha )$ on objects by
+$$G_\alpha (\mathscr{M}_1,\dots ,\mathscr{M}_n)=\bigoplus_i \mathscr{M}_i\otimes \xi_i$$
+and on arrows by
+$$G_\alpha (f_1,\dots ,f_n)=(f_1\otimes \opnm{id}_{\xi_1},\dots ,f_n\otimes \opnm{id}_{\xi_n}),$$
+where $f_i:\scr{M}_i\to \scr{N}_i$.
+
+We then have that $F_\alpha G_\alpha (\mathscr{M}_1,\dots ,\mathscr{M}_n)=(\Gamma_{\xi_1\overline{a}},\dots ,\Gamma_{\xi_n\overline{a}})$, where $\overline{a}:=\bigoplus_j\scr{M}_j\otimes \xi_j$. Now,
+$$
+\begin{aligned}
+\Gamma_{\xi_i\overline{a}} &\cong \bigoplus_j \underline{\operatorname{Hom}}_U(\xi_i,\mathscr{M}_j\otimes \xi_j) \\
+                    &\cong \bigoplus_j \mathscr{M}_j\otimes \underline{\operatorname{Hom}}_U(\xi_i,\xi_j) \\
+                    &\cong \mathscr{M}_i \\
+\end{aligned}
+$$
+by \eqref{product_brane} and \ref{simple_mods}.
+
+The other way, we have $G_\alpha F_\alpha (a)=\bigoplus_i\Gamma_{\xi_ia}\otimes \xi_i$, which is isomorphic to $a$ by \ref{linear_comb}.
+\end{proof}
+
+In terms of the spectral cover, over each semisimple $U\subset M$ we have $\pi^{-1}(U)=\bigsqcup_{i=1}^n\widetilde{U}_i$, where each $\widetilde{U}_i$ is homeomorpic to $U$ by the projection $\pi :S\to M$, and thus we can write the $n$-fold product $\tsf{LF}^n_{\scr{O}_U}$ as the pushout $(\pi_*\tsf{LF}_{\scr{O}_S})(U)=\tsf{LF}_{\scr{O}_{\pi^{-1}(U)}}$. But $\scr{O}_{\pi^{-1}(U)}$ is the sheaf $(\pi_*\scr{O}_S)|_U$, which is in turn isomorphic to the tangent sheaf $\scr{T}_U$ by proposition \ref{isom_1}. Moreover, if $f:M\to N$ is a continuous map, then, by definition, the fibred categories $f_*\tsf{LF}_{\scr{O}_M}$ and $\tsf{LF}_{f_*\scr{O}_M}$ are equal. Thus, combining all these facts we can deduce that
+$$\pi_*\tsf{LF}_{\scr{O}_S}=\tsf{LF}_{\pi_*\scr{O}_S}\simeq \tsf{LF}_{\scr{T}_M}.$$
+
+\begin{cor}
+Given a  maximal Cardy fibration $\scr{B}$ over a massive manifold $M$, there exists an open cover $\mathfrak{U}$ of $M$ such that the category $\scr{B}(U)$ is equivalent to the category $\tsf{LF}_{\scr{T}_U}$ of locally free $\scr{T}_U$-modules. 
+\end{cor}
+
+Before stating the next result, we give a preliminary definition. Given a vector bundle $E$ we can construct the exterior powers $\bigwedge^kE$ which for a point $x\in M$ have fibre $\bigwedge^kE_x$. Given now a bundle map $\phi :E\to F$, we have that $\phi^{\wedge k}:\bigwedge^kE\to \bigwedge^kF$ is given by
+$$\phi^{\wedge k}(e_1\wedge \dots \wedge e_n)=\phi (e_1)\wedge \dots \wedge \phi (e_n).$$
+After this brief comment about exterior powers, we can now give the definition we need (see \cite{audin:frob} and references cited therein). A \emph{Higgs pair} for a manifold $M$ is a pair $(E,\phi )$, where $E$ is a vector bundle and $\phi :TM\to \opnm{End}(E)$ is a morphism such that $\phi \wedge \phi =0$. This last condition is expressing that for each $x\in M$, the endomorphisms $\phi_x(v)\in \opnm{End}(E_x)$ (for $v\in T_xM$) commute.
+
+In the next result, we use the notation of the proof of theorem \ref{equivalences}.
+
+\begin{cor}
+Given $a\in \scr{B}(U_\alpha )$, the transition homomorphism $\iota_a$ consists of $n$ Higgs pairs for $U_\alpha$.
+\end{cor}
+
+The meaning of <<consists of $n$ Higgs pairs>> is explained in the following proof.
+
+\begin{proof}
+From theorem \ref{equivalences}, we have an equivalence $F_\alpha :\scr{B}(U_\alpha )\to \tsf{LF}_{\scr{O}_{U_\alpha}}^n$; in particular, given a label $a\in \scr{B}(U_\alpha )$, we have a bijection
+$$\opnm{Hom}_{\scr{B}(U_\alpha )}(a,a)\longrightarrow \opnm{Hom}_{\tsf{LF}_{\scr{O}_{U_\alpha}}^n}(F_\alpha (a),F_\alpha (a)),$$
+which is in fact an isomorphism of algebras
+$$\Gamma_{aa}\longrightarrow \bigoplus_k\opnm{End}_{\tsf{LF}_{\scr{O}_{U_\alpha}}}\left (\Gamma_{\xi_k a}\right ).$$
+We can then assume that the transition homomorphism $\iota_a:\scr{T}_{U_\alpha }\to \Gamma_{aa}$ is in fact a morphism
+$$\iota_a:\scr{T}_{U_\alpha }\longrightarrow \bigoplus_k\opnm{End}_{\tsf{LF}_{\scr{O}_{U_\alpha}}}\left (\Gamma_{\xi_k a}\right );$$
+in other words, the map $\iota_a$ consists of $n$ morphisms
+$$\iota_a^k :\scr{T}_{U_\alpha }\longrightarrow \opnm{End}_{\tsf{LF}_{\scr{O}_{U_\alpha}}}\left (\Gamma_{\xi_k a}\right ).$$
+
+In our case, we have that the morphism $\iota_a$ is central; this condition can be also expressed by saying that the morphisms $\iota_a^k$ are central ($k=1,\dots ,n$). Hence, for each $k=1,\dots ,n$, $\left (\Gamma_{\xi_ka},\iota_a^k\right )$ is a Higgs pair for $U_\alpha$.
+\end{proof}
+
+We shall now describe the {\sc bdr} 2-vector bundle structure for the stack $\scr{B}$.
+
+We first point out that, being $M$ paracompact, the open cover by semisimple open subsets $\mathfrak{U}=\{U_\alpha \}$ can be taken to be indexed by a poset (which we shall not include in our notation). For each index $i=1,\dots ,n$, let $\xi^\alpha_i \in \scr{B}(U_\alpha )$ be a label as in proposition \ref{invertibles}. Let $U_\beta$ be another semisimple subset such that $U_{\alpha \beta}\neq \emptyset$ and let $\{e_i^\alpha\}$ and $\{e_i^\beta\}$ be frames of simple idempotent sections over $U_\alpha$ and $U_\beta$ respectively. We then have a permutation $u=u_{\alpha \beta}:\{1,\dots ,n\}\to \{1,\dots ,n\}$ such that, over $U_{\alpha \beta}$,
+$$e_i^\alpha =e_{u(i)}^\beta .$$
+By proposition \ref{uniqueness_labels}, the previous equation is equivalent to the existence of invertible sheaves $\scr{L}^{\alpha \beta}_i$ such that, over $U_{\alpha \beta}$,
+$$\xi_i^\alpha \cong \scr{L}^{\alpha \beta}_{u(i)}\otimes \xi_{u(i)}^\beta .$$
+Write $\xi^\alpha :=(\xi_1^\alpha ,\dots ,\xi_n^\alpha )^t$. Then, we can write the previous equation in matrix form
+\begin{equation}\label{mult_matrix}
+\xi^\alpha \cong A^{\alpha \beta}_u \xi^\beta ,
+\end{equation}
+where $A^{\alpha \beta}_u$ is a matrix obtained from the diagonal matrix
+$$\opnm{diag}\left (\scr{L}^{\alpha \beta}_1,\dots ,\scr{L}^{\alpha \beta}_n\right )$$
+by applying the permutation $u$ to its columns. Let now $\gamma$ be such that $U_{\alpha \beta \gamma}\neq \emptyset$ and suppose that the idempotents are permuted according to $v$ over $U_{\beta \gamma}$ and $w$ over $U_{\alpha \gamma}$.
+
+\begin{lemma}
+We have an isomorphism $A^{\alpha \beta}_uA^{\beta \gamma}_v\cong A^{\alpha \gamma}_w$ (i.e. the corresponding matrix entries on each side have isomorphic bundles).
+\end{lemma} 
+\begin{proof}
+Assume that the idempotents are permuted according to
+\begin{itemize}
+\item $u$ over $U_{\alpha \beta}$,
+\item $v$ over $U_{\beta \gamma}$ and
+\item $w$ over $U_{\alpha \gamma}$.
+\end{itemize}
+Then, by uniqueness, we should have $vu=w$. Now pick a vector $\xi^\gamma$. Then, the $i$-th coordinate of $A^{\alpha \beta}_uA^{\beta \gamma}_v\xi^\gamma$ is given by
+$$\scr{L}_i^{\alpha \beta }\otimes \scr{L}_{u(i)}^{\beta \gamma }\otimes \xi_{v(u(i))}^\gamma ,$$
+and the one corresponding to the product $A^{\alpha \gamma}_w\xi^\gamma$ is
+$$\scr{L}^{\alpha \gamma}_i\otimes \xi_{w(i)}^\gamma .$$
+As both objects are isomorphic to $\xi_i^\alpha$, they are both isomorphic, and hence by \ref{uniqueness_labels},
+$$\scr{L}_i^{\alpha \beta }\otimes \scr{L}_{u(i)}^{\beta \gamma } \cong \scr{L}^{\alpha \gamma}_i,$$
+as desired.
+\end{proof}
+
+If $A=(E_{ij})$ is an $n\times n$ matrix of vector bundles, we denote by $\opnm{rk}A\in \opnm{M}_n(\natu_0)$ the matrix which $(i,j)$ entry is $\opnm{rk}E_{ij}$. Then, by definition,
+$$\opnm{det}\left (\opnm{rk} A_u^{\alpha \beta}\right )=\pm 1.$$
+Moreover, associativity of the tensor product renders the following diagram
+$$\xymatrix{
+A^{\alpha \beta}(A^{\beta \gamma }A^{\gamma \delta }) \ar[rr] \ar[d] & & (A^{\alpha \beta }A^{\beta \gamma })A^{\gamma \delta } \ar[d] \\
+A^{\alpha \beta }A^{\beta \delta } \ar[r] & A^{\alpha \delta } & A^{\alpha \gamma }A^{\gamma \delta }, \ar[l] }
+$$
+commutative (see definition \ref{bdr_2bundle}). We can then state the following
+
+\begin{theorem}
+Let $M$ be a massive manifold with multiplication of dimension $n$. Then, any maximal Cardy fibration $\scr{B}$ over $M$ has a canonical {\sc bdr} 2-vector bundle of rank $n$ attached to it.
+\end{theorem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Category of Locally Free Modules}
+
+Assume that our (semisimple) base manifold $M$ has dimension $n$ and consider the fibred category $\underline{\tsf{LF}}^n_{\scr{O}_M}$ defined by the correspondence
+$$\underline{\tsf{LF}}^n_{\scr{O}_M}(U)=\tsf{LF}^n_{\scr{O}_U},$$
+where the right-hand side is the $n$-folded fibred product of the category of locally free $\scr{O}_U$-modules. We shall now build a Cardy fibration from this fibred category.
+
+Let $\mathfrak{U}$ be an open cover consisting of connected, semisimple subsets. Over each $U\in \mathfrak{U}$ we then have a frame of idempotent sections $\{e_1,\dots ,e_n\}$ of the tangent sheaf $\scr{T}_U$. Given objects ($n$-tuples) $\scr{M}:=(\scr{M}_i)$ and $\scr{N}:=(\scr{N}_i)$, a morphism $\sigma :\scr{M}\to \scr{N}$ is an $n$-tuple $(\sigma_i)$ of morphisms $\sigma_i:\scr{M}_i\to \scr{N}_i$. In particular, note that, locally, the sheaf $\Gamma_{\scr{MN}}$ is isomorphic to a sum $\bigoplus_i\opnm{M}_{n_i\times m_i}(\scr{O}_U)$ of matrix algebras, where $m_i$ and $n_i$ are, respectively, the ranks of $\scr{M}_i$ and $\scr{N}_i$. When $\scr{M}=\scr{N}$, the sheaf $\Gamma_{\scr{MM}}$ shall be denoted by $\Gamma_{\scr{M}}$.
+
+In order to endow $\underline{\tsf{LF}}^n_{\scr{O}_M}$ with a Cardy fibration structure, we need first to define the structure maps, for which we consider equations \eqref{local_expressions}.
+
+Let us start with the transition map $\iota_\scr{M}$. Recall that for each local vector field $X$, the image $\iota_\scr{M}(X)$ should be in the center of the endomorphism sheaf, which in this case is a sheaf isomorphic to $\scr{O}^n_U$. Hence, $\iota_\scr{M}$ should be an algebra homomorphism $\iota_\scr{M}:\scr{T}_U\to \scr{O}^n_U$, where the algebra structure on $\scr{O}_U$ is the trivial one.
+
+For an object $\scr{M}=(\scr{M}_i)$, we define $\iota_{\scr{M}}$ in the following way: given an idempotent section $e_i$, the (idempotent) endomorphism $\iota_{\scr{M}}(e_i):\scr{M}\to \scr{M}$ is the canonical projection
+$$\iota_{\scr{M}}(e_i)(x_1,\dots ,x_n)=(0,\dots ,0,x_i,0,\cdots ,0).$$
+Let now $\sigma =(\sigma_i)\in \Gamma_{\scr{M}}$; then for $\iota^\scr{M}$ we must have
+$$\iota^\scr{M}(\sigma )= \sum_i\frac{\operatorname{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}e_i,$$
+which leads to the following expression for $\theta_\scr{M}$:
+$$\theta_\scr{M}(\sigma )=\sum_i\sqrt{\theta (e_i)}\operatorname{tr}(\sigma_i).$$
+From these definitions we can deduce also the adjoint relation \eqref{adjoint}.
+
+For the Cardy condition, consider $\pi^\scr{M}_\scr{N}:\Gamma_{\scr{M}}\to \Gamma_{\scr{N}}$ which is given by
+$$\pi_\scr{N}^\scr{M}(\sigma_1,\dots ,\sigma_n)=\sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}\iota_\scr{N}(e_i);$$
+that is, if $\sigma :=(\sigma_1,\dots ,\sigma_n)$,
+$$\pi_\scr{N}^\scr{M}(\sigma )(x_1,\dots ,x_n)=\sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}x_i.$$
+On the other hand, we have $\iota_\scr{N}\iota^\scr{M}(\sigma )=\sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}\iota_\scr{N}(e_i)$, and hence
+$$\iota_\scr{N}\iota^\scr{M}(\sigma )(x_1,\dots ,x_n)=\sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}x_i=\pi_\scr{N}^\scr{M}(\sigma )(x_1,\dots ,x_n).$$
+Additivity is provided by the direct sum of modules. The action of the category of locally free modules is given by the tensor product. The pseudo-abelian structure (in fact abelian) structure of the category of locally free modules is also well-known (see section \ref{bundles_operations}). As $\underline{\tsf{LF}}_{\scr{O}_M}$ is a stack (check example \ref{st_ex4}), then so is the $n$-fold product.
+
+The objects $\xi_i$ are given in this case by the $n$-tuples $(0,\dots ,0,\scr{O}_U,0,\dots ,0)$.
+
+It is worth noting that the open cover $\mathfrak{U}$ of definition \ref{cy_fibration} cannot in general be taken as $\mathfrak{U}=\{M\}$; consider the object $\scr{O}_i:=(0,\dots ,0,\scr{O}_M,0,\dots ,0)$; then $\Gamma_{\scr{O}_i}\cong \scr{O}_M$, and the transition map $\iota_{\scr{O}_i}$ can be regarded as an algebra homomorphism
+$$\iota_{\scr{O}_i}:\scr{T}_M\longrightarrow \scr{O}_M,$$
+which is the same as having a global section $M\to S$ of the spectral cover. If this were true, then $S$ should be trivial, which in fact implies that there exists a global frame of idempotent sections, and hence trivializing the tangent bundle of $M$.
+
+
+
+\clearpage
+
+{\small
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resumen del Cap\'itulo \ref{local_description}}
+
+En este cap\'itulo hacemos una descripci\'on completa de las que llamamos categor\'ias maximales, y demostramos que la sugerencia de G. Segal respecto a que debe existir una relaci\'on entre el moduli de teor\'ias topol\'ogicas de campos y los 2-espacios vectoriales es en efecto cierta.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Propiedades Algebraicas de las Categor\'ias Maximales}
+
+Diremos que una fibraci\'on de Cardy $\scr{B}$ sobre $M$ es \emph{maximal} si dada otra fibraci\'on $\scr{B}'$, existe una aplicaci\'on inyectiva $\opnm{sk}\scr{B}'\to \opnm{sk}\scr{B}$, donde $\opnm{sk}$ indica el esqueleto de la categor\'ia.
+
+Fijemos ahora un punto $x\in U_\alpha \subset M$, donde $U_\alpha$ es un abierto semisimple. Dados $a,b\in \scr{B}(U_\alpha )$, notaremos con $E_{ab}$ la fibra sobre $x$ del haz $\Gamma_{ab}$ (omitimos referencia a $x$ para simplificar la notaci\'on).\footnote{Dado un $\scr{O}_M$-m\'odulo localmente libre $\scr{M}$, recordemos que el \emph{stalk} sobre $x$ viene dado por $\scr{M}_x=\underset{U\ni x}{\opnm{colim}}\scr{M}_x$. La \emph{fibra} $F_x(\scr{M})$ sobre $x$ se define entonces por
+$$F_x(\scr{M})=\scr{M}_x/\mathfrak{m}_x^{\oplus n},$$
+siendo $\mathfrak{m}_x$ el ideal maximal de $\scr{O}_{M,x}$.}
+
+Llamemos ahora $p_{ab}$ a la sucesi\'on de morfismos
+$$\Gamma_{ab}(U_\alpha)\longrightarrow \Gamma_{ab,x}\longrightarrow E_{ab},$$
+donde $\Gamma_{ab,x}$ indica el \emph{stalk} del haz $\Gamma_{ab}$ sobre $x$. Sea $1_a$ la identidad de $\Gamma_{aa}(U_\alpha )$, e identifiquemos a una brana $a\in \scr{B}(U_\alpha )$ con la correspondiente identidad $1_a$. Notemos tambi\'en por $\overline{a}$ a la imagen $p_{aa}(1_a)\in E_{aa}$. Definimos ahora una categor\'ia $\overline{\scr{B}}_x$ de la siguiente manera: sus objetos vienen dados por $\overline{a}$ (con $a\in \scr{B}(U_\alpha)$); dados objetos $\overline{a}$ y $\overline{b}$, el conjunto de morfismos $\overline{a}\to \overline{b}$ se define como $E_{ab}$. Las formas lineales vienen inducidas por las formas $\theta :\scr{T}_M\to \scr{O}_M$ y $\theta_a :\Gamma_{aa}\to \scr{O}_M$, las cuales inducen $\overline{\theta}_x:T_xM\to \comp$ y $\overline{\theta}_a:E_{aa}\to \comp$. De la misma forma, los morfismos de transici\'on inducen morfismos de transici\'on
+$$T_xM\stackrel{\iota_{\overline{a}}}{\longleftarrow}E_{aa}\stackrel{\iota^{\overline{a}}}{\longrightarrow}T_xM.$$
+\medskip
+
+{\bf Teorema.} {\it Sean $x_0,x_1\in U_\alpha$. Tenemos entonces que
+\begin{enumerate}
+\item Las categor\'ias $\overline{\scr{B}}_{x_0}$ y $\overline{\scr{B}}_{x_1}$ son isomorfas.
+\item La categor\'ia $\overline{\scr{B}}_x$, junto con el \'algebra $T_xM$ y los mapas de estructura $\overline{\theta}_x, \overline{\theta}_a \iota_{\overline{a}}$ e $\iota^{\overline{a}}$ definen una categor\'ia de branas en el sentido de Moore y Segal.
+\end{enumerate}}
+\medskip
+
+Dos fundamentales consecuencias de esta definici\'on vienen resumidas en el siguiente resultado.
+\medskip
+
+{\bf Teorema.} {\it Sean $a,b\in \scr{B}(U_\alpha)$. Entonces
+\begin{enumerate}
+\item El haz $\Gamma_{aa}$ es localmente isomorfo a una suma de \'algebras de matrices $\bigoplus_i\opnm{M}_{d(a,i)}(\scr{O}_{U_{\alpha}})$.
+\item El haz $\Gamma_{ab}$ es localmente isomorfo a $\bigoplus_i\opnm{Hom}_{\scr{O}_{U_\alpha}}\left (\scr{O}_{U_\alpha}^{d(a,i)},\scr{O}_{U_\alpha}^{d(b,i)}\right )$.
+\end{enumerate}}
+
+
+\subsubsection{{\small Propiedades de las Categor\'ias Maximales}}
+
+La propiedad de maximalidad implica la existencia de varias propiedades importantes que este tipo de categor\'ias deben tener. En esta secci\'on damos cuenta de todas ellas.
+\medskip
+
+{\sc Estructura Aditiva.} Sea $U\subset M$ un abierto y $a,b,c\in \scr{B}(U)$. Veamos entonces que tener una estructura aditiva es perfectamente compatible con las propiedades que definen una fibraci\'on de Cardy. Definimos un objeto $a\oplus b$, poniendo
+$$
+\begin{aligned}
+\Gamma_{(a\oplus b)c} &:= \Gamma_{ac}\oplus \Gamma_{bc} \\
+\Gamma_{c(a\oplus b)} &:= \Gamma_{ca}\oplus \Gamma_{cb}. \\
+\end{aligned}
+$$
+En particular, notar que los morfismos en $\Gamma_{(a_1\oplus a_2)(b_1\oplus b_2)}$ se pueden representar como una matriz $\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix}$, donde $\sigma_{ij}:a_i\to b_j$.
+
+Para los morfismos: Definimos $\theta_{a\oplus b}:\Gamma_{(a\oplus b)(a\oplus b)}\to \scr{O}_U$ por
+$$
+\theta_{a\oplus b}\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right )=\theta_{a}(\sigma_{11})+\theta_b(\sigma_{22});
+$$
+y para los morfismos de transici\'on,
+$$
+\begin{aligned}
+\iota_{a\oplus b}(X) &:=\begin{smallmatrix} \iota_a(X) & 0 \\ 0 & \iota_b(X) \end{smallmatrix} \\
+\iota^{a\oplus b}\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \\ \end{smallmatrix} \right ) &:= \iota^a(\sigma_{11})+\iota^b(\sigma_{22}). \\
+\end{aligned}
+$$
+Las aplicaciones $\pi^{a\oplus b}_c$ and $\pi^a_{b\oplus c}$ toman la forma
+$$
+\begin{aligned}
+\pi^{a\oplus b}_c &= \pi^a_c+\pi^b_c \\
+\pi^a_{b\oplus c} &= \left (\begin{smallmatrix} \pi^a_b & 0 \\ 0 & \pi^a_c \\ \end{smallmatrix} \right ). \\
+\end{aligned}
+$$
+{\bf Teorema.} {\it Las aplicaciones definidas anteriormente verifican la condici\'on de centralidad, la adjunci\'on y la identidad de Cardy. En particular, toda fibraci\'on de Cardy maximal tiene una estructura aditiva.}
+\medskip
+
+Notar que la \'ultima conclusi\'on del teorema proviene justamente de la maximalidad, ya que en caso de no tener estructura aditiva, podemos definir la operaci\'on $\oplus$ y los morfismos de estructura como en los p\'arrafos anteriores y definir una categor\'ia mas grande, violando la maximalidad.
+\medskip
+
+{\sc Acci\'on de un M\'odulo Localmente Libre.} Asi como la aditividad, otra propiedad que cualquier categor\'ia maximal tiene es la de admitir una acci\'on de la categor\'ia de $\scr{O}_M$-m\'odulos localmente libres. Sea $\scr{M}$ un $\scr{O}_U$-m\'odulo localmente libre y $a,b\in \scr{B}(U)$. Definimos entonces un nuevo objeto $\scr{M}\otimes a$ de la siguiente manera:
+$$
+\begin{aligned}
+\Gamma_{(\scr{M}\otimes a)b} &= \scr{M}^*\otimes \Gamma_{ab}, \\
+\Gamma_{b(\scr{M}\otimes a)} &= \scr{M} \otimes \Gamma_{ba}, \\
+\end{aligned}
+$$
+donde el producto tensorial se toma sobre $\scr{O}_U$. En particular, obs\'ervese que
+$$\Gamma_{(\scr{M}\otimes a)(\scr{N}\otimes b)}=\underline{\opnm{Hom}}(\scr{M},\scr{N})\otimes \Gamma_{ab},$$
+donde $\underline{\opnm{Hom}}(\scr{M},\scr{N})$ indica el haz de mosfismos $\scr{O}_U$-lineales. La demostrici\'on de la siguiente proposici\'on se basa principalmente en las propiedades del producto tensorial de m\'odulos.
+\medskip
+
+{\bf Proposici\'on} {\it La correspondencia $(\scr{M},a)\mapsto \scr{M}\otimes a$ define una acci\'on de la categor\'ia de $\scr{O}_M$-m\'odulos localmente sobre $\scr{B}$, compatible con la estructura aditiva.}
+\medskip
+
+Sea $\overline{a}:=\scr{M}\otimes a$. Definimos el morfismo $\theta_{\overline{a}}:\Gamma_{\overline{a}\overline{a}}\to \scr{O}_U$ como la composici\'on
+$$
+\xymatrix{
+\underline{\operatorname{End}}_{\scr{O}_U}(\scr{M})\otimes \Gamma_{aa} \ar[rr]^{\operatorname{tr}\otimes \operatorname{id}} & & \scr{O}_U\otimes \Gamma_{aa}\cong \Gamma_{aa} \ar[r]^-{\theta_a} & \scr{O}_U;}
+$$
+esto es, $\theta_{\overline{a}}(f\otimes \sigma )=\opnm{tr}(f)\theta_a(\sigma )$. Pasando ahora a un abierto semisimple $U_\alpha$, definimos los mapas de transici\'on de la siguiente manera: $\iota_{\overline{a}}(X)=\opnm{id}_{\scr{M}}\otimes \iota_a(X)$ e $\iota^{\overline{a}}$ por la siguiente composici\'on:
+$$
+\xymatrix{
+\underline{\operatorname{End}}_{\scr{O}_{U_\alpha}}(\scr{M})\otimes \Gamma_{aa} \ar[rr]^{\operatorname{tr}\otimes \operatorname{id}} & & \scr{O}_{U_\alpha}\otimes \Gamma_{aa}\cong \Gamma_{aa} \ar[r]^-{\iota^a} & \scr{T}_{U_\alpha};}
+$$
+o sea $\iota^{\overline{a}}(f\otimes \sigma )=\opnm{tr}(f)\iota^a(\sigma )$.
+\medskip
+
+{\bf Teorema.} {\it Con las definiciones anteriores, la acci\'on $\scr{M}\otimes a$ es compatible con todas las estructuras definidas en una categor\'ia maximal. Luego, toda categor\'ia maximal viene equipada con una acci\'on de la categor\'ia de m\'dulos localmente libres.}
+\medskip
+
+{\sc Estructura Pseudo-Abeliana.} Se demuestra que cualquier categor\'ia maximal debe ser adem\'as pseudo-abeliana; esto es:dado un morfismo idempotente $\sigma_0 :a\to a$, vamos a asumir que existen branas $K_0:=\opnm{Ker}\sigma_0$ e $I_0:=\opnm{Im}\sigma_0$ tales que
+\begin{itemize}
+\item La brana $a$ se descompone como $a\cong K_0\oplus I_0$ y
+\item usando notaci\'on matricial, el mapa $\sigma_0$ viene dado por $\begin{smallmatrix} 0 & 0 \\ 0 & 1_a \\ \end{smallmatrix}$.
+\end{itemize}
+Notemos en primer lugar que
+$$\Gamma_{aa}=\Gamma_{K_0K_0}\oplus \Gamma_{K_0I_0}\oplus \Gamma_{I_0K_0}\oplus \Gamma_{I_0I_0},$$
+de donde podemos deducir que tanto $\Gamma_{K_0K_0}$ y $\Gamma_{I_0I_0}$ son localmente libres.
+Definimos ahora los morfismos de estructura para los nuevos objetos $K_0$ e $I_0$: tenemos $\theta_{K_0}:\Gamma_{K_0K_0}\to \scr{O}_U$ dado por
+$$\theta_{K_0}(\sigma )=\theta_a\begin{smallmatrix} \sigma & 0 \\ 0 & 0\end{smallmatrix}.$$
+Para los morfimos de transici\'on tenemos
+$$
+\begin{aligned}
+\iota_{K_0}(X) &:= \varphi_{11} \\
+\iota^{K_0}(\sigma )=\iota^a\begin{smallmatrix} \sigma & 0 \\ 0 & 0 \\ \end{smallmatrix}, \\
+\end{aligned}
+$$
+donde $\iota_a(X)=\begin{smallmatrix} \varphi_{11} & 0 \\ 0 & \varphi_{22} \\ \end{smallmatrix}$ (los coeficientes nulos se obtienen por la condici\'on de centralidad).
+\medskip
+
+{\bf Teorema.} {\it Los objetos y morfismos anteriores son compatibles con todas las estructuras que definen una fibraci\'on de Cardy maximal. En particular, cualquier tal categor\'ia debe ser pseudo-abeliana.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estructura Local}
+
+A continuaci\'on se introducen objetos que resultan fundamentales en la clasificaci\'on de las categor\'ias maximales. Su existencia, nuevamente, esta garantizada por la maximalidad.
+\medskip
+
+{\bf Lema.} {\it Sea $\scr{B}$ una categor\'ia de branas maximal y $U$ semisimple. Para cada \'indice $1\leqslant i \leqslant n$ existe una brana $\xi_i$ tal que $\iota_{\xi_i}(e_k)=\delta_{ik}1_a$.}
+
+Decimos que un tal objeto \emph{tiene soporte en $i$}. A partir del lema anterior podemos enunciar una resultado importante.
+\medskip
+
+{\bf Proposici\'on.} {\it Si $U$ es un abierto semisimple, para cada \'indice $i$ existe una brana $\xi_i\in \scr{B}(U)$ soportada en $i$ y tal que $\Gamma_{\xi_i\xi_i}\cong \scr{O}_U$. Mas a\'un, si $i\neq j$, tenemos que $\Gamma_{\xi_i\xi_j}=0$.}
+
+Las branas de la proposici\'on anterior son \'unicas en el siguiente sentido: si $\eta_i$ es una brana con las mismas propiedades que $\xi_i$, entonces existe un m\'odulo localmente libre $\scr{L}$ de rango 1 (que se llaman tambi\'en haces invertibles) tal que $\eta_i\cong \scr{L}\otimes \xi_i$.
+
+Llegamos asi a uno de los resultados centrales.
+\medskip
+
+{\bf Teorema.} {\it Si $\scr{B}$ es una fibraci\'on maximal de Cardy sobre $M$, existe un cubrimiento abierto $\mathfrak{U}$ de $M$ y una equivalencia de categor\'ias
+$$\scr{B}(U)\simeq \tsf{LF}^n_{\scr{O}_U},$$
+donde $U\in \mathfrak{U}$ y $\tsf{LF}^n_{\scr{O}_U}$ el producto (fibrado) de $n$ factores de la categor\'ia de $\scr{O}_U$-m\'odulos localmente libres.}
+\medskip
+
+En t\'erminos del recubrimiento espectral $\pi :S\to M$, sobre cada abierto semisimple $U\subset M$ tenemos que $\pi^{-1}(U)=\bigsqcup_i\widetilde{U}_i$. Luego, como adem\'as $\scr{O}_{\pi^{-1}(U)}$ es isomorfo al haz tangente $\scr{T}_U$, podemos escribir el producto $\tsf{LF}^n_{\scr{O}_U}$ como $\tsf{LF}^n_{\scr{O}_U}\simeq \tsf{LS}_{\scr{T}_U}$, deduciendo entonces que
+$$\scr{B}(U)\simeq \tsf{LF}_{\scr{T}_U}.$$
+
+Antes de enunciar el siguiente corolario damos una definci\'on preliminar. Dado un fibrado vetorial $E$, podemos construir las potencias exteriores $\bigwedge^kE$. Dado un morfismo de fibrados $\phi :E\to F$, tenemos que $\phi^{\wedge k}:\bigwedge^kE\to \bigwedge^kF$ viene dado por
+$$\phi^{\wedge k}(e_1\wedge \cdots \wedge e_n)=\phi (e_1)\wedge \cdots \wedge \phi (e_n).$$
+Un \emph{par de Higgs} para la variedad $M$ viene dado por un par $(E,\phi )$, donde $E$ es un fibrado vectorial y $\phi :TM\to \opnm{End}(E)$ es un morfismo de fibrados tal que $\phi \wedge \phi =0$; esta \'ultima condici\'on expresa que para cada $x\in M$, los endomorfismos $\phi_x(v):E_x\to E_x$ conmutan.
+\medskip
+
+{\bf Corolario.} {\it Dado una abierto semisimple $U\subset M$ y una brana $a\in \scr{B}(U)$, el morfismo de transici\'on $\iota_a$ consiste de $n$ pares de Higgs sobre $U$.}
+\medskip
+
+Describimos a continuaci\'on la estructura de 2-fibrado vectorial de Baas-Dundas-Rognes ({\sc bdr}) de la categor\'ia de branas $\scr{B}$. Para cada abierto semisimple $U_\alpha \in \mathfrak{U}$, sean $\xi_i^\alpha$ ($i=1,\dots ,n$) branas soportadas en $i$ tales que $\Gamma_{\xi_i^\alpha \xi_i^\alpha}\cong \scr{O}_U$. Sea $U_\beta$ tal que $U_{\alpha \beta}:=U_\alpha \cap U_\beta \neq \emptyset$ y $\{e_i^\alpha \},\{e_i^\beta \}$ bases de idempotentes ortogonales sobre $U_\alpha$ y $U_\beta$ respectivamente. Sobre $U_{\alpha \beta}$ tenemos una permutaci\'on $u:=u_{\alpha \beta}:\{1,\dots ,n\}\to \{1,\dots ,n\}$ tal que $e_i^\alpha =e_{u(i)}^\beta$ sobre $U_{\alpha \beta}$. Esta identidad implica la existencia de haces invertibles $\scr{L}_i^{\alpha \beta}$ tales que
+$$\xi_i^\alpha \cong \scr{L}_{u(i)}^{\alpha \beta}\otimes \xi_{u(i)}^\beta.$$
+Pongamos $\xi^\alpha :=(\xi_1^\alpha ,\dots ,\xi_n^\alpha )^t$. Entonces podemos escribir la ecuaci\'on anterior en forma matricial
+$$\xi^\alpha \cong A_u^{\alpha \beta}\xi^\beta,$$
+donde $A_u^{\alpha \beta}$ es la matriz obtenida de
+$$\opnm{diag}\left (\scr{L}_1^{\alpha \beta},\dots ,\scr{L}_n^{\alpha \beta}\right )$$
+aplicando la permutaci\'on $u$ a sus columnas. Supongamos ahora que $\gamma$ es tal que $U_{\alpha \beta \gamma}\neq \emptyset$ y supongamos que los idempotentes se permutan por $v$ sobre $U_{\beta \gamma}$ y por $w$ sobre $U_{\alpha \gamma}$. Entonces vale el isomorfismo
+$$A_u^{\alpha \beta}A_v^{\beta \gamma}\cong A_w^{\alpha \gamma}.$$
+Podemos entonces enunciar el resultado que da respuesta positiva a la sugerencia de G. Segal.
+\medskip
+
+{\bf Teorema.} {\it Sea $M$ una variedad con multiplicaci\'on semisimple de dimensi\'on $n$. Entonces, toda fibraci\'on de Cardy maximal $\scr{B}$ sobre $M$ viene equipada con un 2-fibrado vectorial de {\sc bsr} can\'onico de rango $n$.}
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
