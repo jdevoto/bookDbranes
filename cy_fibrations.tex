@@ -1,0 +1,584 @@
+
+\vspace{250pt}
+
+The first part of this chapter is devoted to the introduction of some
+basic notions from category theory. Additive and pseudo-abelian
+categories are needed in the next chapter to study maximal Cardy
+fibrations; we bundled all the definitions in this chapter just for
+convenience.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calabi-Yau Categories}
+\label{sheaf_boundary_conditions}
+
+Let $R$ be a commutative ring with unit. A category ${\bf X}$ is said
+to be \emph{enriched over the category of $R$-modules} if for
+arbitrary objects $a,b\in {\bf X}$, $\opnm{Hom}_{\bf X}(a,b)$ is an
+$R$-module and the composition map is $R$-bilinear. In particular, if
+$R=\ent$, we say that ${\bf X}$ is enriched over the category of
+abelian groups.
+
+Recall also that an object $a\in {\bf X}$ is said to be \emph{initial}
+(respectively \emph{terminal}) if for each $b\in {\bf X}$,
+there exists a unique arrow $a\to b$ (respectively $b\to a$).
+
+\begin{defi}\label{linear_cats}
+  Let ${\bf X}$ be a category and $R$ a commutative, unital ring. Then
+  ${\bf X}$ is called
+  \begin{enumerate}
+
+  \item an \emph{$R$-linear category} if it is enriched
+    over the category of $R$-modules;
+
+  \item an \emph{additive category} if it is
+    $\ent$-linear, has an initial object $0$ and for each pair of
+    objects $a,b\in {\bf X}$ there exists a sum $a\oplus b\in {\bf
+      X}$;
+
+  \item a \emph{pseudo abelian category} if it is additive
+    and given any object $a\in {\bf X}$, for each idempotent $\sigma
+    :a\rightarrow a$ (i.e. $\sigma^2=\sigma$) there exists an object
+    $\opnm{Ker} \sigma \in {\bf X}$, called the \emph{kernel of}
+    $\sigma$, such that the canonical arrow
+    \begin{equation}\label{canonical_arrow}
+      \opnm{Ker} \sigma \oplus \opnm{Ker} (1_a -\sigma )\longrightarrow a
+    \end{equation}
+    is an isomorphism;
+
+  \item a \emph{Calabi-Yau category (over $R$)} ({\sc cy} category for
+    short) if it is $R$-linear, the objects $\operatorname{Hom}_{{\bf X}}(a,a)$ 
+		are finitely generated, projective $R$-modules and, for each object $a\in {\bf X}$, 
+		there exists a linear form
+$$\theta_a:\operatorname{Hom}_{{\bf X}}(a,a)\longrightarrow R$$
+such that the composite
+\begin{equation}\label{pair}
+  \operatorname{Hom}_{{\bf X}}(a,b)\otimes_R
+  \operatorname{Hom}_{{\bf X}}(b,a)\longrightarrow 
+  \operatorname{Hom}_{{\bf X}}(a,a)\stackrel{\theta_a}{\longrightarrow }R
+\end{equation}
+is a perfect pairing (the first arrow is the composition map $\sigma
+\otimes \tau \mapsto \tau \sigma$) and, given arbitrary arrows $\sigma
+:a\to b$ and $\tau :b\to a$, the equality
+$$\theta_a(\tau \sigma )=\theta_b(\sigma \tau )$$
+holds.
+\end{enumerate}
+\end{defi}
+
+Let us add some more comments on the previous definitions. For
+details, the reader is referred to 
+\cite{maclane:_catwm, kn:grothendieck_sga2, freyd:abelian, costello07:_tcft_cy}.
+
+{\sc Additive Categories.} Recall that in a category ${\bf X}$, a
+\emph{zero object} $0\in {\bf X}$ is an object which is both initial
+and terminal. The sum operation $\oplus$ is usually called a
+\emph{biproduct} and, given objects $a_1,a_2\in {\bf X}$, there exist
+projection $\pr_k:a_1\oplus a_2\to a_k$ and inclusion morphisms
+$i_k:a_k\to a_1\oplus a_2$ ($k=1,2$) enjoying the following
+properties:
+\begin{itemize}
+\item $a_1\oplus a_2$ (together with the projections $\pr_1$ and
+  $\pr_2$) is a product.
+\item $a_1\oplus a_2$ (together with the inclusions $i_1$ and $i_2$)
+  is also a coproduct.
+\item $\pr_ki_k=1_{a_k}$ ($k=1,2$).
+\item $\pr_li_k=0$ for $l\neq k$, where $0$ is the zero object of the
+  abelian group $\opnm{Hom}_{\bf X}(a_k,a_l)$.
+\end{itemize}
+Schematically, the biproduct structure for $a_1\oplus a_2$ is given by
+the following diagrams:
+\begin{equation}\label{biproduct}
+  \xymatrix{ & b \ar[dr] \ar[dl] \ar[d] &  & & b & \\
+    a_1 & a_1\oplus a_2 \ar[l]^-{\pr_1} \ar[r]_-{\pr_2} & a_2 & a_1 \ar[r]_-{i_1} \ar[ur] & a_1\oplus a_2 \ar[u] & a_2 ,\ar[l]^-{i_2} \ar[lu]}
+\end{equation}
+where the diagonal maps are given and the vertical arrows are uniquely
+determined by the other morphisms (the diagram on the left corresponds
+to the product structure and the one on the right to the
+coproduct). In this setting, a morphism $\sigma :a_1\oplus a_2\to
+b_1\oplus b_2$ can be represented as a matrix
+$$\sigma =\left (\begin{smallmatrix} \sigma_{11} & \sigma_{21} \\ \sigma_{12} & \sigma_{22} \end{smallmatrix} \right ),$$
+where $\sigma_{ij}:a_i\to b_j$.
+
+Some examples: in the category of sets, there is no zero object (the
+empty set is the initial object while any singleton is terminal); the
+product is the cartesian product, and the coproduct is the disjoint
+union; in the category of vector spaces over a field, the direct sum
+is both a product and a coproduct; moreover, this category is
+additive, the zero object being the trivial vector space. In the
+category of groups, the zero object is the trivial group, but there is
+no biproduct: the product is the direct product, and the coproduct is
+the free product.
+
+{\sc Pseudo-Abelian Categories.} Let $\sigma :a\to b$ be a morphism in
+an additive category ${\bf X}$; the \emph{kernel} $K(\sigma )$
+\emph{of} $\sigma$ is a pair $(\opnm{Ker}\sigma ,k)$, where
+$\opnm{Ker}\sigma$ is an object of ${\bf X}$ and $k=k_{\sigma
+}:\opnm{Ker}\sigma \to a$ an arrow such that $\sigma k=0\in
+\opnm{Hom}_{\bf X}(\opnm{Ker}\sigma ,b)$. Moreover, $\opnm{Ker}\sigma$
+is the ``biggest'' object with this property, in the sense that if
+$k':K'\to a$ is another arrow such that $\sigma k'=0$, then there
+exists a unique morphism $i:K'\to \opnm{Ker}\sigma$ such that
+$k'=ki$. In a pseudo-abelian category ${\bf X}$, every idempotent
+$\sigma :a\to a$ has a kernel; as $1_a-\sigma$ is also idempotent,
+then $\opnm{Ker}(1_a-\sigma)$ is also defined; the canonical arrow
+\eqref{canonical_arrow} is the unique map $\opnm{Ker}\sigma \oplus
+\opnm{Ker}(1_a-\sigma )\to a$ which makes the diagram
+$$
+\xymatrix{
+  & a & \\
+  \opnm{Ker}\sigma \ar[ur]^{k_{\sigma}} \ar[r]_-{i_1} &
+  \opnm{Ker}\sigma \oplus \opnm{Ker}(1_a-\sigma ) \ar[u] &
+  \opnm{Ker}(1_a-\sigma ), \ar[ul]_{k_{1_a -\sigma }} \ar[l]^-{i_2} }
+$$
+commutative.
+
+An important example of a pseudo-abelian category is the category
+$\tsf{Vect}(M)$ of vector bundles over a manifold $M$; see section
+\ref{bundles_operations}).
+
+Another term used to describe this situation is to say that the
+idempotent $\sigma$ \emph{splits}. In fact, the definition of
+pseudo-abelian category given here restricts to additive categories,
+but the notion of idempotent splitting can be given in an arbitrary
+category. Moreover, given any category ${\bf X}$ in which idempotents
+do not split, a new category $\widehat{\bf X}$, called the
+\emph{idempotent completion}, \emph{Karoubi envelope} or \emph{Cauchy
+  completion of} ${\bf X}$ can be constructed in a way such that
+\begin{itemize}
+\item the category ${\bf X}$ embeds naturally in $\widehat{\bf X}$ and
+\item every idempotent in $\widehat{\bf X}$ splits.
+\end{itemize}
+We sketch the construction of the category $\widetilde{{\bf X}}$: Its
+objects are pairs $(a,\sigma )$, where $\sigma :a\to a$ is an
+idempotent map. A morphism $(a,\sigma )\to (b,\tau )$ is an arrow
+$f:a\to b$ in ${\bf X}$ such that $f\sigma =f=\tau f$, and composition
+is the same as the one in ${\bf X}$; the identity arrow of an object
+$(a,\sigma )$ is $\sigma$. The embedding ${\bf X}\to \widehat{\bf X}$
+is given by the assignment $a\mapsto (a,1_a)$. In the
+additive-category setting, the objects $(a,\sigma )$ and
+$(a,1_a-\sigma )$ should be interpreted as $\opnm{Ker}\sigma $ and
+$\opnm{Ker}(1_a-\sigma )$ (they are in fact kernels in the additive
+category $\widehat{{\bf X}}$), and the isomorphism $(a,1_a)\to
+(a,\sigma )\oplus (a,1_a-\sigma )$ is given by the matrix $\left
+  (\begin{smallmatrix} \sigma & 1_a-\sigma \\ \end{smallmatrix} \right
+)$, with inverse $\left (\begin{smallmatrix} \sigma \\ 1_a-\sigma
+    \\ \end{smallmatrix} \right )$. If $\sigma :a\to a$ is an
+idempotent map ${\bf X}$, then we can view it in $\widehat{\bf X}$ as
+an arrow
+$$\sigma :(a,\sigma )\oplus (a,1_a-\sigma )\longrightarrow (a,\sigma )\oplus (a,1_a-\sigma ),$$
+and hence as a matrix $\left (\begin{smallmatrix} \sigma_{11} &
+    \sigma_{21} \\ \sigma_{12} & \sigma_{22} \end{smallmatrix} \right
+)$. As the composite maps $\sigma (1_a-\sigma )$ and $(1_a-\sigma
+)\sigma$ are both equal to 0, then $\sigma = \left
+  (\begin{smallmatrix} 0 & 0 \\ 0 & 1_a \end{smallmatrix} \right )$.
+
+For details, the reader is referred to
+\cite{borceux:_cauchy_completion, natan:_envelope} and
+references therein.
+
+{\sc Calabi-Yau Categories.} The notion of Calabi-Yau category comes
+from physics. In fact, in one of the aforementioned references,
+K. Costello shows that $A_\infty$ Calabi-Yau categories classify
+open-closed topological conformal field theories. In a {\sc cy} category,
+for each object $a\in {\bf X}$, the existence of a trace $\theta_a$
+implies that the hom-set $\operatorname{End}_{{\bf
+    X}}(a)=\operatorname{Hom}_{{\bf X}}(a,a)$ is a Frobenius
+$R$-algebra. Equivalently, as the pairing \eqref{pair} is
+non-degenerate, we have that the $R$-module $\operatorname{Hom}_{{\bf
+    X}}(b,a)$ is canonically isomorphic to the dual module
+$\operatorname{Hom}_{{\bf X}}(a,b)^*$. A {\sc cy} category
+\emph{in the sense of Moore and Segal} is a {\sc cy} category which
+satisfies the conditions listed in section \ref{data}; in other words,
+it is a {\sc cy} category which models an open-closed topological field
+theory.
+
+We can generalize these notions to fibred categories over a manifold
+$M$.
+
+\begin{defi}
+  Let $\scr{R}$ be a sheaf of commutative rings with unit. A presheaf
+  of categories $\scr{B}$ over $M$ is said to be
+  \emph{$\scr{R}$-linear} iff for every open subset $U\subset M$, the
+  category $\scr{B}(U)$ is $\scr{R}(U)$-linear and all the structures
+  are compatible with pullbacks. Presheaves of additive,
+  pseudo-abelian and of $\scr{R}$-linear Calabi-Yau categories are
+  defined analogously.
+\end{defi}
+
+Note that if $\scr{B}$ is an $\scr{R}$-linear Calabi-Yau category over
+$M$, then for each open subset $U\subset M$ and each object $a\in
+\scr{B}(U)$, we have that $\operatorname{Hom}_{\scr{B}(U)}(a,a)$ is a
+Frobenius $\scr{R}(U)$-algebra. As for $\scr{R}$-modules, this
+statement can be generalized by saying that the presheaf
+$\underline{\opnm{Hom}}_U(a,a)$ is a Frobenius
+$\scr{R}|_U$-algebra.
+
+\begin{obs}
+  We use the term \emph{presheaf of categories} as a synonym for
+  \emph{fibred category}.
+\end{obs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calabi-Yau and Cardy Fibrations}
+
+In \cite{moore_segal1}, Moore and Segal define a model for an
+open-closed topological field theory of dimension 2. An account of
+these results was given in section \ref{sec_octfts} of chapter
+\ref{fsfts}. Theorem \ref{theorem_3} provides an algebraic
+characterization of a maximal category of boundary conditions, which turns
+out to be (non-canonically) equivalent to the category of finite-rank, complex vector bundles over the spectrum of the Frobenius algebra $A$.
+
+Moore and Segal's construction can be regarded as a theory over a one-point space, say $\{x\}$. By replacing
+\begin{itemize}
+\item $\{x\}$ by an $F$-manifold $M$,\footnote{In fact, broadly speaking, we shall need only to consider manifolds $M$ such that $T_xM$ is a Frobenius algebra and such that for each $x$, a frame of idempotent, orthogonal sections exists.}
+\item the closed algebra $C$ by the tangent bundle $TM$ (i.e. over each point $x\in M$, the closed algebra is the fibre $T_xM$) and
+\item the spectrum of the algebra $A$ by the spectral cover of $M$
+\end{itemize}
+we shall obtain not just a category but a sheaf of categories which has relations which 2-vector bundles, as Segal conjectured. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calabi-Yau Fibrations}
+
+From now on, we shall work with a ringed space $(M,\scr{O}_M)$ with the following properties:
+
+\begin{itemize}
+\item $TM$ is a bundle of algebras, i.e. $M$ is a manifold with multiplication and $\scr{O}_M$ is the usual structure sheaf (i.e. the sheaf of smooth functions in case $M$ is a smooth manifold; in particular, note that $\scr{O}_{M,x}$ is a local ring for each $x\in M$).
+\item There exists a linear form $\theta :\Gamma(TM)\to \scr{O}_M$ making each fibre $T_xM$ a commutative Frobenius $\comp$-algebra.
+\item $M$ is massive; i.e. each tangent space $T_xM$ is semisimple. In particular, for each $x\in M$ there exists a neighborhood $U\ni x$ and a frame of sections $\{e_1,\dots ,e_n\}$ defined over $U$ such that $e_ie_j=\delta_{ij}e_i$ and $\sum_i e_i=1$. In this case, we shall also say that $U$ is semisimple.
+\end{itemize}
+
+For simplicity, we shall refer to such a space as a \emph{semisimple manifold with multiplication} or just \emph{massive/semisimple manifold}. The reader should be aware that this name hides all the properties listed before.
+
+Let $M$ denote a semisimple manifold with multiplication, with
+structure sheaf $\scr{O}=\scr{O}_M$ and let $\scr{B}$ be an
+$\scr{O}$-linear {\sc cy} category over $M$. For objects $a,b\in
+\scr{B}(U)$, let us denote by $\Gamma_{ab}$ the presheaf
+$\underline{\operatorname{Hom}}_U(a,b)$ over $U$ given by
+\begin{equation}\label{sheaf_maps}
+  V\longmapsto \operatorname{Hom}_{\scr{B}(V)}(a|_V,b|_V).
+\end{equation}
+By definition of {\sc cy} category, we have that $\Gamma_{aa}$ is a
+Frobenius $\scr{O}_U$-algebra for each $a\in
+\scr{B}(U)$. We shall denote the linear form corresponding to $\Gamma_{aa}$
+by $\theta_a$.
+
+
+\begin{notation}
+  Recall that if the base manifold is clear, we shall supress the
+  subscript of the structure sheaf when taking local sections;
+  e.g. instead of using the notation $\scr{O}_M(U)$ for $U\subset M$,
+  we will only write $\scr{O}(U)$; and the restriction $\scr{O}_M|_U$
+  shall be denoted $\scr{O}_U$. The same considerations are applied to
+  the tangent sheaf $\scr{T}_M$ of a manifold $M$.
+\end{notation}
+
+We now turn to the relevant definitions.
+
+\begin{defi}\label{cy_fibration}
+  A \emph{Calabi-Yau ({\sc cy}) fibration over a semisimple manifold $M$} is
+  a pair $(\scr{B},\mathfrak{U})$ (the open cover shall be omitted
+  form the notation), where $\scr{B}$ is a {\sc cy} category over $M$ and
+  $\mathfrak{U}=\{U_\alpha \}$ is an open cover of $M$, subject to the
+  following conditions:
+  \begin{enumerate}
+  \item Each $U_\alpha \in \mathfrak{U}$ is semisimple.
+  \item $\scr{B}$ is a stack.\footnote{In particular, the presheaf
+      \eqref{sheaf_maps} is a sheaf.}
+  \item Given any $U_\alpha\in \mathfrak{U}$ and objects $a,b\in
+    \scr{B}(U_\alpha)$, the sheaf $\Gamma_{ab}$ is a locally-free
+    $\scr{O}_{U_\alpha}$-module of finite rank. Objects of $\scr{B}(U)$ are called \emph{labels},
+    \emph{boundary conditions} or \emph{D-branes} over $U$.
+	%\item For each $a\in \scr{B}(U)$, the locally free module $\Gamma_{aa}$ is a symmetric Frobenius 
+	%algebra with linear form $\theta_a$.
+  \item For each $U_\alpha \in \mathfrak{U}$ and each object $a\in
+    \scr{B}(U_\alpha )$, we have transition (sheaf) homomorphisms
+    \begin{displaymath}
+      \iota_a:\scr{T}_{U_\alpha}\longrightarrow \Gamma_{aa} 
+      \quad , \quad \iota^a:\Gamma_{aa}\longrightarrow \scr{T}_{U_\alpha}.     
+    \end{displaymath}
+The previous data is subject to the following conditions:
+
+\begin{enumerate}
+\item $\iota_a$ is a morphism of $\scr{O}_{U_\alpha}$-algebras
+  (preserves multiplication and unit) and $\iota^a$ is an
+  $\scr{O}_{U_\alpha}$-linear map.\footnote{In particular, $\iota_a$
+    provides $\Gamma_{aa}$ with a $\scr{T}_{U_\alpha}$-algebra
+    structure.}
+\item $\iota_a$ is central: given $X\in \scr{T}(V)$ and $\sigma \in
+  \Gamma_{ab}(V)$, we have
+  \begin{equation}\label{centrality}
+    \sigma \iota_a(X)=\iota_b(X)\sigma
+  \end{equation}
+  in $\Gamma_{ab}(V)$, for each $V\subset U_\alpha$.
+\item There is an adjoint relation between $\iota_a$ and $\iota^a$
+  given by
+  \begin{equation}\label{adjoint}
+    \theta (\iota^a(\sigma )X)=\theta_a(\sigma \iota_a(X)),
+  \end{equation}
+  for each $X\in \scr{T}_{U_\alpha}$ and $\sigma \in
+  \Gamma_{aa}$.\footnote{Recall that, given a sheaf $\scr{S}$ over
+    some space $M$, the notation $x\in \scr{S}$ means that $x\in
+    \scr{S}(U)$ for some arbitrary open subset $U\subset M$.}
+\end{enumerate}
+\end{enumerate}
+\end{defi}
+
+\begin{obs}
+  For some technical considerations (see definition \ref{maximal}), we
+  will assume that our {\sc cy} fibrations $\scr{B}$ verify that for each
+  open subset $U\subset M$, the skeleton $\opnm{sk}\scr{B}(U)$ of the
+  category $\scr{B}(U)$ is a set.
+\end{obs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cardy Fibrations}
+
+For $U_\alpha \in \mathfrak{U}$ open and $a,b\in \scr{B}(U_\alpha )$,
+pick a local basis $\{\sigma_i\}$ of $\Gamma_{ab}$ and let
+$\{\sigma^i\}$ be a basis of $\Gamma_{ab}^*$ dual to
+$\{\sigma_i\}$. Define the map $\pi^a_b:\Gamma_{aa}\to \Gamma_{bb}$ by
+$$\pi^a_b(\sigma )=\sum_i\sigma_i\sigma \sigma^i.$$
+Some comments are in place: the sequence of maps
+\begin{equation}\label{duality}
+  \Gamma_{ba}\otimes \Gamma_{ab}\longrightarrow \Gamma_{bb}\stackrel{\theta_a}{\longrightarrow}\scr{O}_U
+\end{equation}
+induces a duality isomorphism
+$\Gamma_{ba}\stackrel{\cong}{\longrightarrow}\Gamma_{ab}^*$. The dual
+basis in the definition of $\pi_b^a$ is in fact the preimage of the
+dual basis of $\{\sigma_i\}$ under this isomorphism. Another key
+observation is stated in the following
+
+\begin{proposition}\label{cardy_well_def}
+  The map $\pi^a_b$ does not depend on the chosen (local) basis.
+\end{proposition}
+\begin{proof}
+  As $\Gamma_{aa}$, $\Gamma_{bb}$ and $\Gamma_{ba}$ are locally-free,
+  we can pick an open cover $\mathfrak{U}_\alpha$ of $U_\alpha$ such
+  that $\Gamma_{aa}|_V\cong \scr{O}^{n_{a}}$, $\Gamma_{ba}|_V\cong
+  \scr{O}^{n_{ba}}$, etc. for each $V\in \mathfrak{U}_\alpha$. Pick
+  then a basis $B=\{e_1,\dots ,e_{n_{ba}}\}$ for
+  $\Gamma_{ba}|_V$.\footnote{By a \emph{basis} we mean a system of
+    linearly independent generators $e_1,\dots ,e_{n_{ba}}\in
+    \Gamma_{ba}(V)$ such that $\{e_1|_W,\dots ,e_{n_{ba}}|_W\}$ is
+    also linearly independent and generates $\Gamma_{ba}(W)$ for each
+    $W\subset V$. For instance, let $u_1,\cdots ,u_{n_{ba}}\in
+    \scr{O}(V)$ be units; then, if $e_i=(0,\dots ,0,1,0,\dots ,0)$,
+    the sections $u_1e_1,\dots ,u_{n_{ab}}e_{n_{ba}}$ form a basis.}
+  Let $B'=\{e^1,\dots ,e^{n_{ba}}\}$ be the corresponding dual basis
+  for $\Gamma_{ba}^*$. Then, in terms of this basis we have $\pi_b^a
+  (\sigma )=\sum_ie_i\sigma e^i$. Let $D=\{f_1,\dots ,f_{n_{ba}}\}$ be
+  another basis over $V$ with dual basis $D'$. We then have
+$$f_i=\sum_j\lambda_{ij}e_j \quad \text{and} \quad f^i=\sum_j\mu^{ij}e^j.$$
+Replacing these linear combinations in the equality
+$\delta_{ij}=f^i(f_j)$ we obtain
+$$\delta_{ij}=\sum_k\mu^{ik}\lambda_{jk}.$$
+If $A:=(\lambda_{ij})$ and $B:=(\mu^{ij})$ then the previous equality
+implies that $AB^t=I$ or, equivalently, $A^tB=I$, which in terms of
+the coefficients is expressed by
+$\delta_{ij}=\sum_k\lambda_{ki}\mu^{kj}$. We now compute
+$$
+\begin{aligned}
+  \sum_if_i\sigma f^i &= \sum_i\Bigl (\sum_j\lambda_{ij}e_j\Bigr )\sigma \Bigl (\sum_k\mu^{ik}e^k\Bigr ) \\
+  &= \sum_{j,k}\Bigl (\sum_i\lambda_{ij}\mu^{ik}\Bigr )e_j\sigma e^k \\
+  &=\sum_{j,k}\delta_{jk}e_j\sigma e^k \\
+  &=\sum_je_j\sigma e^j, \\
+\end{aligned}
+$$
+as desired.
+\end{proof}
+
+Then, when defining $\pi_b^a$ locally on each $V$, we have that, by
+the previous computation, these expressions coincide over non-empty
+overlaps, and thus can be glued together to obtain a morphism over
+$U_\alpha \in \mathfrak{U}$
+$$\pi_b^a :\Gamma_{aa}\longrightarrow \Gamma_{bb}.$$
+This final layer of structure is included in the following
+
+\begin{defi}\label{cardy_fib}
+  A Calabi-Yau fibration $\scr{B}$ is called a \emph{Cardy fibration}
+  if the following condition, called the \emph{Cardy
+    condition}, holds for each open subset $U_\alpha \in
+  \mathfrak{U}$: For $a,b\in \scr{B}(U_\alpha )$,
+$$\pi^a_b=\iota_b\iota^a.$$
+In other words, the following triangle
+$$
+\xymatrix{
+  \Gamma_{aa} \ar[dr]_{\iota^a}\ar[rr]^{\pi^a_b} & & \Gamma_{bb} \\
+  & \scr{T}_U \ar[ur]_{\iota_b} & }
+$$
+should commute.
+\end{defi}
+
+We shall deal with Cardy fibrations all along.
+
+\begin{defi}
+  A Cardy fibration $\scr{B}$ is said to be \emph{trivializable} if
+  and only if conditions (3), (4)a-c in definition \ref{cy_fibration}
+  and the Cardy condition hold also for any open subset of each
+  $U_\alpha \in \mathfrak{U}$.
+\end{defi}
+
+A characterization of a certain kind of \emph{trivializable} Cardy
+fibrations shall be given in the next chapter.
+
+% Hasta aqui 2013-09-30
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Global Objects}
+
+We shall now deduce some further structure enjoyed by globally defined
+boundary conditions. These properties are needed in chapter \ref{dbtvb}.
+
+We first note that for a proper open subset $U$ of $M$ ($U\neq
+U_\alpha$ for each $\alpha$), and objects $a,b\in \scr{B}(U)$, the
+sheaves $\Gamma_{ab}$ need not be locally free. But this situation is
+slightly different when considering $U=M$.
+
+Take global objects $a,b\in \scr{B}(M)$; hence, $a_\alpha
+:=a|_{U_\alpha}, b_\alpha :=b|_{U_\alpha}\in \scr{B}(U_\alpha )$ and
+$\Gamma_{a_\alpha b_\alpha }$ is a locally free $\scr{O}_{U_\alpha
+}$-module, which in turn implies that $\Gamma_{ab}$ is a locally free
+$\scr{O}$-module.
+
+We also have transition homomorphisms
+$$\iota_{a_\alpha}:\scr{T}_{U_\alpha }\longrightarrow \Gamma_{a_\alpha a_\alpha }\quad , \quad \iota^{a_\alpha}:\Gamma_{a_\alpha a_\alpha }\longrightarrow \scr{T}_{U_\alpha }.$$
+Pick now an open subset $U_\beta \in \mathfrak{U}$ such that
+$U_{\alpha \beta }\neq \emptyset$ and let $a_\beta
+:=a|_{U_\beta}$. For $U_{\alpha \beta }$, as $\Gamma_{a_\alpha
+  a_\alpha }(U_{\alpha \beta })=\Gamma_{a_\beta a_\beta }(U_{\alpha
+  \beta })=\Gamma_{aa}(U_{\alpha \beta})$, we have maps
+$$
+\iota_{a_\alpha ,U_{\alpha \beta}},\iota_{a_\beta ,U_{\alpha \beta}} :
+\scr{T}(U_{\alpha \beta })\longrightarrow \Gamma_{aa}(U_{\alpha \beta
+}),
+$$
+which we also shall denote by $\iota_{a_\alpha }$ and $\iota_{a_\beta
+}$ for notation's sake.
+
+Let now $X\in \scr{T}(U_{\alpha \beta })$ and let $\sigma \in
+\Gamma_{aa}$. The centrality condition \eqref{centrality} implies that
+over $U_{\alpha \beta }$ the equality
+$$\sigma |_{U_{\alpha \beta}} \iota_{a_\alpha} (X) = \iota_{a_\beta} (X)\sigma |_{U_{\alpha \beta }}$$
+holds. Taking $\sigma =1_a$ we conclude that the morphisms
+$\iota_{a_\alpha }|_{U_{\alpha \beta }}$ and $\iota_{a_\beta
+}|_{U_{\alpha \beta }}$ are equal, and hence can be glued into a
+global algebra homomorphism
+$$\iota_a:\scr{T}_M\longrightarrow \Gamma_{aa}.$$
+
+An analogous conclusion can be derived for the other transition map;
+for this we use tha adjoint relation \eqref{adjoint}. First note that
+the restrictions of the linear forms $\theta_{a_\alpha}$ and
+$\theta_{a_\beta }$ to $U_{\alpha \beta}$ are the same, as they are
+both equal to the restriction $\theta_a|_{U_{\alpha \beta}}$. Then,
+using this fact together with the adjoint relation over $U_{\alpha
+  \beta }$ we obtain
+$$\theta (\iota^{a_\alpha }(\sigma )X)=\theta_{a_\alpha}(\sigma \iota_{a_\alpha}(X))=\theta_{a_\beta}(\sigma \iota_{a_\beta}(X))=\theta (\iota^{a_\beta }(\sigma )X)$$
+for each vector field $X:U_{\alpha \beta }\to TM$ and each section
+$\sigma \in \Gamma_{aa}(U_{\alpha \beta})$. Hence, the equality
+$$\theta \left ((\iota^{a_\alpha }(\sigma )-\iota^{a_\beta}(\sigma ))X\right )=0$$
+holds for each $X$ and $\sigma$. As $\theta$ is non degenerate, we can
+then conclude that the morphisms $\iota^{a_\alpha }|_{U_{\alpha \beta
+  }}$ and $\iota^{a_\beta }|_{U_{\alpha \beta }}$ are equal, thus
+obtaining a global map
+$$\iota^a:\Gamma_{aa}\longrightarrow \scr{T}_M.$$
+
+A similar procedure shows that the map $\pi^a_b$ exists also for
+global objects $a,b\in \scr{B}(M)$. Moreover, the verification of the
+centrality condition, adjoint relation and Cardy condition for these
+``new'' maps can be deduced with no difficulties from the local
+versions.
+
+
+\clearpage
+
+{\small
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resumen del Cap\'itulo \ref{cfib}}
+
+En este cap\'itulo se definen los objetos que componen el n\'ucleo de este trabajo, los cuales, a grandes rasgos, son b\'asicamente familias de teor\'ias topol\'ogicas de campos, indexadas por una variedad con multiplicaci\'on particular.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Categor\'ias de Calabi-Yau}
+
+Para lo que sigue ser\'a necesario introducir ciertos tipos de categor\'ias. Daso un anillo conmutativo $R$ con unidad, diremos que una categor\'ia ${\bf X}$ es
+\begin{itemize}
+\item \emph{$R$-lineal} si est\'a enriquecida sobre la categor\'ia de $R$-modulos;
+\item \emph{aditiva} si es $\ent$-lineal , tiene un objeto inicial $0$ y para cada par de objetos $a,b\in {\bf X}$ se tiene definida una suma $a\oplus b\in {\bf X}$;
+\item \emph{pseudo-abeliana} si es aditiva y para cada objeto $a\in {\bf X}$ y cada idempotente $\sigma :a\to a$ existe un objeto $\opnm{Ker}\sigma \in {\bf X}$ (el \emph{n\'ucleo} de $\sigma$) tal que la aplicaci\'on can\'onica
+$$ \opnm{Ker} \sigma \oplus \opnm{Ker} (1_a -\sigma )\longrightarrow a$$
+es un isomorfismo;
+\item una \emph{categor\'ia de Calabi-Yau} (abreviado {\sc cy}) si es $R$-lineal, los $R$-m\'odulos $\opnm{Hom}_{\bf X}(a,a)$ son finitamente generados y proyectivos y para cada objeto $a\in {\bf X}$ se tiene una forma lineal
+$$\theta_a:\opnm{Hom}_{\bf X}(a,a)\longrightarrow R$$
+tal que la composici\'on
+$$ \operatorname{Hom}_{{\bf X}}(a,b)\otimes_R
+  \operatorname{Hom}_{{\bf X}}(b,a)\longrightarrow 
+  \operatorname{Hom}_{{\bf X}}(a,a)\stackrel{\theta_a}{\longrightarrow }R$$
+es una forma bilineal no degenerada.
+\end{itemize}
+
+Las categor\'ias que nos interesan se construyen a partir de las anteriores, b\'asicamente considerando categor\'ias fibradas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fibraciones de Calabi-Yau}
+
+En lo que sigue, $M$ ser\'a una variedad con multiplicaci\'on con las siguiente propiedades:
+
+\begin{itemize}
+\item Se tiene una forma lineal $\theta :\Gamma(TM)=:\scr{T}_M\to \scr{O}_M$ que hace a cada espacio tangente $T_xM$ una $\comp$-\'algebra de Frobenius, siendo $\scr{O}_M$ el haz estructural usual (por ejemplo, el haz de funciones suaves en caso que $M$ sea una variedad $C^\infty$; en particular, $\scr{O}_{M,x}$ es un anillo local para cada $x\in M$).
+\item $M$ es masiva; es decir, $T_xM$ es semisimple para cada $x$.
+\end{itemize}
+\medskip
+
+{\bf Definici\'on.} Una \emph{fibraci\'on de Calabi-Yau} ({\sc cy}) sobre una variedad semisimple $M$ es una par $(\scr{B},\mathfrak{U})$ formado por una categor\'ia de {\sc cy} $\scr{B}$ sobre $M$ y un cubrimiento abierto $\mathfrak{U}=\{U_\alpha \}$ sujetos a las siguientes condiciones:
+\begin{enumerate}
+\item Cada $U_\alpha$ es un abierto semisimple; es decir, existe sobre $U$ una base de secciones idempotentes ortogonales $\{e_1,\dots ,e_n\}$ tales que $\sum_ie_i=1$.
+\item $\scr{B}$ es un stack.
+\item Dado $U_\alpha \in \mathfrak{U}$ y $a,b \in \scr{B}(U_\alpha )$, el haz de morfismos $a\to b$, que notamos $\Gamma_{ab}$, es un $\scr{O}_{U_\alpha }$-m\'odulo localmente libre de rango finito. Los objetos de $\scr{B}(U)$ se llamar\'an \emph{condiciones de borde o $D$-branas sobre $U$}.
+\item Para cada $U_\alpha \in \mathfrak{U}$ y cada $a\in \scr{B}(U_\alpha )$ se tienen morfismos de transici\'on $\iota_a:\scr{T}_{U_\alpha }\to \Gamma_{aa}$, $\iota^a:\Gamma_{aa}\to \scr{T}_{U_\alpha}$.
+\end{enumerate}
+Lo anterior sujeto a las siguientes condiciones:
+\begin{enumerate}[(a)]
+\item $\iota_a$ es un morfismo de \'algebras e $\iota^a$ es $\scr{O}_{U_\alpha }$-lineal.
+\item $\iota_a$ es central: dado un campo local $X$ sobre $V\subset U_\alpha$ y $\sigma \in \Gamma_{ab}(V)$, se tiene $\sigma \iota_a(X)=\iota_b(X)\sigma$ en $\Gamma_{ab}(V)$.
+\item Se tiene una relaci\'on de adjunci\'on entre $\iota_a$ e $\iota^a$ dada por $\theta (\iota^a(\sigma )X)=\theta_a(\sigma \iota_a(X))$ para cada campo $X$ y cada $\sigma :a\to a$.\footnote{Dado un haz $\scr{S}$, digamos de conjuntos para fijar ideas, la notaci\'on $x\in \scr{S}$ indica $x\in \scr{U}$ para un abierto arbitrario $U$.}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fibraciones de Cardy}
+
+Dado $U_\alpha \in \mathfrak{U}$ y $a,b \in \scr{B}(U_\alpha )$, sea $\{\sigma_i\}$ una base local arbitraria de $\Gamma_{ab}$ y sea $\{\sigma^i\}$ su dual. Se define un mapa $\pi^a_b:\Gamma_{aa}\to \Gamma_{bb}$ por la ecuaci\'on
+$$\pi^a_b(\sigma )=\sum_i\sigma_i\sigma \sigma^i.$$
+Un comentario sobre esta definici\'on: se tiene un isomorfismo $\Gamma_{ba}\to \Gamma_{ab}^*$ inducido por la forma bilineal $\Gamma_{ba}\otimes \Gamma_{ab}\to \Gamma_{bb}\to \scr{O}_U$; la base dual a la que nos referimos est\'a en realidad formada por las preimagenes de $\sigma^i$ bajo el isomorfismo anterior. Mas a\'un, una demostraci\'on elemental muestra que el mapa $\pi^a_b$ no depende de la base elegida.
+
+Definimos a continuaci\'on los objetos que estudiaremos en detalle en lo que resta del trabajo.
+\medskip
+
+{\bf Definici\'on.} Una fibraci\'on de {\sc cy} se dice una \emph{fibraci\'on de Cardy} si la siguiente ecuaci\'on, llamada \emph{condici\'on de Cardy}, se verifica en cada $U_\alpha \in \mathfrak{U}$: $\pi^a_b=\iota_b\iota^a$.
+\medskip
+
+{\bf Observaci\'on.} Es importante hacer notar (y lo usaremos mas adelante), que los morfismos $\iota_a,\iota^a$ y $\pi^a_b$ existen tambi\'en sobre $M$; es decir, si $a,b\in \scr{B}(M)$, podemos entonces considerar las restricciones $a|_{U_\alpha}$ y $b|_{U_\alpha}$ y tambi\'en los morfismos $\iota_{a|_{U_\alpha}}$, $\iota_{b|_{U_\alpha}}$ y $\pi^{a|_{U_\alpha}}_{b|_{U_\alpha}}$. Dadas las propiedades que verifican los morfismos locales, podemos pegar estos mapas en mapas globales $\iota_a$, $\iota^a$, $\pi^a_b$.
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End: 
