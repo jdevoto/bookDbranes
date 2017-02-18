@@ -1,0 +1,2328 @@
+
+\vspace{250pt}
+
+In this section we shall deal first with vector bundles and two variants of them: their categorical analogues (or at least one kind of possible categorical analogue),which are usually called 2-vector bundles, and bundles with twisted cocycles. We will first introduce some basic terminology and facts about vector bundles of finite rank which are necessary for subsequent sections. We shall also give a brief account of sheaves, locally free modules and ringed spaces. 
+
+Though we usually reference to smooth manifolds and (complex) vector bundles over them, constructions in this chapter, unless stated to the contrary, can also be applied to complex manifolds and (holomorphic) vector bundles.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Vector Bundles}
+\label{vector_bundles}
+
+A \emph{vector bundle} over a smooth manifold $M$ consists of the
+following data:
+\begin{enumerate}
+\item A manifold $E$, called the \emph{total space}, and a
+  (surjective) map $\pi :E\to M$, called the \emph{projection};
+\item a $\comp$-vector space structure on each fibre
+  $E_x:=\pi^{-1}(\{x\})$;
+\item an open cover $\mathfrak{U}=\{U_i\}_{i\in I}$ of $M$ and, for
+  each $i\in I$, a fibre-preserving
+  diffeomorphism
+  $$h_i:E|_{U_i}:=\pi^{-1}(U_i)\stackrel{\cong}{\longrightarrow}U_i\times
+  \comp^n$$ for each $U_i\in \mathfrak{U}$ such that
+  \begin{enumerate}
+  \item the restriction $h_{i,x}:E_x\to \comp^n$ of $h_i$ to the fibre
+    $E_x$ is a $\comp$-linear isomorphism for each $x\in U_i$ and
+  \item for each pair of indices $i,j\in I$ such that the intersection
+    $U_{ij}:=U_i\cap U_j$ is non-empty, the map
+    $g_{ij}:U_i\cap U_j\to \operatorname{GL}(n,\comp )$ defined by
+$$h_ih_j^{-1}:(U_i\cap U_j)\times \comp^n\longrightarrow(U_i\cap U_j)\times \comp^n$$
+$$(x,z)\longmapsto (x,g_{ij}(x)z)$$
+is smooth.
+\end{enumerate}
+\end{enumerate}
+
+If $M$ is connected, then the assignment $x\mapsto \dim E_x$ is
+constant and is called the \emph{rank} of the vector bundle. Vector
+bundles of rank equal to one are called \emph{line bundles}.
+
+In the previous definition, the isomorphism $h_i$ is called a
+\emph{local trivialization}, and the open cover $\mathfrak{U}$, a
+\emph{trivializing cover}; the reference to the word ``trivial'' in
+this context refers to product bundles $M\times \comp^n$ (see
+definition \ref{trivial_bundle} below). In general, vector bundles are
+only locally equivalent to such products.
+
+Despite all the spaces and maps involved in this definition, we will
+usually denote a vector bundle just by specifying its total space.
+
+\begin{ej}
+  Some important examples of vector bundles closely associated to a
+  manifold $M$ include the (real) tangent $TM$ and cotangent bundles
+  $T^*M$; their fibres over a point $x\in M$ are given by the tangent
+  space $T_xM$ and the dual (cotangent) space $(T_xM)^*=:T^*_xM$
+  respectively.
+\end{ej}
+
+The proof of the next assertion follows immediately from the
+definition of the maps $g_{ij}$.
+
+\begin{pyd}\label{cocycle}
+  The family of maps $\{g_{ij}\}$ satisfy the so-called \emph{cocycle
+    conditions}:
+  \begin{enumerate}
+  \item $g_{ii}=1$,
+  \item $g_{ji}=g_{ij}^{-1}$ and
+  \item $g_{ij}g_{jk}=g_{ik}$ on triple overlaps
+    $U_{ijk}=U_i\cap U_j\cap U_k$.
+  \end{enumerate}
+  In general, any family of maps
+  $\{g_{ij}:U_{ij}\to \opnm{GL}_n(\comp )\}$ satisfying the previous
+  three conditions is called a \emph{cocycle}.
+\end{pyd}
+
+Before proving some important properties of cocycles, let us discuss
+about bundle morphisms.
+
+Let $f:N\to M$ be a map and let $F$ and $E$ be vector bundles over $N$
+and $M$ respectively. A \emph{homomorphism} over $f$ is a
+fibre-preserving map $\phi:F\to E$ which is $\comp$-linear over each
+point; that is, the following square
+$$\xymatrix{
+  F\ar[r]^\phi \ar[d] & E \ar[d] \\
+  N \ar[r]^f & M,}
+$$
+where the vertical arrows are the corresponding projections, is
+commutative, and the restriction
+$$\phi_x:E_x\longrightarrow F_{f(x)}$$
+is a linear map between the vector spaces $E_x$ and $F_{f(x)}$. A
+particular and important case is when $N=M$ and $f$ is the identity
+map. We can define the category $\tsf{Vect}(M)$ of vector bundles over
+$M$; objects are vector bundles of finite rank and arrows are given by
+homomorphisms over the identity map $M\to M$. Given bundles $E$ and
+$F$ over a space $M$, the set of bundle morphisms in the category
+$\tsf{Vect}(M)$ will be denoted by $\opnm{Hom}_M(E,F)$.
+
+\begin{defi}\label{trivial_bundle}
+  The product bundle $M\times \comp^n$ is called the \emph{trivial
+    vector bundle of rank $n$ over $M$}. If $E$ is a vector bundle
+  over $M$ for which there exists a bundle isomorphism
+  $E\to M\times \comp^n$, then $E$ is called \emph{trivializable}.
+\end{defi}
+
+By definition, every vector bundle is then locally isomorphic to a
+trivial bundle, i.e every vector bundle is locally trivial.
+
+\begin{notation}
+  In ocassions when confussion is unlikely to occur, we will denote
+  the trivial vector bundle $M\times \comp^n$ just by $\comp^n$.
+\end{notation}
+
+The following theorem shows that cocycles comprises all data to
+completely describe a vector bundle.
+
+\begin{theorem}\label{construct_bundles}
+  Let $\mathfrak{U}=\{U_i\}$ be an open cover of $M$ and let
+  $\{g_{ij}:U_{ij}\to \operatorname{GL}_n(\comp )\}$ be a
+  cocycle. Then, there exists a unique, up to isomorphism, vector
+  bundle $E$ with cocycle $\{g_{ij}\}$ and local trivializations
+  $E|_{U_i}\stackrel{\cong}{\longrightarrow}U_i\times \comp^n$.
+\end{theorem}
+
+In other words, an open cover together with a cocycle let us define a
+vector bundle in an essentially unique way.
+
+\begin{proof}
+  Define
+$$E=\bigsqcup_iU_i\times \comp^n / \sim ,$$
+with the quotient topology, where the equivalence relation is defined
+in the following way: $(i,(x,z))\sim (j,(y,w))$ if and only if
+$x=y\in U_{ij}$ and $w=g_{ij}(x)^{-1}(z)$. Denoting by $[i,x,z]$ the
+equivalence class of the pair $(i,(x,z))$, the fibre over $x\in M$ is
+the set $\{[i,x,z]\; | \; z\in \comp^n\}$, the vector space structure
+is given by the relation
+$$\lambda [i,x,z]+[i,x,w]=[i,x,\lambda z+w]$$
+and the projection $E\to M$ is $[i,x,z]\mapsto x$. Local
+trivializations
+$U_i\times \comp^n\stackrel{\cong}{\longrightarrow}E|_{U_i}$ are given
+by $(x,z)\mapsto [i,x,z]$.
+\end{proof}
+
+The following result shows the relationship between cocycles of
+isomorphic bundles.
+
+\begin{proposition}\label{cocycles_iso}
+  Let $E$ and $F$ be vector bundles of rank $n$ over $M$ with cocycles
+  $\{g_{ij}\}$ and $\{f_{ij}\}$ respectively (we are assuming that the
+  same open cover $\{U_i\}$ trivializes $E$ as well as $F$). Then $E$
+  and $F$ are isomorphic (that is, there exists a map $E\to F$ with an
+  inverse $F\to E$, both preserving fibres) if and only if there
+  exists a family of maps $\{g_i:U_i\to \operatorname{GL}_n(\comp )\}$
+  such that
+$$f_{ij}=g_ig_{ij}g_j^{-1}$$
+over each non-empty overlap $U_{ij}$.
+\end{proposition}
+\begin{proof}
+  First note that we can assume that the same open cover trivializes
+  both $E$ and $F$: if $E$ is trivial over each $U\in \mathfrak{U}$
+  and $F$ over each $V\in \mathfrak{V}$, then $E$ and $F$ are trivial
+  over the elements of the cover
+  $\mathfrak{U}\cap \mathfrak{V}:=\{U\cap V\}$.
+
+  Assume now that we have local trivializations
+$$E|_{U_i}\stackrel{h^E_i}{\longrightarrow}U_i\times \comp^n \stackrel{h^F_i}{\longleftarrow} F|_{U_i}$$
+and let $\phi :E\to F$ be an isomorphism. For each index $i$, the
+following (commutative) diagram of bundles over $U_i$
+$$
+\xymatrix{
+  E|_{U_i}\ar[rr]^\phi \ar[dr]_{h_i^E} & & F|_{U_i} \ar[dl]^{h_i^F} \\
+  & U_i\times \comp^n & }
+$$
+lets us define maps $g_i:U_i\to \operatorname{GL}_n(\comp )$,
+$$g_i(x)(z):=\opnm{pr}_2\left (h_i^F\phi (h_i^E)^{-1}(x,z)\right ),$$
+satisfying $f_{ij}=g_ig_{ij}g_j^{-1}$.
+
+Conversely, given the family $\{g_i\}$, we can define a bundle
+isomorphism $\phi :E\to F$ by patching the maps
+$$
+\xymatrix{ E|_{U_i}\ar[r]^-{h_i^E} & U_i\times \comp^n\ar[r]^{1\times
+    g_i} & U_i\times \comp^n \ar[r]^-{(h_i^F)^{-1}}& F|_{U_i}}.$$
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Operations}\label{bundles_operations}
+
+The usual operations between vector spaces, like for example tensor
+product and direct sum (among many others) can also be defined for
+vector bundles. We will now describe some of these operations. For a
+general construction and further details, the interested reader may
+consult \cite{atiyah:_k}.
+
+Let $\pi :E\to M$ and $\tau :F\to M$ be two vector bundles over $M$ of
+rank $n$ and $k$ respectively, $\mathfrak{U}=\{U_i\}$ a trivializing
+cover for both bundles and let $\{g_{ij}\}$ and $\{f_{ij}\}$ be
+cocycles for $E$ and $F$ respectively.
+
+\begin{enumerate}
+\item \emph{Pullback}. Given a mapping $f:N\to M$, we can define the
+  pullback bundle $f^*E$ over $N$ by
+$$f^*E=\{(y,u)\in N\times E \; | \; f(y)=\pi (u)\},$$
+with the projection $(y,u)\mapsto y$. The fibre over $y\in N$ is then
+given by $E_{f(y)}$. Moreover, $f^*E$ has the same rank as $E$ and the
+cover $\{f^{-1}(U_i)\}$ trivializes $f^*E$. Cocycles for $f^*E$ are
+given by the maps
+$f^*g_{ij}:f^{-1}(U_i)\cap f^{-1}(U_j)\to \operatorname{GL}_n(\comp
+)$,
+$$f^*g_{ij}(y)=g_{ij}(f(y)).$$
+When $U\subset M$, the pullback along the inclusion $U\to M$ is
+denoted $E|_U$ and called the \emph{restriction} of $E$ to $U$.
+
+\item \emph{External Direct Sum}. Let $N$ be another manifold and
+  consider a vector bundle $\rho :D\to N$ of rank $r$. We define a
+  vector bundle $\pi \times \rho : E\boxplus D\to M\times N$ over
+  $M\times N$, called the external direct sum, in the following way:
+  over a point $(x,y)\in M\times N$, the fibre $(E\boxplus D)_{(x,y)}$
+  is given by the external direct sum $E_x\oplus F_y$. If
+  $\mathfrak{V}=\{V_s\}$ is a trivializing cover for $D$ and
+  $h_i:E|_{U_i}\to U_i\times \comp^n$ and
+  $h'_s:D|_{V_s}\to V_s\times \comp^r$ are local trivializations for
+  $E$ and $D$ respectively, then the map
+  $\overline{h}_{is}:(E\boxplus D)|_{U_i\times V_s}\to (U_i\times
+  V_s)\times (\comp^n\oplus \comp^r)$ defined by the composite
+$$\xymatrix{
+  (E\boxplus D)|_{U_i\times V_s}\ar[rr]^-{h_i\times h'_s} &&
+  (U_i\times \comp^n)\times (V_s\times \comp^r)\ar[r]^-{\cong} &
+  (U_i\times V_s)\times (\comp^n\oplus \comp^r)}$$ is a local
+trivialization for $E\boxplus D$ (and
+$\mathfrak{U}\times \mathfrak{V}:=\{U_i\times V_s\}$ is a trivializing
+cover). If $\{k_{sl}:V_{sl}\to \opnm{GL}_r(\comp )\}$ is a cocycle for
+$D$, then the maps
+$$g_{ij}\times k_{sl}:U_{ij}\times V_{sl}\longrightarrow \opnm{GL}_{n+r}(\comp )$$
+given by $(g_{ij}\times k_{sl})(x,y)=g_{ij}(x)\times k_{sl}(y)$ define
+a cocycle for $E\boxplus D$.
+
+\item \emph{Whitney (Direct) Sum}. Let $\Delta :M\to M\times M$ be the
+  diagonal map. The pullback bundle $\Delta^*(E\boxplus F)$ is called
+  the Whitney or direct sum and is denoted by $E\oplus F$. The fibre
+  over a point $x\in M$ is given by the direct sum $E_x\oplus F_x$,
+  and the family of maps
+  $\{h_{ij}:U_{ij}\to \opnm{GL}_{n+k}(\comp )\}$ given by
+$$h_{ij}=
+\begin{pmatrix}
+  g_{ij} & 0 \\
+  0 & f_{ij} \\
+\end{pmatrix}
+$$
+is a cocycle for $E\oplus F$.
+
+\item \emph{Dual Bundle}. We now consider the bundles
+  $U_i\times (\comp^n)^*$ and the cocycle given by the maps
+  $g_{ij}^*:U_{ij}\to \operatorname{GL}((\comp^n)^*)$,
+$$g^*_{ij}(x)(A)=Ag_{ij}(x)^t.$$
+In this way we obtain a bundle $E^*$ such that $(E^*)_x\cong E_x^*$.
+
+\item \emph{Tensor Product}. To define the tensor product
+  $E\otimes F$, we consider
+  $U_i\times (\comp^n\otimes \comp^k)\cong U_i\times \comp^{nk}$ and
+  cocycle given by
+$$h_{ij}=g_{ij}\otimes f_{ij}.$$
+
+For a real vector bundle $E$ over $M$, the tensor product
+$E\otimes (M\times \comp )$ is called the \emph{complexification} of
+the bundle $E$ and is usually denoted $E_\comp$.
+
+\begin{obs}
+  From now on, any bundle associated to a real, smooth manifold $M$
+  (e.g. its tangent, cotangent bundles) shall be considered
+  complexified; the subscript ``$\comp$'' will be supressed from the
+  notations.
+\end{obs}
+
+\item \emph{Homomorphisms}. To define this bundle we consider the
+  trivial bundles
+$$U_i\times \operatorname{Hom}(\comp^n,\comp^k)\cong U_i\times \operatorname{M}_{k\times n}(\comp )$$
+with cocycle given by the maps
+$h_{ij}:U_{ij}\to \operatorname{GL}(\operatorname{M}_{k\times n}(\comp
+))$,
+$$h_{ij}(x)(A)=f_{ij}(x)Ag_{ij}(x).$$
+We thus obtain a bundle which fibre over $x$ is isomorphic to the
+vector space $\operatorname{Hom}_\comp (E_x,F_x)$, and we denote it by
+$\operatorname{Hom}(E,F)$. If $F=E$ and $h:E|_U\to U\times \comp^n$ is
+a local trivialization for $E$, then $h$ induces a local
+trivialization
+$\overline{h}:\opnm{End}(E)|_U:=\opnm{Hom}(E,E)|_U\to U\times
+\opnm{M}_n(\comp)$ in the following way: if $\phi_x:E_x\to E_x$
+belongs to the fibre $\opnm{End}(E)_x=\opnm{End}(E_x)$, then
+$$\overline{h}(\phi_x)=(x,\overline{\phi}_x),$$
+where $\overline{\phi}_x:\comp^n\to \comp^n$ is
+$\overline{\phi}_x(z)=h_x\phi_xh_x^{-1}(x,z)$ and
+$h_x=h|_{E_x}:E_x\to \{x\}\times \comp^n$. In particular, as this
+trivialization is multiplicative, this shows that $\opnm{End}(E)$ is
+in fact a bundle of matrix algebras.
+
+As in linear algebra, we have the following relation between the
+bundles $\operatorname{Hom}(E,F)$, $E\otimes F$ and $E^*$.
+
+\begin{proposition}
+  There exists a canonical bundle isomorphism
+$$E^*\otimes F\stackrel{\cong}{\longrightarrow}\operatorname{Hom}(E,F).$$
+\end{proposition}
+
+In particular, if $F=\comp$ is the trivial line bundle, then the
+previous result provides an isomorphism
+$E^*\cong \operatorname{Hom}(E,\comp )$.
+
+\begin{proof}
+  The map $E^*\otimes F \to \operatorname{Hom}(E,F)$ given by the
+  assignment
+$$\phi \otimes v \longmapsto (\phi_e:u\mapsto \phi (u)v)$$
+is a linear isomorphism.
+\end{proof}
+
+\item \emph{Kernels and Images}. Let $\phi :E\to F$ be a homomophism
+  of bundles over $M$. Let $\opnm{Ker}\phi$ be the space over $M$
+  given by
+$$\opnm{Ker}\phi =\bigsqcup_{x\in M}\opnm{Ker}\phi_x,$$
+with the obvious projection $\pi =\pr_1:(x,e)\mapsto x$. Then, in
+general, $\pr_1:\opnm{Ker}\phi \to M$ fails to be locally trivial, as
+the function $x\mapsto \dim \opnm{Ker}\phi_x$ may not be locally
+constant (for example, fix a proper subspace $S\subset \comp^n$ and
+consider the trivial vector bundle $E:=[0,1]\times \comp^n$ over the
+unit interval. Let $\phi :E\to E$ be the map given by
+$\phi (t,z)=(t,(1-t)p_S(z)+tz)$, where $p_S$ is the orthogonal
+projection of $\comp^n$ onto $S$. Then, if $t>0$, we have that
+$\opnm{Ker}\phi_t$ is trivial; but for $t=0$ we have that $\phi_0=p_S$
+and thus $\dim \opnm{Ker}\phi_0 >0$).  A bundle morphism
+$\phi :E\to F$ is called \emph{strict} if and only the map
+$x\mapsto \dim \opnm{Ker}\phi_x$ (or, equivalently, the map
+$x\mapsto \dim \opnm{Im}\phi_x$) is locally constant. In that case,
+$\pi :\opnm{Ker}\phi \to M$ and
+$$\opnm{Im}\phi :=\bigsqcup_{x\in M}\opnm{Im}\phi_x\longrightarrow M$$
+are vector bundles \cite{atiyah:_k}.
+
+An important particular case of strict homomorphisms is given by the
+idempotent maps; if $\sigma :E\to E$ is a bundle homomorphism such
+that $\sigma^2=\sigma$, then $\sigma$ is strict and there exists a
+decomposition of $E$ as a sum
+$$E=\opnm{Ker}\sigma \oplus \opnm{Ker}(1_E-\sigma),$$
+where $1_E$ is the identity map of $E$.
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sheaves}
+
+Sheaves over a manifold $M$ lets us discover many properties  of $M$ by studying objects defined locally on $M$; i.e. over open subsets $U\subset M$. A typical example of this procedure is found in elementary complex analysis: if one wish to study some compact complex manifold $M$ by dealing with maps $M\to \comp$, then one finds out (by Liouiville's theorem) that the only maps available are the constant ones, and thus the only way to obtain a descent supply of maps is to work over open subsets of $M$. 
+
+We will introduce the notion of presheaf and sheaf and recall some useful results about them. In the next section these concepts will be applied when we define sections of vector bundles. For the missing proofs and further details on these topics the reader may consult \cite{tennison:_sheaf}, \cite{kn:kscha}, \cite{kn:warner}, \cite{kn:gortz_wed}.
+
+For a topological space $M$, the category $\tsf{Op}(M)$ is defined in the following way: its objects are open subsets $U\subset M$ and morphisms $V\to U$ are inclusions.
+
+\begin{defi}
+A \emph{presheaf of sets} is a functor $\scr{P}:\tsf{Op}(M)^{\circ}\to \tsf{Sets}$.
+\end{defi}
+
+In other words, a presheaf of sets, or $\tsf{Sets}$-valued presheaf, assigns to each open subset $U$ of $M$ a set $\scr{P}(U)$ and to each inclusion $i:V\subset U$ a map $i^*:\scr{P}(U)\to \scr{P}(V)$, usually called \emph{restriction}. This terminology is better understood by considering the following
+
+\begin{ej}
+Given sets $A,B$, let us denote by $B^A$ the set of maps $A\to B$. Let $M$ be a topological space and $X$ an arbitrary set. For objects $U\in \tsf{Op}(M)$ define
+$$\scr{P}(U):=X^U.$$
+If $i:V\subset U$ is an inclusion, let $i^*:\scr{P}(U)\to \scr{P}(V)$ be the restriction map
+$$i^*(f)=f|_V.$$
+Then $\scr{P}$ is a presheaf of sets over $M$.
+\end{ej}
+
+Considering only sets as values for presheaves is restrictive and, as we shall see, many situations involve categories with more structure, for example the category of topological spaces, the category of groups, the category of modules over a ring, to name a few. In fact, the previous definition of presheaf can be rewritten \emph{mutatis mutandis} for an arbitrary category ${\bf X}$ instead of the category of sets $\tsf{Sets}$.
+
+\begin{defi}
+If ${\bf X}$ is a category, an \emph{${\bf X}$-valued presheaf} over $M$ is a functor $\scr{P}:\tsf{Op}(M)^{\circ}\to {\bf X}$.
+\end{defi}
+
+Let $V\to U$ be a map in the category $\tsf{Op}(M)$ (i.e. an inclusion $V\subset U$). Applying $\scr{P}$ we obtain a map $\scr{P}(U)\to \scr{P}(V)$ in ${\bf X}$ which is called the \emph{restriction} map. Given $\sigma \in \scr{P}(U)$, its image by this restriction map is denoted by $\sigma |_V$. Objects of $\scr{P}(U)$ are usually called \emph{sections} over $U$. If we denote the inclusion map $V\subset U$ by $i$, then $\scr{P}(i)$ will be briefly denoted by $i^*$.
+
+\begin{notation}
+To simplify notation when the open subset is clear from the context, the restriction $\sigma|_V$ will also be denoted by $\sigma$.
+\end{notation}
+
+\begin{defi}\label{def_sheaf}
+A presheaf $\scr{S}$ over $M$ is called a \emph{sheaf} if the following conditions hold:
+\begin{enumerate}
+\item Assume $U\subset M$ is open and $\{U_i\}$ is an open cover of $U$. Suppose that $\sigma ,\tau \in \scr{S}(U)$ are sections such that $\sigma |_{U_i}=\tau |_{U_i}$ for each $i$. Then, $\sigma =\tau$.
+\item Let $U$ and $\{U_i\}$ be as in the previous item and $\sigma_i \in \scr{S}(U_i)$ for each $i$. If $\sigma_i|_{U_{ij}}=\sigma_j|_{U_{ij}}$, then there exists a section $\sigma \in \scr{S}(U)$ such that $\sigma |_{U_i}=\sigma_i$.
+\end{enumerate}
+\end{defi}
+
+Note that the first item in the previous definition implies that the section of the second one is unique.
+
+\begin{notation}
+Given a sheaf $\scr{S}$ over some space $M$, we will use the notation $\sigma \in \scr{S}$ to denote a section over an arbitrary (not specified) open subset of $M$.
+\end{notation}
+
+A \emph{morphism} between ${\bf X}$-valued (pre)sheaves $\scr{S},\scr{T}$ (both over the same base $M$) is a natural transformation $\eta :\scr{S}\to \scr{T}$; that is, $\eta$ is a family of maps in ${\bf X}$
+$$\eta_U:\scr{S}(U)\longrightarrow \scr{T}(U) \quad (U\in \tsf{Op}(M))$$
+in the category ${\bf X}$ such that the square
+\begin{equation}\label{nat_transf_sheaf}
+\xymatrix{
+\scr{S}(U) \ar[r]^{\eta_U} \ar[d]_{i^*} & \scr{T}(U) \ar[d]^{i^*} \\
+\scr{S}(V) \ar[r]_{\eta_V} & \scr{T}(V) }
+\end{equation}
+commutes for any $V$ and $U$ with inclusion map $i:V\subset U$.
+
+A morphism of ${\bf X}$-valued presheaves $\eta :\scr{P}\to \scr{Q}$ over $M$ is said to be an \emph{isomorphism} if there exists another morphism $\eta^{-1}:\scr{Q}\to \scr{P}$ such that the composite maps $\eta \eta^{-1}$ and $\eta^{-1}\eta$ are equal to the respective identities. This is equivalent to saying that $\eta_U:\scr{P}(U)\to \scr{Q}(U)$ is an isomorphism in ${\bf X}$ for each open subset $U\subset M$.
+
+\begin{obs}
+Note that we only defined the notion of isomorphism for presheaves. This is because a \emph{sheaf} homomorphism $\eta :\scr{S}\to \scr{T}$ may be surjective even if $\eta$ is not surjective as a \emph{presheaf} homomorphism (that is, for $\eta$ to be an \emph{sheaf} isomorphism not all the maps $\eta_U:\scr{S}(U)\to \scr{T}(U)$ need to be surjective). The reason behind this fact is that the image of a sheaf homomorphism need not be a sheaf. See examples \ref{image_1}, \ref{image_2} and definition \ref{def_ker_image}.
+\end{obs}
+
+\begin{lemma}
+If $\scr{S}$ is a sheaf, $\scr{T}$ a presheaf and $\eta :\scr{S}\to \scr{T}$ is an isomorphism of presheaves, then $\scr{T}$ is also a sheaf
+\end{lemma}
+\begin{proof}
+The result is obtained by pulling back to $\scr{S}$; let $\{U_i\}$ be an open cover of some subset $U\subset M$ and let $\sigma ,\tau \in \scr{T}(U)$. Consider now the restrictions $\sigma |_{U_i}$ and $\tau |_{U_i}$ and suppose that $\sigma |_{U_i}=\tau |_{U_i}$. We can now take these sections back to $\scr{S}(U_i)$ via $\eta^{-1}_{U_i}$, obtaining $\eta^{-1}_U(\sigma )=\eta^{-1}_U(\tau )$ and hence $\sigma =\eta$. The pasting condition is proved analogously.
+\end{proof}
+
+Having defined morphisms, we now have the categories $\tsf{PSh}_{\bf X}(M)$ and $\tsf{Sh}_{\bf X}(M)$ of ${\bf X}$-valued presheaves and sheaves over $M$, respectively. Given (pre)sheaves $\scr{S}$ and $\scr{T}$ over $M$, $\opnm{Hom}_M(\scr{S},\scr{T})$ will denote the set of (pre)sheaf homomorphisms $\scr{S}\to \scr{T}$.
+
+\begin{obs}
+From now on, the category ${\bf X}$ will be taken to be the category of sets, groups, modules or algebras. We will also supress the subscript ${\bf X}$ in the notation of the categories of sheaves and presheaves, as it is always sufficiently clear from the context.
+\end{obs} 
+
+\begin{defi}
+Let $\scr{S}$ be a (pre)sheaf over a space $M$.
+\begin{itemize}
+\item A \emph{sub(pre)sheaf} of $\scr{S}$ is a (pre)sheaf $\scr{T}$ such that for each $U\in \tsf{Op}(M)$, $\scr{T}(U)$ is a subset of $\scr{S}(U)$ (or a subgroup, subring, submodule, etc) and the restriction maps are induced from the ones in $\scr{S}$. 
+\item If $U\subset M$ is an open subset, the \emph{restriction} $\scr{S}|_U$ of $\scr{S}$ to $U$ is the (pre)sheaf obtained by evaluating $\scr{S}$ in open subsets of $U$.
+\item Given (pre)sheaves $\scr{F}$ and $\scr{G}$ over $M$, we can now define the presheaf $\underline{\opnm{Hom}}(\scr{F},\scr{G})$ in the following way: for an open subset $U\subset M$,
+$$\underline{\opnm{Hom}}(\scr{F},\scr{G})(U):=\opnm{Hom}_U(\scr{F}|_U,\scr{G}|_U).$$
+The arrow corresponding to the inclusion $V\subset U$ is also the restriction. This construction is well-behaved in the category of sheaves, in the sense that $\underline{\opnm{Hom}}(\scr{F},\scr{G})$ is a sheaf if $\scr{F}$ and $\scr{G}$ are.
+\end{itemize}
+\end{defi}
+
+To introduce the following concepts, assume that $\eta :\scr{S}\to \scr{T}$ is a morphism of sheaves of groups over a space $M$. The \emph{kernel} of $\eta$ is the presheaf defined by the assignment
+$$U\longmapsto \opnm{Ker}\eta_U.$$
+Likewise, we define the presheaf $I_{\eta}$ by
+$$U\longmapsto \opnm{Im}\eta_x.$$
+By following the definition of sheaf it can be proved directly that the kernel of a morphism of sheaves is in fact a sheaf; in particular, note that, as $\eta$ is a natural transformation, kernels are preserved by restrictions; that is, if $\sigma \in \opnm{Ker}\eta_U\subset \scr{S}(U)$ and $V\subset U$, the commutativity of the square \eqref{nat_transf_sheaf} forces $i^*(\sigma )=\sigma|_V$ to be in the kernel of $\eta_V$.
+
+The image $I_{\eta}$ is generally just a subpresheaf of $\scr{T}$; it does not behave as nicely as the kernel (see example \ref{image_1} below).
+
+\begin{ej}
+Let $\scr{P}$ be the presheaf over a space $M$ which assigns an open subset $U$ the space of constant maps $U\to \re$. Then $\scr{P}$ is a sheaf if and only if the space $M$ is connected. Examples of sheaves on a topological space are the sheaf of continuous maps, the sheaf of locally constant functions; if the base space happens to be a smooth manifold, then we also have the sheaves of smooth maps, differential forms, vector fields, etc.
+\end{ej}
+
+\begin{ej}
+Given a presheaf of groups or modules $\scr{S}$ over $M$, the sheaf $0$ is defined by assigning the trivial group or modules to each open subset of $M$.
+\end{ej}
+
+\begin{ej}
+Let $X$ be an object of some category ${\bf X}$ with terminal object $1$ and let $x_0\in M$ be fixed; the skyscraper sheaf $\scr{S}^{(x_0)}_X:\tsf{Op}(M)^\circ \to {\bf X}$ is defined in the following way:
+$$
+\scr{S}^{(x_0)}_X(U)=
+\begin{cases}
+X & \text{if $x\in U$} \\
+1 & \text{if $x\not \in U$.} \\
+\end{cases}
+$$
+The name ``skyscraper'' comes from the fact that the only stalk distinct from $1$ is the one over $x_0$ which is equal to $X$.
+\end{ej}
+
+\begin{ej}\label{bounded}
+Let $M=\re$ and, for an open subset $U\subset M$, let $B(U)$ be the space of bounded mappings $U\to \re$. Consider the open interval $(0,1)$ and let $U_i:=\left (\frac{1}{i+1},1 \right )$; then $U=\bigcup_{i\geqslant 1}U_i$. Consider the maps $f_i:U_i\to \re$ given by $f_i(x)=\frac{1}{x}$. We then have that $f_i\in B(U_i)$, but these maps cannot be glued together to provide a bounded map $(0,1)\to \re$ which restriction to each $U_i$ is $f_i$. Thus, $U\mapsto B(U)$ is not a sheaf.
+\end{ej}
+
+\begin{ej}\label{image_1}
+Let $\scr{O}$ denote the sheaf over $\comp^{\times}=\comp \setminus \{0\}$ of holomorphic maps $f:U\to \comp$ ($U\subset \comp^{\times}$ open) and let $\scr{O}^{\times}$ be the sheaf over $\comp^{\times}$ of invertible holomorphic maps; i.e. maps $g:U\to \comp^{\times}$. Define the exponential map $\opnm{exp}:\scr{O}\to \scr{O}^{\times}$ by $\opnm{exp}_U(u)=e^u$. Let $U_1$ and $U_2$ be the open subsets of $\comp^{\times}$ defined by $U_1:=\comp^{\times}\setminus \re_{\geqslant 0}$ and $U_2:=\comp^{\times}\setminus \re_{\leqslant0}$, where $\re_{\geqslant 0}$ (respectively $\re_{\leqslant 0}$) denotes the set of complex numbers with imaginary part equal to zero and nonnegative (respectively nonpositive) real part. We then have that $U_1\cup U_2=\comp^{\times}$. Let now $\varphi :\comp^\times \to \comp$ be any holomorphic map and denote by $u_1$ and $u_2$ the restrictions of $\varphi$ to $U_1$ and $U_2$ respectively. Let now $f_1=e^{u_1}\in \opnm{Im}\; \opnm{exp}_{U_1}$ and $f_2=e^{u_2}\in \opnm{Im}\; \opnm{exp}_{U_2}$. As $U_1$ and $U_2$ are simply-connected, the maps $u_1$ and $u_2$ are indeed well-defined holomorphic maps and given by $u_1=\log f_1$, $u_2=\log f_2$ (fixing a branch of the logarithm). Moreover, these maps coincide on the intersection $U_1\cap U_2$, which is given by the (disjoint) union of the upper and lower half-planes. But it is clear that these maps $f_1$ and $f_2$ cannot be glued together into a holomorphic map $f:\comp^{\times}\to \comp^{\times}$ such that $h=e^w$ (if so, then $w$ should be the logarithm $\log h$, but it is not a section in $\scr{O}^{\times}(\comp^{\times})$ as it is not even continuous on the whole punctured plane).
+\end{ej}
+
+We can remedy the situation described in examples \ref{bounded} and \ref{image_1} by constructing a sheaf $\scr{P}^+$ from the presheaf $\scr{P}$ in a universal way (to be specified soon). Moreover, if $\scr{P}$ is in fact a sheaf, then $\scr{P}^+$ shall be canonically isomorphic to $\scr{P}$.
+
+Before going into the next section, we give the following
+
+\begin{defi}
+A morphism of presheaves $\eta :\scr{P}\to \scr{Q}$ over $M$ is said to be a \emph{monomorphism} if $\opnm{Ker}\eta =0$; a more general statement which also includes presheaves of sets is that $\eta$ is a monomorphism if $\eta_U$ is injective for each open subset $U\subset M$. Likewise, $\eta$ is said to be an \emph{epimorphism} if $I_{\eta}=\scr{Q}$. The map $\eta$ is an \emph{isomorphism} if it is both a monomorphism and an epimorphism.
+\end{defi}
+
+\begin{obs}
+Note that the previous definition applies for an ${\bf X}$-valued presheaf in as much the notions of injectivity and surjectivity, as usually defined, make sense in ${\bf X}$. We adopt this definition because all sheaves arn presheaves we consider takes values in categories in which this notions apply. A definition with a wider range may be given using the right and left cancellation properties. Though we shall not use them, these are included in several results of section \ref{section_isomorphisms}.
+\end{obs}
+
+By the previous definition, the morphism of presheaves $\eta$ is an isomorphism if and only if $\eta_U:\scr{P}(U)\to \scr{Q}(U)$ is an isomorphism for each open subset $U$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stalks and Sheafification}
+
+The process of turning a presheaf into a sheaf (sheafification) is mainly based on considering stalks, which we define and discuss next.
+
+\begin{defi}
+Given a (pre)sheaf $\scr{S}$ over a space $M$, the \emph{stalk} $\scr{S}_x$ of $\scr{S}$ over $x\in M$ is given by
+$$\scr{S}_x:=\underset{U\ni x}{\operatorname{colim}}\; \scr{S}(U);$$
+objects of $\scr{S}_x$ are called \emph{germs} (of sections).
+\end{defi}
+
+To be more explicit, $\scr{S}_x$ is given by taking the disjoint union $\bigsqcup_{U\ni x}\scr{S}(U)$ modulo the equivalence relation given by $(U,\sigma )\sim (V,\tau )$ if and only if there exists a neighborhood $W$ of $x$, $W\subset U\cap V$, such that $\sigma|_W=\tau|_W$.
+
+\begin{notation}
+The germ of a section $\sigma$ will be denoted by $\sigma_x$; if the reference to the open subset over which $\sigma$ is defined is needed, we will denote $\sigma_x$ by the symbol $[U,\sigma ]_x$. On the other hand, if the reference to the point $x$ is clear from the context, to ease the notation we will abuse and also use $\sigma$ to denote the germ of $\sigma$ at $x$.
+\end{notation}
+
+The assignment $\scr{S}\mapsto \scr{S}_x$ is functorial, and for each $U\ni x$, we have a canonical projection $\scr{S}(U)\to \scr{S}_x$; moreover, each (pre)sheaf homomorphism $\eta:\scr{S}\to \scr{T}$ gives rise to a morphism of stalks $\eta_x:\scr{S}_x\to \scr{T}_x$ such that the diagram
+$$
+\xymatrix{\scr{S}(U)\ar[r]^{\eta_U} \ar[d] & \scr{T}(U) \ar[d] \\
+\scr{S}_x \ar[r]_{\eta_x} & \scr{T}_x}
+$$
+commutes (vertical arrows are projections). If $\scr{S},\scr{T}$ are (pre)sheaves of modules, algebras, rings, etc then so is $\eta_x$ for each $x$: for example, assume that $\scr{R}$ is a sheaf of rings and fix a point $x$ in the base space. Given points $[U,\sigma ],[V,\tau ]\in \scr{R}_x$ (with $x\in U\cap V$),  the product which makes $\scr{R}_x$ a ring (and the projection $\scr{R}(U)\to \scr{R}_x$ a ring homomorphism for each $U\ni x$) is given by $[U,\sigma ][V,\tau ]:=[U\cap V,\sigma \tau ]$, where the product $\sigma \tau$ on the right hand side is taken over $U\cap V$.
+
+Consider now a presheaf $\scr{P}$ over $M$; we can associate to $\scr{P}$ a sheaf $\scr{P}^+$ preserving stalks. For this, we will first introduce another representation for sheaves, as a topological space over $M$.
+
+By a ``topological space over $M$'' we mean a space $E$ together with a continuous map $E\to M$. A morphism between spaces $E\to M$, $F\to M$ over $M$ is a continuous map such that
+$$
+\xymatrix{
+E \ar[rr] \ar[dr] & & F \ar[dl] \\
+& M & }
+$$
+commutes. The category thus obtained is denoted by $\tsf{Top}(M)$. If $E$ is a space over $M$ with map $\pi :E\to M$, a \emph{section} of $E$ is a continuous map $\sigma :M\to E$ such that $\pi \sigma =\opnm{id}_M$. The symbol $\Gamma (E)$ will denote the space of sections $M\to E$. If $U\subset M$, we can consider local sections $U\to E$; sections of $E$ over $U$ will be denoted $\Gamma_E(U)$.
+
+Given the presheaf $\scr{P}$ over $M$, consider the disjoint union of the stalks
+$$e(\scr{P}):=\bigsqcup_{x\in M}\scr{P}_x,$$
+together with the canonical projection $(x,\sigma_x)\mapsto x$ onto $M$. We now define a topology that makes this projection a local homeomorphism: let $U\subset M$ be open and let $\sigma \in \scr{P}(U)$. Define a map $\sigma^+:U\to e(\scr{P})$ by the formula
+$$\sigma^+(x)=\sigma_x.$$
+As $\sigma^+(x)\in \scr{P}_x$, the map $\sigma^+$ is called a \emph{section} of the space $e(\scr{P})$ over $M$. We now declare $\{\sigma^+(U)\; | \; U\subset M \; \text{open}\}$ to be a basis for the topology of $e(\scr{S})$. This topological space is called the \emph{\'etale space} of $\scr{P}$. A couple of remarks on this spaces are relevant
+\begin{itemize}
+\item The topology on $e(\scr{S})$ is not usually ``nice'': it is typically non-Hausdorff and
+\item the projection $e(\scr{P})\to M$ is a local homeomorphism.
+\end{itemize}
+
+If $E=e(\scr{P})$ is the \'etale space of a presheaf $\scr{P}$, we denote the space of sections of $e(\scr{P})$ over $U$ by $\Gamma_{\scr{P}}(U)$. For the topology defined on $e(\scr{P})$, a section $\sigma^+ :U\to e(\scr{P})$ is continuous at $x\in U$ if and only if there exists a neighborhood $V$ of $x$ in $U$ and a section $\sigma \in \scr{P}(V)$ such that
+$$\pi_y(\sigma )=\sigma^+(y)$$
+for each $y\in V$, where $\pi_x:\scr{P}(V)\to \scr{P}_x$ is the canonical projection.
+
+It will be useful also to describe the inverse construction; that is, how to obtain a sheaf from a space over $M$. For this, we need to find out for which spaces over $M$, their spaces of sections are sheaves. For a complete discussion the reader is referred to \cite{tennison:_sheaf}.
+
+\begin{proposition}\label{loc_homeo_sheaf}
+If $E\to M$ is a surjective local homeomorphism, then $\Gamma_E$ is a sheaf.
+\end{proposition}
+
+\begin{obs}
+Note that if the fibres of the space $E$ over $M$ are, for example, groups, then $\Gamma_E$ will be a sheaf of groups.
+\end{obs}
+
+\begin{proposition}
+The assignments $e:\scr{P}\mapsto e(\scr{P})$ and $\Gamma:E\mapsto \Gamma_E$ defines functors from the category $\tsf{PSh}(M)$ of presheaves over $M$ to the category $\tsf{Top}(M)$ of spaces over $M$ and from the category of spaces over $M$ to the category $\tsf{Sh}(M)$ of sheaves over $M$, respectively. Moreover, if $\scr{S}$ is a sheaf, the correspondence $\scr{S}\mapsto e(\scr{S})$ defines and equivalence between the category of sheaves of sets over $M$ and the category of surjective local homeomorphisms with base $M$.\footnote{For sheaves with more algebraic structure, for example sheaves of groups, modules, etc, the fibres of the local homeomorphisms defining these sheaves should of course be groups, modules, etc.}
+\end{proposition}
+
+Now define
+$$\scr{P}^+(U)=\{\sigma :U\to e(\scr{P})\; | \; \sigma \; \text{is continuous and $\sigma^+(x)\in \scr{P}_x$ for each $x\in U$}\}.$$
+That is, $\scr{P}^+$ is the image of $\scr{P}$ by the composite $\Gamma e$,
+$$\scr{P}^+=\Gamma (e(\scr{P}))=\Gamma_{\scr{P}},$$
+and then the correspondence $\scr{P}\mapsto \scr{P}^+$ defines a functor $\tsf{PSh}(M)\to \tsf{PSh}(M)$. The crucial fact is that $\Gamma$ produces a sheaf if we evaluate it in \'etale spaces of presheaves.
+
+Note also that this construction provides a natural map of presheaves $\eta :\scr{P}\to \scr{P}^+$ defined by $\eta (\sigma )=\sigma^+$.
+
+We summarize some important properties of these constructions in the following result, which proof can also be found in \cite{tennison:_sheaf}.
+
+\begin{theorem}\label{sheafification}
+The following properties hold:
+\begin{enumerate}
+\item If $E$ is an \'etale space of a presheaf $\scr{P}$, then $e(\Gamma_E)$ is isomorphic to $E$ as (\'etale) spaces over $M$.
+\item The assignment $\scr{P}\mapsto \scr{P}^+$ defines a functor from the category of presheaves over $M$ to the category of sheaves over $M$.
+\item The map $\eta$ induces isomorphisms $\scr{P}_x\stackrel{\cong}{\longrightarrow}\scr{P}_x^+$ for each $x\in M$.
+\item A presheaf $\scr{S}$ is isomorphic to $\scr{S}^+$ if and only if $\scr{S}$ is a sheaf (and the isomorphism is the natural map $\eta$).
+\item Let $\scr{P}$ be a presheaf and $\scr{S}$ a sheaf, both over $M$. Then, any morphism of presheaves $\phi :\scr{P}\to \scr{S}$ factors uniquely through the natural map $\eta :\scr{P}\to \scr{P}^+$:
+$$
+\xymatrix{
+\scr{P} \ar[r]^{\phi} \ar[d]_{\eta} & \scr{S} \\
+\scr{P}^+ \ar[ur]_{\exists ! } & 
+}$$
+\end{enumerate}
+\end{theorem}
+
+The sheaf $\scr{P}^+$ is called the \emph{associated sheaf} or \emph{sheafification} of the presheaf $\scr{P}$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Isomorphisms in $\tsf{Sh}(M)$.}
+\label{section_isomorphisms}
+
+In this section we shall discuss some important notions regarding morphisms of sheaves, for example the precise notion of surjectivity. We note first that and equality $\scr{S}=\scr{T}$ of sheaves means that, for each open subset $U\subset M$, $\scr{S}(U)=\scr{T}(U)$.
+
+\begin{defi}\label{def_ker_image}
+Let $\eta :\scr{S}\to \scr{T}$ be a morphism of sheaves of groups (or rings, modules, etc).
+\begin{itemize}
+\item The \emph{kernel} of $\eta$, denoted $\opnm{Ker}\eta$, is the sheaf given by $U\mapsto \opnm{Ker}\eta_U$.
+\item The \emph{image} of $\eta$, denoted $\opnm{Im}\eta$, is defined as $\opnm{Im}\eta :=I_{\eta}^+$.
+\end{itemize}
+\end{defi}
+
+\begin{lemma}\label{subsheaf_im}
+For a morphism of sheaves $\eta :\scr{S}\to \scr{T}$ over $M$, the sheaf $\opnm{Im}\eta$ can be identified with a subsheaf of $\scr{T}$.
+\end{lemma}
+\begin{proof}
+The conclusion of the lemma is immediate representing sections of the sheaf $\scr{T}$ as maps $\sigma :U\to \bigsqcup_{x\in U}\scr{T}_x$.
+\end{proof}
+
+\begin{defi}
+A sheaf homomorphism $\eta :\scr{S}\to \scr{T}$ is said to be
+\begin{itemize}
+\item a \emph{monomorphism} or an \emph{injective morphism} if $\opnm{Ker}\eta=0$.
+%\item an \emph{epimorphism} or a \emph{surjective morphism} if and only $\eta$ verifies the following cancellation property: for any sheaf $\scr{Q}$ and morphisms $\phi ,\theta :\scr{T}\to \scr{Q}$ such that $\phi \eta =\theta \eta$, then $\phi =\theta$.
+\item an \emph{epimorphism} or a \emph{surjective morphism} if $\opnm{Im}\eta=\scr{T}$ (this last equality relies on lemma \ref{subsheaf_im}).
+\item an \emph{isomorphism} if it is both a monomorphism and an epimorphism.
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+For a morphism of sheaves of sets $\eta :\scr{S}\to \scr{T}$, injectivity can be defined by asking the maps $\eta_U$ to be injective for each $U$.
+\end{obs}
+
+The next lemma shows that injectivity and surjectivity are preserved when passing to the stalks.
+
+\begin{lemma}\label{stalks_ker_im}
+For each $x\in M$ we have
+$$(\opnm{Ker}\eta )_x=\opnm{Ker}\eta_x \quad , \quad (\opnm{Im}\eta )_x=\opnm{Im}\eta_x \quad \text{and} \quad I_{\eta ,x}=\opnm{Im}_{\eta_x}.$$
+\end{lemma}
+\begin{proof}
+That the class $[U,\sigma ]_x$ belongs to $(\opnm{Ker}\eta )_x$ is equivalent to saying that $\eta_U(\sigma )=0$, and then
+$$\eta_x[U,\sigma]_x=[U,\eta_U(\sigma )]_x=0.$$
+Now, $[U,\sigma ]_x\in \opnm{Ker}\eta_x$ if and only if there exists a neighborhood $V\subset U$ of $x$ such that $\eta_U(\sigma )|_V=\eta_V(\sigma|_V)=0$ (the first equality by naturality of $\eta$). But then $[V,\sigma|_V]_x\in (\opnm{Ker}\eta)_x$.
+
+For the second equality, first note that $(\opnm{Im}\eta)_x=I^+_{\eta ,x}=I_{\eta ,x}$, as the sheafification functor preserves stalks. Thus, we only need to prove the equality $I_{\eta ,x}=\opnm{Im}\eta_x$ which can be done in exactly the same fashion as for the previous equality.
+\end{proof}
+
+Let us point out the following fact: assume that $\scr{S}$ and $\scr{T}$ are sheaves such that $\scr{S}_x\cong \scr{T}_x$ for each $x$ in the base space. Then the conclusion that the sheaves $\scr{S}$ and $\scr{T}$ are isomorphic is generally not true (locally-free sheaves are a good example; see section \ref{modules}).
+
+\begin{lemma}
+Let $\eta :\scr{S}\to \scr{T}$ be a sheaf homomorphism. If $\eta$ is an isomorphism in the category $\tsf{PSh}(M)$, then it is also an isomorphism in the category $\tsf{Sh}(M)$.
+\end{lemma}
+\begin{proof}
+The notion of injectivity for morphisms in the category of presheaves is the same as the one for arrows in the category of sheaves. If $\eta$ is an epimorphism viewed in the category of presheaves, then for each open subset $U$, $\eta_U$ is a surjective map. We need to show that $\opnm{Im}\eta =\scr{T}$.
+
+First note that by lemma \ref{stalks_ker_im}, the map $\eta_x:\scr{S}_x\to \scr{T}_x$ is surjective. Let now $\sigma \in \scr{T}(U)$; this object is a continuous section $\sigma :U\to \bigsqcup_{x\in U}\scr{T}_x$. But $\scr{T}_x=I_{\eta ,x}=I^+_{\eta ,x}$. The lemma is proved.
+\end{proof}
+
+The converse to the previous statement is false, as the next example shows.
+
+\begin{ej}\label{image_2}
+Consider the exponential map $\opnm{exp}:\scr{O}\to \scr{O}^{\times}$ of example \ref{image_1}. This map is a surjective sheaf homomorphism which is not surjective as a morphism of presheaves: if $w:\comp^\times \to \comp^{\times}$ is a holomorphic map, then the equation $e^u=w$ does not have a solution in $\scr{O}(\comp^{\times})$.
+\end{ej}
+
+Let us finish this discussion by recalling and introducing some useful characterizations for mono, epi and isomorphisms of (pre)sheaves. For details, the reader may consult again the comprehensive exposition given in \cite{tennison:_sheaf}.
+
+\begin{theorem}
+For a morphism of presheaves $\eta :\scr{P}\to \scr{Q}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is injective; that is $\opnm{Ker}\eta=0$.
+\item For each open subset $U\subset M$, the map $\eta_U:\scr{P}(U)\to \scr{Q}(U)$ is inyective.
+\item If $\scr{S}$ is any presheaf and $\phi ,\theta :\scr{S}\to \scr{P}$ are two morphisms of presheaves such that $\eta \phi =\eta \theta$, then $\phi =\theta$.
+\end{enumerate}
+\end{theorem}
+
+\begin{obs}
+The conditions enumerated in the previous theorem imply that for each $x\in M$ the morphism $\eta_x:\scr{P}_x\to \scr{Q}_x$ is injective. But in order to add this property into the list of equivalent conditions the presheaves must be \emph{separated}. We will not define this notion here, but the reader may consult the aforementioned reference.
+\end{obs}
+
+\begin{theorem}
+For a morphism of sheaves $\eta :\scr{S}\to \scr{T}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is injective; that is $\opnm{Ker}\eta =0$.
+\item For each open subset $U\subset M$, the map $\eta_U:\scr{S}(U)\to \scr{T}(U)$ is inyective.
+\item For each $x\in M$, the map $\eta_x:\scr{P}_x\to \scr{Q}_x$ is injective.
+\item If $\scr{R}$ is any sheaf and $\phi ,\theta :\scr{R}\to \scr{S}$ are two morphisms of presheaves such that $\eta \phi =\eta \theta$, then $\phi =\theta$.
+\end{enumerate}
+\end{theorem}
+
+For surjective morphisms of presheaves we have the following
+
+\begin{theorem}\label{presheaf_epi}
+For a morphism of presheaves $\eta :\scr{P}\to \scr{Q}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is surjective; that is, $I_{\eta}=\scr{T}$. 
+\item For each open subset $U\subset M$, $\eta_U$ is surjective.
+\item For any presheaf $\scr{R}$ and morphisms $\phi ,\theta :\scr{Q}\to \scr{R}$ such that $\phi \eta =\theta \eta$, then $\phi =\theta$.
+\end{enumerate}
+\end{theorem}
+
+For sheaves we have an analogous result.
+
+\begin{theorem}
+For a morphism of sheaves $\eta :\scr{S}\to \scr{T}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is surjective, that is $I^+_{\eta }=\scr{T}$.
+\item For each point $x\in M$, the map $\eta_x:\scr{S}_x\to \scr{T}_x$ is surjective.
+\item For any sheaf $\scr{R}$ and morphisms $\phi ,\theta :\scr{T}\to \scr{R}$ such that $\phi \eta =\theta \eta$, then $\phi =\theta$.
+\end{enumerate}
+Moreover, any of the conditions of theorem \ref{presheaf_epi} implies these ones.
+\end{theorem}
+
+We will now combine these facts into the notion of isomorphism, which we define first; we omit the words ``sheaf'' and ``presheaf'' just because the same definition applies to both of them.
+
+\begin{theorem}
+For a morphism of presheaves $\eta :\scr{P}\to \scr{Q}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is an isomorphism.
+\item For each open subset $U\subset M$, $\eta_U$ is a bijection.
+\item $\eta$ is a monomorphism and an epimorphism.
+\end{enumerate}
+\end{theorem}
+
+For sheaves we have:
+
+\begin{theorem}\label{stalk_iso}
+For a morphism of sheaves $\eta :\scr{S}\to \scr{T}$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\eta$ is an isomorphism.
+\item For each $x\in M$, $\eta_x:\scr{S}_x\to \scr{T}_x$ is an isomorphism.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The ``only if'' part follows immediately from lemma \ref{stalks_ker_im}.
+
+For the ``if'' part, assume that each stalk map is an isomorphism and let $U\subset M$ be any open subset. Let $\sigma,\tau \in \scr{S}(U)$ be sections such that $\eta_U(\sigma )=\eta_U(\tau )$. This implies that $\sigma_x=\tau_x$ for each $x\in U$. We can then find a collection $\{W_x\}_{x\in U}$ of open subsets such that $x\in W_x$ and $\sigma|_{W_x}=\tau|_{W_x}$. As $U=\bigcup_{x\in U}W_x$ the equality $\sigma=\tau$ follows from the definition of sheaf, by gluing the restrictions $\sigma|_{W_x}$ and $\tau|_{W_x}$.
+
+If $\tau \in \scr{T}(U)$, then for each $x\in U$ we have a unique element $\sigma_x\in \scr{S}_x$ such that $\eta_x(\sigma_x)=\tau_x$. Assume that $\sigma^{(x)}\in \scr{S}(U_x)$ is a section with germ equal to $\sigma_x$, where $U_x\subset U$ is a neighborhood of $x$. Then, as the germs $\eta_x(\sigma_x)=\eta_{U_x}(\sigma^{(x)})_x$ and $\tau_x$ coincide, there exists a neighborhood $W_x\subset U_x$ of $x$ such that $\eta_{W_x}(\sigma^{(x)}|_{W_x})=\tau|_{W_x}$. We will now check that the sections $\sigma^{(x)}$ can be glued together into a section $\sigma \in \scr{S}(U)$ such that $\eta_U(\sigma )=\tau$. Let $x,x'\in U$ be such that $W_{xx'}:=W_x\cap W_{x'}\neq \emptyset$. Then $\eta_{W_{xx'}}(\sigma^{(x)}|_{W_{xx'}})=\tau|_{W_{xx'}}=\eta_{W_{xx'}}(\sigma^{(x')}|_{W_{xx'}})$. Then, for each $y\in W_{xx'}$,
+$$\eta_y(\sigma^{(x)}_y)=\eta_y(\sigma^{(x')}_y).$$
+The last equality and the injectivity of $\eta_y$ implies that $\sigma^{(x)}_y=\sigma^{(x')}_y$ and then we can find a neighborhood $Z=Z^{(y)}\subset W_{xx'}$ of $y$ such that $\sigma^{(x)}|_{Z^{(y)}}=\sigma^{(x')}|_{Z^{(y)}}$. As $\scr{S}$ is a sheaf, this is equivalent to the equality $\sigma^{(x)}|_{W_{xx'}}=\sigma^{(x')}|_{W_{xx'}}$ and this, again by glueing properties of sheaves, to the existence of a section $\sigma \in \scr{S}(U)$ such that $\sigma|_{U_x}=\sigma^{(x)}$ for each $x$ and $\eta_U(\sigma )=\tau$, as desired.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Direct and Inverse Image}
+
+Assume that $f:M\to N$ is a continuous map. In this section we will describe how to construct a sheaf over $N$ from a sheaf over $M$ and viceversa.
+
+Let us start first with a sheaf $\scr{S}$ over $M$. Define the presheaf $f_*\scr{S}$ over $N$ in the following way: given $V\in \tsf{Op}(N)$, $(f_*\scr{S})(V)=\scr{S}(f^{-1}(V))$. If $i:W\to V$ is an inclusion and $\sigma \in (f_*\scr{S})(V)$, then $f^{-1}(W)\subset f^{-1}(V)$ and $i^*(\sigma )=\sigma |_{f^{-1}(W)}$. The proof that this presheaf is in fact a sheaf follows inmediately from the definition of sheaf. Moreover, a sheaf homomorphism $\eta :\scr{S}\to \scr{T}$ induces a morphism $f_*\eta :f_*\scr{S}\to f_*\scr{T}$ by defining $(f_*\eta )_V=\eta_{f^{-1}(V)}$. We thus obtain a functor
+$$f_*:\tsf{Sh}(M)\longrightarrow \tsf{Sh}(N)$$
+which is called the \emph{direct image functor}. The sheaf $f_*\scr{S}$ is called the \emph{direct image of $\scr{S}$ by $f$}. Note that this construction is well suited for sets, abelian groups, rings, algebras and modules (this last case is treated separatedly).
+
+The stalks of the direct image sheaves are easy to compute in some particular cases, as the following result shows.
+
+\begin{proposition}\label{direct_covering}
+Let $f:M\to N$ be an $n$-sheeted covering map and let $y\in N$. Then
+$$(f_*\scr{S})_y\cong  \scr{S}_{x_1}\times \cdots \times \scr{S}_{x_n},$$
+where $f^{-1}(y)=\{x_1,\dots ,x_n\}$.
+\end{proposition}
+\begin{proof}
+Let $y\in N$ an assume that $V\ni y$ is a neighborhood such that $f^{-1}(V)=\bigsqcup_{i=1}^nU_i$ and $f|_{U_i}:U_i\cong V$. As $(f_*\scr{S})(U)=\scr{S}(f^{-1}(V))=\scr{S}\left (\bigsqcup_iU_i\right )$, a section $\sigma \in (f_*\scr{S})(V)$ can be represented as a continuous map $\sigma :U\to \bigsqcup_{x\in U}\scr{M}_x$, where $U:=\bigsqcup_iU_i$, and this is equivalent to having $n$ sections $\sigma_i:U_i\to \bigsqcup_{x\in U_i}\scr{M}_x$. From these facts we can define a map $(f_*\scr{S})_y\to \scr{S}_{x_1}\times \cdots \times \scr{S}_{x_n}$,
+$$[V,\sigma ]_y\longmapsto ([U_1,\sigma_1]_{x_1},\dots ,[U_k,\sigma_k]_{x_n})$$
+which is the desired isomorphism.
+\end{proof}
+
+In particular, if $f^{-1}(U)=\bigsqcup_iU_i$ and $f|_{U_i}:U_i\cong U$, by the previous result we have an isomorphism
+$$(f_*\scr{S})|_U\cong \prod_i\scr{S}|_{U_i}.$$
+
+\begin{obs}
+The previous proof shows that this result remains valid for sheaves of abelian groups and rings, by replacing $\times$ with the direct sum $\oplus$.
+\end{obs}
+
+The other construction we will deal with starts with a sheaf over $N$ and provides a sheaf over $M$ (just as the pullback construction for bundles). So let $\scr{T}$ be a sheaf over $N$, which can be taken to be a sheaf of sets, abelian groups, modules, etc. We will now define the sheaf $f^{-1}\scr{T}$, usually called the \emph{topological inverse image of $\scr{T}$ by $f$}. If one tries to define this sheaf in the same way as the direct image, that is, by defining $(f^{-1}\scr{T})(U)$ as $\scr{T}(f(U))$, then a problem arises, as $f(U)$ need not be an open subset. This drawback makes the definition of the inverse image much more complicated than the one for the direct image. We need to consider, not $f(U)$, but a colimit taken over neighborhoods of it. That is, we consider the correspondence
+\begin{equation}\label{presheaf_inv}
+U\longmapsto \underset{V\supset f(U)}{\opnm{colim}}\scr{T}(V).
+\end{equation}
+But this correspondence is just a presheaf, and not generally a sheaf. The topological inverse image $f^{-1}\scr{T}$ is then defined as the sheafification of this presheaf.
+
+The construction of the inverse image can also be given in terms of \'etale spaces, which provide a better way to handle it. We will now describe it briefly, refering the reader again to \cite{tennison:_sheaf} to take care of details.
+
+If $\scr{T}$ is a sheaf over $N$, consider its \'etale space $e(\scr{T})$. We thus have a diagram of topological spaces and continuous maps
+$$
+\xymatrix{
+  & e(\scr{T}) \ar[d] \\
+M \ar[r]^f & N,}
+$$
+where the vertical arrow is the projection. Let $E$ be defined as the pullback of $e(\scr{T})$ along $f$,
+$$E:=f^*e(\scr{T})=\{(x,\sigma_x)\in M\times e(\scr{T})\; | \; x\in M\}$$
+with the induced product topology. The pullback $E$ together with the projection $(x,\sigma_x)\mapsto x$ defines a space over $M$ which is a local homeomorphism. By \ref{loc_homeo_sheaf}, $\Gamma_E$ defines a sheaf, which turns out to be isomorphic to the inverse image.
+
+From the previous discussion the next result is immediate.
+
+\begin{proposition}
+We have an isomorphism $(f^{-1}\scr{T})_x\cong \scr{T}_{f(x)}$.
+\end{proposition}
+
+Hence, one can easily deduce that the inverse image of a sheaf of abelian groups or rings is also a sheaf of abelian groups or rings.
+
+In some particular cases, the inverse image sheaf admits a simpler form.
+
+\begin{proposition}
+Let $f:M\to N$ be an open map (e.g. a covering map). Then the assignment $U\mapsto \scr{T}(f(U))$ is a sheaf over $M$ isomorphic to the inverse image.
+\end{proposition}
+\begin{proof}
+Verification of the sheaf conditions for $U\mapsto \scr{T}(f(U))$ is obtained by following the definition \ref{def_sheaf}. The other statement follows from the fact that the presheaf \eqref{presheaf_inv} is in fact a sheaf as $f(U)$ is open for each open $U\subset M$.
+\end{proof}
+
+The next result states the important relation between the direct and inverse image.
+
+\begin{theorem}{\rm (\cite{tennison:_sheaf}, Theorem 3.7.13.)}\label{adjunction}
+The functor $f^{-1}$ is left adjoint to $f_*$.
+\end{theorem}
+
+In other words, given sheaves $\scr{S}$ and $\scr{T}$ over $M$ and $N$ respectively, we have a bijection
+$$F:\opnm{Hom}_M(f^{-1}\scr{T},\scr{S})\stackrel{\cong}{\longrightarrow}\opnm{Hom}_N(\scr{T},f_*\scr{S}),$$
+and this property characterizes $f^{-1}\scr{T}$, up to isomorphism, in the category of sheaves over $M$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Locally Free Modules}
+\label{modules}
+
+By fixing a commutative ground ring $R$, we can define a sheaf of $R$-modules as a functor $\tsf{Op}(M)^{\circ}\to \tsf{Mod}_R$ with values in the category of $R$-modules. There is a useful generalization of this definition, which involves considering a sheaf of rings instead of a fixed one.
+
+Let $\scr{O}$ be a sheaf of (commutative) $\comp$-algebras over a a space $M$ (which will usually be a sheaf of functions). A sheaf $\scr{M}$ over $M$ is said to be an \emph{$\scr{O}$-module} if 
+\begin{enumerate}
+\item for each open subset $U\subset M$, $\scr{M}(U)$ is an $\scr{O}(U)$-module and
+\item for each inclusion $i:V\subset U$ of open subsets, the restriction $i^*:\scr{M}(U)\to \scr{M}(V)$ is $\scr{O}(U)$-linear; that is, $i^*(x+y)=i^*(x)+i^*(y)$ and $i^*(ax)=a|_Vi^*(x)$ for $x,y\in \scr{M}(U)$ and $a\in \scr{O}(U)$, where $a|_V$ is the image of $a\in \scr{O}(U)$ by the restriction map $\scr{O}(U)\to \scr{O}(V)$.
+\end{enumerate}
+The $\scr{O}$-module $\scr{M}$ is said to be \emph{locally-free} if there exists an open cover $\mathfrak{U}$ of $M$ such that the restriction $\scr{M}|_U$ is isomorphic to $\scr{O}^n|_U$ for some integer $n\geqslant 1$, which is called the \emph{rank} of $\scr{M}$. Though many of the result in following paragraphs are valid for general $\scr{O}$-modules, in the sequel we shall work with locally free modules of finite rank. For further details, the reader is referred to \cite{tennison:_sheaf}. 
+
+\begin{notation}
+The notation $\scr{O}_M$ is usually adopted for sheaves of maps over some space $M$ (topological space, smooth manifold, scheme). The restriction $\scr{O}_M|_U$ of $\scr{O}_M$ to $U$ will be denoted by $\scr{O}_U$. If the base manifold is clear, then we will denote $\scr{O}_M$ just by $\scr{O}$.
+\end{notation}
+
+\begin{defi}
+Let $\scr{R}$ and $\scr{A}$ be sheaves of rings over s space $M$. The sheaf $\scr{A}$ is called an \emph{$\scr{R}$-algebra} if a homomorphism of sheaves of rings $\varphi :\scr{R}(U)\to \scr{A}(U)$ exists such that for each inclusion $V\subset U$, the square
+$$
+\xymatrix{
+\scr{R}(U) \ar[r] \ar[d]_{\varphi_U} & \scr{R}(V) \ar[d]^{\varphi_V} \\
+\scr{A}(U) \ar[r] & \scr{A}(V).}
+$$
+commutes. If $\scr{R}$ is a sheaf of commutative rings, then the morphism $\scr{R}\to \scr{A}$ should be central, in the sense that for each $U\in \tsf{Op}(M)$, the image of $\scr{R}(U)$ is contained in the center of $\scr{A}(U)$.
+\end{defi}
+
+\begin{obs}
+Given a sheaf of rings $\scr{R}$, the \emph{center} of $\scr{R}$ is defined by the assignment $U\mapsto Z(\scr{R}(U))$, where $Z(R)$ denotes the center of the ring $R$. This correspondence does not define a sheaf in general: let $\sigma \in Z(\scr{R}(U))$; then $\sigma \tau=\tau \sigma$ for each section $\tau \in \scr{R}(U)$. Applying the restriction map $Z(\scr{R}(U))\to Z(\scr{R}(V))$ we can only deduce that $\sigma |_V$ commutes with all the sections in the image of the restriction $\scr{R}(U)\to \scr{R}(V)$; but if this map is not surjective, then there is no way to assure that $\sigma |_V$ will commute with \emph{all} the sections in $\scr{R}(V)$. 
+\end{obs}
+
+A homomorphism of sheaves of rings $\phi :\scr{R}\to \scr{Q}$ is called \emph{central} if $\phi_U:\scr{R}(U)\to \scr{Q}(U)$ is a central ring homomorphism.
+
+\begin{proposition}\label{central_stalks}
+A ring homomorphism $\phi :\scr{R}\to \scr{Q}$ is central if and only if $\phi_x:\scr{R}_x\to \scr{Q}_x$ is central for each $x$.
+\end{proposition}
+\begin{proof}
+Fix a point $x$ and let $[U,\sigma ]\in \scr{R}_x$ be such that $[U,\phi_U(\sigma )]$ is in the center of $\scr{Q}_x$. Then, if $[V,\tau ]\in \scr{Q}_x$ is an arbitrary point, we must have that $[U\cap V,\phi_U(\sigma )\tau ]$ should be equal to $[U\cap V,\tau \phi_U(\sigma )]$ over $U\cap V$. But, by naturality of morphisms of sheaves, the restriction of $\phi_U(\sigma )$ to $U\cap V$ is equal to $\phi_{U\cap V}(\sigma |_{U\cap V})$, which belongs to the center of $\scr{Q}(U\cap V)$. This proves the ``only if'' part.
+
+To prove the other implication, assume that $\phi_x(\scr{R}_x)$ is in the center of $\scr{Q}_x$ for each $x$. Let $U\subset M$ be an open subset, $\sigma \in \scr{R}(U)$, $\tau \in \scr{Q}(U)$ and let $x\in U$. Then $\phi_x[U,\sigma ]\in Z(\scr{Q}_x)$; in particular, there should exist an open neighborhood $V_x\subset U$ of $x$ such that $\phi_{V_x}(\sigma )\tau = \tau \phi_{V_x}(\sigma )$ over $V_x$. That is, the sections $\phi_U(\sigma )\tau$ and $\tau \phi_U(\sigma )$ coincide on $V_x$ for each $x\in U$. As $\scr{Q}$ is a sheaf and $U=\bigcup_{x\in U}V_x$, the result follows.
+\end{proof}
+
+Assume that $\scr{M}$ is a locally free-sheaf of $\scr{O}$-modules over $M$ of, say, rank $n$. If $x\in M$, then there exists a neighbourhood $U\ni x$ such that $\scr{M}|_U\cong \scr{O}^n_U$. In particular, each stalk $\scr{M}_x$ is isomorphic to $\scr{O}_x^n$. 
+
+Given two $\scr{O}$-modules $\scr{M}$ and $\scr{N}$, a morphism $\eta :\scr{M}\to \scr{N}$ is a sheaf homomorphism which is also $\scr{O}$-linear; that is, for each $U\in \tsf{Op}(M)$, $\eta_U:\scr{M}(U)\to \scr{N}(U)$ is an $\scr{O}(U)$-linear homomorphism (compatible with restrictions). The set of such morphisms will be denoted by $\operatorname{Hom}_\scr{O}(\scr{M},\scr{N})$. This defines the category $\tsf{Mod}_{\scr{O}_M}$ of $\scr{O}_M$-modules.
+
+On the other hand, as all this structures are compatible with restrictions, we can define the sheaf $\underline{\operatorname{Hom}}_\scr{O}(\scr{M},\scr{N})$ by the assignment
+$$U\longmapsto \operatorname{Hom}_{\scr{O}_U}(\scr{M}|_U,\scr{N}|_U)$$
+(compare with the construction of the bundle of homomorphisms in \ref{bundles_operations}).
+
+Free-modules have many desirable properties; indeed, many devices used for modules over fields (i.e. vector spaces) are available for free $R$-modules when $R$ is a commutative ring. These facts of course translates to the sheaves $\scr{O}^n$ and also to locally-free sheaves (at a local level). For example, it is well known that every vector space has a basis (i.e. a system of linearly independent generators). If $N$ is a free $R$-module, then $N\cong R^n$ for some $n$. In $R^n$, consider the set $B=\{e_1,\dots ,e_n\}$, where $e_i$ is the vector which $i$-th coordinate is equal to $1$ (or some other unit of $R$) and all the others are zero. Then $B$ is a basis of $R^n$ and, if $f:N\cong R^n$ is an isomorphism, then $\{f^{-1}(e_1),\dots ,f^{-1}(e_n)\}$ is a basis of $N$. This statements are also valid in $\scr{O}^n$ by taking constant maps $e_i(x)=u_i$ for each $x$, where $u_i\neq 0$ is a unit.
+
+Denote by $\operatorname{M}_{k\times n}(\scr{O})$ the sheaf which to each open subset $U$ assigns the $\scr{O}(U)$-module $\operatorname{M}_{k\times n}(\scr{O}(U))$ of $k\times n$ matrices with coefficients in $\scr{O}(U)$. Then,
+\begin{equation}\label{iso_matr_hom}
+\underline{\operatorname{Hom}}_{\scr{O}}(\scr{O}^n,\scr{O}^k)\cong \operatorname{M}_{k\times n}(\scr{O}),
+\end{equation}
+which can be deduced from a standard linear algebra argument. If $n=k$, we will denote $\operatorname{M}_{n \times n}(\scr{O})$ by $\operatorname{M}_n(\scr{O})$. From equation \eqref{iso_matr_hom} we can easily prove the following
+
+\begin{lemma}
+If $\scr{M}$ and $\scr{N}$ are locally-free of rank $n$ and $k$ respectively, then $\underline{\operatorname{Hom}}_{\scr{O}}(\scr{M},\scr{N})$ is also locally-free, of rank equal to $nk$.
+\end{lemma}
+
+As usual, given an $\scr{O}$-module $\scr{M}$, we define its dual module $\scr{M}^*$ by
+$$\scr{M}^*=\underline{\operatorname{Hom}}_\scr{O}(\scr{M},\scr{O}).$$
+
+\begin{lemma}
+If $\mathscr{M}$ is a locally-free $\mathscr{O}_M$-module, then also is $\mathscr{M}^*$.
+\end{lemma}
+\begin{proof}
+Let $x\in M$ and $U\ni x$ such that $\mathscr{M}|_U\cong \mathscr{O}_U^n$. Let $\{e_1,\dots ,e_n\}$ be a basis for $\mathscr{M}|_U$. Then the map
+$$\phi \longmapsto (\phi (e_1),\dots ,\phi (e_n))$$
+defines an isomorphism $\mathscr{M}^*|_U\cong \mathscr{O}_U^n$.
+\end{proof}
+
+As one would expect, if $\{e_1,\dots ,e_n\}$ is a local basis for the locally-free $\scr{O}$-module $\scr{M}$, then the set $\{e^1,\dots ,e^n\}$, where $e^i:\scr{M}(U)\to \scr{O}(U)$ is defined by
+$$e^i(e_j)=\delta_{ij}$$
+is the local basis of $\scr{M}$ dual to $\{e_1,\dots ,e_n\}$.
+
+\begin{lemma}
+If $\mathscr{M}$ is a locally-free $\mathscr{O}$-module, then we have a canonical isomorphism
+$$\mathscr{M}^{**}\cong \mathscr{M}.$$
+\end{lemma}
+\begin{proof}
+Let $\eta:\scr{M}\rightarrow \scr{M}^{**}$ be the map given by
+$$\eta (e)=e^{**},$$
+where $e^{**}:\scr{M}^*\rightarrow \scr{O}$ is given by
+$$e^{**}(\phi )=\phi (e).$$
+Fix a point $x\in M$; we then only need to show that the stalk map
+$$\eta_x:\scr{M}_x\longrightarrow \scr{M}_x^{**}$$
+is an isomorphism of $\scr{O}_x$-modules.
+
+Suppose first that $\eta_x(e_x)=0$. Then
+$$\phi_x(e_x)=0$$
+for each $\phi_x\in \scr{M}_x^*$. As $\scr{M}^*_x$ is also free, by taking a basis this easily implies that necessarily $e_x=0$.
+
+Let now $\varepsilon \in \scr{M}^{**}_x$. If $\{e_{1,x},\dots ,e_{n,x}\}$ is a basis for $\scr{M}_x$, let $\{\phi_{1,x},\dots ,\phi_{n,x}\}$ be its dual basis. Assume
+$$\varepsilon (\phi_{i,x})=f_{i,x}.$$
+Then, defining $u_x=\sum_if_{i,x}e_{i,x}$, we have that
+$$\varepsilon (\phi_{i,x})=f_{i,x}=\phi_{i,x}(u_x)$$
+for each $i$, and thus $\varepsilon =u_x^{**}$.
+\end{proof}
+
+The direct sum of $\scr{M}\oplus \scr{N}$ of two locally free $\scr{O}$-modules $\scr{M},\scr{N}$ over $M$ is again a locally free $\scr{O}$-module, and its rank is the sum of the ranks of each summand. 
+
+Given two $\scr{O}$-modules $\scr{M}$ and $\scr{N}$, the tensor product $\scr{M}\otimes_{\scr{O}}\scr{N}$ (or just $\scr{M}\otimes \scr{N}$ if the sheaf $\scr{O}$ is clear) is the sheaf associated to the presheaf given by
+$$U\longmapsto \scr{M}(U)\otimes_{\scr{O}(U)}\scr{N}(U).$$
+If $\scr{M}$ and $\scr{N}$ are locally free of ranks $n$ and $k$ respectively, then $\scr{M}\otimes \scr{N}$ is also locally free, of rank $nk$.
+As colimits commute with tensor products, we have that
+$$(\scr{M}\otimes_{\scr{O}} \scr{N})_x\cong \scr{M}_x\otimes_{\scr{O}_x}\scr{N}_x.$$
+
+The following result comprises some important properties of tensor products, and its proof may be found in \cite{kn:gortz_wed}. We try to omit the reference to the sheaf $\scr{O}$ as it is usually clear form the context.
+
+\begin{proposition}\label{tensor_hom}
+Let $\scr{M}$ and $\scr{N}$ and $\scr{P}$ be locally free $\scr{O}$-modules over a space $M$.
+\begin{enumerate}
+\item There exists a linear adjunction
+$$\underline{\opnm{Hom}}(\scr{M}\otimes \scr{P},\scr{N})\cong \underline{\opnm{Hom}}(\scr{M},\underline{\opnm{Hom}}(\scr{P},\scr{N}).$$ 
+\item If $\scr{M}$ or $\scr{N}$ is of finite rank, then we have a canonical isomorphism
+$$\underline{\opnm{Hom}}(\scr{M},\scr{P})\otimes \scr{N}\cong \underline{\opnm{Hom}}(\scr{M},\scr{P}\otimes \scr{N}).$$
+\end{enumerate}
+\end{proposition}
+
+The following corollary is a useful consequence of the previous result.
+
+\begin{cor}\label{tensor_hom_dual}
+For locally free $\scr{O}$-modules (of finite rank, as usual), we have isomorphisms
+\begin{enumerate}[a.]
+\item $\underline{\opnm{Hom}}(\scr{M},\scr{N})\cong \scr{M}^*\otimes \scr{N}$ and
+\item $(\scr{M}\otimes \scr{N})^*\cong \scr{M}^*\otimes \scr{N}^*$.
+\end{enumerate}
+\end{cor}
+\begin{proof}
+The first item follows readily from item 2 of the previous result, taking $\scr{P}=\scr{O}$. To prove \emph{b}, we use item \emph{a} and also item 1 from the previous proposition:
+$$
+\begin{aligned}
+(\scr{M}\otimes \scr{N})^* &\cong \underline{\opnm{Hom}}(\scr{M}\otimes \scr{N},\scr{O}) \\
+													 &\cong \underline{\opnm{Hom}}(\scr{M},\underline{\opnm{Hom}}(\scr{N},\scr{O})) \\
+													 &\cong \underline{\opnm{Hom}}(\scr{M},\scr{N}^*) \\
+													 &\cong \scr{M}^*\otimes \scr{N}^*. \\
+\end{aligned}
+$$
+\end{proof}
+
+\begin{ej}
+Let $\eta :\scr{M}\to \scr{N}$ be a homomorphism of locally free $\scr{O}_M$-modules. Then $\opnm{Ker}\eta$ and $\opnm{Im}\eta$ need not be locally free modules (cf. theorem \ref{sheaf_bundle} and the last paragraph of section \ref{vector_bundles}).
+\end{ej}
+
+We shall end this section with the construction of fibres. An important particular class of modules is the one consisting of modules over algebras $\scr{O}$ for which $\scr{O}_x$ is a local ring for each $x$; that is, it contains only one maximal ideal, which we denote by $\mathfrak{m}_x$.
+
+\begin{defi}
+The sequence of projections
+\begin{equation}\label{fiber_sheaf}
+\scr{O}(U)\longrightarrow \scr{O}_x\longrightarrow \scr{O}_x/\mathfrak{m}_x,
+\end{equation}
+is called the \emph{evaluation map}. If $f$ is a section of $\scr{O}$ over $U$, then its image will be denoted by $f(x)$.
+\end{defi}
+
+\begin{obs}\label{stalks_evaluation}
+Let $A$ be a commutative, local $\comp$-algebra with maximal ideal $\mathfrak{m}$. Then we have a direct sum decomposition $A=\langle 1 \rangle \oplus \mathfrak{m}$ of the vector space $A$, where $\langle 1 \rangle$ is the vector subspace generated by the unit. If $[x]$ denotes the class of $x$ (mod. $\mathfrak{m}$), then the correspondence $z\mapsto [z1]$ defines a canonical isomorphism $\comp \to A/\mathfrak{m}$. The inverse of this map is defined in the following way: if $a\in A$, then we can write it as $a=z1+x$ where $x\in \mathfrak{m}$. The assignment $a\mapsto z$ defines an algebra homomorphism $A\to \comp$ with kernel equal to $\mathfrak{m}$.
+
+Thus, if $\scr{O}$ is a sheaf of $\comp$-algebras with local stalks, the evaluation map can be regarded as a map with values in $\comp$ (the same applies to $\re$-algebras); in fact, the family of vector spaces $\bigsqcup_{x\in M}\scr{O}_{M,x}/\mathfrak{m}_x$ is a trivial bundle: the map
+$$M\times \comp \longrightarrow \bigsqcup_{x\in M}\scr{O}_{M,x}/\mathfrak{m}_x$$
+given by $(x,z)\mapsto (x,[z1])$ is an isomorphism by the previous discussion.
+\end{obs}
+
+Component-wise operations provides an evaluation map
+$$\scr{O}^n(U)\longrightarrow \scr{O}^n_x\longrightarrow \scr{O}^n_x/\mathfrak{m}_x^{\oplus n}$$
+given by $(f_1,\dots ,f_n)\mapsto (f_1(x),\dots ,f_n(x))$.
+
+\begin{ej}
+Let $\scr{O}$ be any sheaf of functions (e.g. continuous, smooth, holomorphic, etc). In this case, $\mathfrak{m}_x=\{f_x\in \scr{O}_x\; | \; f(x)=0\}$. Let $\opnm{ev}_x :\scr{O}_x\to \comp$ be the map $\opnm{ev}_x (f_x)=f(x)$. This map has kernel equal to $\mathfrak{m}_x$ and is the inverse of the isomorphism defined in remark \ref{stalks_evaluation}. Thus, the image of $f\in \scr{O}(U)$ by the projections \eqref{fiber_sheaf} is precisely $f(x)$.
+\end{ej}
+
+The following easy lemma lets us generalize this facts to any locally-free sheaf.
+
+\begin{lemma}
+Let $\alpha :\scr{O}^n\to \scr{O}^n$ be an $\scr{O}$-linear isomorphism. Then, for each $x\in M$,
+$$\alpha_x (\mathfrak{m}^{\oplus n}_x)=\mathfrak{m}^{\oplus n}_x,$$
+where $\alpha_x:\scr{O}^n_x\to \scr{O}^n_x$ is the induced stalk map.
+\end{lemma}
+\begin{proof}
+Fix a point $x\in M$. We then have
+$$\alpha_x (f_1,\dots ,f_n)=\Bigl (\sum_i\lambda_{1i}f_i,\dots ,\sum_i\lambda_{ni}f_i\Bigr ),$$
+where $(\lambda_{ij})$ is an invertible $n\times n$-matrix with coefficients in $\scr{O}_x$. Now, if $(f_1,\dots ,f_n)\in \mathfrak{m}^{\oplus n}_x$, then
+$$\Bigl (\sum_i\lambda_{ki}f_i\Bigr )(x)=\sum_i\lambda_{ki}(x)f_i(x)=0$$
+for each $k$. Thus, $\alpha_x(\mathfrak{m}^{\oplus n}_x)\subset \mathfrak{m}^{\oplus n}_x$, and the result follows.
+\end{proof}
+
+\begin{cor}
+Let $\phi ,\psi:\scr{M}|_U\cong \scr{O}^n$ be two local trivilizations for $\scr{M}$. Then, for each $x\in U$,
+$$\phi_x^{-1}(\mathfrak{m}^{\oplus n}_x)=\psi_x^{-1}(\mathfrak{m}^{\oplus n}_x).$$
+\end{cor}
+
+Denoting again by $\mathfrak{m}^{\oplus n}_x$ the preimage of $\mathfrak{m}^{\oplus n}_x$ by any trivialization, we can thus define an evaluation map
+$$\scr{M}(U)\longrightarrow \scr{M}_x\longrightarrow \scr{M}_x/\mathfrak{m}_x^{\oplus n},$$
+which we denote by $\sigma \mapsto \sigma (x)$.
+
+These facts suggest the following
+\begin{defi}
+The quotient $\scr{M}_x/\mathfrak{m}_x^{\oplus n}$ is called the \emph{fibre of $\scr{M}$ over $x\in M$} and will be denoted by $F_x(\scr{M})$.
+\end{defi}
+
+In particular, note that the fibre $F_x(\scr{M})$ is a vector space over the field $\scr{O}_x/\mathfrak{m}_x\cong \comp$. If $\eta :\scr{M}\to \scr{N}$ is a linear homomorphism, then we have an induced map $\overline{\eta}_x:F_x(\scr{M})\to F_x(\scr{N})$ which makes the following diagram
+$$
+\xymatrix{\scr{M}(U) \ar[r]^{\eta_U} \ar[d] & \scr{N}(U) \ar[d] \\
+\scr{M}_x \ar[r]^{\eta_x} \ar[d] & \scr{N}_x \ar[d] \\
+F_x(\scr{M}) \ar[r]^{\overline{\eta}_x} & F_x(\scr{N})}
+$$
+commutative, where the vertical maps are canonical projections.
+
+Let us now recall a basic result (\cite{lang:_algebra}, Ch. {\sc xvi} $\S2$, proposition 2.7.):
+
+\begin{proposition}\label{fibre}
+Let $R$ be a commutative ring with 1, $\mathfrak{a}\subset R$ an ideal and $N$ an $R$-module. Then, there exists an isomorphism
+\begin{equation}\label{fiber_iso}
+R/\mathfrak{a}\otimes_R N\stackrel{\cong}{\longrightarrow}N/\mathfrak{a}N.
+\end{equation}
+\end{proposition}
+
+Putting $R=\scr{O}_x$, $\mathfrak{a}=\mathfrak{m}_x$ and $N=\scr{M}_x$ we have
+$$F_x(\scr{M}) \cong \scr{M}_x\otimes_{\scr{O}_x}\comp .$$
+
+Note that if $\eta :\scr{M}\to \scr{N}$ is a morphism, we also have an induced $\comp$-linear mapping $\widetilde{\eta}_x:F_x(\scr{M})\to  F_x(\scr{N})$, defined in the obvious way.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Idempotent Morphisms}
+
+Let $\eta:\scr{M}\to \scr{M}$ be an endomorphism of the $\scr{O}_M$-module $\scr{M}$, and assume that $\eta^2=\eta$. As for vector spaces, in the category of presheaves the following isomorphism
+\begin{equation}\label{decomp_idempotent}
+\scr{M}\cong \opnm{Ker}\eta \oplus I_{\eta},
+\end{equation}
+holds, where $I_{\eta}$ is the presheaf $U\mapsto \opnm{Im}\eta_U$, and its proof is completely analogous to the case for vector spaces. If $1_{\scr{M}}$ denotes the identity map of $\scr{M}$, the morphism $1_{\scr{M}}-\eta$ is also idempotent, and $I_{1_{\scr{M}}-\eta}=\opnm{Ker}\eta$. This proves that for an idempotent linear map $\eta$, the presheaf $I_{\eta}$ is in fact equal to the image sheaf $\opnm{Im}\eta$.
+
+Furthermore, the decomposition \eqref{decomp_idempotent} makes sense in the category of locally free modules; i.e. the kernel $\opnm{Ker}\eta$ (and thus also the image $\opnm{Im}\eta$) is also a locally free $\scr{O}_M$-module.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ringed Spaces}
+
+A ringed space (over a ring $R$) is a topological space $M$ together with a sheaf of $R$-algebras over $M$. The idea is that this sheaf encodes all the geometric features of $M$, as it contains all admissible maps $U\to R$, for $U\subset M$ open. Moreover, the definition of ringed space allows a meaningful definition of tangent spaces in situations in which the usual definitions do not make sense.
+
+\begin{defi}
+Let $R$ be a ring. A \emph{ringed space} is a pair $(M,\scr{O}_M)$, where $M$ is a topological space and $\scr{O}_M$ is a sheaf of $R$-algebras, called the \emph{structure sheaf}. The space $(M,\scr{O}_M)$ is called a \emph{locally ringed space} if in addition to be a ringed space, each stalk $\scr{O}_{M,x}$ is a local ring.
+\end{defi}
+
+We shall usually write $M$ instead of $(M,\scr{O}_M)$, as the structure sheaf will be always clear from the context.
+
+Locally ringed spaces are also called \emph{geometric spaces}, as all the usually encountered geometric structures lead to a structure sheaf with local stalks.
+
+For instance, assume that $M$ is a topological manifold with a smooth structure (as usual, given by an atlas). Let $R=\re$ and $\scr{O}_{M}=C^\infty$ be the sheaf of real-valued smooth maps $U\mapsto C^\infty (U)$. This sheaf tells us precisely which maps on (open subsets of) $M$ are differentiable; and, in particular, we can recover the differentiable structure given by the atlas. So, it is completely equivalent to define the smooth structure by means of this sheaf. Another examples include analytic and complex manifolds, squemes and many others.\footnote{To be more accurate, schemes are constructed by gluing together pieces of ringed spaces.} All these examples are cases of locally ringed spaces.
+
+\begin{defi}
+A \emph{morphism} $(f,\overline{f}):(M,\scr{O}_M)\to (N,\scr{O}_N)$ \emph{of ringed spaces} consists of
+\begin{enumerate}
+\item A continuous map $f:M\to N$ and
+\item a morphism $\overline{f}:\scr{O}_N\to f_*\scr{O}_M$ of sheaves or $R$-algebras over $N$.
+\end{enumerate}
+\end{defi}
+
+An isomorphism can be described in the following way: the map $F$ is an isomorphism if and only if $f$ is a homeomorphism and $\overline{f}$ is an isomorphism of sheaves of $R$-algebras.
+
+A morphism of locally ringed spaces is a morphism of ringed spaces such that the stalk map $\overline{f}_x:\scr{O}_{N,f(x)}\to \scr{O}_{M,x}$ is a local map of rings; i.e. $\overline{f}_x(\mathfrak{m}_{f(x)})\subset \mathfrak{m}_x$ for each $x\in M$.
+
+The definition of ringed space, though extremely general, lets us construct tangent spaces in the following way: assume that $\scr{O}_M$ is a sheaf of $\comp$-algebras, and take some $x\in M$. Consider the ideal $\mathfrak{m}_x^2\subset \mathfrak{m}_x$. We then have the following result (for proofs the reader is adviced to consult \cite{kn:warner}).
+
+\begin{lemma}
+The quotient $\mathfrak{m}_x/\mathfrak{m}_x^2$ is a vector space of dimension $n=\dim M$.
+\end{lemma}
+
+We then define
+$$T_xM:=\left (\mathfrak{m}_x/\mathfrak{m}_x^2\right )^*.$$
+
+\begin{obs}
+Unless otherwise stated, from now on we will only consider ringed spaces $(M,\scr{O}_M)$ over $R=\comp$, where $M$ is connected and:
+\begin{enumerate}
+\item $M$ is a smooth manifold and $\scr{O}_M$ is the sheaf of complex-valued smooth maps or
+\item $M$ is a complex manifold and $\scr{O}_M$ is the sheaf of holomorphic maps.
+\end{enumerate}
+In particular, the stalks of the structure sheaves of these ringed spaces are local rings. The words ``map'', ``correspondence'', etc between structures involving these ringed spaces will of course be smooth or holomorphic, according to the case considered. When the base space $M$ is clear, we will use the notation $\scr{O}_x$ instead of $\scr{O}_{M,x}$. Moreover, the restriction $\scr{O}_M|_U$ to an open subset $U\subset M$ shall be denoted $\scr{O}_U$ and $\scr{O}_M(U)$ by $\scr{O}(U)$.
+\end{obs}
+
+Ringed spaces provide the adequate setting for the constructions of the direct and inverse image modules; to describe them, let $f:(M,\scr{O}_M)\to (N,\scr{O}_N)$ be a morphism of ringed spaces. We then have $f:M\to N$ and $\overline{f}:\scr{O}_N\to f_*\scr{O}_M$, which induces a structure of $\scr{O}_N$-module on $f_*\scr{M}$, which is called the \emph{direct image module}. Moreover, $f_*$ defines a functor from the category of $\scr{O}_M$-modules to the category of $\scr{O}_N$-modules
+$$f_*:\tsf{Mod}_{\scr{O}_M}\longrightarrow \tsf{Mod}_{\scr{O}_N}.$$
+Consider now the adjunction \ref{adjunction}; having the map $\overline{f}$ is equivalent to having a morphism $f^{-1}\scr{O}_N\to \scr{O}_M$, which is also a morphism of sheaves of $\comp$-algebras. This map makes $\scr{O}_M$ an $f^{-1}\scr{O}_N$-module. If $\scr{N}$ is an $\scr{O}_N$-module, the \emph{inverse image module} $f^*\scr{N}$ is the $\scr{O}_M$-module defined by
+$$f^*\scr{N}=\scr{O}_M\otimes_{f^{-1}\scr{O}_N}f^{-1}\scr{N}.$$
+As for the direct image, the inverse image defines a functor
+$$f^*:\tsf{Mod}_{\scr{O}_N}\longrightarrow \tsf{Mod}_{\scr{O}_M}.$$
+Moreover, the adjunction \ref{adjunction} holds for $f_*$ and $f^*$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Sections of Vector Bundles}
+
+\begin{defi}
+Given a vector bundle $E$ over $M$, a \emph{section} of $E$ is a map $X:M\to E$ such that $X(x)\in E_x$ for each $x\in M$.
+\end{defi}
+
+Sections defined on open subsets $U\subset M$ (respectively on the whole space $M$) are usually called \emph{local} (respectively \emph{global}) sections. By the linear structure of the fibres, we can add sections and multiply them with maps $U\to \comp$ to obtain new ones. We then have that the set of sections over $U\subset M$ of $E$, which we denote by $\Gamma_E(U)$, is a module over the algebra $\scr{O}(U)$. Global sections will be denoted by $\Gamma (E)$ instead of $\Gamma_E(M)$.
+
+\begin{theorem}\label{loc_free_sections}
+The assignment $U\mapsto \Gamma_E(U)$ is a locally-free sheaf of $\scr{O}_M$-modules.
+\end{theorem}
+\begin{proof}
+Operations are defined in the usual way: given sections $X$ and $Y$ over the same open subset $U$ and a map $\lambda :U\to \comp$, then the sections $X+Y$ and $\lambda X$ are given by the assignments $x\mapsto X(x)+Y(x)$ and $x\mapsto \lambda (x)X(x)$ respectively. All remaining verifications are standard computations.
+
+Let now $U$ be an open subset of $M$ and $h:E|_U\to U\times \comp^n$ a local trivialization. Let $X\in \Gamma_E(U)$ be a local section and consider the following chain of maps
+$$U\stackrel{X}{\longrightarrow}E|_U\stackrel{h}{\longrightarrow}U\times \comp^n\stackrel{\pi_2}{\longrightarrow}\comp^n,$$
+where $\pr_2$ is the projection of the second coordinate. Then, the correspondence $X\mapsto \pi_2hX$ provides the desired isomorphism $\Gamma_E|_U\cong \scr{O}_U^n$.
+\end{proof}
+
+Conversely, we have the following
+
+\begin{theorem}\label{sheaf_bundle}
+If $\scr{M}$ be a locally-free $\scr{O}_M$-module of rank $n$, there exists a unique (up to isomorphism) vector bundle $E$ over $M$ of rank $n$ such that $\Gamma_E\cong \scr{M}$.
+\end{theorem}
+\begin{proof}
+The idea is to construct a cocycle from the local triviality of $\scr{M}$. So let $\mathfrak{U}=\{U_i\}$ be an open cover of $M$ such that $\phi_i:\scr{M}|_{U_i}\cong \scr{O}_{U_i}^n$ is an $\scr{O}_{U_i}$-linear isomorphism of modules for each index $i$. Over $U_{ij}$ we then have a composite map
+$$\scr{O}(U_{ij})^n\stackrel{\phi_j^{-1}}{\longrightarrow}\scr{M}(U_{ij})\stackrel{\phi_i}{\longrightarrow}\scr{O}(U_{ij})^n$$
+which is a linear isomorphism. Thus, $\phi_i\phi_j^{-1}$ can be regarded as an invertible matrix in $\operatorname{M}_n(\scr{O}(U_{ij}))$. Putting
+$$g_{ij}:=\phi_i\phi_j^{-1}$$
+we obtain a family $\{g_{ij}\}$ which is a cocycle. Let $\{f_{ij}\}$ be another cocycle obtained from different isomorphisms $\psi_i:\scr{O}(U_{ij})^n\to \scr{O}(U_{ij})^n$, and consider the maps
+$$g_i:=\psi_i\phi_i^{-1}:\scr{O}(U_i)^n\stackrel{\cong}{\longrightarrow}\scr{O}(U_i)^n.$$
+Then we have that
+$$
+\begin{aligned}
+g_ig_{ij}g_j^{-1} &= (\psi_i\phi_i^{-1})(\phi_i\phi_j^{-1})(\phi_j\psi_j^{-1}) \\
+                  &= \psi_i\psi_j^{-1} = f_{ij}, \\
+\end{aligned}
+$$
+and thus, by \ref{cocycles_iso}, the bundles defined by $\{g_{ij}\}$ and $\{f_{ij}\}$ are isomorphic. Let us denote by $E$ the bundle constructed from $\{g_{ij}\}$ and the cover $\mathfrak{U}$.
+
+It only remains to check that $\Gamma_E\cong \scr{M}$. Consider the sheaf homomorphism $\eta :\scr{M}\to \Gamma_E$ defined in the following way: given a section $\sigma \in \scr{M}(U)$, we define $\eta (\sigma ):U\to E$ by the following rule
+$$\eta (\sigma )(x)=[i,x,\sigma_i (x)],$$
+where $x\in U\cap U_i$ and $\sigma_i(x)$ is the image of $\sigma$ through the following chain of maps (to ease the notation, we use the symbol $\phi_i$ also for the induced map $\phi_{i,x}$ on stalks):
+$$\scr{M}(U)\longrightarrow \scr{M}_x\stackrel{\phi_i}{\longrightarrow}\scr{O}^n_x\longrightarrow \scr{O}^n_x/\mathfrak{m}^{\oplus n}_x\stackrel{\cong}{\longrightarrow}\comp^n.$$
+Note that we need to pass through $\scr{O}_x^n$ as the isomorphisms $\scr{M}_x/\mathfrak{m}^{\oplus n}_x\cong \comp^n$ depend on the trivialization. We will first check that this map is well-defined.
+
+Pick a point $x\in U_j$; then, we must verify that $[i,x,\sigma_i(x)]=[j,x,\sigma_j(x)]$, where $\sigma_j(x)$ is defined in the same fashion as $\sigma_i(x)$ but using $\phi_j$ instead of $\phi_i$. Assume that
+$$
+\begin{aligned}
+\phi_i(\sigma_x) &:= (f^1_x,\dots ,f^n_x) \\
+\phi_j(\sigma_x) &:= (g^1_x,\dots ,g^n_x). \\
+\end{aligned}
+$$
+Then, $(f^k_x)=\phi_i\phi_j^{-1}(g^k_x)$. The rest now follows from the definition of the equivalence relation defined in the proof of theorem \ref{construct_bundles}.
+
+By \ref{stalk_iso}, $\eta$ is an isomorphism if and only if $\eta_x:\scr{M}_x\to \Gamma_{E,x}$ is an isomorphism of $\scr{O}_x$-modules for each $x\in M$. Linearity is clear by definition of $\eta$. Assume now that $\eta_x (\sigma_x)=0$; this implies that the equality $\eta (\sigma )=0$ holds in a neighborhood of $x$, i.e. $[i,y,\sigma_i(y)]=0$ for $y$ sufficiently close (or equal) to $x$. The fibre $E_x$ is $\{[i,x,z]\; | \; z\in \comp^n\}$, and thus we have $\sigma_i(y)=0$ for each $y$. As $\phi_i$ is an isomorphism, this implies that $\sigma_y=0$; in particular, $\sigma_x=0$.
+
+On the other hand, $\Gamma_E$ is locally-free (of rank $n$) by \ref{loc_free_sections}, and $\Gamma_{E,x}\cong \scr{O}_x^n$. Then, the map $\eta_x$ is necessarily an isomorphism.\footnote{If $R$ is a ring and $f:R^n\to R^n$ is an injective $R$-linear map, then it is also surjective.} This finishes the proof.
+\end{proof}
+
+Combining \ref{loc_free_sections} and \ref{sheaf_bundle} we can conclude that the functorial assignment
+$$E\mapsto \Gamma_E$$
+defines an equivalence between the category of finite-rank vector bundles over $M$ and the category of locally free $\scr{O}_M$-modules.
+
+For compact manifolds and global sections, the previous result is precisely the Serre-Swan theorem (Serre proved this result for affine varieties and Swan for compact manifolds); it states that every module over the ring $C^\infty (M)$ of smooth functions on $M$ can be regarded as the (finitely generated and projective) module of sections $\Gamma (E)$ of some vector bundle $E$. This result was generalized in \cite{good:_cancellation} to include paracompact manifolds and later on to any base manifold in \cite{vas:_vbproj}, with the imposed condition that the bundles are of \emph{finite type}.\footnote{A vector bundle over a manifold $M$ is said to be of \emph{finite type} if
+\begin{enumerate}[(a)]
+\item There exists a finite set $\{f_1,\dots ,f_k\}$ of nonnegative maps $f_i:M\to \re$ with $\sum_if_i=1$ and
+\item if $U_i:=\{x\; | \; f_i(x)\neq 0\}$, $E|_{U_i}$ is trivial.
+\end{enumerate}}
+
+The previous results tell us that every bundle can be recovered (uniquely, up to isomorphism) from its sheaf of sections, and conversely. We will now translate into the languaje of sections some important facts about bundles.
+
+First, assume that $E$ is a vector bundle over $M$ of rank $n$ isomorphic to the trivial bundle $M\times \comp^n$. Let $\phi :E\to M\times \comp^n$ be an isomorphism. If $X:U\subset M\to E$ is a (local) section defined on an open subset $U$, then $\phi X$ is a section of the trivial vector bundle. Thus, for $x\in U$, $(\phi X)(x)=\phi (X(x))$ has the form $(x,\phi_X(x))$, where $\phi_X$ is a map $U\to \comp^n$. From this fact it can be deduced that a vector bundle of rank $n$ is trivializable if and only its sheaf of sections is free of rank $n$
+$$\Gamma_E\cong \scr{O}^n_M.$$
+Let now $E$ be a vector bundle over $M$ of rank $n$ and assume that $h:E|_U\to U\times \comp^n$ is a local trivialization. Define sections $X_i:U\to E$ ($i=1,\dots ,n$) by
+$$X_i(x)=h^{-1}(x,e_i),$$
+where $e_i$ is the vector which $i$-th component is equal to one and all the others to zero. Let $h_x$ be the restriction of $h$ to the fibre $E_x$; then $h_x$ is a linear isomorphism $E_x\to \comp^n$. As $h_x(X_i(x))=e_i$, then the set of sections $\{X_1,\dots ,X_n\}$ is \emph{linearly independent}; that is, for each $x\in U$, $\{X_1(x),\dots ,X_n(x)\}$ is linearly independent in $E_x$. And conversely, given a set $\{X_1,\dots ,X_n\}$ of linearly independent sections  over $U$, let $X\in E_x$ be an arbitrary vector. We can then write it as a unique linear combination $X=\sum_{i=1}^n\alpha_iX_i(x)$ and thus the map $h:E|_U\to U\times \comp^n$ given by
+$$h(X):=(\pi (X),(\alpha_1,\dots ,\alpha_n))$$
+is a local trivialization, where $\pi :E\to M$ is the bundle projection. We thus have the following result, which expresses the (local) triviality of a bundle by means of its sections.
+
+\begin{proposition}
+A rank-$n$ vector bundle $E$ is trivializable over some open subset $U\subset M$ if and only if there exists a set $\{X_1,\dots ,X_n\}$ of linearly independent sections over $U$.
+\end{proposition}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Azumaya Algebras and Twisted Vector Bundles}
+
+In this section we will introduce some basic material regarding Azumaya algebras, as well as an introduction to twisted vector bundles. The former are strongly related to the latter, and this relationship will also appear later in chapter \ref{local_description}. The treatment of twisted bundles is mainly based at \cite{karoubi:twisted_vector}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Azumaya Algebras}
+\label{subsec_azumaya}
+
+If $\field$ is a field (which we assume to have characteristic equal
+to zero), a\emph{central simple algebra} over $\field$ is a simple
+(associative) algebra with center equal to $\field$. Replacing
+$\field$ with a commutative local ring $R$ leads to the notion of
+\emph{Azumaya algebra}; that is, an associative $R$-algebra $A$ is an
+Azumaya algebra if there exists some $k\in \natu$ such
+that $A\cong R^k$ as $R$-modules (i.e. it is free of finite rank) and
+also the algebra homomorphism $\varphi :A\otimes_RA^{\circ }\to
+\opnm{End}_R(A)\cong \opnm{M}_k(A)$ given by
+$$\varphi (x\otimes y)(z)=xyz$$
+is an isomorphism, where $A^{\circ}$ is the algebra with underlying set $A$ and operation given by $x\cdot y=yx$ (the right hand side is multiplication in $A$).\footnote{The algebra $A\otimes_R A^{\circ}$ is called the \emph{enveloping algebra of $A$}.} Auslander and Goldman \cite{auslander_goldman} generalized this definition to include any commutative (not necessarily local) base ring.
+
+Behind these central simple and Azumaya algebras lies the notion of Brauer group (of the base ring), which Grothendieck \cite{grothendieck68:_le_group_de_brauer_i} generalized to define the Brauer group of a topological space $M$, by introducing the notion of Azumaya algebra over $M$.
+
+
+\begin{defi}
+A vector bundle $E$ over $M$ is called an \emph{Azumaya bundle} if
+\begin{enumerate}
+\item For each $x\in M$, the fibre $E_x$ is a $\comp$-algebra and
+\item there exists a trivializing open cover $\mathfrak{U}$ of $A$ and an integer $k\geqslant 1$ such that the trivialization
+$$E|_U\cong U\times \operatorname{M}_k(\comp )$$
+is an isomorphism of bundles of $\comp$-algebras over $U$, for each $U\in \mathfrak{U}$. 
+\end{enumerate}
+\end{defi}
+
+The definition of Azumaya bundles can also be done in terms of sheaves of sections. This was the original approach of Grothendieck.
+
+\begin{defi}
+An \emph{Azumaya algebra} over $(M,\scr{O}_M)$ is a sheaf of $\scr{O}_M$-algebras locally isomorphic to the sheaf $\operatorname{M}_k(\scr{O}_M)$.
+\end{defi}
+
+\begin{obs}\label{algebra_fibres}
+By proposition 2.1 (b) of \cite{milne80:_etale_cohom} (see also section 1 of \cite{grothendieck68:_le_group_de_brauer_i}), an Azumaya algebra over $(M,\scr{O}_M)$  is a locally free sheaf of algebras such that its fibres are isomorphic to $\operatorname{M}_k(\comp)$.
+\end{obs}
+
+If $E$ is an Azumaya bundle over $M$, then its sheaf of sections $\Gamma_E$ inherits the algebra structure: if $X,Y$ are sections of $E$, then $XY$ is the section given by
+$$XY(x)=X(x)Y(x)\in A_x.$$
+Thus, $\Gamma_E$ is a sheaf of $\scr{O}_M$-algebras. By theorem \ref{loc_free_sections}, we have that $\Gamma_E$ is in fact locally isomorphic to the sheaf $\operatorname{M}_k(\scr{O}_M)$. The converse also holds by \ref{sheaf_bundle}.
+
+If $\mathfrak{U}=\{U_{i}\}$ trivializes the Azumaya bundle $E$, a cocycle for $E$ over this open cover is given by maps $g_{ij}:U_{ij}\to \operatorname{Aut}(\operatorname{M}_k(\comp ))$ with values in the group of algebra automorphisms $\opnm{M}_k(\comp )\to \opnm{M}_k(\comp )$. The following theorem will be extremely useful for the discussion (for more details the reader may consult \cite{kn:lorenz_2}).
+
+\begin{theorem}[Skolem-Noether Theorem]
+Let $A$ be a central simple algebra over the field $\field$. If $\varphi :A\to A$ is an algebra isomorphism, then there exists an invertible element $x\in A$ such that $\varphi (y)=xyx^{-1}$.
+\end{theorem}
+
+As $\opnm{M}_k(\comp )$ is a central simple algebra, any automorphism $\varphi :\opnm{M}_k(\comp )\to \opnm{M}_k(\comp )$ is of the form $\varphi (B)=ABA^{-1}$ for some invertible matrix $A$. Moreover, the matrix $\lambda A$ defines the same automorphism for each $\lambda \in \comp^{\times }$. Thus
+$$\operatorname{Aut}(\operatorname{M}_k(\comp ))\cong \operatorname{GL}_k(\comp )  /\comp^{\times}=:\operatorname{PGL}_k(\comp ),$$
+and thus the structure group of any Azumaya algebra can be taken to the projective general linear group $\opnm{PGL}_k(\comp )$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Twisted Vector Bundles}
+
+As vector bundles model cocycles in topological K-theory, twisted vector bundles represent a geometric model for twisted K-theory. The main interest for these type of bundles arose in string theory. In physics one usually needs to consider a space-time manifold $M$ together with a \emph{B-field}; these fields are precisely what is needed to define a twisting for the K-theory of $M$, and thus leads naturally to consideration of twisted cocycles. Another reason of interest in twisted K-theory is given by the Freed-Hopkins-Teleman theorem: the Verlinde ring of projective representations of the loop group of a compact Lie group $G$ can be represented as the twisted (equivariant) K-group of $G$. For more on this, the reader may consult \cite{atiyah-segal:twisted_k}.
+
+The following is mainly based on Karoubi's article \cite{karoubi:twisted_vector}.
+
+\begin{defi}
+A \emph{twisted vector bundle} $\mathbb{E}$ over $M$ is a tuple
+$$\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$$
+consisting of the following data:
+\begin{enumerate}
+\item An open cover $\mathfrak{U}=\{U_i\}$ of $M$.
+\item A (trivial) vector bundle $U_i\times V$ over each $U_i\in \mathfrak{U}$, where $V$ is a finite dimensional complex vector space (which shall usually be taken to be complex $n$-space).
+\item Two families of maps $g_{ij}:U_{ij}\to \operatorname{GL}(V)$ and $\lambda_{ijk}\in \scr{O}(U_{ijk})$ such that $\lambda :=(\lambda_{ijk})$ is a $\check{\text{C}}$ech 2-cocycle, each map $\lambda_{ijk}$ takes values in $\comp^\times$ and
+$$g_{ii}=1 \quad ,\quad g_{ji}=g_{ij}^{-1} \quad , \quad g_{ij}g_{jk}=\lambda_{ijk}g_{ijk}$$
+over $U_{ijk}$ (Recall that $(\lambda_{ijk})$ is a $\check{\text{C}}$ech 2-cocycle if $\lambda_{jkl}\lambda_{ikl}^{-1}\lambda_{ijl}\lambda_{ijk}^{-1}=1$).
+\end{enumerate}
+\end{defi}
+
+\begin{obs}
+The cocycle $\lambda =(\lambda_{ijk})$ is in fact a \emph{completely normalized cocycle}; that is: $\lambda =1$ if two of the 3 indices $i,j,k$ are equal and, if $\sigma$ is a permutation of the indices $i,j,k$, then $\lambda_{\sigma (i)\sigma (j) \sigma (k)}=\lambda_{ijk}^{\opnm{sg}\sigma}$, where $\opnm{sg}\sigma$ is the sign of the permutation $\sigma$. Moreover, any $\check{\text{C}}$ech cocycle is equivalent to a completely normalized one. See  \cite{karoubi:twisted_vector} and the reference therein.
+\end{obs}
+
+If we want to emphasize the twisting $\lambda =(\lambda_{ijk})$, such a vector bundle will be also called a \emph{$\lambda$-twisted vector bundle}.
+
+Let $\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$ and $\mathbb{F}=(\mathfrak{V},V_r\times V,f_{rs},\mu_{rst})$ be two twisted bundles. The question now is in what cases these two objects can be regarded as equal.
+
+\begin{defi}
+The twisted bundles $\mathbb{E}$ and $\mathbb{F}$ are \emph{equal} if there exists a refinement $\mathfrak{W}$ of $\mathfrak{U}$ and $\mathfrak{V}$ such that the cocycles of $\mathbb{E}$ and $\mathbb{F}$ coincide over elements of $\mathfrak{W}$.
+\end{defi}
+
+\begin{obs}
+From now on, we will assume that the base space $M$ admits good covers (as, for instance, any manifold does) and that $\mathfrak{U}$ is indeed one of those covers.
+\end{obs}
+
+The proof of the following result is outlined in \cite{karoubi:twisted_vector}.
+
+\begin{proposition}\label{tvb_torsion}
+If $\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$ is a twisted vector bundle, then $\lambda$ is contained in the torsion subgroup of $\opnm{H}^3(M;\ent )$.
+\end{proposition}
+
+As for ordinary vector bundles, we can construct new twisted bundles from given ones. Consider then two twisted bundles $\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$ and $\mathbb{F}=(\mathfrak{U},U_i\times W,f_{ij},\mu_{ijk})$.
+
+\begin{enumerate}
+\item If $f:N\to M$ is a map, the pullback twisted bundle
+\begin{equation}\label{tvb_pullback}
+f^*\mathbb{E}=(\mathfrak{U}',U'_i\times V,g'_{ij},\lambda'_{ijk})
+\end{equation}
+is a $\lambda'$-twisted vector bundle with $\mathfrak{U}'=\{U'_i\}$, $U'_i=f^{-1}(U_i)$, $g'_{ij}=g_{ij}f$ and $\lambda'_{ijk}=\lambda_{ijk}f$.
+
+\item Assume that $\lambda_{ijk}=\mu_{ijk}$ for each admissible $i,j$ and $k$. If $h_{ijk}=\begin{pmatrix} g_{ij} & 0 \\ 0 & f_{ij} \end{pmatrix}$, then $h_{ij}h_{jk}=\lambda_{ijk}h_{ik}$ and thus the direct sum $\mathbb{E}\oplus \mathbb{F}$ can be defined as the twisted bundle
+$$\mathbb{E}\oplus \mathbb{F}=(\mathfrak{U},U_i\times V,h_{ij},\lambda_{ijk}).$$
+
+\item The dual twisted bundle $\mathbb{E}^*$ is the twisted vector bundle given by
+$$\mathbb{E}^*=(\mathfrak{U},U_i\times V^*,g^*_{ij},\lambda_{ijk}^{-1}),$$
+where $g^*_{ij}:U_{ij}\to \operatorname{GL}(V^*)$ is given by $g^*_{ij}(x)(u)=u(g_{ij}(x))$.
+
+\item The tensor product $\mathbb{E}\otimes \mathbb{F}$ is the twisted bundle
+$$\mathbb{E}\otimes \mathbb{F}=(\mathfrak{U},U_i\times (V\otimes W),g_{ij}\otimes f_{ij},\lambda_{ijk}\mu_{ijk})$$
+with cocycles $g_{ij}\otimes f_{ij}:U_{ij}\to \opnm{GL}(V\otimes W)$.
+
+\item Of particular interest is the twisted vector bundle $\operatorname{Hom}(\mathbb{E},\mathbb{F})$, which is defined by
+$$\operatorname{Hom}(\mathbb{E},\mathbb{F})=(\mathfrak{U},U_i\times \operatorname{Hom}_\comp (V,W),h_{ij},\lambda_{ijk}^{-1}\mu_{ijk}),$$
+where $h_{ij}:U_{ij}\to \operatorname{GL}(\operatorname{Hom}_{\comp }(V,W))$ is given by $h_{ij}(x)(u)=f_{ij}(x)ug_{ij}(x)^{-1}$. If $\mathbb{F}$ is also a $\lambda$-twisted bundle (i.e. $\mu =\lambda$), then the data defining $\operatorname{Hom}(\mathbb{E},\mathbb{F})$ in fact defines an ordinary vector bundle (there is no twisting!), which is denoted by $\operatorname{HOM}(\mathbb{E},\mathbb{F})$. If $\mathbb{E}=\mathbb{F}$, then $\operatorname{HOM}(\mathbb{E},\mathbb{F})$ will be denoted $\operatorname{END}(\mathbb{E})$.
+\end{enumerate}
+
+\begin{obs}
+Note that all the twistings for these new twisted bundles are also completely normalized 2-cocycles. 
+\end{obs}
+
+\begin{defi}
+Let $\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$ and $\mathbb{F}=(\mathfrak{U},U_i\times W,f_{ij},\mu_{ijk})$ be twisted vector bundles over $M$. A \emph{morphism} $\phi :\mathbb{E}\to \mathbb{F}$ is a family of bundle morphisms
+$$\phi_i:U_i\times V\longrightarrow U_i\times W$$
+such that the following square
+\begin{equation}\label{diag_tvbm}
+\xymatrix{
+U_{ij}\times V \ar[r]^{\phi_j} \ar[d]_{1\times g_{ij}} & U_{ij}\times W \ar[d]^{1\times f_{ij}} \\
+U_{ij}\times V \ar[r]_{\phi_i} & U_{ij}\times W}
+\end{equation}
+commutes.
+\end{defi}
+
+Composition of two morphisms $\phi :\mathbb{E}\to \mathbb{F}$ and $\psi :\mathbb{F}\to \mathbb {G}$ is defined by composing the families $\{\phi_i\}$ and $\{\psi_i\}$. We will denote by $\tsf{TVB}(M)$ the category of twisted vector bundles over $M$. If $\lambda$ is a (fixed) twisting, we will adopt the notation $\tsf{TVB}_{\lambda}(M)$ for the category of $\lambda$-twisted vector bundles over $M$.
+
+As usual, we will say that $\phi :\mathbb{E}\to \mathbb{F}$ is an \emph{isomorphism} if there exists another morphism $\psi :\mathbb{F}\to \mathbb{E}$ such that $\phi \psi$ and $\psi \phi$ are the respective identities; for a twisted bundle $\mathbb{E}$, its identity map is given by the family of identities $\text{id}:U_i\times V\to U_i\times V$. We denote $\psi$ by $\phi^{-1}$.
+
+%\begin{lemma}
+%The set of arrows $\operatorname{Hom}_{\tsf{TVB}(M)}(\mathbb{E},\mathbb{F})$ defines a twisted vector bundle isomorphic to $\operatorname{Hom}(\mathbb{E},\mathbb{F})$.
+%\end{lemma}
+%\begin{proof}
+%For any morphism $\phi :\mathbb{E}\to \mathbb{F}$, we have the commutativity condition \eqref{diag_tvbm}
+%$$f_{ij}\phi_j=\phi_ig_{ij},$$
+%over $U_{ij}$, which implies that $\phi_i=f_{ij}\phi_jg_{ij}^{-1}$, which is precisely the expression for cocycles of the twisted bundle $\operatorname{Hom}(\mathbb{E},\mathbb{F})$. Let us denote this cocycles again by $h_{ij}$. Then we have
+%$$
+%\begin{aligned}
+%h_{ij}(x)h_{jk}(x)(u) &= h_{ij}(x)\bigl (f_{jk}(x)ug_{jk}(x)^{-1}\bigr ) \\
+%                      &= f_{ij}(x)f_{jk}(x)u\bigl (g_{ij}(x)g_{jk}(x)\bigr )^{-1} \\
+%                      &= \lambda_{ijk}(x)^{-1}\mu_{ijk}(x)f_{ik}(x)ug_{ik}(x)^{-1} \\
+%                      &= \lambda_{ijk}(x)^{-1}\mu_{ijk}(x)h_{ik}(x)(u).\\
+%\end{aligned}
+%$$
+%\end{proof}
+
+An inmediate consequence of the definition of morphism is the following
+
+\begin{lemma}\label{isomorphic}
+Two twisted bundles $\mathbb{E}=(\mathfrak{U},U_i\times V,g_{ij},\lambda_{ijk})$ and $\mathbb{F}=(\mathfrak{U},U_i\times W,f_{ij},\mu_{ijk})$. are isomorphic if and only if there exists a family of maps $\{u_i:U_i\to \operatorname{Iso}(V,W)\}$ such that
+$$f_{ij}=u_ig_{ij}u_j^{-1}.$$
+\end{lemma}
+\begin{proof}
+Assume first that $ \phi :\mathbb{E}\to \mathbb{F}$ is an isomorphism. Then, by definition of composition, it is clear that all the maps $\phi_i$ are isomorphisms. Then, take tha maps $u_i$ to be $u_i(x)=\phi_{i,x}:\{x\}\times V\to \{x\}\times W$.
+
+Suppose now that we have a familiy of maps $\{u_i\}$. Define $\phi :\mathbb{E}\to \mathbb{F}$ to be the family consisting of the maps $\phi_i:U_i\times V\to U_i\times W$ given by
+$$\phi_i(x,v)=u_i(x)(v).$$
+Then, $\phi$ is a bundle isomorphism.
+\end{proof}
+
+As a corollary, we can deduce for twisted bundles the familiar isomorphism
+$$\operatorname{Hom}(\mathbb{E},\mathbb{F})\cong \mathbb{E}^*\otimes \mathbb{F}.$$
+
+\begin{lemma}\label{iso_twistings}
+If $\mathbb{E}$ and $\mathbb{F}$ are isomorphic, then $\lambda =\mu$.
+\end{lemma}
+\begin{proof}
+Let $\phi$ be an isomorphism; from \eqref{diag_tvbm} we can deduce the following commutative diagram
+\begin{equation}\label{diag_tvb2}
+\xymatrix{
+U_{ijk}\times V \ar[r]^{\phi_k} \ar[d]_{1\times g_{jk}} & U_{ijk}\times W \ar[d]^{1\times f_{jk}} \\
+U_{ijk}\times V \ar[r]^{\phi_j} \ar[d]_{1\times g_{ij}} & U_{ijk}\times W \ar[d]^{1\times f_{ij}} \\
+U_{ijk}\times V \ar[r]^{\phi_i} & U_{ijk}\times W. }
+\end{equation}
+By definition, we have that the vertical compositions are equal to $1\times \lambda_{ijk}g_{ik}$ and $1\times \mu_{ijk}f_{ik}$, and thus
+\begin{equation}\label{cocycles_isom}
+\lambda_{ijk}(\phi_ig_{ik})=\mu_{ijk}(f_{ik}\phi_k).
+\end{equation}
+On the other hand, by lemma \ref{isomorphic}, we have that $f_{ij}=\phi_ig_{ij}\phi_j^{-1}$. Replacing this last relation in the right hand side of equation \eqref{cocycles_isom} yields
+$$
+\begin{aligned}
+\mu_{ijk}(f_{ik}\phi_k) &= \mu_{ijk}((\phi_ig_{ik}\phi_k^{-1})\phi_k) \\
+                        &= \mu_{ijk}\phi_ig_{ik}; \\
+\end{aligned}
+$$
+comparison of this last equation with the left hand side of \eqref{cocycles_isom} finishes the proof.
+\end{proof}
+
+Operations on twisted bundles enjoy much of the properties of ordinary vector bundles. The proof of this fact, stated in the next result, can be obtained from a direct computation.
+
+\begin{proposition}\label{ass_comm}
+The operations $\oplus$ and $\otimes$ are associative, distributive and commutative, in the sense that we have natural isomorphisms
+$$
+\begin{aligned}
+(\mathbb{E}\otimes \mathbb{F})\otimes \mathbb{G} &\cong \mathbb{E}\otimes (\mathbb{F}\otimes \mathbb{G}), \\
+(\mathbb{E}\oplus \mathbb{F})\oplus \mathbb{G} &\cong \mathbb{E}\oplus (\mathbb{F}\oplus \mathbb{G}), \\
+(\mathbb{E}\oplus \mathbb{F})\otimes \mathbb{G} &\cong (\mathbb{E}\otimes \mathbb{G})\oplus (\mathbb{F}\otimes \mathbb{G}),\\
+\mathbb{E}\otimes \mathbb{F} &\cong \mathbb{F}\otimes \mathbb{E}, \\
+\mathbb{E}\oplus \mathbb{F} &\cong \mathbb{F}\oplus \mathbb{E}. \\
+\end{aligned}
+$$
+\end{proposition}
+
+Further properties are given in the following
+
+\begin{lemma}\label{prop_tvb}
+Let $\mathbb{E}$ and $\mathbb{F}$ be twisted bundles. Then
+\begin{enumerate}
+\item If $\mathbb{E} \otimes \mathbb{F}\cong \mathbb{E}$, then $\mathbb{F}$ is an ordinary line bundle.
+\item If $\mathbb{E}$ has twisting $\lambda$ and $\mathbb{F}$ has twisting $\lambda^{-1}$, then $\mathbb{E}\otimes \mathbb{F}$ is an ordinary vector bundle. In particular, $\mathbb{E}^*\otimes \mathbb{F}$ is also a vector bundle if $\mathbb{E}$ and $\mathbb{F}$ have the same twisting. Moreover, $\mathbb{L}\otimes \mathbb{L}^*$ is isomorphic to a trivial line bundle if $\mathbb{L}$ a twisted line bundle.
+\item If $\mathbb{E}$ is defined over the trivial open cover $\mathfrak{U}=\{M\}$, then $\mathbb{E}$ is a trivial vector bundle, and conversely.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+To prove (1), let us assume that $\phi :\mathbb{E}\otimes \mathbb{F}\cong \mathbb{E}$ is an isomorphism, with $\mathbb{E}=(\mathfrak{U},U_i\times V,\{g_{ij}\},\{\lambda_{ijk}\})$ and $\mathbb{F}=(\mathfrak{U},U_i\times W,\{f_{ij}\},\{\mu_{ijk}\})$. Lemma \ref{iso_twistings} together with the definition of tensor product yields $\lambda_{ijk}\mu_{ijk}=\lambda_{ijk}$, and this obviously implies that $\mu_{ijk}=1$; in other words, $\mathbb{F}=L$ is an ordinary line bundle.
+
+For (2), we note that, if $\{\lambda_{ijk}\}$ is the twisting for $\mathbb{E}$, then the twisting for $\mathbb{F}$ is $\{\lambda_{ijk}^{-1}\}$. Thus, by definition of tensor product of twisted bundles, the twisted bundle $\mathbb{E}\otimes \mathbb{F}$ has twisting given by $\{\lambda_{ijk}^{-1}\lambda_{ijk}=1\}$, and so it is an ordinary vector bundle. The assertion about $\mathbb{L}\otimes \mathbb{L}^*$ readily follows from the previous observation and the definition of tensor product.
+
+The proof of (3) can be obtained immediately from the definition.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Relations With Bundles and Azumaya Algebras}
+
+We have an obvious functor
+$$\tsf{Vect}(M)\longrightarrow \tsf{TVB}(M)$$
+which is fully-faithful. For a fixed twisting, we also have the following
+
+\begin{proposition}\label{equiv_tvb_vect}
+There exists an equivalence of categories $\tsf{TBV}_{\lambda}(M)\to \tsf{Vect}(M)$.
+\end{proposition}
+\begin{proof}
+Let $\mathbb{L}$ be a fixed $\lambda$-twisted line bundle and consider the functors
+$$
+\xymatrix{
+\tsf{TVB}_{\lambda}(M)\ar@<1ex>[r]^{\mathbb{L}^*} & \tsf{Vect}(M)\ar@<1ex>[l]^{\mathbb{L}}}
+$$
+given by $\mathbb{L}^*(\mathbb{E})=\mathbb{L}^*\otimes \mathbb{E}$ and $\mathbb{L}(E)=\mathbb{L}\otimes E$ (in the right hand side of this last equation, we are regarding $E$ as a twisted bundle with no twisting). By \ref{ass_comm} and \ref{prop_tvb}, we have isomorphisms
+$$
+\begin{aligned}
+\mathbb{L}\mathbb{L}^*(\mathbb{E}) &= \mathbb{L}\otimes \mathbb{L}^*\otimes \mathbb{E}\cong \mathbb{E}, \\
+\mathbb{L}^*\mathbb{L}(E) &= \mathbb{L}^*\otimes \mathbb{L}\otimes E \cong E.\\
+\end{aligned}
+$$
+The verification of naturality of these isomorphisms is straightforward.
+\end{proof}
+
+Let now $A$ be an Azumaya algebra over $M$, locally isomorphic to $\opnm{M}_n(\comp )$. The projection
+\begin{equation}\label{ppal}
+\operatorname{GL}_n(\comp )\to \operatorname{PGL}_n(\comp )\cong \operatorname{Aut}(\operatorname{M}_n(\comp ))
+\end{equation}
+is a locally trivial principal $\comp^{\times}$-bundle; thus, on a suitable cover of $\operatorname{PGL}_n(\comp )$, this bundle is trivial, i.e. it has local sections. By shrinking the open subsets $U_i$ if necessary, we can assume that the cocycle maps for $A$, which now can be represented as maps $g_{ij}:U_{ij}\to \operatorname{PGL}_n(\comp )$, have their images contained in trivializing open subsets. Hence, composition with local sections of the bundle \eqref{ppal} provides maps
+$$f_{ij}:U_{ij}\to \operatorname{GL}_n(\comp ).$$
+This family of maps can be chosen so as to satisfy the equations $f_{ji}=f_{ij}^{-1}$ and $f_{ii}=1$. Moreover, we have the following
+
+\begin{lemma}
+There exists a family of maps $\lambda =\{\lambda_{ijk}\}$, with $\lambda_{ijk}:U_{ijk}\to \comp^{\times}$, such that
+\begin{enumerate}
+\item $f_{ij}f_{jk}=\lambda_{ijk}f_{ik}$ and
+\item $\lambda$ is a completely normalized $\Check{\text{C}}$ech 2-cocycle.
+\end{enumerate}
+\end{lemma}
+
+These data let us construct a twisted bundle $\mathbb{E}$ defining
+$$\mathbb{E}=(\mathfrak{U},U_i\times \comp^n,\{f_{ij}\},\{\lambda_{ijk}\}).$$
+Now, the twisted bundle $\operatorname{End}(\mathbb{E})$ is in fact a vector bundle $\operatorname{END}(\mathbb{E})$ with cocycle maps given by
+$$h_{ij}(x)(u)=f_{ij}(x)uf_{ij}(x)^{-1},$$
+i.e. $h_{ij}$ takes values in $\operatorname{PGL}_n(\comp )$ and there is no twisting. We can thus state the following relation between Azumaya algebras and twisted bundles.
+
+\begin{theorem}[\cite{karoubi:twisted_vector}, Theorem 3.2]
+\label{tvb_azumaya}
+Assume $A$ is an Azumaya algebra over $M$. Then, there exists a twisted bundle $\mathbb{E}$ such that
+$$A\cong \operatorname{END}(\mathbb{E}).$$
+\end{theorem}
+
+\begin{obs}
+It is worth noting that as the liftings are not unique, the twisted bundle of the previous result is also not unique as well.
+\end{obs}
+
+Let now $\phi :\mathbb{E}\to \mathbb{F}$ be an isomorphism. Such a map let us define a map
+$$\overline{\phi}:\operatorname{END}(\mathbb{E})\longrightarrow \operatorname{END}(\mathbb{F})$$
+given by the family $\{\overline{\phi}_i:U_i\times \operatorname{End}_{\comp}(V)\to U_i\times \operatorname{End}_{\comp}(W)\}$, where
+$$\overline{\phi}_i(A)=\phi_iA\phi_i^{-1}.$$
+As $\operatorname{END}(\mathbb{E})$ and $\operatorname{END}(\mathbb{F})$ are ordinary bundles, we may ask whether the map $\overline{\phi}$ defines also a morphism of vector bundles.
+
+\begin{proposition}\label{induced_morphism}
+$\overline{\phi}$ is a (multiplicative) vector bundle morphism.
+\end{proposition}
+\begin{proof}
+Let us first recall the construction of vector bundles from given cocycles given in the proof of \ref{construct_bundles}. For $\operatorname{END}(\mathbb{E})$, we have
+$$\operatorname{END}(\mathbb{E})=\bigsqcup_iU_i\times \operatorname{End}_{\comp}(V)/\sim ,$$
+where $(i,(x,f))\sim (j,(x',f'))$ if and only if $x=x'\in U_{ij}$ and $f'=h_{ij}(x)^{-1}(f)=g_{ij}(x)^{-1}fg_{ij}(x)$, where $g_{ij}$ are the cocycles for $\mathbb{E}$ and $h_{ij}$ the ones for $\operatorname{END}(\mathbb{E})$. Let us denote by $[i,x,f]$ the equivalence class of the pair $(i,(x,f))$. Local trivializations are then given by the assignment
+$$[i,x,f]\longmapsto (x,f),$$
+the map $\overline{\phi}=\{\overline{\phi}_i\}$ can then be described over $U_i$ by the equation
+$$\overline{\phi}_i[i,x,f]=[i,x,\phi_i f\phi_i^{-1}].$$
+Muliplicativity is clear. We need to show now that these maps coincide on the intersections $U_{ij}$.
+
+Assume then that $x\in U_{ij}$. The element $[i,x,f]$ is represented over $U_j$ be the element $[j,x,g_{ij}(x)fg_{ij}(x)^{-1}]$. So we must verify that the equality
+$$
+\overline{\phi}_i[i,x,f]=\overline{\phi}_j[j,x,g_{ij}(x)fg_{ij}(x)^{-1}]
+$$
+holds. This equation is equivalent to
+$$
+[i,x,\phi_if\phi_i^{-1}]=[j,x,\phi_jg_{ij}(x)^{-1}fg_{ij}(x)\phi_j^{-1}].
+$$
+On the other hand, by definition of the equivalence relation, we have that this equality holds if and only if
+\begin{equation}\label{eq_int}
+\phi_jg_{ij}(x)^{-1}fg_{ij}(x)\phi_j^{-1} = f_{ij}(x)^{-1}\phi_if\phi_i^{-1}f_{ij}(x),
+\end{equation}
+where $f_{ij}$ are the cocycles for $\mathbb{F}$. As $\phi$ is a morphism, we have that $f_{ij}\phi_j=\phi_ig_{ij}$ or, equivalently, $\phi_j=f_{ij}^{-1}\phi_ig_{ij}$. Replacing this expression in the left hand side of \eqref{eq_int} finishes the proof.
+\end{proof}
+
+Let $\widehat{\tsf{TVB}}(M)$ denote the grupoid of twisted vector bundles over $M$ (that is, the only arrows we consider are the isomorphisms). We define a covariant functor
+\begin{equation}\label{functor_tvb_az}
+\widehat{\tsf{TVB}}(M)\longrightarrow \tsf{Az}(M)
+\end{equation}
+with values in the category of Azumaya algebras over $M$ in the following way: on objects, $\mathbb{E}\mapsto \operatorname{END}(\mathbb{E})$. Let now $\phi :\mathbb{E}\to \mathbb{F}$ be an isomorphism between twisted bundles, given by a family
+$$\phi_i:U_i\times V\longrightarrow U_i\times W.$$
+This family induces maps $\overline{\phi}_i:U_i\times \operatorname{End}(V)\to U_i\times \operatorname{End}(W)$ given by
+$$\overline{\phi}_i(A)=\phi_iA\phi_i^{-1}.$$
+By proposition \ref{induced_morphism}, $\phi$ induces a morphism of algebra bundles
+$$\overline{\phi}:\operatorname{END}(\mathbb{E})\longrightarrow \operatorname{END}(\mathbb{F}).$$
+Thus, we define $\phi \mapsto \overline{\phi}$.
+
+Theorem \ref{tvb_azumaya} implies that this functor is essentially surjective.\footnote{Recall that a functor $F:{\bf X}\to {\bf Y}$ is \emph{essentially surjective} if given any object $Y\in {\bf Y}$ there exists an object $X\in {\bf X}$ such that $F(X)\cong Y$.} Consider now the map
+$$
+\operatorname{Hom}_{\widehat{\tsf{TVB}}(M)}(\mathbb{E},\mathbb{F})\longrightarrow \operatorname{Hom}_{\tsf{Az}(M)}(\operatorname{END}(\mathbb{E}),\operatorname{END}(\mathbb{F}))$$
+$$\phi \longmapsto \overline{\phi}.$$
+If $\phi ,\psi :\mathbb{E}\to \mathbb{F}$ are two isomorphisms such that $\overline{\phi}=\overline{\psi}$, then we have that for each $i$ and each endomorphism $A:V\to V$ the equality
+$$\psi_i^{-1}\phi_iA=A\psi_i^{-1}\phi_i$$
+must hold. This implies the existence of a family of maps $\{\lambda_i:U_i\to \comp^{\times}\}$ such that
+$$\phi_i=\lambda_i\psi_i.$$
+Thus, the map $\phi\mapsto \overline{\phi}$ is injective only after identifying $\phi$ and $\lambda \phi$.
+
+\begin{lemma}
+The family $\lambda \phi=\{\lambda_i\phi_i\}$ is a morphism if and only if $\lambda=\{\lambda_i\}$ is a 0-cocycle.
+\end{lemma}
+\begin{proof}
+The family $\lambda \phi=\{\lambda_i\phi_i\}$ is a morphism if and only if
+\begin{equation}\label{lambda_morphism}
+\lambda_jf_{ij}\phi_j=\lambda_i\phi_ig_{ij}.
+\end{equation}
+As $\phi =\{\phi_i\}$ is a morphism, we have that $f_{ij}\phi_j=\phi_ig_{ij}$ and then equation \eqref{lambda_morphism} holds if and only if $\lambda_i=\lambda_j$ on $U_{ij}$.
+\end{proof}
+
+If $\tsf{TVB}^0(M)$ denotes the category whose objects are twisted vector bundles over $M$ and morphisms are classes of morphisms in $\widehat{\tsf{TVB}}(M)$ subject to the identification $\phi \sim \lambda \phi$ for $\lambda :M\to \comp^{\times}$, then the essentially surjective functor
+$$\tsf{TVB}^0(M)\longrightarrow \tsf{Az}(M)$$
+is also faithful.
+
+Restricting to the category $\widehat{\tsf{Az}}(M)$ of Azumaya algebras with morphisms the isomorphisms, the functor
+$$\tsf{TVB}^0(M)\longrightarrow \widehat{\tsf{Az}}(M)$$
+is also full and then an equivalence of categories.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Twisted Picard Group}
+
+For the following discussion it will be useful to recall the definition of the Picard group of a manifold $M$; consider the set of isomorphism classes of (ordinary) line bundles over $M$. If $L,K$ are line bundles, then $[L]\cdot [K]:=[L\otimes K]$ provides the set of isomorphism classes of line bundles with a structure of abelian group. This group is called the \emph{Picard group of $M$} and is denoted by $\opnm{Pic}(M)$.
+
+Analogously, twisted line bundles also enjoy some remarkable properties, like line bundles do. Given a twisted bundle $\mathbb{E}$, we shall denote by $[\mathbb{E}]$ its isomorphism class. Let us restrict ourselves to considering isomorphism classes of twisted line bundles over a manifold $M$. We define a product in the following way:
+\begin{equation}\label{op_pic}
+[\mathbb{L}]\cdot [\mathbb{K}]:=[\mathbb{L}\otimes \mathbb{K}],
+\end{equation}
+extending the one for line bundles.
+
+\begin{theorem}
+The set of isomorphism classes of twisted line bundles together with the operation \eqref{op_pic} is a $\opnm{Tor}\opnm{H}^3(M;\ent )$-graded abelian group which contains $\operatorname{Pic}(M)$ as a subgroup.
+\end{theorem}
+\begin{proof}
+Associativity and commutativity of the operation follow from the ones of the tensor product, as stated in \ref{ass_comm}.
+
+Let $\mathbb{L}$ be a twisted line bundle; if $\epsilon^1$ denotes the trivial line bundle over $M$, then $\mathbb{L}\otimes \epsilon^1\cong \mathbb{L}$; to see this, consider the family of maps
+$$\phi_i:U_i\times (\comp \otimes \comp )\longrightarrow U_i\times \comp$$
+given by $\phi_i(x,z\otimes w)=(x,zw)$. These maps define a morphism of twisted bundles
+$$\phi :\mathbb{L}\otimes \epsilon^1\longrightarrow \mathbb{L},$$
+with inverse given by the family $\phi_i^{-1}(x,z)=(x,z\otimes 1)$. Hence, $[\epsilon^1]=1$, the unit of the group.
+
+Let now $[\mathbb{L}]$ be an arbitrary class. Then, $\mathbb{L} \otimes \mathbb{L}^*$ is an ordinary line bundle; denoting this bundle by $L$, we have that
+$$[\mathbb{L}]^{-1}=[\mathbb{L}^*\otimes L^*].$$
+
+From lemma \ref{iso_twistings}, we can assure that all twisted bundles in a given class have the same cocycle as twisting. Given now two twisted bundles $\mathbb{E}$ and $\mathbb{F}$ with twistings $\lambda$ and $\mu$ respectively, the twisted bundle $\mathbb{E}\otimes \mathbb{F}$ has twisting $\lambda \mu$; hence, invoking proposition \ref{tvb_torsion} proves the assertion about the grading.
+
+The inclusion of $\opnm{Pic}(M)$ as a subgroup is clear from the previous discussion.
+\end{proof}
+
+Assume now that $\opnm{TVB}(M)$ and $\opnm{Vect}(M)$ are sets consisting of twisted bundles (with arbitrary twisting) over $M$ and vector bundles over $M$, respectively, and consider the equivalence relations $\mathbb{E}\sim \mathbb{E}\otimes \mathbb{L}$ and $E\sim E\otimes L$, where $\mathbb{L}$ is a twisted line bundle and $L$ is a line bundle. In the following result, $[\mathbb{E}]$ will denote the class of $\mathbb{E}$ according to the relation $\mathbb{E}\sim \mathbb{L}\otimes \mathbb{E}$; the same notation will be used for ordinary vector bundles.
+
+\begin{theorem}\label{bij_tensor}
+There exists a non-canonical biyection
+$$\Psi :\opnm{TVB}(M)/_{\mathbb{E}\sim \mathbb{L}\otimes \mathbb{E}}\stackrel{\cong}{\longrightarrow}\opnm{Vect}(M)/_{E\sim L\otimes E}.$$
+\end{theorem}
+\begin{proof}
+For each twisting $\lambda$, let us fix a twisted line bundle $\mathbb{L}_{\lambda}$ with that twisting. Now consider the map
+$$\Psi [\mathbb{E}]=[\mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}],$$
+where $\mathbb{E}$ has twisting $\lambda$.
+
+We check that this correspondence is well-defined: first note that the twisting of $\mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}$ is $\lambda \lambda^{-1}=1$, and hence it is an ordinary line bundle. Now suppose that $[\mathbb{E}]=[\mathbb{F}]$, where $\mathbb{E}$ has twisting $\lambda$ and $\mathbb{F}$ twisting $\mu$; this implies the existence of a twisted line bundle $\mathbb{L}$ such that $\mathbb{F}\cong \mathbb{L}\otimes \mathbb{E}$. In particular, if $\mathbb{L}$ has twisting cocycle equal to $\epsilon$, then $\mu =\epsilon \lambda$. We now have to check that $[\mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}]=[\mathbb{F}\otimes \mathbb{L}_{\mu^{-1}}]$; in other words, we should find a line bundle $L$ such that $\mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}\cong \mathbb{L}\otimes \mathbb{E}\otimes \mathbb{L}_{\mu^{-1}}\otimes L$. Take now
+$$L:=\mathbb{L}_\mu \otimes \mathbb{L}^*\otimes \mathbb{L}_{\lambda^{-1}};$$
+then $L$ is an ordinary line bundle, as the twisting of the product of the right hand side is precisely $\mu \epsilon^{-1}\lambda^{-1}=\epsilon \lambda \epsilon^{-1}\lambda^{-1}=1$. We then have
+$$\mathbb{L}\otimes \mathbb{E}\otimes \mathbb{L}_{\mu^{-1}}\otimes L\cong \mathbb{L}\otimes \mathbb{E}\otimes \mathbb{L}_{\mu^{-1}}\otimes \mathbb{L}_\mu \otimes \mathbb{L}^*\otimes \mathbb{L}_{\lambda^{-1}}\cong \mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}},$$
+as desired.
+
+Assume now that $\mathbb{E}$ and $\mathbb{F}$ are twisted bundles with twistings $\lambda$ and $\mu$ respectively such that there exists a line bundle $L_0$ with $\mathbb{F}\otimes \mathbb{L}_{\mu^{-1}}\cong L_0\otimes \mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}$. Multiplying by $\mathbb{L}_{\mu}$ at both sides, we obtain
+$$\mathbb{F}\otimes L_1\cong L_0\otimes \mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}\otimes \mathbb{L}_{\mu},$$
+where $L_1=\mathbb{L}_{\mu}\otimes \mathbb{L}_{\mu^{-1}}$. Multiplying now by the dual line bundle $L_1^*$ yields
+$$\mathbb{F}\cong \mathbb{E}\otimes \mathbb{L}_{\lambda^{-1}}\otimes \mathbb{L}_{\mu}\otimes L_0\otimes L_1^*.$$
+As $\mathbb{L}_{\lambda^{-1}}\otimes \mathbb{L}_{\mu}\otimes L_0\otimes L_1^*$ is a twisted line bundle (with twisting $\mu \lambda^{-1}$), then $[\mathbb{F}]=[\mathbb{E}]$ and hence $\Psi$ is injective.
+
+Let now $E$ be an arbitrary bundle. Then $E\otimes \mathbb{L}_{\lambda}$ is a $\lambda$-twisted vector bundle and then $\Psi [E\otimes \mathbb{L}_{\lambda}]=[E\otimes \mathbb{L}_{\lambda}\otimes \mathbb{L}_{\lambda^{-1}}]=[E]$.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Higher Categorical and Algebraic Structures}
+
+The theory of higher categories originally entered into geometry and topology through the unpublished influential manuscript ``Pursuing Stacks'' of Grothedieck \cite{grothendieck:_pursuin}.  He tried to formulate a theory of higher homotopy groups in algebraic geometry using generalized coverings. This theory would be a far reaching generalization of his construction of the fundamental group \cite{kn:grothendieck2} and of Galois theory. These generalized coverings were stacks, and their fibres are $n$-homotopy types modelled using $n$-categories.
+Giraud invented a particular kind of stacks called gerbes and applied them to non-abelian cohomology \cite{kn:giraud}.
+In recent years the theory of higher categories has been related to developments in the study of new topological invariants of manifolds, which arise mainly from quantum field theories \cite{yetter:_cla}. 
+ 
+A particular class of stacks which we shall encounter in the following paragraphs are called 2-vector bundles. These 2-bundles where first introduced by J.L. Brylinki \cite{brylinsky:_categ_vector_bundl_yang_mill} by categorifying the notion of sheaf of sections of a vector bundle, and it is, in turn, based upon another categorification: that of vector space, due to M. Kapranov and V. Voevodsky \cite{kn:kv}. Another definition of 2-vector bundle was later given by N. Bass, B. Dundas and J. Rognes \cite{bdr:_2vb}, \cite{BDRR:2vb_ell}; this definition is based upon {\v C}ech cocycles, and generalizes the one given by Brylinski.
+
+We will introduce another notion of 2-vector bundle which also generalizes Brylinski's definition, but differs from the one of Bass-Dundas-Rognes in higher ranks.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fibred Categories}
+
+A fibred category can be thought of as the categorical analogue of a presheaf. We will give a brief exposition of the main facts. The reader interested in a deeper treatment may consult \cite{kn:grothendieck2}, \cite{Vistoli:descent} or the more concise introduction given in \cite{Moerdijk:stacks}.
+
+\begin{defi}
+Let $\Phi:{\bf F}\to {\bf B}$ be a functor (this situation is usually stated as ``${\bf F}$ \emph{is a category over} ${\bf B}$''). A morphism $f:X\to Y$ in ${\bf F}$ is said to be \emph{cartesian} if the following condition holds: given any morphism $h:Z\to Y$ in ${\bf F}$ and any morphism $\beta :\Phi (Z)\to \Phi (X)$ in the base ${\bf B}$ such that $\Phi (f)\beta =\Phi (h)$, there exists a unique map $g:Z\to X$ such that $\Phi (g)=\beta$ and $fg=h$.
+\end{defi}
+
+This definition can be depicted in the following way:
+$$
+\xymatrix{
+   Z\ar@{|->}[dd] \ar@{-->}[rd]_{g} \ar@/^/[rrd]^{h} & & \\
+   & X\ar@{|->}[dd]\ar[r]_{f} & Y\ar@{|->}[dd] \\
+   \Phi (Z) \ar[rd]_{\beta}\ar@/^/[rrd] ^(.3){\Phi (h)} |(.487)\hole \\
+   & \Phi (X) \ar[r]_{\Phi (f)} & \Phi (Y),}
+$$
+where the objects and arrows in the ``roof'' are in ${\bf F}$ and the ones on the ``floor'', in ${\bf B}$; the connection between the ``roof'' and the ``floor'' is provided by the application of the functor $\Phi$. In this context, we will say that \emph{$X$ is a pullback of $Y$ on $\Phi (X)$}, and the notation $\alpha^*Y$ is usually adopted for $X$, where $\alpha =\Phi (f)$. Applying the previous definition (diagram chasing is always a good idea in this kind of proofs) one can verify that if $X$ and $X'$ are two pullbacks of $Y$ to $\Phi (X)=\Phi (X')$, then $X$ and $X'$ are isomorphic in ${\bf F}$.
+
+A fibred category is then a category which admits pullbacks.
+
+\begin{defi}
+We will say that $\Phi:{\bf F}\to {\bf B}$ is a \emph{fibred category} or that ${\bf F}$ is \emph{fibred over} ${\bf B}$ if given $X,Y\in {\bf F}$ and any map $\alpha :\Phi (X)\to \Phi (Y)$, there exists a cartesian arrow $f:X\to Y$ such that $\Phi (f)=\alpha$.
+\end{defi}
+
+The previous definition resembles the definition of fibre bundle. There is another characterization of fibred categories, which resemble the definition of presheaves. Before introducing this new point of view, let us give the following
+
+\begin{defi}
+If $\Phi :{\bf F}\to {\bf B}$ is a fibred category and $U\in {\bf B}$, then the \emph{fibre} over $U$ is the full subcategory ${\bf F}(U)$ of ${\bf F}$ with objects $X\in {\bf F}$ such that $\Phi (X)=U$.
+\end{defi}
+
+We will now give a concise idea of how a fibred category defines a contravariant functor $\Phi_{{\bf F}}:{\bf B}\to \tsf{Cat}$, where $\tsf{Cat}$ is the 2-category of categories.\footnote{In fact, as the pullback $(\alpha \beta)^*Y$ is not usually equal to $\beta^*\alpha^*Y$ but only canonically isomorphic to it, $\Phi_{{\bf F}}$ is usually a \emph{pseudo-functor}. But we will not detain ourselves with more definitions, as a careful treatment of these facts is lengthy.} If $U\in {\bf B}$ is an object of the base, then $\Phi_{{\bf F}}(U)$ is defined to be the fibre ${\bf F}(U)$ over $U$. Now, the image of a morphism $\alpha :V\to U$ in ${\bf B}$ should be a functor $\alpha^*:{\bf F}(U)\to {\bf F}(V)$ (the ``restriction''). The problem now is defining this functor. So first take an object $Y\in {\bf F}(U)$; a good way of obtaining an object over $V$ (the image $\alpha^*(Y)$) in a fibred category is to pull-back $Y$. But the problem now is which one of all the isomorphic pullbacks should be chosen. This procedure of choosing pullbacks defines what is called a \emph{cleavage}, which is precisely a class $\mathfrak{K}$ of cartesian maps in ${\bf F}$ such that for each map $\alpha :V\to U$ and each object $Y$ over $U$ (that is, $\Phi (Y)=U$), there exists a unique object $\alpha^*Y$ and map $f:\alpha^*Y\to Y$ in $\mathfrak{K}$ such that $\Phi (f)=\alpha$. Cleavages always exist \cite{Vistoli:descent} and, with a cleavage at hand, we can define the functor $\alpha^* :{\bf F}(U)\to {\bf F}(V)$ by $Y\mapsto \alpha^*Y$ on objects and, if $f:X\to Y$ is an arrow in ${\bf F}(U)$, then $\alpha^*f:\alpha^*X\to \alpha^*Y$ is the unique morphism defined by the diagram
+$$
+\xymatrix{
+   \alpha^*X\ar@{-->}[rd]_{\exists !} \ar@/^/[rrd]^{h} & & \\
+   & \alpha^*Y\ar[r]_{f} & Y, }
+$$
+where $h$ is the composite $\alpha^*X\to X\stackrel{f}{\to}Y$. The alternative definition in terms of a pseudo-functor reads as follows.
+
+\begin{defi}\label{fib_cat_2}
+A \emph{fibred category} is a functor $\Phi :{\bf B}\to \tsf{Cat}$ with the following properties:
+\begin{enumerate}
+\item If $W\stackrel{\beta}{\rightarrow}V\stackrel{\alpha}{\rightarrow}U$ is a pair of composable arrows in ${\bf B}$, then, denoting $\Phi (\alpha )$ by $\alpha^*$, we should have a natural isomorphism $u({\alpha \beta}):(\alpha \beta )^*\cong \beta^*\alpha^*$.
+\item For three composable maps $Z\stackrel{\gamma}{\rightarrow}W\stackrel{\beta}{\rightarrow}V\stackrel{\alpha}{\rightarrow}U$, the square
+$$
+\xymatrix{
+(\alpha \beta \gamma )^* \ar[rr]^{u(\alpha \beta ,\gamma )}\ar[d]_{u(\alpha ,\beta \gamma )} & & \gamma^* (\alpha \beta )^* \ar[d]^{\gamma^*u(\alpha ,\beta )} \\
+(\beta \gamma )^*\alpha^* \ar[rr]^{u(\beta ,\gamma )\alpha^*}  & & \gamma^*\beta^*\alpha^* }
+$$
+should be commutative.
+\end{enumerate}
+\end{defi}
+
+And conversely, given a fibred category $\Phi :{\bf B}\to \tsf{Cat}$, we can go back to the first conception of a category over ${\bf B}$. The interested reader may consult \cite{Vistoli:descent} for a nice and complete exposition of these issues.
+
+\begin{obs}
+If the fibres of a fibred category ${\bf F}$ takes values in some subcategory ${\bf X}$ of $\tsf{Cat}$, then we will say that ${\bf F}$ is a \emph{category fibred in ${\bf X}$}. For example, if each fibre ${\bf F}(U)$ is a groupoid, then ${\bf F}$ will be called a category fibred in grupoids. A category fibred in $\tsf{Sets}$ is usually called a \emph{discrete fibred category}.\footnote{A \emph{discrete} category is a category ${\bf X}$ such that, for each object $X$, the only arrow $X\to X$ is the identity. Thus, a discrete category can be regarded as a set (and conversely).} If ${\bf B}=\tsf{Op}(M)$ for some topological space $M$, then we shall also use the term ``fibred category over $M$'' for a fibred category over $\tsf{Op}(M)$. 
+\end{obs}
+
+\begin{defi}
+Let ${\bf F}\stackrel{\Phi}{\rightarrow}{\bf B}\stackrel{\Psi}{\leftarrow}{\bf G}$ be fibred categories over ${\bf B}$. A functor ${\bf F}\stackrel{H}{\longrightarrow}{\bf G}$ is said to be a \emph{fibred morphism} or \emph{morphism of fibred categories} if $\Psi H=\Phi$ and $F$ sends cartesian arrows to cartesian arrows.
+\end{defi}
+
+We also discuss here the definition of morphism of fibred categories according to the alternative viewpoint. Consider then two fibred categories $\tsf{Cat}\stackrel{\Phi}{\leftarrow}{\bf B}\stackrel{\Psi}{\rightarrow}\tsf{Cat}$; a \emph{morphism} $H:\Phi \to \Psi$ between these fibred categories consists of the following data
+\begin{enumerate}
+\item A family of arrows $H_U:\Phi (U)\to \Psi (U)$,
+\item for each morphism $\alpha :V\to U$ in ${\bf B}$, a natural isomorphism $\eta_\alpha$ between the functors $\alpha^*H_U$ and $H_V\alpha^*$ (note that we use the same symbol $\alpha^*$ to denote both functors $\Phi (U)\to \Phi (V)$ and $\Psi (U)\to \Psi (V)$). 
+\end{enumerate}
+These data shoud satisfy the following compatibility condition: for a chain of maps $W\stackrel{\beta}{\to}V\stackrel{\alpha}{\to}U$ in ${\bf B}$, the diagram
+$$
+\xymatrix{
+H_W(\alpha \beta )^* \ar[rr]^{\eta_{\alpha \beta}} \ar[d]_{\eta_{\alpha}u} && (\alpha \beta )^*H_U \ar[d]^{uH_U} \\
+H_W\beta^*\alpha^* \ar[r]_{\eta_{\beta}\alpha^*} & \beta^*H_V\alpha^* \ar[r]_{\beta^*\eta_\alpha} & \beta^*\alpha^*H_U }
+$$
+should be commutative, where the letter $u$ denotes the maps given in definition \ref{fib_cat_2}.
+
+Thanks to the fibred structure we have the following
+
+\begin{proposition}
+Let ${\bf F}$ and ${\bf G}$ be two fibred categories over ${\bf B}$. A fibred morphism $H:{\bf F}\to {\bf G}$ is an equivalence of categories if and only if for each $U\in {\bf B}$ the restriction $H_U:{\bf F}(U)\to {\bf G}(U)$ is an equivalence.
+\end{proposition}
+
+The following definition will be important in the next section. For our purposes, and to avoid technical issues which won't be helpful in this discussion, we shall consider ${\bf B}$ as the category of open subsets of some topological space $M$.
+
+\begin{defi}\label{fcex_1}
+Let $U\in \tsf{Op}(M)$ be an object and $\Phi_{{\bf F}}$ a fibred category with base $\tsf{Op}(M)$. Given objects $X,Y\in {\bf F}(U)$, the presheaf $\underline{\opnm{Hom}}_U(X,Y)$ on $\tsf{Op}(U)$ is defined by the correspondence
+$$V\longmapsto \opnm{Hom}_{{\bf F}(V)}\left (X|_V,Y|_V\right ),$$
+where $X|_V$ means the image of $X\in {\bf F}(U)$ under the restriction arrow ${\bf F}(U)\to {\bf F}(V)$. This presheaf will be denoted $H_U(X,Y)$.
+\end{defi}
+
+We end this section with several examples of fibred categories. 
+
+\begin{ej}\label{fcex_2}
+If $\tsf{Top}$ is the category of topological spaces, the usual pullback construction for bundles makes the functor $\tsf{Top}\to \tsf{Cat}$ given by $M\mapsto \tsf{Vect}(M)$ a fibred category (over the category of topological spaces). If $[\tsf{Vect},\tsf{Top}]$ denotes the category of vector bundles over arbitrary topological spaces, this fibred category can be described (from the other viewpoint) by a functor $\Phi :[\tsf{Vect},\tsf{Top}]\to \tsf{Top}$ given by
+$$\Phi (E\to M)=M.$$
+An important particular case is obtained replacing the base category $\tsf{Top}$ with the category $\tsf{Op}(M)$ of open subsets of a fixed space $M$. In this case, the category $[\tsf{Vect},\tsf{Op}(M)]$ will be denoted by $[\tsf{Vect},M]$.
+\end{ej}
+
+\begin{ej}\label{fcex_3}
+Let $\scr{C}_{\tsf{Top}}:=[\tsf{Top},\tsf{Top}]$ be the category which objects are continuous maps $M\to N$ and morphisms $(M\to N)\to(M'\to N')$ commutative diagrams
+$$
+\xymatrix{
+M \ar[r] \ar[d] & M'\ar[d] \\
+N \ar[r] & N'.}
+$$
+Then the functor $\Phi :\scr{C}_{\tsf{Top}}\to \tsf{Top}$ given by $\Phi (M\to N)=N$ is a fibred category, again by the pullback construction. An important particular case is obtained by fixing the base; if $N$ is this fixed base, we thus obtain the fibred category $[\tsf{Top},N]$ (with base $\tsf{Op}(N)$), which is defined by the assignment $U\mapsto \tsf{Top}(U)$, where $\tsf{Top}(U)$ is the category of spaces over $U$: its objects are maps $M\to U$ and morphisms are commutative triangles.
+\end{ej}
+
+\begin{ej}\label{fcex_4}
+Any presheaf $\scr{P}:\tsf{Op}(M)\to {\bf X}$ with values in some category ${\bf X}$ is a fibred category. This statement can be extended to arbitrary presheaves; that is, contravariant functors ${\bf B}\to {\bf X}$ (here ${\bf B}$ is the base category). 
+\end{ej}
+
+\begin{ej}\label{fcex_5}
+Consider the pseudofunctor $\Phi :\tsf{Op}(M)^\circ \to \tsf{Cat}$ given on objects by $\Phi (U)=\tsf{Sh}(U)$ and, if $i:V\subset U$ is an inclusion, $\Phi (i):\tsf{Sh}(U)\to \tsf{Sh}(V)$ is the restriction $\scr{S}\mapsto \scr{S}|_V$. This functor defines a fibred structure for the category of sheaves over $M$. This property extends also to the category of sheaves of groups and (locally free) modules.
+
+More generally, consider the pseudofunctor $\Phi :\tsf{Top}^\circ \to \tsf{Cat}$ given by $\Phi (M)=\tsf{Sh}(M)$. The inverse image construction provides $F$ with a fibred structure.
+
+The same conclusion applies replacing the category of sheaves with the category of quasicoherent sheaves of modules. In fact, Grothendiecks's motivating example was that of quasicoherent sheaves over the category of schemes.
+\end{ej}
+
+\begin{ej}\label{fcex_7}
+Given fibred categories ${\bf F}\stackrel{\Phi}{\rightarrow}{\bf B}\stackrel{\Psi}{\leftarrow}{\bf G}$ over ${\bf B}$, consider the fibred product ${\bf F}\times_{{\bf B}}{\bf G}$ defined in the following way: its objects are pairs $(X,Y)\in {\bf F}\times {\bf G}$ such that $\Phi (X)=\Psi (Y)$; in other words, there exists an object $U\in {\bf B}$ such that $X\in {\bf F}(U)$ and $Y\in {\bf G}(U)$). A map $(X,Y)\to (X',Y')$ is a pair of maps $X\to X'$ in ${\bf F}(U)$ and $Y\to Y'$ in ${\bf G}(U)$ for some $U\in {\bf B}$. A straightforward computation shows that ${\bf F}\times_{{\bf B}}{\bf G}$ is also a fibred category over ${\bf B}$. Moreover, we have projection functors ${\bf F}\leftarrow {\bf F}\times_{{\bf B}}{\bf G}\rightarrow {\bf G}$ such that the diagram
+$$
+\xymatrix{
+{\bf F}\times_{{\bf B}}{\bf G} \ar[r] \ar[d] & {\bf F} \ar[d] \\
+{\bf G} \ar[r] & {\bf B}}
+$$
+commutes. The $n$-folded fibred product ${\bf F}\times_{\bf B}\cdots \times_{\bf B}{\bf F}$ will be denoted by ${\bf F}^n$.
+\end{ej}
+
+\begin{ej}\label{fcex_9}
+Let $f:M\to N$ be a continuous map and let ${\bf F}$ be a fibred category over $M$. The \emph{pushout} $f_*{\bf F}$ of ${\bf F}$ by $f$ is defined by the assignment $(f_*{\bf F})(V)={\bf F}(f^{-1}(V))$, and it is also a fibred category over $N$. This fact can be easily proved by noting that if  $W\subset V$ is an inclusion in $\tsf{Op}(N)$, then the induced map $f^{-1}(W)\subset f^{-1}(V)$ is an inclusion in $\tsf{Op}(M)$. The rest is deduced from the fibred structure of ${\bf F}$.
+\end{ej}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Fibred Category Structure for Twisted Vector Bundles}
+
+We need first to define morphisms over maps $N\to M$.
+
+\begin{defi}\label{arrows}
+Let $f:N\to M$ and let $\mathbb{E}$ and $\mathbb{F}$ be twisted bundles over $N$ and $M$ respectively, given by
+$$
+\begin{aligned}
+\mathbb{E} &= (\mathfrak{U},U_i\times V,\{g_{ij}\},\{\lambda_{ijk}\}) \\
+\mathbb{F} &=(\mathfrak{U}',U'_r\times W,\{g'_{rs}\},\{\lambda'_{rst}\}). \\
+\end{aligned}
+$$
+(Shrinking the cover if necessary, we can assume that for each $r$, there exists an index $i$ such that $f(U'_r)\subset U_i$). A \emph{morphism} $\phi :\mathbb{F}\to \mathbb{E}$ over $f$ is a family of maps
+$$\phi_{ri}:U'_r\times W\longrightarrow U_i\times V$$
+over the restriction $f|_{U'_r}:U'_r\to U_i$ such that the diagram
+\begin{equation}
+\xymatrix{
+U'_{rs}\times W \ar[r]^{\phi_{sj}} \ar[d]_{1\times g'_{rs}} & U_{ij}\times V \ar[d]^{1\times g_{ij}} \\
+U'_{rs}\times W \ar[r]_{\phi_{ri}} & U_{ij}\times V}
+\end{equation}
+commutes.
+\end{defi}
+
+Consider now the pullback bundle $f^*\mathbb{E}$, where $\mathbb{E}$ is a twisted bundle over $M$ and $f:N\to M$. We then have a map
+$$\phi_f:f^*\mathbb{E}\longrightarrow \mathbb{E}$$
+defined by the family $f\times 1:f^{-1}(U_i)\times V\to U_i\times V$.
+
+\begin{proposition}\label{tvb_cartesian}
+The map $\phi_f$ is a cartesian arrow.
+\end{proposition}
+\begin{proof}
+Consider the diagram of maps and spaces
+$$
+\xymatrix{
+P \ar[dr]^{\alpha} & \\
+N\ar[r]_f & M.}
+$$
+and let $\mathbb{F} =(\mathfrak{U}',\alpha^{-1}(U_i)\times W,\{h_{ij}\},\{\mu_{ijk}\})$ be a twisted bundle over $P$. Let now $\psi :\mathbb{F}\to \mathbb{E}$ be any map over $\alpha$, and assume it is given by a family
+$$\psi_i:\alpha^{-1}(U_i)\times W\longrightarrow U_i\times V.$$
+Let $\beta :P\to N$ be a map such that $f\beta =\alpha$, and consider the map $\eta :\mathbb{F}\to f^*\mathbb{E}$ defined by the family
+$$\eta_i=\beta \times \psi_i:\alpha^{-1}(U_i)\times W\longrightarrow f^{-1}(U_i)\times V.$$
+This map $\eta$ is a morphism of twisted bundles over $\beta$ and is the unique map such that $\phi_f\eta =\psi$ (see the diagram below).
+$$
+\xymatrix{
+   \mathbb{F}\ar@{|->}[dd] \ar@{-->}[rd]_{\eta} \ar@/^/[rrd]^{\psi} & & \\
+   & f^*\mathbb{E}\ar@{|->}[dd]\ar[r]_{\phi_f} & \mathbb{E}\ar@{|->}[dd] \\
+   P \ar[rd]_{\beta}\ar@/^/[rrd] ^(.3){\alpha} |(.487)\hole \\
+   & N \ar[r]_f & M.}
+$$
+\end{proof}
+
+As is usual in analogous cases, if $U$ is an open subset of $M$ and $\mathbb{E}$ is a twisted bundle over $M$, then the pullback along the inclusion $U\subset M$ is called the \emph{restriction of $\mathbb{E}$ to $U$} and is denoted by $\mathbb{E}|_U$.
+
+The previous facts imply the following
+
+\begin{proposition}
+The assignment $M\mapsto \tsf{TVB}(M)$ defines a fibred category over $\tsf{Top}$.
+\end{proposition}
+
+The same conclusion is obtained also for the categories of $\lambda$-twisted vector bundles over $\tsf{Top}$ for a fixed twisting $\lambda$ and also for twisted bundles over some fixed space $M$. We will denote by $[\tsf{TVB},\tsf{Top}]\to \tsf{Top}$ and $[\tsf{TVB}_{\lambda},\tsf{Top}]\to \tsf{Top}$ the fibred categories of twisted vector bundles and $\lambda$-twisted vector bundles over $\tsf{Top}$, respectively. The same symbols but replacing $\tsf{Top}$ with $\tsf{Op}(M)$ for a fixed space $M$ will be used to denote the fibred categories of twisted bundles and $\lambda$-twisted bundles over $M$.
+
+We now define a fibred category $[\widehat{\tsf{TVB}},\tsf{Top}]\to \tsf{Top}$ in the following way: objects are twisted bundles over some space $M\in \tsf{Top}$ and arrows are the cartesian ones. If $M$ is any space, then the fibre over $M$, which we denote by $\widehat{\tsf{TVB}}(M)$, is a groupoid. That is, every arrow in $\widehat{\tsf{TVB}}(M)$ is an isomorphism (and we thus obtain an example of a category fibred in grupoids). This statement can be deduced from the following:
+
+\begin{lemma}
+Let ${\bf F}$ be a fibred category over ${\bf B}$.
+\begin{enumerate}
+\item If $\phi :X\to Y$ and $\psi :Y\to X$ are arrows in ${\bf F}$ and $\psi$ is cartesian, then $\phi$ si cartesian if and only if the composite $\psi \phi$ is cartesian.
+\item Let $X,Y$ be objects contained in the same fibre. An arrow $X\to Y$ is cartesian if and only if it is an isomorphism.
+\end{enumerate}
+\end{lemma}
+
+The same conclusions apply by replacing the base category $\tsf{Top}$ with $\tsf{Op}(M)$.
+
+\begin{obs}
+As the previous lemma shows, the procedure of keeping only the cartesian arrows can be done for any fibred category. That is, if ${\bf F}$ is a fibred category over ${\bf B}$, then the category $\widehat{{\bf F}}$ with the same objects as ${\bf F}$ and arrows only the cartesian ones is a category fibred in grupoids over ${\bf B}$.
+\end{obs}
+
+
+%%%%%%%%%%%%%%%%%%%
+\subsection{Stacks}
+
+Just as a fibred category is the categorical analogue of a presheaf, a stack can be thought of as a categorification of the notion of sheaf. The general definition requires the introduction of sites and Grothendieck topologies, but we will avoid these facts and work only with the category $\tsf{Op}(M)$ of open subsets of a topological space $M$. Recall that, as for sheaves, a fibred category with base $\tsf{Op}(M)$ will be called a fibred category \emph{over $M$}.
+
+The main feature of sheaves that distinguish them from presheaves is that we can glue sections. For a stack, this notion should be satisfied not only by sections (which are the objects of the fibre-categories) but also by morphims.
+
+\begin{defi}
+Let $\Phi_{{\bf F}}$ be a fibred category over $M$, viewed as a pseudo-functor. We will say that $\Phi_{{\bf F}}$ (or ${\bf F}$) is a \emph{prestack} if for each $U\in \tsf{Op}(M)$ and each pair of objects $X,Y\in {\bf F}(U)$, the presheaf $H_U(X,Y)$ defined in \ref{fcex_1} is a sheaf.
+\end{defi}
+
+The statement ``$H_U(X,Y)$ is a sheaf'' means that morphisms in ${\bf F}(U)$ can be glued together. A fibred category which verifies this fact for each $U$ is called a \emph{prestack}.\footnote{The corresponding notion for sheaves is that of \emph{separated presheaf}, which we did not define.}
+
+\begin{ej}\label{psex_1}
+Let $[\tsf{Top},N]$ be the fibred category of spaces over $N$ and fix some open subset $U\subset N$ and objects $f:M\to N$ and $g:P\to N$. Let $\{U_i\}$ be an open cover of $U$ and $\phi_i\in H_U(M,P)(U_i)$; that is $\phi_i:f^{-1}(U_i)\to g^{-1}(U_i)$ and $g\phi_i =f$. Assume that, over the (non-empty) intersections $U_{ij}=U_i\cap U_j$, the maps $\phi_i$ and $\phi_j$ coincide; that is, they agree on $f^{-1}(U_{ij})=f^{-1}(U_i)\cap f^{-1}(U_j)$. Then, basic properties of continuous maps let us glue the pieces $\phi_i$ to obtain a map $\phi:f^{-1}(U)\to g^{-1}(U)$ such that $g\phi =f$, and thus $[\tsf{Top},N]$ is a prestack.
+\end{ej}
+
+Before defining stacks, we need first the notion of descent category, which objects, roughly speaking, consist of local objects in a fibred category. When reading the next definition is recommended to keep in mind the construction of vector bundles from cocycles.
+
+\begin{defi}
+Let $\Phi_{{\bf F}}$ be a fibred category over $M$, $U\subset M$ an open subset and $\mathfrak{U}=\{U_i\}$ an open cover of $U$. The \emph{category $\tsf{Desc}(\mathfrak{U},{\bf F})$ of descent data} is defined in the following way:
+\begin{enumerate}
+\item Objects are pairs $(X,f)$, where $X=\{X_i\}$ is a family of objects $X_i\in {\bf F}(U_i)$ and $f=\{f_{ij}\}$ is a family of isomorphisms $f_{ij}:X_j|_{U_{ij}}\cong X_i|_{U_{ij}}$ which satisfy the so-called \emph{cocycle conditions}:
+$$f_{ii}=\opnm{id}_{X_i} \quad \text{and} \quad f_{ij}f_{jk}=f_{ik},$$
+where the second equality is in ${\bf F}(U_{ijk})$.
+\item An arrow $(X,f)\to (Y,g)$ is a family $\{\phi_i\}$ of maps $\phi_i:X_i\to Y_i$ such that $\phi_if_{ij}=g_{ij}\phi_j$.
+\end{enumerate}
+\end{defi}
+
+We have a functor $D:{\bf F}(U)\to \tsf{Desc}(\mathfrak{U},{\bf F})$ defined in the following way: given $X\in {\bf F}(U)$, $D(X)=(\{X|_{U_i}\},\opnm{id})$, where $\opnm{id}$ is the family consisting of the identity maps of $X|_{U_{ij}}$. If $f:X\to Y$, $D(f)$ is the family consisting of the maps $X|_{U_i}\to Y|_{U_i}$, obtained by aplying the pullback functor to the map $f$. A straightforward computation shows that maps can be glued over any open subset $U$ if and only if the functor $D$ is fully-faithful for each open cover $\mathfrak{U}$ of $U$. Then, the property of being a prestack can be expressed in terms of $D$ by requiring that this functor should be fully-faithful for each $U$ and each open cover of $U$. On the other hand, gluing objects defined on some cover $\mathfrak{U}$ of $U$ requires $D$ to be essentially surjective; that is, for each object $(\{X_i\},\{f_i\})\in \tsf{Desc}(\mathfrak{U},{\bf F})$ there should exist an object $X\in {\bf F}(U)$ such that $D(X)\cong (\{X_i\},\{f_i\})$. After this interlude, we can then define the notion of stack.
+
+\begin{defi}
+The fibred category ${\bf F}$ over $M$ is a \emph{stack} if the functor $D:{\bf F}(U)\to \tsf{Desc}(\mathfrak{U},{\bf F})$ is an equivalence of categories for each $U\in \tsf{Op}(M)$ and each open cover $\mathfrak{U}$ of $U$.
+\end{defi}
+
+Fibred categories of examples \ref{fcex_2}, \ref{fcex_3}, \ref{fcex_5}, \ref{fcex_9} are stacks. In example \ref{fcex_7}, if ${\bf F}$ and ${\bf G}$ are stacks, then also is the fibred product ${\bf F}\times_{{\bf B}}{\bf G}$. On the other hand, the discrete fibred category defined by a presheaf $\scr{P}:\tsf{Op}(M)\to {\bf X}$ (see example \ref{fcex_4}) is a stack if and only if $\scr{P}$ is a sheaf. Twisted and ordinary vector bundles and locally free sheaves will be treated in more detail shortly, as well as the pushout.
+
+\begin{obs}
+Let us describe what an isomorphism in the descent category looks like. First observe that the composition of two morphisms $\phi :(\{X_i\},\{f_{ij}\})\to (\{Y_i\},\{g_{ij}\})$ and $\psi :(\{Y_i\},\{g_{ij}\})\to (\{Z_i\},\{h_{ij}\})$ is obtained by composing the maps $\phi_i:X_i\to Y_i$ and $\psi_i:Y_i\to Z_i$ (compatibility with cocycles can be checked by a direct computation). Assume now that $\phi=\{\phi_i\} :(X,f)\to (Y,g)$ is an isomorphism. This implies the existence of an inverse $\phi^{-1}:(Y,g)\to (X,f)$. If $\phi^{-1}$ is the family $\{\psi_i\}$, then the equalities $\phi \phi^{-1}=\opnm{id}_{(Y,g)}$ and $\phi^{-1}\phi =\opnm{id}_{(X,f)}$ imply that necessarily each $\phi_i$ is an isomorphism and $\psi_i=\phi_i^{-1}$ for each $i$.
+\end{obs}
+
+
+\begin{ej}\label{st_ex1}
+We will now complete the discussion started in example \ref{psex_1}. To show that $[\tsf{Top},N]$ is a stack it only remains to be shown that we can glue local objects. So let $U\subset N$ be an open subset and $\mathfrak{U}=\{U_i\}$ an open cover of $U$. In this case, an object of the descent category is a pair $(\{f_i\},\{\varphi_{ij}\})$, where $f_i:M_i\to U_i$ and $\varphi_{ij}:f_j^{-1}(U_{ij})\cong f_i^{-1}(U_{ij})$ such that $\varphi_{ii}=\opnm{id}_{M_i}$ and $\varphi_{ij}\varphi_{jk}=\varphi_{ik}$. To prove that the functor $D$ is essentially surjective we need to find a map $f:M\to U$ such that
+\begin{enumerate}
+\item For each $i$ there exists an isomorphism $\psi_i:M_i\cong f^{-1}(U_i)$ in the category $\tsf{Top}(U_i)$; that is, it should make the following diagram
+$$
+\xymatrix{
+M_i \ar[rr]^{\psi_i} \ar[dr]_{f_i} & & f^{-1}(U_i) \ar[dl]^f \\
+& U_i &
+}
+$$
+commutative.
+\item Over $U_{ij}$ the equality $\psi_i\varphi_{ij}=\psi_j$ holds; that is, the diagram
+$$
+\xymatrix{
+f^{-1}_j(U_{ij})\ar[rr]^{\varphi_{ij}} \ar[dr]_{\psi_j} & & f_i^{-1}(U_{ij}) \ar[dl]^{\psi_i} \\
+& f^{-1}(U_{ij}) &
+}
+$$
+commutes.
+\end{enumerate}
+So let $M$ be the quotient space
+$$M=\bigsqcup_iM_i\Big / \sim ,$$
+where the equivalence relation is given by $(i,x)\sim (j,y)$ if and only if $U_{ij}\neq \emptyset$ and $y=f_{ji}(x)$. Denoting by $[i,x]$ the equivalence class of $(i,x)$, the map $f:M\to U$ given by $f[i,x]=f_i(x)$ verifies $D(f)\cong (\{f_i\},\{\varphi_{ij}\})$, as desired.
+\end{ej}
+
+\begin{ej}\label{st_ex2}
+The same argument as the one given in the previous example shows that the fibred category $[\tsf{Vect},M]$ of vector bundles over (open subsets of a space) $M$ is also a stack.
+\end{ej}
+
+Though we state it just for $\tsf{Op}(M)$, the next result holds for arbitrary base categories.
+
+\begin{proposition}\label{equiv_stacks}
+Let $H:{\bf F}\to {\bf G}$ be a morphism of fibred categories over $M$. If $H$ is an equivalence and ${\bf F}$ is a stack, then ${\bf G}$ is also a stack.
+\end{proposition}
+
+\begin{ej}\label{st_ex3}
+Let $[\tsf{TVB}_{\lambda},M]\to \tsf{Op}(M)$ be the fibered category of $\lambda$-twisted vector bundles over (open subsets of) a space $M$. Let $[\tsf{TVB},M]\to [\tsf{Vect},M]$ be the functor defined in proposition \ref{equiv_tvb_vect}. This functor is a morphism of fibred categories and is an equivalence. Thus, by proposition \ref{equiv_stacks}, $[\tsf{TVB}_{\lambda},M]\to \tsf{Op}(M)$ is also a stack.
+\end{ej}
+
+\begin{ej}\label{st_ex4}
+If ${\bf F}$ is a stack, then the pushout $f_*{\bf F}$ by $f:M\to N$ is also a stack. To see this, let us consider an open subset $V\subset N$ and an open cover $\mathfrak{V}=\{V_i\}$ of $V$. We then have that $f^{-1}\mathfrak{V}:=\{f^{-1}(V_i)\}$ is an open cover of $f^{-1}(V)$. Moreover, it is easy to check that we have an equivalence $\tsf{Desc}(\mathfrak{V},f_*{\bf F})\simeq \tsf{Desc}(f^{-1}\mathfrak{V},{\bf F})$ between the descent categories. On the other hand, the equivalence $\tsf{Desc}(f^{-1}\mathfrak{V},{\bf F})\simeq {\bf F}(f^{-1}(V))$ holds because ${\bf F}$ is a stack. Then,
+$$\tsf{Desc}(\mathfrak{V},f_*{\bf F})\simeq \tsf{Desc}(f^{-1}\mathfrak{V},{\bf F})\simeq {\bf F}(f^{-1}(V))= (f_*{\bf F})(V),$$
+proving the assertion.
+\end{ej}
+
+\begin{ej}\label{st_ex4}
+By \ref{loc_free_sections} and \ref{sheaf_bundle}, we have an equivalence between the fibred categories of vector bundles over (open subsets) of $M$ and locally-free $\scr{O}_M$-modules. Thus, by \ref{equiv_stacks}, the fibred category $U\mapsto \tsf{LF}_{\scr{O}_U}$ is also a stack.
+\end{ej}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{2-Vector Spaces and 2-Vector Bundles}
+\label{sec:algebra}
+
+
+We will now give an overview of the categorical analogues of vector spaces and vector bundles. There are several definitions of 2-vector space in the literature, due to Kapranov-Voevodsky \cite{kn:kv}, Baez-Crans \cite{baezcrans:2vector}, Elgueta \cite{elgueta:2vector}, etc. We will adopt the definition of 2-vector space given by Kapranov and Voevodsky; so, for us the word ``2-vector space'' will mean ``Kapranov-Voevodsky 2-vector space''.
+
+A complete and detailed exposition of all the following definitions is a rather lenghty task. In order to concisely introduce the concepts we need, we omit some tedious (but necessary) details. The main references for our treatment of 2-vector spaces/module categories are \cite{kn:kv}, \cite{yetter:_cla}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{2-Vector Spaces}
+
+We will assume that the reader is familiar with the notion of monoidal category, which will be central in the following discussions; for its definition and properties, the reader may consult \cite{maclane:_catwm}, \cite{kelly:_enriched}.
+\begin{defi}
+A \emph{rig category} is a category ${\bf R}$ with two symmetric monoidal structures $({\bf R},\oplus ,{\bf 0})$ and $({\bf R},\otimes ,{\bf 1})$ together with distributivity natural isomorphisms
+$$X\otimes (Y\oplus Z)\longrightarrow (X\otimes Y)\oplus (X\otimes Z)$$
+$$(X\oplus Y)\otimes Z\longrightarrow (X\otimes Z)\oplus (Y\otimes Z)$$
+verifying some coherence axioms which are detailed in \cite{laplaza:_coh1}, \cite{kelly:_coh2}.\footnote{In algebra, a \emph{rig} or \emph{semiring} is a ring $R$ for which not every element $x\in R$ has an additive inverse. We adopt this terminology in this categorical setting as this is usually the case, but the term \emph{ring category} is also used.}
+\end{defi}
+
+An important example, for it will be extensively used in what follows, is the category $\tsf{Vect}$ of finite dimensional vector spaces over $\comp$ (or any other field). The operations are given by direct sum (with ${\bf 0}=\{0\}$, the trivial vector space) and tensor product (with ${\bf 1}\cong \comp$). To justify our choice of terminology, note that if $V$ is a vector space of dimension $n\geqslant 1$, then $V$ cannot have an additive inverse (that is, there is no vector space $W$ such that $V\oplus W={\bf 0}$).
+
+\begin{notation}
+From now on, $\tsf{Vect}$ will denote the category of finite dimensional, complex vector spaces.
+\end{notation}
+
+\begin{defi}
+Let ${\bf R}$ be a rig category. A \emph{left module category} over
+${\bf R}$ is a monoidal category $({\bf M}, \oplus , {\bf 0})$ together
+with an action (bifunctor) 
+$$
+\otimes :{\bf R}\times {\bf M}\longrightarrow {\bf M}
+$$
+and natural isomorphisms
+$$
+\begin{aligned}
+  A\otimes (B\otimes X) &\longrightarrow (A\otimes B)\otimes
+  X \\
+  (A\oplus B)\otimes X &\longrightarrow (A\otimes X)\oplus
+  (B\otimes X) \\
+  A\otimes (X\oplus Y) &\longrightarrow (A\otimes X)\oplus
+  (A\otimes Y) \\
+\end{aligned}
+$$
+$$\tau_X = \tau :{\bf 1}\otimes X\longrightarrow X \qquad \rho_A=\rho
+:A\otimes {\bf 0}\longrightarrow {\bf 0} \qquad \lambda_X=\lambda :{\bf
+0}\otimes X\longrightarrow {\bf 0}$$ 
+for any given objects $A,B\in {\bf R}$ and $X,Y\in {\bf M}$, which are
+required to satisfy coherence conditions analogous to the ones for a
+rig category. \emph{Right module categories} are defined
+analogously.
+\end{defi}
+
+An ${\bf R}$-module functor between ${\bf R}$-modules ${\bf M}$ and ${\bf N}$ is a functor $F:{\bf M}\to {\bf N}$ such that $F(X\oplus Y)\cong F(X)\oplus F(Y)$ (natural in $X$ and $Y$) and $F(A\otimes X)\cong A\otimes F(X)$ (natural in $A$ and $X$).
+
+Given $n\in \natu$, consider now the product category $\tsf{Vect}^n$; its objects and maps are $n$-tuples of vector spaces and maps, respectively. The module structure is provided by the operations
+$$
+\begin{aligned}
+(V_1,\dots ,V_n)\oplus (W_1,\dots ,W_n) &= (V_1\oplus W_1,\dots ,V_n\oplus W_n), \\
+V\otimes (V_1,\dots ,V_n) &= (V\otimes V_1,\dots ,V\otimes V_n).\\
+\end{aligned}
+$$
+Any object $(V_1,\dots ,V_n)$ can be decomposed, just like vectors in euclidean $n$-space, in the following way
+$$(V_1,\dots ,V_n)=(V_1\otimes \comp_1)\oplus \cdots \oplus (V_n\otimes \comp_n),$$
+where $\comp_i$ is the vector which $i$-th entry is equal to $\comp$ and all others equal to the trivial vector space. Hence, any $\tsf{Vect}$-module functor can be determined on objects by its values in each $\comp_i$,
+\begin{equation}\label{module_functor}
+F(V_1,\dots ,V_n)\cong (V_1\otimes F(\comp_1))\oplus \cdots \oplus (V_n\otimes F(\comp_n)).
+\end{equation}
+
+We can define some more structure to this constructions by introducing maps between maps or 2-arrows. Given two ${\bf R}$-modules ${\bf M}$ and ${\bf N}$ and module functors $F,G:{\bf M}\to {\bf N}$, we define a 2-morphism $\theta :F\to G$ as a natural transformation. This provides the category of ${\bf R}$-modules with a structure of 2-category.
+
+\begin{defi}\label{2-vs-defi}
+  A $\tsf{Vect}$-module category ${\bf V}$ is called a \emph{2-vector
+    space} if it is $\tsf{Vect}$-module equivalent to the
+  product $\tsf{Vect}^n$ for some natural number $n$. In other words, ${\bf V}$ is a 2-vector space if there exists a natural number $n$ and a $\tsf{Vect}$-module functor ${\bf V}\to \tsf{Vect}^n$ which is also an equivalence of categories. 
+\end{defi}
+
+The proof of the following theorem can be found in \cite{kn:kv}.
+
+\begin{theorem}\label{prop-10}
+  If $F: \tsf{Vect}^n \rightarrow \tsf{Vect}^m$ is an equivalence,
+  then $n =m$.
+\end{theorem}
+
+By the previous result, the number $n$ in definition~\ref{2-vs-defi} is well defined and it is
+called the \emph{rank} of the 2-vector space ${\bf V}$.
+
+The 2-vector space $\tsf{Vect}^n$ will play, in this categorical
+setting, the role that complex $n$-space $\comp^n$ plays in linear algebra.
+We will denote by $2\tsf{Vect}$ the (2-)category of
+2-vector spaces of finite rank.
+
+Morphisms between 2-vector spaces can be characterized in a similar way as linear maps between vector spaces. To see this, consider first an $m\times n$ matrix
+$$A=\begin{pmatrix}
+V_{11} & \cdots & V_{1n} \\
+\vdots & \ddots & \vdots \\
+V_{m1} & \cdots & V_{mn} \\
+\end{pmatrix}.
+$$
+Then, for an object $V:=(V_1,\dots ,V_n) \in \tsf{Vect}^n$, the product
+$$AV=\left (\sum_jV_{1j}\otimes V_j,\dots ,\sum_jV_{mj}\otimes V_j\right )$$
+is a well defined object of the category $\tsf{Vect}^m$; given now a map $f:=(f_1,\dots ,f_n):V\to W$, where $W:=(W_1,\dots ,W_n)$, there exists an induced map $Af:AV\to AW$ given by
+$$Af=\left (\sum_j\opnm{id}_{1j}\otimes f_j,\dots ,\sum_j\opnm{id}_{mj}\otimes f_j\right ),$$
+where $\opnm{id}_{ij}:V_{ij}\to V_{ij}$ is the identity map. Moreover, the correspondence
+$$
+\begin{aligned}
+V &\mapsto AV \\
+f &\mapsto Af \\
+\end{aligned}
+$$
+is a $\tsf{Vect}$-module functor $\tsf{Vect}^n\to \tsf{Vect}^m$ and hence a morphism of 2-vector spaces. Composition of such morphisms is given by usual multiplication of matrices, and two matrices $A=(V_{ij})$ and $B=(W_{ij})$ of the same size are naturally isomorphic if and only if $V_{ij}$ is isomorphic to $W_{ij}$ for each $i,j$. 
+
+Note that equation \eqref{module_functor} readily implies that a morphism $F:\tsf{Vect}^n\to \tsf{Vect}^m$ is naturally isomorphic to the $m\times n$ matrix with columns given by $F(\comp_1),\dots ,F(\comp_n)$. For a morphism $F:{\bf V}\to {\bf W}$ between 2-vector spaces, if $u:{\bf V}\to \tsf{Vect}^n$ and $v:{\bf W}\to \tsf{Vect}^m$ are equivalences with inverses $\widetilde{u}$ and $\widetilde{v}$ respectively, then $vF\widetilde{u}$ is naturally isomorphic to a matrix $A$, and hence $F$ can be represented as $\widetilde{v}Au$ for some matrix $A$.
+
+Let now $A=(V_{ij})$ be an $n\times n$ matrix which is an equivalence $\tsf{Vect}^n\to \tsf{Vect}^n$, and let $B=(W_{ij})$ be an inverse. As the identity morphism of $\tsf{Vect}^n$ can be represented by the ``scalar'' matrix $\comp \opnm{Id}$, we have natural isomorphisms $AB\cong \comp \opnm{Id} \cong BA$. Taking dimensions, form the matrices $d(A):=(\dim V_{ij})$ and $d(B)=(\dim W_{ij})$. Then, as the dimension matrices has natural entries, necessarily $\det d(A)=\pm 1$. But not every matrix satisfying this property is in fact an equivalence, and this is the main problem behind the short supply of equivalences $\tsf{Vect}^n\to \tsf{Vect}^n$. For example, take $n=2$ and consider the morphisms given by the matrices
+$$A_k=
+\begin{pmatrix}
+\comp & \comp \\
+\comp^{k-1} & \comp^k \\
+\end{pmatrix}.
+$$
+Then $d(A_k)=\left (\begin{smallmatrix} 1 & 1 \\ k-1 & k \\ \end{smallmatrix} \right )$ and $\det d(A_k)=1$. But, no matter which $k\in \natu$ we choose, there is no inverse for $A_k$, and hence it is not an equivalence of 2-vector spaces. The example below explicitly shows the scarcity of equivalences for $n=2$.
+
+\begin{ej}
+Let $A=(V_{ij})$ be an autoequivalence of $\tsf{Vect}^2$ and $B=(W_{ij})$ and inverse. Let $a_{ij}:=\dim V_{ij}$, $b_{ij}:=\dim W_{ij}$ and then $d(A)=(a_{ij})$ and $d(B)=(b_{ij})$. From the natural isomorphisms $AB\cong \comp \opnm{Id}\cong BA$ we deduce that the following equations must hold
+\begin{equation}\label{eq_ej_2}
+a_{i1}b_{1j}+a_{i2}b_{2j}=\delta_{ij},
+\end{equation}
+for $i,j=1,2$. In particular, the matrix $d(B)$ is the inverse of the matrix $d(A)$; hence
+$$d(B)=\varepsilon \begin{pmatrix}
+a_{22} & -a_{12} \\
+-a_{21} & a_{11} \\
+\end{pmatrix},
+$$
+where $\varepsilon =\pm 1$ is the determinant of $d(A)$. If $\varepsilon =1$, then necessarily $a_{12}=a_{21}=0$; this fact together with equation \eqref{eq_ej_2} yields
+$$a_{ii}b_{ii}=1$$
+for $i=1,2$, and then $a_{11}=a_{22}=1$. For $\varepsilon =-1$ we obtain $a_{ii}=0$ for $i=1,2$ and $a_{12}=a_{21}=1$. Thus, the only equivalences $\tsf{Vect}^2\to \tsf{Vect}^2$ (up to isomorphism) have the form
+$$\begin{pmatrix}
+\comp & 0 \\
+0 & \comp \\
+\end{pmatrix}\quad , \quad
+\begin{pmatrix}
+0 & \comp \\
+\comp & 0 \\
+\end{pmatrix}.
+$$
+\end{ej}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{2-Vector Bundles}
+
+The notion of 2-vector bundle (of rank 1) was introduced by Brylinski in \cite{brylinski:_catvb} as a way of describing some cohomology classes associated to symplectic manifolds in terms of 2-vector spaces (as an alternative to gerbes). His definition resembles the definition of the sheaf of sections of a vector bundle. Another notion of 2-vector bundle was proposed by Baas, Dundas and Rognes ({\sc bdr}) in \cite{bdr:_2vb} searching for a geometric description of elliptic cohomology. Their definition, which resembles the definition of cocycles for a vector bundles, generalizes the one given by Brylinski.
+
+For our purposes, a generalization to higher ranks of Brylinski's definition is given and in the end of chapter \ref{local_description}, a connection with {\sc bdr} 2-vector bundles is stablished.
+
+We now briefly recall the definition of additive category. More details are given at section \ref{sheaf_boundary_conditions}.
+
+\begin{defi}
+A category ${\bf M}$ is called \emph{additive} if the following conditions hold:
+\begin{enumerate}
+\item given $X,Y\in {\bf M}$, $\opnm{Hom}_{\bf X}(X,Y)$ is an abelian group;
+\item the composition pairing $\opnm{Hom}_{\bf X}(X,Y)\times \opnm{Hom}_{\bf X}(Y,Z)\to \opnm{Hom}_{\bf X}(X,Z)$ is bilinear;
+\item There exists an object $0\in {\bf M}$ which is both initial and terminal (a \emph{zero} object) and
+\item there exists a product $(X_1,X_2)\mapsto X_1\oplus X_2$.\footnote{Recall that the object $X_1\oplus X_2$ is a \emph{product} of $X_1$ and $X_2$ in a category ${\bf M}$ if there exists (projections) $\pr_i:X_1\oplus X_2\to X_i$ ($i=1,2$) such that for each object $Y$ and arrows $f_1:Y\to X_1$ and $g:Y\to X_2$ there exists a unique map $f:Y\to X_1\oplus X_2$ and $\pr_if=f_i$ for each $i$. This product is unique, up to isomorphism.}
+\end{enumerate}
+\end{defi}
+
+We will say that the category ${\bf R}$ acts on the category ${\bf M}$ if there exists a functor ${\bf R}\times {\bf M}\longrightarrow {\bf M}$. If ${\bf R}\to{\bf B}\leftarrow {\bf M}$ are fibred categories or stacks over ${\bf B}$, then an action of ${\bf R}$ on ${\bf M}$ is a morphism of fibred categories ${\bf R}\times_{{\bf B}}{\bf M}\longrightarrow {\bf M}$. According to the extra structure enjoyed by ${\bf M}$, we will ask the action to preserve such structure. For instance, if the category ${\bf M}$ is additive, then we should have a natural distributivity isomorphism $A\cdot (X\oplus Y)\cong A\cdot X\oplus A\cdot Y$, plus other properties involving ${\bf 1}$ and ${\bf 0}$.
+
+The definition of 2-vector bundle given by Brylinski in \cite{brylinski:_catvb} reads as follows.
+
+\begin{defi}
+A fibred category ${\bf M}\to \tsf{Op}(M)$ is said to be a \emph{2-vector bundle of rank $1$ over $M$} if the following conditions hold:
+\begin{enumerate}
+\item For each open subset $U\subset M$, the fibre ${\bf M}(U)$ is an additive category.
+\item There exists an action $(E,X)\mapsto E\cdot X$ of the (fibred) category $[\tsf{Vect},M]$ on ${\bf M}$.
+\item Given any $x\in M$, there exists an open neighborhood $U\ni x$ and an object $X_U\in {\bf M}(U)$ (called a \emph{local generator}) such that the functor $\tsf{Vect}(U)\to {\bf M}(U)$ given by $E\mapsto E\cdot X_U$ is an equivalence of categories, where $\cdot$ denotes the action.
+\item ${\bf M}\to \tsf{Op}(M)$ is a stack.
+\end{enumerate}
+\end{defi}
+
+We now extend the definition to higher ranks. Instead of the (fibred) category of vector bundles, we make use of the (fibred) category of locally-free sheaves over $M$; see example \ref{fcex_9}.
+
+\begin{defi}\label{2bundle_n}
+A fibred category ${\bf M}\to \tsf{Op}(M)$ is said to be a \emph{2-vector bundle of rank $n$ over $M$} if the following conditions hold:
+\begin{enumerate}
+\item For each open subset $U\subset M$, the fibre ${\bf M}(U)$ is an additive category.
+\item There exists an action $(\scr{M},X)\mapsto \scr{M}\cdot X$ of the (fibred) category $\underline{\tsf{LF}}_{\scr{O}_M}$ of locally free $\scr{O}_M$-modules on ${\bf M}$ (for each $U$, $\underline{\tsf{LF}}_{\scr{O}_M}(U)$ is given by $\tsf{LF}_{\scr{O}_U}$).
+\item Given any $x\in M$, there exists an open neighborhood $U\ni x$ and objects $X_1,\dots X_n$ in ${\bf M}(U)$ (called \emph{local generators}) such that the functor $\tsf{LF}^n_{\scr{O}_U}\to {\bf M}(U)$ given by
+$$(\scr{M}_1,\dots ,\scr{M}_n)\longmapsto \scr{M}_1\cdot X_1\oplus \cdots \oplus \scr{M}_n\cdot X_n$$
+is an equivalence of categories.
+\item ${\bf M}\to \tsf{Op}(M)$ is a stack.
+\end{enumerate}
+\end{defi}
+
+\begin{obs}
+Note that the local equivalence of the previous definition preserves both the action and the additive structure; that is, if $\Phi$ is such an equivalence, $\scr{L}\in \tsf{LF}_{\scr{O}_U}$ and $\scr{M},\scr{N} \in \tsf{LF}^n_{\scr{O}_U}$, then
+$$\Phi \left ((\scr{L}\otimes \scr{M})\oplus \scr{N}\right )\cong \left (\scr{L}\otimes \Phi (\scr{M})\right )\oplus \Phi (\scr{N}).$$
+\end{obs}
+
+\begin{ej}
+Let $M=\{x\}$ be a one-point space. A 2-vector bundle of rank $n$ over $M$ is then an additive category ${\bf M}$ equivalent to the category $\tsf{LF}^n_{\scr{O}}$. As $\scr{O}(M)\cong \comp$, then ${\bf M}$ is equivalent to the n-fold product of the category of $\comp$-modules; that is, it is a 2-vector space (of rank $n$). 
+\end{ej}
+
+\begin{ej}
+We have a well defined action (the tensor product) of vector bundles on twisted bundles, obtained by considering vector bundles as twisted bundles with no twisting. Proposition \ref{equiv_tvb_vect} shows that if $\mathbb{L}$ is a $\lambda$-twisted vector bundle, then the assignment $E\mapsto E\otimes \mathbb{L}$ defines an equivalence of categories. Thus, $[\tsf{TVB}_{\lambda},M]$ is a 2-vector bundle of rank 1.
+\end{ej}
+
+The following result shall be useful later.
+
+\begin{proposition}
+Let $\Phi :\tsf{LF}^n_{\scr{O}_M}\to \tsf{LF}^m_{\scr{O}_M}$ be a functor which preserves the action and the additive structure. Then there exists an $m\times n$ matrix $A:=(\scr{M}_{ij})$ of $\scr{O}_M$-modules such that $\Phi$ is naturally isomorphic to multiplication by $A$.
+\end{proposition}
+
+The proof is completely analogous to the one for 2-vector spaces. Moreover, this kind of morphisms share with 2-vector spaces the same shortage of equivalences.
+
+Before introducing Baas-Dundas-Rognes ({\sc bdr}) 2-vector bundles, we need the following
+
+\begin{defi}
+An \emph{ordered open cover} of a topological space $M$ is a collection $\mathfrak{U}=\{U_\alpha \}_{\alpha \in A}$ of open subsets of $M$ indexed by a poset $A$ such that
+\begin{enumerate}
+\item $M=\bigcup_{\alpha \in A}U_\alpha$ and
+\item the partial ordering on $A$ restricts to a total ordering on each finite subset $\{\alpha_1,\dots ,\alpha_k\}$ such that the intersection $U_{\alpha_1\dots \alpha_k}$ is non-empty.
+\end{enumerate}
+\end{defi}
+
+In particular, note that this definition is fulfilled by manifolds, as they admit countable, locally-finite open covers (which can be turned into ordered covers with $A=\natu$); for more details on this topic, the reader is referred to \cite{lee:_ism}.
+
+\begin{defi}\label{bdr_2bundle}
+Let $A$ be a poset and $\mathfrak{U}=\{U_{\alpha }\}_{\alpha \in A}$ an ordered open cover of a topological space $M$. A \emph{Bass-Dundas-Rognes 2-vector bundle} (\emph{{\sc bdr} 2-vector bundle} for short) \emph{of rank} $n$ is an $n\times n$-matrix $E^{\alpha \beta}:=(E_{ij}^{\alpha \beta})$ of vector bundles over $U_\alpha \cap U_\beta =U_{\alpha \beta}$ (for each $\alpha < \beta$) subject to the following conditions:
+\begin{enumerate}
+\item $\det \left (\opnm{rk}E_{ij}^{\alpha \beta}\right )=\pm 1$.
+\item For $\alpha <\beta <\gamma$ in $A$ and $U_{\alpha \beta \gamma }\neq \emptyset$, we have isomorphisms
+$$\phi^{\alpha \beta \gamma}_{ik}:\bigoplus_jE_{ij}^{\alpha \beta}\otimes E_{jk}^{\beta \gamma}\stackrel{\cong}{\longrightarrow} E_{ik}^{\alpha \gamma}.$$
+As for morphisms of 2-vector spaces, this condition can also be expressed in matrix form $\phi^{\alpha \beta \gamma}:E^{\alpha \beta}E^{\beta \gamma }\cong E^{\alpha \gamma }$.
+\item For $\alpha <\beta <\gamma <\delta$ with $U_{\alpha \beta \gamma \delta}\neq \emptyset$, the following diagram
+of bundles over $U_{\alpha \beta \gamma \delta}$ should commute
+$$\xymatrix{
+E^{\alpha \beta}(E^{\beta \gamma }E^{\gamma \delta }) \ar[rr] \ar[d] & & (E^{\alpha \beta }E^{\beta \gamma })E^{\gamma \delta } \ar[d] \\
+E^{\alpha \beta }E^{\beta \delta } \ar[r] & E^{\alpha \delta } & E^{\alpha \gamma }E^{\gamma \delta }, \ar[l] }
+$$
+where the top arrow is the associativity isomorphism derived from the associativity of the tensor product of vector bundles and the other arrows are defined from the isomorphisms of the previous item.
+\end{enumerate}
+\end{defi}
+
+We shall not be concerned with a general description of the relationship between the two previous definitions. In chapter \ref{local_description} we shall obtain a 2-vector bundle in the sense of definition \ref{2bundle_n} and then, using this 2-bundle, construct a {\sc bdr} 2-vector bundle.
+
+
+\clearpage
+
+{\small
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resumen del Cap\'itulo \ref{bs}}
+
+En este primer cap\'itulo se introducen los objetos que representan la columna vertebral de esta tesis, que son los fibrados vectoriales y los haces por un lado, una versi\'on categorificada de estos \'ultimos (los \emph{stacks}) y los fibrados vectoriales torcidos (\emph{twisted vector bundles}). A continuaci\'on describimos en forma breve el contenido completo de este cap\'itulo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fibrados Vectoriales}
+
+Se da un tratamiento conciso pero lo suficientemente abarcativo sobre los fibrados vectoriales complejos de rango finito. A grandes rasgos, un fibrado vectorial sobre una variedad suave $M$ consiste de una variedad suave $E$ junto con una proyecci\'on $\pi :E\to M$ para el cual las fibras $E_x:=\pi^{-1}(\{x\})$ son $\comp$-espacios vectoriales de dimensi\'on finita y existe un cubrimiento abierto $\mathfrak{U_i}$ para el cual se verifica la condici\'on de trivialidad local: para cada $U_i\in \mathfrak{U}$ se tiene un difeomorfismo $h_i:E|_{U_i}\stackrel{\cong}{\longrightarrow}U_i\times \comp^n$tal que $\pr_1 h_i=\pi$, donde $E|_U:=\pi^{-1}(U)$.
+ Informaci\'on suficiente para describir a estos objetos se encuentra en los llamados cociclos, que forman una familia $\{g_{ij}\}$ de mapas $g_{ij}:U_{ij}\to \operatorname{GL}_n(\comp )$ que verifican
+\begin{enumerate}
+\item $g_{ii}=1$,
+\item $g_{ji}=g_{ij}^{-1}$ y
+\item $g_{ij}g_{jk}=g_{ik}$ sobre $U_{ijk}=U_i\cap U_j\cap U_k$.
+\end{enumerate}
+La ``informaci\'on suficiente'' a la que se hac\'ia referencia antes proviene de que a partir de un cubrimiento $\mathfrak{U}$ y una familia de cociclos definida en las intersecciones de los elementos de $\mathfrak{U}$ podemos definir un \'unico fibrado (salvo isomorfismo) que es isomorfo a un producto sobre los $U\in \mathfrak{U}$.
+
+A continuaci\'on se definen operaciones b\'asicas entre fibrados, describiendo el \emph{pullback} por una aplicaci\'on suave, la suma directa externa, la suma directa o suma de Whitney, el fibrado dual, el producto tensorial, el fibrado de homomorfismos (y la relacion entre estos \'ultimos), los n\'ucleos e im\'agenes de morfismos de fibrados, prestando especial atenci\'on a los correspondientes a morfismos idempotentes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Haces}
+
+El objetivo principal al introducir haces en este trabajo es mostrar (para una clase particular de estos) su \'intima relaci\'on con los fibrados.
+
+Se define primero la noci\'on de prehaz sobre un espacio $M$ a valores en una categor\'ia ${\bf X}$ como un funtor contravariante $\scr{P}:\tsf{Op}(M)\to {\bf X}$. Las propiedades que hacen de un prehaz un haz tienen que ver con el pasaje de lo local a lo global: mas precisamente, si se tiene definida una familia de secciones $\sigma_i\in \scr{P}(U_i)$ (donde $\mathfrak{U}=\{U_i\}$ es un cubrimiento abierto de un cierto $U\subset M$) tales que $\sigma_i=\sigma_j$ en las intersecciones no vac\'ias $U_{ij}$, entonces dichas secciones se pueden ``pegar'', en el sentido que existe una \'unica secci\'on $\sigma \in \scr{P}(U)$ tal que $\sigma |_{U_i}=\sigma_i$.
+
+Otra construcci\'on importante es la completaci\'on de un prehaz, es decir, dado un prehaz $\scr{P}$, la completaci\'on $\scr{P}^+$ es un haz con los mismos \emph{stalks} que el prehaz $\scr{P}$ (el \emph{stalk} de un prehaz sobre $x\in M$ viene dada por $\scr{P}_x=\underset{U\ni x}{\opnm{colim}}\scr{P}(U)$). Esta construcci\'on se basa principalmente en tomar las funciones $U\to \bigsqcup_{x\in U}\scr{P}_x$ que son continuas, donde $\bigsqcup$ indica uni\'on disjunta.
+
+El siguiente paso es estudiar los morfismos de prehaces y haces. Se da un tratamiento completo, llegando a distintas caracterizaciones para morfismos inyectivos, sobreyectivos y biyectivos.
+
+Asi como para los fibrados, para los haces tambi\'en se estudian importantes construcciones que permiten obtener haces (o prehaces en ciertos casos) de cierto(s) haz(haces) dado(s). Particular atenci\'on se le da las im\'agenes directa e inversa por una funci\'on continua y a las propiedades de adjunci\'on entre ellas.
+
+A continuaci\'on se definen los haces localmente libres, los cuales resultar\'an estar \'intimamente relacionados a los fibrados vectoriales. Dado un haz de anillos $\scr{O}$ sobre $M$, un $\scr{O}$-m\'odulo localmente libre es un haz $\scr{M}$ sobre $M$ tal que para cada abierto $U$ de $M$, $\scr{M}(U)$ es un $\scr{O}(U)$-m\'odulo y tal que cada $x\in M$ tiene una vecindad $U\ni x$ para la cual el haz $\scr{M}$ restringido al abierto $U$ es isomorfo a $\scr{O}^n(U):=\scr{O}(U)\times \cdots \times \scr{O}(U)$. Se estudian propiedades de dichos m\'odulos y se definen el m\'odulo dual, el m\'odulo de homomorfismos y el producto tensorial, adem\'as de la suma. Tambi\'en, fundamental para establecer la relaci\'on entre m\'odulos y fibrados, se introduce y se estudia la noci\'on de fibra sobre un punto $x\in M$.
+
+Los espacios anillados proveen el marco adecuado para definir dos construcciones de fundamental importancia, como son las im\'agenes directa e inversa en el contexto de los m\'odulos localmente libres, adem\'as de permitir dar una definici\'on general de espacio tangente sin tener que recurrir a la maquinaria del an\'alisis. Un espacio anillado es un par $(M,\scr{O})$ donde $M$ es un espacio topol\'ogico y $\scr{O}$ es un haz de anillos sobre $M$, llamado el haz de estructura. El ejemplo can\'onico a tener en mente es, por ejemplo, un espacio topol\'ogico $M$ y $\scr{O}$ es el haz de funciones continuas $\scr{O}(U)=C(U)=\{f:U\subset M \to \re \; | \; f \text{es continua}\}$. En este contexto, sea $f:(M,\scr{O}_M)\to (N,\scr{O}_N)$ una funci\'on continua entre espacios anillados y supongamos que tenemos un $\scr{O}_M$-m\'odulo localmente libre sobre $M$ y otro $\scr{N}$ sobre $N$. Entonces podemos definir la imagen inversa $f^*\scr{N}$, que resulta un $\scr{O}_M$-m\'odulo localmente libre sobre $M$ y la imagen directa $f_*\scr{M}$, que es un $\scr{O}_N$-m\'odulo localmente libre sobre $N$.
+
+Dado un fibrado $E\to M$, el haz de secciones de $E$ es un $\scr{O}$-m\'odulo localmente libre (donde $\scr{O}$ es el haz de funciones suaves sobre $M$) $\Gamma_E$ sobre $M$ definido como sigue: para $U\subset M$, $\Gamma_E(U)$ es el conjunto de funciones continuas $\sigma :U\to E$ tales que $\sigma (x)\in E_x$. Teniendo a nuestra disposici\'on la maquinaria de los haces, se demuestra luego la equivalencia entre fibrados vectoriales y m\'odulos localmente libres.
+
+\medskip
+{\bf Teorema.}
+{\it Dado un $\scr{O}$-m\'odulo localmente libre sobre $M$, existe un \'unico (salvo isomorfismo) fibrado vectorial $E\to M$ tal que los haces $\Gamma_E$ y $\scr{M}$ son isomorfos.}
+\medskip
+
+En t\'erminos functoriales, del resultado anterior se desprende que la correspondencia $E\mapsto \Gamma_E$ define una equivalencia entre la categor\'ia de fibrados vectoriales y la de $\scr{O}$-m\'odulos localmente libres.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\'Algebras de Azumaya}
+
+La definici\'on de \'algebra de Azumaya (en el contexto de los haces)
+fue introducida por A. Grothendieck. Considerando fibrados, decimos
+que $E\to M$ es un \'algebra de Azumaya si las fibras $E_x$ son
+$\comp$-\'algebra y para cada $x\in M$ se tiene una vecindad $U\ni x$
+para la cual se tiene una trivializaci\'on local
+$E|_U\cong U\times \opnm{M}_k(\comp )$ que preserva las estructuras de
+\'algebras. Esta clase de \'algebras est\'an \'intimamente
+relacionadas con los fibrados vectoriales torcidos (\emph{twisted
+  vector bundles}). Un fibrado torcido sobre $M$ es una upla
+$\mathbb{E}=(\mathfrak{U},U_i\times \comp^n,g_{ij},\lambda_{ij})$,
+donde $\mathfrak{U}=\{U_i\}$ es un cubrimiento abierto de $M$ y la
+familia $g_{ij}$ verifica $g_{ij}g_{jk}=\lambda_{ijk}g_{ik}$, donde
+$(\lambda_{ijk})$ es un 2-cociclo de $\check{\text{C}}$ech. En
+particular, cuando $\lambda_{ijk}=1$, el fibrado torcido es en
+realidad un fibrado usual.
+
+Asi como se hizo con los fibrados, definimos a continuaci\'on varios
+ejemplos de fibrados contruidos a partir de fibrados dados: el
+pullback, la suma (para fibrados con iguales 2-cociclos), el fibrado
+dual, el producto tensorial y el fibrado de homomorfismos.
+
+Definimos tambi\'en morfismos de fibrados torcidos e introducimos la
+categor\'ia $\tsf{TVB}(M)$ de fibrados torcidos sobre $M$,
+caracterizando a los isomorfismos en t\'erminos de cociclos. Esto
+permite mostrar que los 2-cociclos de dos fibrados isomorfos deben
+coincidir.
+
+Los siguientes p\'arrafos se encargan de estudiar las propiedades de
+las operaciones definidas anteriormente, como asociatividad y
+conmutatividad, entre otras, para pasar luego a describir las
+relaciones entre las categor\'ias de fibrados vectoriales y las de
+fibrados torcidos.
+
+La relaci\'on entre estos fibrados y las \'algebras de Azumaya se
+describe a continuaci\'on: dada un \'algebra de Azumaya $A$, existe un
+fibrado torcido $\mathbb{E}$ tal que $A\cong \opnm{END}(\mathbb{E})$,
+donde $\opnm{END}(\mathbb{E})$ denota el fibrado de homomorfismos
+$\mathbb{E}\to \mathbb{E}$ (que es un fibrado en el sentido usual). A
+continuaci\'on se demuestran varias propiedades que llevan a demostrar
+la equivalencia entre la categor\'ia de fibrados torcidos cuyos
+morfismos $\phi :\mathbb{E}\to \mathbb{F}$ se identifican con
+$\lambda \phi$, siendo $\lambda$ un 0-cociclo, y la categor\'ia de
+\'algebras de Azumaya cuyos morfismos son los isomorfismos.
+
+A partir de las propiedades de las operaciones entre fibrados
+torcidos, definimos una operaci\'on en el conjunto de clases de
+isomorfismo de fibrados de l\'inea torcidos a partir del producto
+tensorial y luego probamos que se obtiene un grupo
+$\opnm{Tor}\opnm{H}^3(M;\ent )$-graduado que contiene al grupo de
+Picard, y que llamamos el grupo de Picard torcido.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Categor\'ias Fibradas y 2-Fibrados}
+
+En esta \'ultima secci\'on del presente cap\'itulo se introduce la noci\'on de 2-fibrado vectorial de Baas-Dundas-Rognes ({\sc bdr}), que necesitan de varias construcciones previas.
+
+En primer lugar, la de categor\'ia fibrada, que es una categorificaci\'on de la noci\'on de prehaz: una categor\'ia fibrada sobre un espacio $M$ puede verse como una familia de categor\'ias $\{\scr{C}_U\}$ que admite pullbacks, donde $U$ recorre los abiertos de $M$. A grandes rasgos, esto significa que si $V\subset U$ es una inclusi\'on entre abiertos de $M$ y $\alpha \in \scr{C}_U$, entonces la restricci\'on $\alpha |_V\in \scr{C}_V$.\footnote{La definici\'on de categor\'ia fibrada es mucho mas general; en lugar de la categor\'ia de abiertos de un espacio $M$ se puede definir una categor\'ia fibrada en t\'erminos de un \emph{sitio de Grothendieck}. Nos restringimos al caso de los abiertos de $M$ dado que el tratamiento general resultar\'ia extenso e innecesario para este trabajo.} Se dedica considerable trabajo en dar las definiciones equivalentes de categor\'ia fibrada como sus propiedades b\'asicas y abundantes ejemplos. En particular, demostramos que la categor\'ia de fibrados torcidos goza de la propiedad de ser fibrada.
+
+A continuaci\'on se definen los \emph{stacks}, que son la versi\'on categorificada de los haces. De una manera an\'aloga a con los prehaces y los haces, una categor\'ia fibrada resulta un \emph{stack} cuando los datos locales que coinciden en las intersecciones se pueden pegar en un objeto global. Pero a diferencia de los haces, en este caso esta exigencia se aplica no solo a los objetos sino tambi\'en a los morfismos.
+
+Asi como para las categor\'ias fibradas, se describen numerosos ejemplos, continuando con los dados con las categor\'ias fibradas. En particular, tambi\'en probamos que la categor\'ia de fibrados torcidos cumple estas propiedades y resulta ser un \emph{stack}.
+
+Otra estructura importante y necesaria para construir los 2-fibrados son los 2-espacios vectoriales (de rango finito) que, como en los casos anteriores, resulta un tipo de categorificaci\'on de un espacio vectorial. La versi\'on que usamos es la definida por M. Kapranov y V. Voevodsky. El ejemplo t\'ipico y m\'as importante, en el sentido que todo 2-espacio vectorial es equivalente a el, es el del producto $\tsf{Vect}^n$ de la categor\'ia de espacios vectoriales complejos de dimensi\'on finita. Un 2-vector es un objeto de esta categor\'ia, o sea una $n$-upla de espacios vectoriales complejos de dimensi\'on finita $(V_1,\cdots ,V_n)$. La suma de elementos est\'a definida (asi como lo est\'a la suma en $\comp^n$) componente a componente, por medio de la suma directa: si $(V_i)$ y $(W_i)$ son dos $n$-uplas de espacios vectoriales, entonces $(V_i)\oplus (W_i):=(V_i\oplus W_i)$. Para el producto por un ``escalar'' (que en este caso es un espacio vectorial, de ah\'i que los 2-espacios vectoriales reciban tambi\'en el nombre de $\tsf{Vect}$-m\'odulos) se tiene $V\otimes (V_i):=(V\otimes V_i)$. Luego de las definiciones b\'asicas, se analizan varias propiedades de los 2-espacios vectoriales, llegando particularmente al hecho de que las equivalencias $\tsf{Vect}^n\to \tsf{Vect}^n$ que preservan las estructuras definidas son muy escasas. Sirva como ejemplo que para el caso $n=2$, las \'unicas equivalencias (salvo isomorfismo natural) vienen dadas por
+$$\begin{pmatrix}
+\comp & 0 \\
+0 & \comp \\
+\end{pmatrix}\quad , \quad
+\begin{pmatrix}
+0 & \comp \\
+\comp & 0 \\
+\end{pmatrix}.$$
+El motivo principal detr\'as de esto es la no existencia de espacios vectoriales de dimensi\'on negativa.
+
+La primer definici\'on de 2-fibrado vectorial (de rango 1) se debe a J.L Brylinski y fue dada con el objetivo de describir ciertas clases de cohomolog\'ia de variedades simpl\'ecticas. Un 2-fibrado vectorial se define como un \emph{stack} $\{\scr{C}_U\}$ de categor\'ias aditivas para el cual
+\begin{itemize}
+\item se tiene una acci\'on $\tsf{Vect}(U)\times \scr{C}_U\to \scr{C}_U$ de la categor\'ia de fibrados vectoriales de rango finito para cada $U$ y
+\item cada $x\in M$ tiene una vecindad $U\ni x$ para la cual existe un objeto $\alpha_U\in \scr{C}_U$ tal que la correspondencia $\tsf{Vect}(U)\to \scr{C}_U$ dada por $E\mapsto E\cdot \alpha_U$ (acci\'on) es una equivalencia.
+\end{itemize}
+Extendemos esta definici\'on a 2-fibrados de rango $n$ considerando la categor\'ia fibrada de $\scr{O}_M$-m\'odulos localmente libres sobre $M$; en este caso, para cada $x$ se tiene una vecindad $U\ni x$ y objetos $\alpha_1,\dots ,\alpha_n\in \scr{C}_U$ tales que la aplicaci\'on
+$$(\scr{M}_1,\dots ,\scr{M}_k)\longmapsto \scr{M}_1\cdot \alpha_1\oplus \cdots \oplus \scr{M}_k\cdot \alpha_n$$
+es una equivalencia $\tsf{LF}_{\scr{O}_U}^k\to \scr{C}_U$, siendo $\tsf{LF}_{\scr{O}_U}$ la categor\'ia de $\scr{O}_U$-m\'odulos localmente libres.
+
+El cap\'itulo finaliza con la definici\'on de 2-fibrado vectorial de {\sc bdr}. Las definiciones previas de 2-fibrado pueden considerarse como una versi\'on catego\'orica del haz de secciones de un fibrado. La correspondiente a {\sc bdr} considera cociclos en lugar de secciones: a grandes rasgos, un 2-fibrado de {\sc bdr} de rango $n$ sobre $M$ consiste de lo siguiente: un cubrimiento abierto $\mathfrak{U}=\{U_\alpha \}$ de $M$ y matrices $E^{\alpha \beta}:=(E^{\alpha \beta}_{ij})_{i,j=1,\dots ,n}$ de fibrados definidos sobre $U_{ij}$ tales que
+\begin{itemize}
+\item $\det \left (\opnm{rk}E^{\alpha \beta}_{ij}\right )=\pm 1$ y
+\item se tiene un isomorfismo $E^{\alpha \beta}E^{\beta \gamma}\cong E^{\alpha \gamma}$,
+\end{itemize}
+donde el producto de las matrices se hace de la manera usual, reemplazando la suma de entradas por la suma directa y el producto por el producto tensorial.
+
+}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End:
