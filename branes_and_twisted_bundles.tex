@@ -1,0 +1,497 @@
+
+\vspace{250pt}
+
+In this chapter we will focus on obtaining a relationship between branes and twisted vector bundles. This is accomplished by first constructing a particular class of functor from the category of $\scr{O}_S$-modules to the category of modules over the tangent sheaf of $M$ and then by noting that the $\scr{O}_S$-modules that we deal with are in fact Azumaya algebras. Though the following constructions are a little bit technical, the main results are based on the existence of a global section of the pullback sheaf $\pi^{-1}\scr{T}$ over the spectral cover of $M$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algebras over $M$}\label{algebras_over_m}
+
+Recall that if $U$ is a semisimple subset of $M$, we have a decomposition
+$$\mathscr{T}_M|_U\cong e_1\scr{T}_M|_U\oplus \cdots \oplus e_n\scr{T}_M|_U$$
+of the tangent sheaf into invertible free subsheaves $e_i\scr{T}_M|_U$, and $\{e_1\dots ,e_n\}$ is the (unique, up to reordering) local frame consisting of orthogonal, simple idempotents. Then, this decomposition applies also to the stalks $\scr{T}_{M,x}$ for each $x\in M$. Now, the spectral cover of $M$ is the (lagrangian) submanifold $S\subset T^*M$ consisting of the points $(x,\varphi )$ such that $\varphi :T_xM\rightarrow \comp$ is an algebra homomorphism. The local frame $\{e_1,\dots ,e_n\}$ also verifies $\sum_ie_i=1$; as $\varphi$ is an algebra homomorphism, then $\varphi (1)=1$ and $\varphi (e_i(x))$ is idempotent in $\comp$. These facts imply that there exists a unique local section $e^{\varphi}$ such that $\varphi (e^{\varphi}(x))=1$ and $\varphi (e_j(x))=0$ if $e_j\neq e^{\varphi}$. We can thus locally identify points in $S$ with the idempotent sections $e_1,\dots ,e_n$ in $\scr{T}_M$ (note that $\varphi$ also can be viewed as a local 1-form).
+
+\begin{notation}
+Given a sheaf $\scr{S}$, besides the symbol $\scr{S}(U)$ we will also use the notation $\Gamma (U;\scr{S})$ to denote sections of $\scr{S}$ over $U$. We will also use a tilde $\; \widetilde{} \; $ when referring to open subsets or sections of sheaves over the spectral cover of $M$. If $\scr{S}$ is a sheaf and $\sigma \in \Gamma (U;\scr{S})$ is a local section, then its value at a point $x\in U$ will be denoted by $\sigma_x$ when regarding it as a section of the \'etale space $\sigma :U\longrightarrow \bigsqcup_{x\in U}\scr{S}_x$.
+In addition, from now on we will supress the subscript and denote the tangent sheaf $\scr{T}_M$ just by $\scr{T}$. The subscripts are only used when restricting; that is, if $U\subset M$, we use the symbol $\scr{T}_U$ to denote the restriction $\scr{T}|_U$. For disjoints unions $\bigsqcup_iA_i$, an object $(i,x)\in A_i$ will also be denoted just by $x$ when the index is clear from the context.
+\end{notation}
+
+Let now $\mathscr{A}$ be an algebra over $M$, i.e. a sheaf of (non necessarily commutative) $\scr{O}_M$-algebras, and assume also that $\scr{A}$ is locally-free as an $\scr{O}_M$-module. Let
+$$\iota :\mathscr{T}_M\longrightarrow \mathscr{A}$$
+be a central morphism; this map provides $\scr{A}$ with a structure of $\mathscr{T}_M$-algebra.
+
+\begin{lemma}
+If $S$ is the spectral cover of $M$ with projection $\pi :S\rightarrow M$, the topological inverse image $\pi^{-1}\scr{T}$ is a sheaf of rings (and of $\pi^{-1}\scr{O}_M$-modules) and $\pi^{-1}\scr{A}$ is a $\pi^{-1}\scr{T}$-algebra by means of the central morphism $\pi^{-1}\iota :\pi^{-1}\mathscr{T}\longrightarrow \pi^{-1}\mathscr{A}$ which is given by
+$$\pi^{-1}\iota (\sigma )_{\varphi }=\iota_{\pi (y)}(\sigma (y)).$$
+\end{lemma}
+\begin{proof}
+Recall that, for a sheaf over $\scr{S}$ over $M$, $\pi^{-1}\scr{S}$ is the sheaf given by $\pi^{-1}\scr{S}(\widetilde{U})=\scr{S}(\pi (\widetilde{U}))$. From this definition, the statement of the lemma readily follows.
+\end{proof}
+
+In the following we shall consider the ringed space $(S,\scr{O}_S)$ and also $M$ with two different ringed structures: one given by $\scr{O}_M$ and the other by the sheaf of algebras $\scr{T}$. By proposition \ref{isom_1}, we have distinguished maps $u_1:\scr{O}_M\to \pi_*\scr{O}_S$ and $u_2:\scr{T}\to \pi_*\scr{O}_S$, which can be regarded as the inclusion $f\mapsto f1$ and the identity, respectively. This maps define two morphisms of ringed spaces $(\pi ,u_1):(S,\scr{O}_S)\to (M,\scr{O}_M)$ and $(\pi ,u_2):(S,\scr{O}_S)\to (M,\scr{T})$. By the adjunction between $\pi_*$ and $\pi^{-1}$ we have change-of-ring morphisms
+\begin{equation}\label{change_of_rings}
+\pi^{-1}\scr{O}_M\longrightarrow \scr{O}_S \quad \text{and} \quad \pi^{-1}\scr{T}\longrightarrow \scr{O}_S,
+\end{equation}
+and the inverse images
+$$
+\begin{aligned}
+\pi^*\scr{T} &= \scr{O}_S\otimes_{\pi^{-1}\scr{O}_M}\pi^{-1}\scr{T} \\
+\pi^*\scr{A}   &= \scr{O}_S\otimes_{\pi^{-1}\scr{T}}\pi^{-1}\scr{A} \\
+\end{aligned}
+$$
+are $\scr{O}_S$-algebras. By considering the morphism
+$$
+\xymatrix{
+\pi^*\scr{T} \ar[rr]^{1\otimes \pi^{-1}\iota} && \pi^*\scr{A} },$$
+the sheaf $\pi^*\scr{A}$ turns out to be a $\pi^*\scr{T}$-algebra. The actions that provide these algebra structures will be described explicitly after introducing some other tools that we need.
+
+\begin{lemma}
+Let $\scr{A}$ be a sheaf of commutative $\scr{R}$-algebras over $S$, where $\scr{R}$ is a sheaf of commutative rings. Then $\pi_*\scr{A}$ is a sheaf of $\pi_*\scr{R}$-algebras. 
+\end{lemma}
+\begin{proof}
+This follows immediately from properties of $\pi$ and the definition of the pushout $\pi_*$: as $\pi :S\to M$ is a covering map, we have that, for a sheaf $\widetilde{\scr{S}}$ over $S$ and $U$ an open subset of $M$,
+$$\pi_*\widetilde{\scr{S}}(U)=\widetilde{\scr{S}}(\pi^{-1}(U)).$$
+From this definition the lemma follows immediately.
+\end{proof}
+
+In what follows, we regard $S$ as being a submanifold of $T^*M$; i.e. points of $S$ are multiplicative linear maps $\varphi :T_xM\to \comp$, where $x=\pi (\varphi )$. We now define a global section $\sigma_0\in \Gamma (S;\pi^{-1}\scr{T})$ in the following way: we let $\sigma_0:S\to \bigsqcup_{\varphi \in S}\scr{T}_{\pi (\varphi )}$ be given by
+$$\sigma_0(\varphi ):=(\varphi ,e^{\varphi}_x),$$
+where $x=\pi (\varphi )$ and $e^{\varphi}_x$ is the germ at $x$ of the unique idempotent local section $e^{\varphi}:U\to TM$ which verifies $\varphi (e^{\varphi}(x))=1$. Note that $\sigma_0$ induces a section $1\otimes \sigma_0\in \Gamma (S;\pi^*\scr{T})$ and, moreover, $\sigma_0$ as well as $1\otimes \sigma_0$ are idempotent. Likewise, $\sigma_0$ also induces (global) idempotent sections on $\pi^{-1}\scr{A}$ and $\pi^*\scr{A}$ given by $\pi^{-1}\iota (\sigma_0)$ and $1\otimes \pi^{-1}\iota (\sigma_0)$, respectively. To be more explicit, we have
+$$
+\begin{aligned}
+1\otimes \sigma_0 \in \Gamma (S;\pi^*\scr{T}) \quad , \quad 1\otimes \sigma_0 &:S\longrightarrow \bigsqcup_{\varphi \in S}\scr{O}_{S,\varphi}\otimes_{\scr{O}_{M,\pi (\varphi )}}\scr{T}_{\pi (\varphi )}, \\
+\pi^{-1}\iota (\sigma_0) \in \Gamma(S;\pi^{-1}\scr{A}) \quad , \quad \pi^{-1}\iota (\sigma_0) &: S\longrightarrow \bigsqcup_{\varphi \in S}\scr{A}_{\pi (\varphi )}, \\
+1\otimes \pi^{-1}\iota (\sigma_0) \in \Gamma (S;\pi^*\scr{A}) \quad , \quad 1\otimes \pi^{-1}\iota (\sigma_0) &: S\longrightarrow \bigsqcup_{\varphi \in S}\scr{O}_{S,\varphi}\otimes_{\scr{T}_{\pi (\varphi )}}\scr{A}_{\pi (\varphi )}, \\
+\end{aligned}
+$$
+given by the following expressions:
+$$
+\begin{aligned}
+(1\otimes \sigma_0)_\varphi &= 1\otimes e^{\varphi}_x ,\\
+\pi^{-1}\iota (\sigma_0)_\varphi &= \iota_x(e^{\varphi}_x), \\
+(1\otimes \pi^{-1}\iota (\sigma_0))_\varphi &= 1\otimes \iota_x(e^{\varphi}_x), \\
+\end{aligned}
+$$
+where $x=\pi (\varphi )$.
+
+\begin{proposition}\label{subsheaf}
+Let $\mathscr{A}$ be an algebra over a space $M$ and let $e\in \mathscr{A}(M)$ be a global idempotent section. Then the assignment
+$$U\longmapsto e\scr{A}(U)=\{e\sigma \ | \ \sigma\in\scr{A}(U)\}$$
+is a sheaf of ideals.\footnote{Note that $e\scr{A}$ is also a ring with identity equal to $e$.}
+\end{proposition}
+\begin{proof}
+Let $\{U_i\}$ be an open cover of an open subset $U\subset M$; for each index $i$, let $\sigma_i\in e\scr{A}(U_i)$ such that $\sigma_i=\sigma_j$ over $U_{ij}$. Then we have:
+\begin{enumerate}
+\item for each $i$, there exists a section $\tau_i\in \mathscr{A}(U_i)$ such that $\sigma_i=e\tau_i$ and
+\item as $\mathscr{A}$ is a sheaf, there exists a unique section $\sigma \in \mathscr{A}(U)$ with $\sigma|_{U_i}=\sigma_i$ for each $i$.
+\end{enumerate}
+Consider now the section $e\sigma \in e\scr{A}(U)$. Then, over $U_i$ we have
+$$(e\sigma )|_{U_i}=e\sigma_i=e(e\tau_i)=e\tau_i=\sigma_i,$$
+and thus, by uniqueness, $\sigma =e\sigma \in \mathscr{A}(U)$.
+\end{proof}
+
+\begin{notation}
+The sheaves $(1\otimes \sigma_0)\pi^*\scr{T}_M$ and $(1\otimes \pi^{-1}\iota (\sigma_0))\pi^*\scr{A}$, will be denoted by $\scr{T}^*_0$ and $\scr{A}^*_0$ respectively. The notation $\epsilon^{\varphi}_x$ will be adopted for the germ $\iota_x(e^{\varphi}_x)$.
+\end{notation}
+
+By the previous result, the sheaves $\scr{T}^*_0$ and $\scr{A}^*_0$ are $\scr{O}_S$-algebras and their stalks are given by the expressions
+$$
+\begin{aligned}
+\scr{T}^*_{0,\varphi } &= \scr{O}_{S,\varphi }\otimes_{\scr{O}_{M,x}}e^{\varphi}_x\scr{T}_x, \\
+\scr{A}^*_{0,\varphi } &= \scr{O}_{S,\varphi }\otimes_{\scr{T}_x}\epsilon^{\varphi}_x\scr{A}_x, \\
+\end{aligned}
+$$
+where $x=\pi (\varphi )$.
+
+\begin{notation}
+From now on, we will supress the coefficient rings in the notation of the tensor product.
+\end{notation}
+
+\begin{proposition}\label{isom_2}
+There exists a canonical isomorphism of $\scr{O}_S$-algebras
+$$\scr{T}^*_0\stackrel{\cong}{\longrightarrow}\scr{O}_S.$$
+\end{proposition}
+\begin{proof}
+The correspondence $\scr{O}_S\to \scr{T}^*_0$ given by
+$$f\longmapsto f\otimes \sigma_0.$$
+provides the desired isomorphism.
+\end{proof}
+
+Combining \ref{isom_1} and \ref{isom_2} we have the following
+
+\begin{cor}
+There exists a canonical isomorphism of $\scr{O}_M$-algebras
+$$\pi_*\scr{T}^*_0\stackrel{\cong}{\longrightarrow}\scr{T}.$$
+\end{cor}
+
+As $\pi :S\to M$ is a covering map, proposition \ref{direct_covering} can be invoqued to describe the stalks of the pushout $\pi_*\scr{A}^*_0$; if $x\in M$, then
+$$\left (\pi_*\scr{A}^*_0\right )_x\cong \bigoplus_{\varphi \in \pi^{-1}(x)}\scr{O}_{S,\varphi}\otimes \epsilon^{\varphi}_x\scr{A}_x.$$
+
+Let now $U\subset M$ be an arbitrary open subset and let $\sigma \in \Gamma (U;\scr{A})$ be a section over $U$. Applying the inverse image functor $\pi^{-1}$ we obtain a section $\pi^{-1}\sigma \in \Gamma (\pi^{-1}(U);\pi^{-1}\scr{A})$ given by $(\pi^{-1}\sigma )_{\varphi}=\sigma_{\pi (\varphi )}$; that is, $\pi^{-1}\sigma$ repeats the values of $\sigma$ on the fibre. Finally, we obtain a section $\overline{\sigma}\in \Gamma (U;\pi_*\scr{A}^*_0)=\Gamma (\pi^{-1}(U);\scr{A}^*_0)$ by the formula
+\begin{equation}\label{final_isomorphism}
+\overline{\sigma}_x=\sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\sigma_x.
+\end{equation}
+
+Before studying the assignment $\sigma \mapsto \overline{\sigma}$ in more detail, we will explicitly describe the algebra structures in pushouts and pullbacks that we have encountered. This is fairly easy to do because $\pi$ is a covering map. Recall first that $\iota$ provides the $\scr{T}$-algebra structure on the algebra $\scr{A}$ by means of the action $X\cdot \sigma =\iota (X)\sigma$, and that $\scr{O}_S$ enjoys a structure of $\pi^{-1}\scr{O}_M$ as well as $\pi^{-1}\scr{T}$-module by \eqref{change_of_rings}.
+
+\begin{enumerate}
+
+\item Action on $\pi^{-1}\scr{A}$: this is provided by applying the functor $\pi^{-1}$ to $\iota$, and makes $\pi^{-1}\scr{A}$ a $\pi^{-1}\scr{T}$-module. As a section in $\Gamma (\widetilde{U};\pi^{-1}\scr{T})$ (respectively in $\Gamma (\widetilde{U};\pi^{-1}\scr{A})$) can be regarded as a vector field over the projection $\pi (\widetilde{U})$ (respectively as a section in $\Gamma (\pi (\widetilde{U});\scr{A})$), then this action is the same as the one given by $\iota$.
+
+\item Action on $\pi^*\scr{A}$: This is induced by the morphism $1\otimes \pi^{-1}\iota$. If $f,g:\widetilde{U}\to \comp$ are maps, $\widetilde{X}\in \Gamma (\widetilde{U};\pi^{-1}\scr{T})$ and $\widetilde{\sigma}\in \Gamma (\widetilde{U};\pi^{-1}\scr{A})$, then $(f\otimes \widetilde{X})\cdot (g\otimes \widetilde{\sigma})=fg\otimes \widetilde{X}\cdot \widetilde{\sigma}$ (the first term is just the product map and the action in the second is the one of the previous item). This makes $\pi^*\scr{A}$ a $\pi^*\scr{T}$-algebra.
+
+\item Action on $\scr{A}^*_0$: This action makes $\scr{A}^*_0$ also a $\pi^*\scr{T}$-algebra, and is defined in the same way as the action of the previous item, using also the centrality of the morphism $\iota$. Moreover, this action restricts to an action of $\scr{T}^*_0\cong \scr{O}_S$, which is the same as the one inherited by the one on $\pi^*\scr{A}$.
+
+\item Action on $\pi_*\scr{A}^*_0$: This is obtained by applying the functor $\pi_*$, and provides $\pi_*\scr{A}^*_0$ with a $\pi_*\scr{O}_S\cong \scr{T}$-algebra structure. Explicitly, let $X$ be a vector field over some open subset $U\subset M$, and assume that locally around a point $x\in U$ this vector field can be represented as $\sum_\varphi \lambda_\varphi e^{\varphi}$, and let $\sigma \in \Gamma (U;\pi_*\scr{A}^*_0)=\Gamma (\pi^{-1}(U);\scr{A}^*_0)$. If $x\in U$, then the germ $\sigma_x$ can be represented as $\sum_{\varphi \in \pi^{-1}(x)}f_{\varphi}\otimes \epsilon^{\varphi}_x\sigma_{\varphi ,x}$, where $\sigma_{\varphi}$ are sections of $\scr{A}$ over $U$. Then
+$$(X\cdot \sigma)_x=\sum_{\varphi \in \pi^{-1}(x)}f_\varphi\otimes \lambda_{\varphi ,x}\epsilon^{\varphi}_x\sigma_{\varphi ,x}.$$
+If $U$ is sufficiently small (so as to have a local basis of idempotents sections over it) and $\widetilde{\lambda} :\pi^{-1}(U)\to \comp$ is the map $\widetilde{\lambda}(\varphi ):=\lambda (\pi (\varphi ))$, then the right hand side of the previous equation can also be represented by $\sum_{\varphi \in \pi^{-1}(x)} f_\varphi \widetilde{\lambda}_\varphi \otimes \epsilon^{\varphi}_x\sigma_{\varphi ,x}$.
+
+\end{enumerate}
+
+\begin{lemma}\label{iota_decomposition}
+If $U\subset M$ is a semisimple neighborhood with basis $\{e_1,\dots ,e_n\}$, there exists an isomorphism
+$$\mathscr{A}|_U\cong \bigoplus_i\iota (e_i)\mathscr{A}|_U.$$
+\end{lemma}
+\begin{proof}
+Define $\phi :\scr{A}|_U\to \bigoplus_i\iota (e_i)\scr{A}|_U$ by
+$$\phi (\sigma )=\sum_i\iota (e_i)\sigma .$$
+Recalling that the stalk $\Bigl (\bigoplus_i\iota (e_i)\scr{A}|_U\Bigr )_x$ is given by $\bigoplus_{\varphi}\epsilon^{\varphi}_x\scr{A}_x$, the statement of the lemma follows.
+\end{proof}
+
+\begin{obs}
+Let us add a comment about (an abuse of) notation. In the next result we adopt the following representation: the local idempotents, say over some open subset $U$, shall be denoted by $e^\varphi$, where $\varphi$ is the local section of the dual bundle $T^*U$ that verifies $\varphi_x(e^\varphi (x))=1$ for each $x\in U$.
+\end{obs}
+
+\begin{theorem}\label{isom_3}
+The assignment $\sigma \mapsto \overline{\sigma}$ defines an isomorphism of $\scr{T}$-algebras
+$$\scr{A}\longrightarrow \pi_*\scr{A}^*_0.$$
+\end{theorem}
+\begin{proof}
+The equalities $\overline{1}=1$ and $\overline{\sigma +\tau}=\overline{\sigma}+\overline{\tau}$ are straightforward to verify. Let us now check that $\overline{\sigma \tau}=\overline{\sigma}\; \overline{\tau}$ holds. We have
+$$
+\begin{aligned}
+(\overline{\sigma \tau})_x &= \sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\sigma_x\tau_x \\
+                           &= \sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\sigma_x \epsilon^{\varphi}_x \tau_x \\
+                           &= \left (\sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\sigma_x\right )\left (\sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\tau_x\right )=\overline{\sigma}_x\overline{\tau}_x. \\
+\end{aligned}
+$$
+Let $X$ be a vector field on $M$ with local representation $X=\sum_{\varphi \in \pi^{-1}(x)}\lambda_\varphi e^{\varphi}$. We will now check that $\overline{X\cdot \sigma}=X\cdot \overline{\sigma}$, which is almost a tautology. The left hand side is
+$$
+\begin{aligned}
+(\overline{X\cdot \sigma})_x &= \sum_{\varphi \in \pi^{-1}(x)}1\otimes \lambda_{\varphi ,x}\epsilon^{\varphi}_x\sigma_x.\\
+                             &= \sum_{\varphi \in \pi^{-1}(x)}\widetilde{\lambda}_\varphi \otimes \epsilon^{\varphi}_x\sigma_x,\\
+\end{aligned}
+$$
+where $\widetilde{\lambda}$ is the map on $\pi^{-1}(U)$ defined by $\widetilde{\lambda}(\varphi )=\lambda (\pi (\varphi ))$. But the right hand side is precisely $(X\cdot \overline{\sigma})_x$.
+
+We will now prove that the assignment $\sigma \mapsto \overline{\sigma}$ is a sheaf isomorphism, so we will check that at the level of stalks, the maps $\scr{A}_x\to \left (\pi_*\scr{A}^*_0\right )_x$ are bijections.
+
+Let $\tau_x\in \left (\pi_*\scr{A}^*_0\right )_x$ be given by $\tau_x=\sum_{\varphi \in \pi^{-1}(x)}f_{\varphi}\otimes \epsilon^{\varphi}_x\sigma_{\varphi ,x}$. Assume also that $f_\varphi$ is the germ of a function, which, abusing, we denote again by $f_\varphi$, defined in a neighborhood $\widetilde{U}_\varphi$ of $\varphi$ such that $\pi |_{\widetilde{U}_\varphi}$ is a homeomorphism. If we define
+$$\sigma_x=\sum_{\varphi \in \pi^{-1}(x)}(f_\varphi\pi^{-1})_x\epsilon_{\varphi ,x}\sigma_{\varphi ,x}\in \scr{A}_x,$$
+then $\sigma_x\mapsto \tau_x$.
+
+Suppose now that $\overline{\sigma}_x=\sum_{\varphi \in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\sigma_x=0$. As all the modules (stalks) involved are free, this equality implies immediately that $\epsilon^{\varphi}_x\sigma_x=0$ for each $\varphi \in \pi^{-1}(x)$, and thus $\sigma_x=0$. This finishes the proof.
+\end{proof}
+
+Recall now that a functor $F:{\bf X}\to {\bf Y}$ is said to be \emph{essentially surjective} if for each object $Y\in {\bf Y}$ there exists an object $X\in {\bf X}$ such that $F(X)$ is isomorphic to $Y$. For a sheaf of rings $\scr{R}$, we let $\tsf{Alg}_{\scr{R}}$ denote the category of $\scr{R}$-algebras. The previous results can then be summarized in the following
+
+\begin{theorem}\label{esurjective}
+The functor $\pi_*:\tsf{Alg}_{\scr{O}_S}\to \tsf{Alg}_{\scr{T}}$ is essentially surjective.
+\end{theorem}
+
+%\begin{lemma}\label{extension_free}
+%Let $R, R'$ be commutative rings and $A$ a free $R$-module. Let $\phi :R'\to R$ be a %change-of-rings morphism. Then, $R'\otimes_RA$ is free over $R'$. Moreover, if $\{x_i\}$ is a basis for $A$, then $\{1\otimes x_i\}$ is a basis for $R'\otimes_RA$.
+%\end{lemma}
+%\begin{proof}
+%First, note that the map $\phi$, besides changing the base ring, also gives $R'$ the structure of an $R$-module, via $a\cdot b:=\phi (a)b$. Moreover, 
+%\end{proof}
+
+Let now $\scr{A}_0$ and $\scr{A}_1$ be $\scr{O}_M$-algebras just as $\scr{A}$ in the previous paragraphs and suppose that $\scr{M}$ is an $(\scr{A}_1,\scr{A}_2)$-bimodule; that is, we have linear actions
+$$\scr{A}_1\otimes \scr{M}\stackrel{\mu_0}{\longrightarrow}\scr{M}\stackrel{\mu_1}{\longleftarrow}\scr{M}\otimes \scr{A}_2,$$
+which can also be represented as morphisms $\scr{A}_1\stackrel{\mu_1}{\longrightarrow}\underline{\operatorname{End}}_{\scr{O}_M}(\scr{M})\stackrel{\mu_2}{\longleftarrow}\scr{A}_2$.
+Denote by $\iota_i:\scr{T}\to \scr{A}_i$ ($i=1,2$) the $\scr{T}$-algebra structure for $\scr{A}_i$. We will make two further assumptions:
+\begin{enumerate}
+\item The algebra structures are compatible in the sense that they verify the centrality condition $\iota_1(X)\sigma =\sigma \iota_2(X)$ for each vector field $X$ and each section $\sigma $ of $\scr{M}$.
+\item $\scr{M}$ is locally-free as an $\scr{O}_M$-module.
+\end{enumerate}
+
+By means of the maps
+$$\iota_1\otimes 1:\scr{T}\otimes \scr{M}\longrightarrow \scr{A}_1\otimes \scr{M}$$
+$$1\otimes \iota_2:\scr{M}\otimes \scr{T}\longrightarrow \scr{M}\otimes \scr{A}_2$$
+(the tensor product taken over $\scr{O}_M$), the module $\scr{M}$ inherits a structure of $(\scr{T},\scr{T})$-bimodule. But then, the centrality condition implies that both module structures are the same, and thus we can refer to $\scr{M}$ as just a $\scr{T}$-module.
+
+The following result will be useful. The proof of a more general statement can be found in \cite{kn:kscha} (Lemma 18.3.1. and Example 17.2.7.(i)).
+
+\begin{lemma}
+Let $\scr{R}$ be a sheaf of commutative rings and $\scr{M},\scr{N}$ two $\scr{R}$-modules over $N$. If $f :M\to N$ is a continuous map, then $f^{-1}(\scr{M}\otimes_{\scr{R}}\scr{N})\cong f^{-1}\scr{M}\otimes_{f^{-1}\scr{R}}f^{-1}\scr{N}$.
+\end{lemma}
+
+The previous result implies that the $\scr{T}$-action on $\scr{M}$ lifts to an action of $\pi^{-1}\scr{T}$ on $\pi^{-1}\scr{M}$, and makes it a $\pi^{-1}\scr{T}$-module. The isomorphism $\scr{T}\to \pi_*\scr{O}_S$ together with the adjuntion between $\pi^{-1}$ and $\pi_*$ let us now define the inverse image
+$$\pi^*\scr{M}=\scr{O}_S\otimes_{\pi^{-1}\scr{T}}\pi^{-1}\scr{M},$$
+which is an $\scr{O}_S$-module. The action of $\pi^{-1}\scr{T}$ on $\pi^{-1}\scr{M}$ induces an action of $\pi^*\scr{T}$ on $\pi^*\scr{M}$ in the following way: consider a section of $\pi^*\scr{T}$ over some open subset $\widetilde{U}\subset S$ of the form $f\otimes \widetilde{X}$, and let $g\otimes \sigma$ be a section of $\pi^*\scr{M}$ over the same open subset. Then define
+$$(f\otimes \widetilde{X})\cdot (g\otimes \sigma):=fg\otimes \widetilde{X}\sigma .$$
+This action provides $\pi^*\scr{M}$ with a structure of a $\pi^*\scr{T}$-module.
+
+\begin{obs}
+The centrality condition also implies that the module structures given by $\pi^{-1}\mu_1\iota_1$ and $\pi^{-1}\mu_2\iota_2$ on $\pi^{-1}\scr{M}$ coincide.\footnote{Note that in this assertion we are considering the maps $\mu_i$ as morphisms from $\scr{A}_i$ to the sheaf of endomorphisms of $\scr{M}$.}
+\end{obs}
+
+For simplicity, fix $i=2$ (the same applies to $i=1$ \emph{mutatis mutandis}) and denote by $\mu$ and $\iota$ the maps $\mu_2$ and $\iota_2$ respectively. Consider the section $\delta :=\pi^{-1}\iota (\sigma_0)\cdot 1$. We will first state the following result, which is a generalization of \ref{subsheaf}, and its proof is completely analogous.
+
+\begin{lemma}
+Let $\scr{M}$ be a sheaf of $\scr{R}$-modules over $M$, where $\scr{R}$ is a sheaf of commutative rings. Then, if $\sigma_0 \in \Gamma (M;\scr{R})$ is an idempotent section, the correspondence
+$$U\longmapsto \sigma_0 \scr{M}(U)=\{\sigma_0\tau \ | \tau \in \scr{M}(U)\}$$
+is a submodule of $\scr{M}$. 
+\end{lemma}
+
+The product $1\otimes \delta$ defines a section of the inverse image $\pi^*\scr{M}$ over $S$ and thus, by the previous result, we can define the $\pi^*\scr{T}$-submodule
+$$\scr{M}_0^*:=(1\otimes \delta )\pi^*\scr{M}.$$
+As $\scr{M}^*_0$ is also an $\scr{O}_S$-module, the direct image $\pi_*\scr{M}_0^*$ is a $\pi_*\scr{O}_S\cong \scr{T}$-module, and its stalk is given by
+$$(\pi_*\scr{M}_0^*)_x=\bigoplus_{\varphi \in \pi^{-1}(x)}\scr{O}_{S,\varphi }\otimes (\epsilon^{\varphi}_x\cdot 1)\scr{M}_x.$$
+
+\begin{proposition}	\label{isom_4}
+There exists an isomorphism of $\scr{T}$-modules
+$$\pi_*\scr{M}^*_0\cong \scr{M}.$$
+\end{proposition}
+\begin{proof}
+Given a section $\sigma \in \Gamma (U;\scr{M})$, define $\overline{\sigma}\in \Gamma (U;\pi_*\scr{M}^*_0)$ by
+$\overline{\sigma}(x)=\sum_{y\in \pi^{-1}(x)}1\otimes \epsilon^{\varphi}_x\cdot \sigma_x$. The proof now follows the same patterns as the proof of \ref{isom_3}.
+\end{proof}
+
+We can now conclude with
+
+\begin{theorem}
+The direct image functor
+$$\pi_*:\tsf{Mod}_{\scr{O}_S}\longrightarrow \tsf{Mod}_{\scr{T}}$$
+from $\scr{O}_S$-modules to $\scr{T}$-modules is essentially surjective.
+\end{theorem}
+
+\begin{obs}
+In the previous discussions, the sheaves $\scr{A},\scr{A}_1,\scr{A}_2$ plays the role of the sheaves $\Gamma_{aa}$ for $a\in \scr{B}(M)$. In the second part, the bimodule $\scr{M}$ represents $\Gamma_{ab}$ for $a,b\in \scr{B}(M)$. In what follows, we shall only be concerned with the algebras $\Gamma_{aa}$.
+\end{obs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Correspondence Between Branes and Twisted Vector Bundles}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SE NECESITA ESTO?
+%We can add some further detail to the correspondence given in theorem \ref{esurjective}. To this end, let us assume %that $\scr{R}$ is a $\scr{T}$-algebra. We know that there exists an $\scr{O}_S$-algebra $\widetilde{\scr{R}}$ which %direct image is isomorphic to $\scr{R}$. Keeping the notation of the previous section, this algebra can be explicitly %presented as $\widetilde{\scr{R}}=\scr{R}^*_0$.
+
+%\begin{theorem}
+%Let $\widetilde{\scr{S}}$ be an $\scr{O}_S$-algebra such that $\pi_*\widetilde{\scr{S}}\cong \scr{R}$ as %$\scr{T}$-algebras. Then we have an $\scr{O}_S$-algebra isomorphism $\widetilde{\scr{S}}\cong \scr{R}^*_0$.
+%\end{theorem}
+%\begin{proof}
+%Let us first fix an isomorphism $\eta :\pi_*\widetilde{\scr{S}}\cong \scr{R}$. Define a sheaf homomorphism %$\widetilde{\eta}:\widetilde{\scr{S}}\to \scr{R}^*_0$ in the following way: let $\widetilde{U}\subset S$ be an open %subset and $\sigma:\widetilde{U}\to \bigsqcup_{\varphi \in \widetilde{U}}\widetilde{\scr{S}}_\varphi$ a local section. %Then the section $\widetilde{\eta}(\sigma)$ over $\widetilde{U}$ is defined by
+%$$\widetilde{\eta}(\sigma)_\varphi =1\otimes \epsilon^{\varphi}_x\eta_x (\sigma_\varphi) \in %\scr{O}_{S,\varphi}\otimes \epsilon^{\varphi}_x\scr{R}_x,$$
+%where on the right hand side we are considering $\sigma_\varphi$ as an element of $\bigoplus_{\varphi \in %\pi^{-1}(x)}\widetilde{\scr{S}}_\varphi$.
+%\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Consider now a global label $a\in \scr{B}(M)$; we can then apply the machinery of the previous sections to the $\scr{T}$-algebra $\Gamma_{aa}$. Hence, by \ref{esurjective}, there exists an $\scr{O}_S$-algebra $\widetilde{\Gamma}_{aa}$ such that $\pi_* \widetilde{\Gamma}_{aa}\cong \Gamma_{aa}$.
+
+\begin{theorem}\label{azumaya_s}
+$\widetilde{\Gamma}_{aa}$ is an Azumaya algebra over $S$.
+\end{theorem}
+\begin{proof}
+Let $x\in M$ and let $U$ be a semisimple neighborhood of $x$, with $\pi^{-1}(U)=\bigsqcup_i\widetilde{U}_i$ If $a\in \scr{B}(M)$ is a global label, then we can apply \ref{theorem2} to the restriction $a|_U$. Let $\{e_1,\dots ,e_n\}$ be a frame of simple, orthogonal idempotent sections over $U$. Suppose now that $e_i$ is the section corresponding to the sheet $\widetilde{U}_i$. By constructions in the previous section, and also theorem \ref{theorem2} and remark \ref{remark_summands}, we can write
+$$
+\begin{aligned}
+\widetilde{\Gamma}_{aa}|_{\widetilde{U}_i} &= \iota_a(e_i)\Gamma_{aa}|_{\pi (\widetilde{U}_i)} \\
+																					 &\cong \iota_a(e_i)\Gamma_{aa}|_{U} \\
+																					 &\cong \opnm{M}_{d(a,i)}(\scr{O}_{U}). \\
+\end{aligned}
+$$
+\end{proof}
+
+Note that the dimension of the matrix algebras may vary at different sheets: if $\Gamma_{aa}$ is isomorphic over a semisimple $U$ to $\bigoplus_{i}\operatorname{M}_{d_i}(\scr{O}_M)$, then, if $\varphi \in \widetilde{U}$, $\pi (\varphi )=x\in U$ and $\widetilde{U}$ is a sufficiently small neighborhood around $\varphi$, we have that
+$$\widetilde{\Gamma}_{aa}|_{\widetilde{U}}\cong \operatorname{M}_{d_i}(\scr{O}_{\widetilde{U}}).$$
+If the cover $S$ is connected, then this dimension is constant. In this case, we then have a twisted vector bundle $\mathbb{E}_a$ over $S$ such that
+$$\operatorname{END}(\mathbb{E}_a)\cong \widetilde{\Gamma}_{aa}.$$
+From now on we shall assume that $S$ is connected.
+
+Take now two boundary conditions $a,b\in \scr{B}(M)$ such that $\Gamma_{aa}\cong \Gamma_{bb}$. On a semisimple open subset $U_i$ we can represent both labels in the form
+$$
+\begin{aligned}
+a|_{U_i}&=\bigoplus_k\scr{M}_k\otimes \xi_k, \\
+b|_{U_i}&=\bigoplus_k\scr{N}_k\otimes \xi_k, \\
+\end{aligned}
+$$
+where $\scr{M}_k,\scr{N}_k$ are locally free modules and $\xi_k$ are the objects of proposition \ref{invertibles}. Then, $\Gamma_{aa}|_{U_i}\cong \bigoplus_k\underline{\opnm{End}}_{\scr{O}_{U_i}}(\scr{M}_k)$ and $\Gamma_{bb}|_{U_i}\cong \bigoplus_k\underline{\opnm{End}}_{\scr{O}_{U_i}}(\scr{N}_k)$. By theorem \ref{azumaya_s} and the connectivity of $S$ we can write
+\begin{equation}\label{global_labels_local_rep}
+\begin{aligned}
+\Gamma_{aa}|_{U_i}&\cong \underline{\opnm{End}}^{\oplus n}_{\scr{O}_{U_i}}(\scr{M}^{(i)}), \\
+\Gamma_{bb}|_{U_i}&\cong \underline{\opnm{End}}^{\oplus n}_{\scr{O}_{U_i}}(\scr{N}^{(i)}). \\
+\end{aligned}
+\end{equation}
+for some locally free modules $\scr{M}^{(i)}$ and $\scr{N}^{(i)}$ over $U_i$. As $\Gamma_{aa}$ and $\Gamma_{bb}$ are isomorphic, we can assure the existence of invertible sheaves $\scr{L}_i$ such that $\scr{N}^{(i)}\cong \scr{L}_i\otimes \scr{M}^{(i)}$. By shrinking the open subset if necessary, we can regard these invertible sheaves as free.
+
+From equations \eqref{global_labels_local_rep} let us denote by $\widehat{\scr{M}}$ and $\widehat{\scr{N}}$ the locally free sheaves with local representation $\underline{\opnm{End}}_{\scr{O}_{U_i}}(\scr{M}^{(i)})$ and $\underline{\opnm{End}}_{\scr{O}_{U_i}}(\scr{N}^{(i)})$ respectively. Then
+\begin{itemize}
+\item $\widehat{\scr{M}}$ and $\widehat{\scr{N}}$ are Azumaya algebras. Hence, there exist twisted bundles $\mathbb{E}$ and $\mathbb{F}$ such that $\widehat{\scr{M}}\cong \Gamma_{\operatorname{END}(\mathbb{E})}$ and $\widehat{\scr{N}}\cong \Gamma_{\operatorname{END}(\mathbb{F})}$.
+\item As $\Gamma_{aa}$ and $\Gamma_{bb}$ are isomorphic, $\widehat{\scr{M}}$ and $\widehat{\scr{N}}$ are also isomorphic. In particular, $\operatorname{END}(\mathbb{E})$ and $\operatorname{END}(\mathbb{F})$ are isomorphic.
+\end{itemize}
+
+\begin{proposition}\label{tensor_l}
+Let $\mathbb{E}$ and $\mathbb{F}$ be two twisted bundles over a space $M$. Then the algebra bundles $\operatorname{END}(\mathbb{E})$ and $\operatorname{END}(\mathbb{F})$ are isomorphic if and only if there exists a twisted line bundle $\mathbb{L}$ such that $\mathbb{F}\cong \mathbb{E}\otimes \mathbb{L}$.
+\end{proposition}
+\begin{proof}
+We make use of \ref{isomorphic}. Let $\mathbb{E}, \mathbb{F}$ be given by
+$$
+\begin{aligned}
+\mathbb{E} &= (\mathfrak{U},U_i\times \comp^n,g_{ij},\lambda_{ijk}), \\
+\mathbb{F} &= (\mathfrak{U},U_i\times \comp^n,f_{ij},\mu_{ijk}). \\
+\end{aligned}
+$$
+For the ``if'' part, let $\mathbb{L}$ be given by $(\mathfrak{U},U_i\times \comp,\xi_{ij},\eta_{ijk})$, where $\xi_{ij}:U_{ij}\to \comp^\times$. Assume that $u_{ij}:U_{ij}\to \operatorname{GL}(\operatorname{M}_n(\comp ))$ are the cocycles for $\operatorname{END}(\mathbb{E}\otimes \mathbb{L})$; then,
+$$
+\begin{aligned}
+u_{ij}(x)(A) &= \xi_{ij}(x)g_{ij}(x)Ag_{ij}(x)^{-1}\xi_{ij}(x)^{-1} \\
+             &= g_{ij}(x)Ag_{ij}(x)^{-1}, \\
+\end{aligned}
+$$
+which are precisely the cocycles for $\operatorname{END}(\mathbb{E})$.
+
+For the ``only if'' part, assume that $\operatorname{END}(\mathbb{E})\cong \operatorname{END}(\mathbb{F})$ and let $\{\alpha_i:U_i\to \operatorname{GL}(\operatorname{M}_n(\comp ))\}$ be a family of maps as in \ref{isomorphic}. Then, for each $n\times n$ matrix $A$ we have
+$$f_{ij}(x)Af_{ij}(x)^{-1}=(\alpha_i(x)g_{ij}(x)\alpha_j(x)^{-1})A(\alpha_i(x)g_{ij}(x)\alpha_j(x)^{-1})^{-1}$$
+over $U_{ij}$. This equality implies that there exists a map $\xi_{ij}:U_{ij}\to \comp^\times$ such that
+\begin{equation}\label{e_times_l}
+f_{ij}(x)^{-1}\alpha_i(x)g_{ij}(x)\alpha_j(x)^{-1}=\xi_{ij}(x)1
+\end{equation}
+or, equivalently,
+$$f_{ij}(x)=\alpha_i(x)\xi_{ij}(x)^{-1}g_{ij}(x)\alpha_j(x)^{-1},$$
+where $\alpha_i(x)$ is regarded here as an invertible matrix (by the Skolem-Noether theorem).
+
+We now only need to show that $\{\xi_{ij}\}$ is a (twisted) cocycle. Multiplying equation \eqref{e_times_l} by the one corresponding to $\xi_{jk}$ and using the twistings for $\mathbb{E}$ and $\mathbb{F}$ (we omit any reference to $x\in U_{ijk}$ for simplicity) we obtain
+$$\alpha_i \lambda_{ijk}g_{ik}\alpha_k^{-1}=\xi_{ij}\xi_{jk}\mu_{ijk}f_{ik};$$
+rearranging the last equation we must have
+$$\xi_{ij}\xi_{jk}=\lambda_{ijk}\mu_{ijk}^{-1}\xi_{ik},$$
+as desired.
+\end{proof}
+
+Let now $\operatorname{B}(M)/\sim$ be the set of labels over $M$ subject to the identification
+$$a\sim b \Longleftrightarrow \Gamma_{aa}\cong \Gamma_{bb}$$
+and let $\operatorname{TVB}(S)$ be the set of twisted vector bundles over $S$. We can then define a map
+$$\Phi :\operatorname{B}(M)/\sim \longrightarrow \operatorname{TVB}(S)/_{\mathbb{E}\sim \mathbb{L}\otimes \mathbb{E}}$$
+by
+$\Phi (a)=\mathbb{E}_a$, where $\mathbb{L}$ is a twisted line bundle. The results obtained in the previous paragraphs let us conclude with the following characterization of branes in terms of twisted bundles.
+
+\begin{theorem}
+The map $\Phi$ is injective.
+\end{theorem}
+
+In other words, we can regard each label (up to equivalence) over $M$ as a twisted bundle (again, up to equivalence) over the spectral cover.
+
+Now, by theorem \ref{bij_tensor}, we have a bijection
+$$\Psi :\opnm{TVB}(S)/_{\mathbb{E}\sim \mathbb{L}\otimes \mathbb{E}}\stackrel{\cong}{\longrightarrow}\opnm{Vect}(S)/_{E\sim L\otimes E},$$
+and then every brane $a\in \opnm{B}(M)$ can in fact be taken as a vector bundle over $S$, up to tensoring with a line bundle.
+
+
+
+
+\clearpage
+
+{\small
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resumen del Cap\'itulo \ref{dbtvb}}
+
+En este cap\'itulo se describe la relaci\'on existente entre las fibraciones de Cardy (mas particularmente entre las branas globales $a\in \scr{B}(M)$) y los fibrados torcidos. Para eso, en primer lugar se demuestra que el funtor pushout de la categor\'ia de $\scr{O}_S$-m\'odulos en la catego\'ia de $\scr{T}_M$-m\'odulos es esencialmente sobreyectivo, donde $S$ es el recubrimiento espectral de $M$.\footnote{Un funtor $F:{\bf X}\to {\bf Y}$ se dice \emph{esencialmente sobreyectivo} si para cada $Y\in {\bf Y}$ existe un objeto $X\in {\bf X}$  tal que $F(X)$ es isomorfo a $Y$.} Esto permite deducir una relaci\'on entre los m\'odulos $\Gamma_{aa}$ y las \'algebras de Azumaya, lo que naturalmente conduce a los fibrados torcidos.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\'Algebras Sobre $M$}
+
+Trabajamos en general, para luego particularizar a los morfismos y \'algebras que nos interesan. Para eso, sea $\scr{A}$ un \'algebra sobre $M$, es decir un haz de $\scr{O}_M$-\'algebras no necesariamente conmutativas. Supongamos adem\'as que $\scr{A}$ es localmente libre como $\scr{O}_M$-m\'odulo y que $\iota :\scr{T}_M\to \scr{A}$ es un morfismo central (que en particular le da a $\scr{A}$ una estructura de $\scr{T}_M$-\'algebra).
+
+En lo que sigue consideramos al espacio anillado $(S,\scr{O}_S)$ y tambi\'en a $M$ con dos estructuras: una dada por $\scr{O}_M$ y otra dada por el haz tangente. Si $\pi :S\to M$ es la proyecci\'on, recordemos que el funtor $\pi^*$ (\emph{pullback}) manda $\scr{O}_M$-m\'odulos en $\scr{O}_S$-m\'odulos (considerando $(M,\scr{O}_M)$) y $\scr{T}_M$-m\'odulos en $\scr{O}_S$-m\'odulos (para el caso de $(M,\scr{T}_M)$). En particular:
+$$
+\begin{aligned}
+\pi^*\scr{T}_M &= \scr{O}_S\otimes_{\pi^{-1}\scr{O}_M}\pi^{-1}\scr{T}_M \\
+\pi^*\scr{A}   &= \scr{O}_S\otimes_{\pi^{-1}\scr{T}_M}\pi^{-1}\scr{A}, \\
+\end{aligned}
+$$
+y adem\'as resultan ser $\scr{O}_S$-\'algebras. Mas a\'un, considerando el morfismo
+$$1\otimes \pi^{-1}\iota :\pi^*\scr{T}_M\longrightarrow \pi^*\scr{A},$$
+el haz $\pi^*\scr{A}$ resulta ser una $\pi^*\scr{T}_M$-algebra.
+
+Consideramos a $S$ como una subvariedad del fibrado cotangente $T^*M$, de la siguiente manera: los puntos sobre $x\in M$ son aplicaciones lineales $\varphi:T_xM\to \comp$ para las cuales existe un \'unico \'indice $i$ tal que $\varphi (e_k)=\delta_{ik}$. Llamaremos $e^\varphi(x)$ al idempotente en $T_xM$ para el cual $\varphi (e^\varphi (x))=1$. Definimos una secci\'on global
+$$\sigma_0\in \pi^{-1}\scr{T}_M(S)$$
+por $\sigma_0(\varphi ):=(\varphi ,e^\varphi_x )$, donde $e^\varphi_x$ es el g\'ermen de la secci\'on $e^\varphi$ en $x$. A partir de esta secci\'on se obtienen otras, que definimos a continuaci\'on (por simplicidad, notamos $\scr{T}$ al haz tangente, sin hacer referencia a la variedad $M$):
+$$
+\begin{aligned}
+1\otimes \sigma_0 \in \Gamma (S;\pi^*\scr{T}) \quad , \quad 1\otimes \sigma_0 &:S\longrightarrow \bigsqcup_{\varphi \in S}\scr{O}_{S,\varphi}\otimes_{\scr{O}_{M,\pi (\varphi )}}\scr{T}_{\pi (\varphi )}, \\
+\pi^{-1}\iota (\sigma_0) \in \Gamma(S;\pi^{-1}\scr{A}) \quad , \quad \pi^{-1}\iota (\sigma_0) &: S\longrightarrow \bigsqcup_{\varphi \in S}\scr{A}_{\pi (\varphi )}, \\
+1\otimes \pi^{-1}\iota (\sigma_0) \in \Gamma (S;\pi^*\scr{A}) \quad , \quad 1\otimes \pi^{-1}\iota (\sigma_0) &: S\longrightarrow \bigsqcup_{\varphi \in S}\scr{O}_{S,\varphi}\otimes_{\scr{T}_{\pi (\varphi )}}\scr{A}_{\pi (\varphi )}, \\
+\end{aligned}
+$$
+los cuales est\'an dados por las siguientes expresiones:
+$$
+\begin{aligned}
+(1\otimes \sigma_0)_\varphi &= 1\otimes e^{\varphi}_x ,\\
+\pi^{-1}\iota (\sigma_0)_\varphi &= \iota_x(e^{\varphi}_x), \\
+(1\otimes \pi^{-1}\iota (\sigma_0))_\varphi &= 1\otimes \iota_x(e^{\varphi}_x), \\
+\end{aligned}
+$$
+donde $x=\pi (\varphi )$.
+
+Los haces $(1\otimes \sigma_0)\pi^*\scr{T}$ y $(1\otimes \pi^{-1}\iota(\sigma_0))\pi^*\scr{A}$ ser\'an notados $\scr{T}_0^*$ y $\scr{A}_0^*$ respectivamente. Para el g\'ermen $\iota_x(e_x^\varphi )$ usaremos la notaci\'on $\epsilon^\varphi_x$. A partir de ahora tambi\'en suprimimos los anillos de coeficientes de las notaciones que involucren productos tensoriales.
+
+A continuaci\'on, damos una serie de isomorfismos importantes:
+
+\begin{enumerate}
+\item $\scr{T}_0^*\cong \scr{O}_S$ como $\scr{O}_S$-algebras.
+\item $\pi_*\scr{T}_0^*\cong \scr{T}$ como $\scr{O}_M$-algebras
+\item $\scr{A}\cong \pi_*\scr{A}_0^*$ como $\scr{T}$-algebras.
+\end{enumerate}
+
+A partir del \'ultimo isomorfismo se deduce el siguiente
+\medskip
+
+{\bf Teorema.} {\it El funtor $\pi_*:\tsf{Alg}_{\scr{O}_S}\to \tsf{Alg}_{\scr{T}}$ es esencialmente sobreyectivo.}
+\medskip
+
+Un desarrollo an\'alogo lleva tambi\'en al siguiente resultado.
+\medskip
+
+{\bf Teorema.} {\it El funtor $\pi_*:\tsf{Mod}_{\scr{O}_S}\to \tsf{Mod}_{\scr{T}}$ es esencialmente sobreyectivo.}
+\medskip
+
+Es importante observar que el algebra $\scr{A}$ juega el papel de $\Gamma_{aa}$. El segundo resultado considera el caso de los bim\'odulos $\Gamma_{ab}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La Correspondencia Entre las Branas y los Fibrados Torcidos}
+
+Consideremos ahora un objeto global $a\in \scr{B}(M)$. Podemos entonces aplicar lo visto anteriormente a la $\scr{T}$-\'algebra $\Gamma_{aa}$ y deducir que existe una $\scr{O}_S$-\'algebra $\widetilde{\Gamma}_{aa}$ tal que $\pi_*\widetilde{\Gamma}_{aa}\cong \Gamma_{aa}$.
+\medskip
+
+{\bf Teorema.} {\it $\widetilde{\Gamma}_{aa}$ es un \'algebra de Azumaya sobre $S$.}
+\medskip
+
+La idea detr\'as de este resultado es simple: dado que el haz $\Gamma_{aa}$ es una suma de \'algebras de matrices, $\widetilde{\Gamma}_{aa}$ resulta un \'algebra de Azumaya ya que los sumandos se ``distribuyen'' en las hojas del recubrimiento $S$. Si adem\'as consideramos que $S$ es conexo, como vamos a suponer a partir de ahora, las dimensiones de los sumandos deben coincidir. Luego, sabemos que entonces debe existir un fibrado torcido $\mathbb{E}_a$ tal que
+$$\opnm{END}(\mathbb{E}_a)\cong \widetilde{\Gamma}_{aa}.$$
+En un caso como el anterior, diremos que $\mathbb{E}_a$ representa a la brana $a$.
+
+Supongamos ahora que $a,b$ son branas tales que $\Gamma_{aa}\cong \Gamma_{bb}$. Entonces, por la conectividad de $S$ y los teoremas anteriores tenemos que
+$$
+\begin{aligned}
+\Gamma_{aa}|_{U_i}&\cong \underline{\opnm{End}}^{\oplus n}_{\scr{O}_{U_i}}(\scr{M}^{(i)}), \\
+\Gamma_{bb}|_{U_i}&\cong \underline{\opnm{End}}^{\oplus n}_{\scr{O}_{U_i}}(\scr{N}^{(i)}). \\
+\end{aligned}
+$$
+para ciertos m\'odulos localmente libres $\scr{M}^{(i)},\scr{N}^{(i)}$. En particular, de esto se deduce que, si $\mathbb{E}$ y $\mathbb{F}$ son los fibrados torcidos que representan a las branas $a$ y $b$, entonces $\opnm{END}(\mathbb{E})$ y $\opnm{END}(\mathbb{F})$ son isomorfos. Mas a\'un, suponiendo que $\mathbb{E}$ y $\mathbb{F}$ son dos fibrados torcidos sobre $M$, entonces los fibrados de \'algebras $\opnm{END}(\mathbb{E})$ y $\opnm{END}(\mathbb{F})$ son isomorfossi y solo si existe un fibrado de l\'inea torcido $\mathbb{L}$ tal que $\mathbb{F}\cong \mathbb{E}\otimes \mathbb{L}$.
+
+Si ahora $\opnm{B}(M)/\sim$ es el conjunto de branas sobre $M$ sujetas a la identificaci\'on $a\sim b \longleftrightarrow \Gamma_{aa}\cong \Gamma_{bb}$ y $\opnm{TVB}(S)$ es el conjunto de fibrados torcidos sobre $S$, tenemos que el mapa
+$$\Phi :\operatorname{B}(M)/\sim \longrightarrow \operatorname{TVB}(S)/_{\mathbb{E}\sim \mathbb{L}\otimes \mathbb{E}}$$
+dado por $\Phi (a)=\mathbb{E}_a$ es una aplicaci\'on inyectiva. Es decir, toda brana (sujeta a la identificaci\'on de ser iguales si sus m\'odulos de morfismos son isomorfos) se puede interpretar como un fibrados torcido, salvo multiplicaci\'on por un fibrado de l\'inea, tambien torcido.
+
+
+
+
+
+
+
+
+}
