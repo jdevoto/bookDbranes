@@ -1,0 +1,1528 @@
+
+\vspace{250pt}
+
+The aim of this chapter is to introduce the notion of open-closed topological quantum field theory as well as a characterization for them due to G. Moore and G. Segal. These field theories generalize closed topological field theories by considering also open strings. We shall first introduce closed topological field theories and the study their relationship with Frobenius algebras, which provide an algebraic characterization of these field theories. In view of this, we also recall some basic notions about algebras and then provide a concise description of Frobenius algebras over commutative rings. Following this, we provide some basic introduction to closed topological field theories and then describe, after defining them in detail, the characterization of open-closed theories.
+
+We end this chapter introducing the notions of bundles of algebras (in particular, bundles of Frobenius algebras) and manifolds with multiplication and proving some basic results about them. As we will see, the information needed to define a closed topological field theory is encoded in a Frobenius algebra, and then manifolds for which their tangent bundle is a bundle of Frobenius algebras arises naturally when considering moduli spaces of such theories.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Frobenius Algebras and Topological Quantum Field Theories}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quantum Field Theories}
+\label{sec_frobalgtfts}
+
+Several reasons led mathematicians into a search for a precise formulation of a field theory in mathematical terms. The first such definition is due to G. Segal \cite{segal:_cft}, who axiomatized Conformal Field Theories. Then, inspired by this earlier work, Atiyah made a similar contribution for Topological Theories \cite{atiyah:_tqft}. We shall first introduce the general definition and then focus on the 2-dimensional case, in which Frobenius algebras have a pre-eminent role. We shall give only rough ideas, referring the reader to the appropriate literature for details.
+
+We first introduce a category which is essential for the definition of a Topological Field Theory ({\sc tft}). A thoroughly description of this category can be found in Kock's book \cite{kock:_frobenius}. Given a positive integer $D$, let $\tsf{Cob}(D)$ be the category whose objects are smooth, closed, oriented, $(D-1)$-dimensional manifolds; given two such manifolds $\Sigma_1,\Sigma_2$, a morphism $W:\Sigma_1\to \Sigma_2$ is given by an oriented cobordism (that is, the arrow $W$ is in fact a $D$-dimensional smooth, oriented manifold $W$ such that $\partial W=\Sigma_1 \sqcup \Sigma_2^-$; here, the minus superscript refers to the opposite orientation). There is another layer of structure, provided by maps between cobordisms; given two cobordisms $W,W':\Sigma_1\to \Sigma_2$, a morphism $f:W\to W'$ is a smooth map such that $f|_{\Sigma_i}$ is the identity for $i=1,2$.
+
+An important feature of the category $\tsf{Cob}(D)$ is that it comes equipped with a product, given by the dijoint union. The identity map $\Sigma \to \Sigma$ is given by the cylinder $W=\Sigma \times I$.
+
+\begin{defi}[\cite{atiyah:_tqft}, \cite{kock:_frobenius}]
+Let $R$ be the ring $\re$ or $\comp$.\footnote{Atiyah also considers the case $R=\ent$.} A \emph{Topological Quantum Field Theory} ({\sc tqft} or just {\sc tft} for short) in dimension $D$ over the ground ring $R$ is given by a functor
+$$Z:\tsf{Cob}(D)\longrightarrow \tsf{Vect}_R$$
+from the cobordism category $\tsf{Cob}(D)$ to the category of (finite-dimensional) $R$-vector spaces and linear maps, subject to the following conditions:
+\begin{enumerate}
+\item If $W\cong W':\Sigma_1\to \Sigma_2$ are isomorphic cobordisms, then $Z(W)=Z(W')$ (``diffeomorphism'' here means ``orientation-preserving diffeomorphism'');
+%\item 
+\item $Z$ is multiplicative; that is, $Z(\Sigma_1\sqcup \Sigma_2)=Z(\Sigma_1)\otimes_RZ(\Sigma_2)$. This also applies to cobordisms: if $W$ is the disjoint union of $W'$ and $W''$, then $Z(W)=Z(W')\otimes Z(W'')$ and
+\item $Z(\emptyset )=R$.
+\end{enumerate}
+\end{defi}
+
+\begin{obs}
+As $Z$ is a functor, note that the image of the cylinder $\Sigma \to \Sigma$ is the identity map $\text{id}:Z(\Sigma )\to Z(\Sigma )$.
+\end{obs}
+
+\begin{obs}
+The restriction to finite-dimensional vector spaces does not exclude other cases, as one can show that the vector space $Z(\Sigma )$ is finite-dimensional, no matter which manifold $\Sigma \in \tsf{Cob}(D)$ we choose; see \cite{kock:_frobenius}, proposition 1.2.28.
+\end{obs}
+
+From now on we will consider 2-dimensional {\sc tft}s; that is, we will work with $D=2$.
+
+The relationship between 2-dimensional {\sc tqft}s and Frobenius algebras has been well-known for experts, but a detailed proof of this interaction was not published until 1997 in Abrams' thesis \cite{abrams:_frobenius}. We shall now recall some basic general notions about algebras and later introduce Frobenius algebras, to end up with a description of the interaction between {\sc tft}s and this type of algebras.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Frobenius Algebras}\label{sfa}
+
+In the following paragraphs we shall be involved in giving a concise description of Frobenius algebras over commutative rings and over $\comp$ in particular. All algebras are assumed to be associative and artinian (for algebras over $\comp$, we also assume that $A$ is a finite-dimensional $\comp$-vector space). Recall that an \emph{artinian ring} is a ring which satisfies the descending chain condition (dcc). In this kind of rings, every prime ideal is also maximal; details of these facts can be found in \cite{kn:at-mc}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Algebras Over $\comp$}
+
+We shall begin with a discussion of some general properties of associative, finite dimensional $\comp$-algebras. We first consider the commutative case and then provide a brief discussion for noncommutative algebras.
+
+Let $A$ be an $n$-dimensional complex vector space. Given any linear operator $f:A\to A$, we have a decomposition of $A$ into generalized eigenvector subspaces
+$$A=\bigoplus_{i=1}^k\opnm{Ker} (f-\lambda_i)^{n_i},$$
+where $\lambda_1,\dots ,\lambda_k$ are the eigenvalues of $f$. These subspaces $V_i:=\opnm{Ker} (f-\lambda_i)^{n_i}$ are also invariant under $f$ and, moreover, the operator $f-\lambda_i$ is nilpotent on $V_i$.
+
+Let now $g:A\to A$ be an operator such that $gf=fg$, and consider the decomposition
+$$A=\bigoplus_{i=1}^r\opnm{Ker} (g-\mu_i)^{m_i}.$$
+Put $W_i:=\opnm{Ker} (g-\mu_i)^n$. We then have:
+\begin{enumerate}
+\item The subspaces $V_i$ are invariant under $g$: We need to check that, if $x\in V_i$, then so is $g(x)$. Assume that $x\in V_i$; then, as $g$ commutes with $f$, $g$ also commutes with $f-\lambda_i$ and thus with $(f-\lambda_i)^{n_i}$. We then have $(f-\lambda_i)^{n_i}(g(x))=g\left ((f-\lambda_i)^{n_i}(x)\right )=0$.
+\item For each $i$, there exists an index $j$ such that $V_i=W_j$ (the proof of this fact relies on the spectral theorem, and we omit it).
+\end{enumerate}
+
+We conclude that no matter which operator commuting with $f$ we choose, the decomposition
+\begin{equation}\label{gen_eigenspace}
+A=\bigoplus_{i=1}^kV_i,
+\end{equation}
+is the same, up to order.
+
+Assume now that our vector space $A$ is also an associative and commutative algebra with unit 1. In this case we have, for each $x\in A$, a multiplication operator $L_x:A\to A$, $L_x(y)=xy$. As $A$ is commutative, these operators commute with each other, and so the previous considerations apply. The algebra structure now lets us derive some other consequences.
+
+For $x\in A$, let us denote by $\lambda_{x,i}$ the $i$-th eigenvalue corresponding to $L_x$. According to the decomposition \eqref{gen_eigenspace} we can define a correspondence $\Lambda_i:A\to \comp$ which assigns to $x\in A$ the eigenvalue $\lambda_{x,i}$. We let $A^*$ be the dual space.
+
+\begin{lemma}
+$\Lambda_i\in A^*$ and is a morphism of algebras for each $i=1,\dots ,k$.
+\end{lemma}
+\begin{proof}
+Linearity is deduced from the equality $L_{\lambda x+\mu y}=\lambda L_x+\mu L_y$. Let now $z$ be an eigenvector for $L_{xy}$ with eigenvalue $\lambda_{xy}$, and assume that $z\in V_i$. Then, $z$ is also an eigenvector for $L_x$ and $L_y$, say corresponding to $\lambda_x$ and $\lambda_y$ respectively, and we can write
+$$\lambda_{xy}z=L_{xy}(z)=L_x(L_y(z))=\lambda_x\lambda_y z;$$
+hence, $\Lambda_i (xy)=\Lambda_i (x)\Lambda_i (y)$. As $L_1$ is the identity map, then we also have $\Lambda_i (1)=1$.
+\end{proof}
+
+By the direct sum decomposition \eqref{gen_eigenspace}, for each $i$ there exists a unique $e_i\in V_i$ such that
+\begin{equation}\label{unit_decomp}
+1=e_1+\cdots +e_k.
+\end{equation}
+We can thus write $e_i=e_1e_i+\cdots +e_i^2+\cdots +e_ke_i$. As the subspaces $V_j$ are invariant under every translation, we have that $L_{e_i}(e_j)=e_ie_j\in V_j$. As $V_i\cap V_j=\{0\}$, we have the following orthogonality relations
+$$e_ie_j=\delta_{ij}e_i.$$
+For $i=j$, the previous identity implies that each $e_i$ is idempotent.
+
+\begin{proposition}
+We have that $V_i=e_iA$ for each $i$; in particular, $V_i$ is an algebra with unit $e_i$.
+\end{proposition}
+\begin{proof}
+It is clear that $e_iA\subset V_i$. Let now $x\in V_i$. By \eqref{unit_decomp}, we can then write
+$$x=e_1x+\cdots +e_kx.$$
+As $e_j\in V_j$, then $L_x(e_j)\in V_j$ (by the previous argument), and thus $e_jx=0$ for $j\neq i$. Then, $x=e_ix\in e_iA$.
+\end{proof}
+
+By the previous facts, the eigenvalues of $L_{e_i}$ are 0 (with multiplicity $n-1$) and $1$, and eigenvectors corresponding to the eigenvalue 1 are objects of $e_iA$. In other words, $\Lambda_i(e_j)=\delta_{ij}$.
+
+If $\mathfrak{a}\subset A$ is an ideal, then it can be decomposed as a sum $\mathfrak{a}=\bigoplus_i\mathfrak{a}_i$, where $\mathfrak{a}_i$ is the ideal $\mathfrak{a}\cap e_iA$. In particular, the maximal ideals $\mathfrak{m}$ of $A$ are of the form
+$$\mathfrak{m}=e_1A\oplus \cdots \oplus e_{i-1}A\oplus \mathfrak{m}_i\oplus e_{i+1}A\oplus \cdots \oplus e_kA,$$
+where $\mathfrak{m}_i$ is a maximal ideal of $e_iA$.
+
+\begin{proposition}
+\begin{enumerate}
+\item For each $i$, $V_i=e_iA$ is a local algebra with maximal ideal given by $\mathfrak{m}_i:=e_iA\cap \opnm{Ker}\Lambda_i$.
+\item The algebra $A$ has exactly $n$ maximal ideals, given by $\opnm{Ker}\Lambda_i=\mathfrak{m}_i\oplus \bigoplus_{j\neq i}e_jA$, $i=1,\dots ,n$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+Note that, if $\varphi :A\to \comp$ is a morphism of algebras, then by the previous result there exists an index $i$ such that $\varphi =\Lambda_i$.
+
+An important particular case is obtained when all the endomorphisms $L_x$ are diagonalizable. In that case we say that the algebra is \emph{semisimple}.
+
+\begin{theorem}\label{sem_comm_alg}
+The following assertions are equivalent:
+\begin{enumerate}
+\item The algebra $A$ is semisimple (i.e. all the maps $L_x$ are diagonalizable).
+\item There exists a decomposition $A=\bigoplus_{i=1}^ne_iA$ where $e_iA\cong \comp$ are one-dimensional subspaces.
+\item There exists an element $x_0\in A$ such that $L_{x_0}$ has $n$ distinct eigenvalues.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$(1)\Rightarrow (2)$: The subspaces $e_iA$ are in this case eigenspaces (spanned by $e_i$) associated to eigevalues of the operators $L_x$, which are all diagonalizable.
+
+$(2)\Rightarrow (3)$: Let $x_0:=\lambda_1 e_1+\dots +\lambda_ne_n$, where $\lambda_i\neq \lambda_j$. The rest follows from the equality $e_ie_j=\delta_{ij}e_i$.
+
+$(3)\Rightarrow (1)$: As all the eigenvalues of $L_{x_0}$ are distinct, it is diagonalizable, and we have a decomposition $A=\bigoplus_{i=1}^n \opnm{Ker} (L_{x_0}-\lambda_i)$. But all these kernels are invariant under every operator $L_x$, and the result now follows.
+\end{proof}
+
+The second item above shows that $A$ is a sum of simple rings (rings without non-trivial (two-sided) ideals). This is a particular case of the Artin-Wedderburn theorem \ref{aw}. Another characterization of semisimple algebras can be given in terms of nilpotent elements.
+
+\begin{proposition}
+Let $A$ be an associative and commutative algebra of dimension $n$. Then $A$ is semisimple if and only if $A$ has no nilpotent elements.
+\end{proposition}
+\begin{proof}
+Assume $x\in A$ is nilpotent; i.e. $x^k=0$ for some positive integer $k$ and suppose that $x=\sum_i\alpha_ie_i$. As $e_ie_j=\delta_{ij}e_j$, we have that
+$$0=x^k=\alpha_1^ke_1+\cdots +\alpha_n^ke_n,$$
+which implies that $\alpha_i^k=0$ and thus $\alpha_i=0$ for all $i$.
+
+Assume now that $A$ has no nilpotent elements, and let $x_0\in A$. There exists a decomposition $A=\bigoplus_ie_iA$, where $e_iA=\opnm{Ker} (L_{x_0}-\lambda_i)^{n_i}$. We will check now that every element in $V_i$ is an eigenvector. So assume that $x\in V_i$. Then $(x_0-\lambda_i)^{n_i}x=0$, and thus $(x_0-\lambda_i)^{n_i}x^{n_i}=0$. As $A$ has no nilpotents, then $(x_0-\lambda_i)x=0$, which implies that $L_{x_0}(x)=\lambda_ix$, as desired.
+
+\end{proof}
+
+\begin{obs}
+Semisimplicity is also defined in terms of the Jacobson radical: $A$ is semisimple if and only if its Jacobson radical (the intersection of all maximal ideals of $A$) is trivial. In an artinian ring (like our $A$ for example), the Jacobson radical is equal to the nilradical of $A$, i.e. the set (ideal) consisting of all nilpotent elements. Thus, if $A$ has no nilpotent elements, then $A$ is semisimple. For more details, see \cite{lam:_ncrings}, \cite{lang:_algebra} and \cite{zar_samuel:_commalg}.
+\end{obs}
+
+In particular, note that the maximal ideals of $A$ are given by $\mathfrak{m}_i=\bigoplus_{j\neq i}\comp e_j$ for $i=1,\dots ,n$.
+
+\begin{obs}
+In this case the set $\{e_1,\dots ,e_n\}$ is a basis for $A$. Moreover, as the only eigenvalues for $L_{e_i}$ are 0 (with multiplicity equal to $n-1$) and 1 (corresponding to $e_iA$), the set $\{\Lambda_1,\dots ,\Lambda_n\}$ is the basis of $A^*$ dual to $\{e_1,\dots ,e_n\}$.
+\end{obs}
+
+Let now $R$ be a commutative ring with unit, and let $A$ be an $R$-algebra, which is not necessarily commutative. In the previous paragraphs, for $R=\comp$ and $A$ commutative, we have obtained a decomposition $A=\bigoplus_ie_iA$ of $A$ into a sum of one-dimensional subspaces. This is a particular case of a celebrated result, which holds for any semisimple $R$-algebras. Before its statement, lets us discuss the notion of semisimplicity for an arbitrary ring.
+
+\begin{defi}
+An $R$-algebra $A$ is called \emph{left semisimple} if all left $A$-modules are semisimple, i.e. they are direct sums of submodules which have no non-trivial submodules.
+\end{defi}
+
+The notion of \emph{right semisimplicity} is defined analogously, and turns out to be completely equivalent to the notion of left-semisimplicity (see \cite{lam:_ncrings} for details), and thus we can talk about semisimple $R$-algebras just as in the commutative case.
+
+The following is the key result of this section. 
+
+\begin{theorem}[Artin-Wedderburn]\label{aw}
+If $A$ is a semisimple $R$-algebra, then
+$$A\cong \operatorname{M}_{d_1}(D_1)\oplus \cdots \oplus \operatorname{M}_{d_k}(D_k),$$
+where $D_i,\dots ,D_k$ are division rings.
+\end{theorem}
+
+The case for a commutative algebra $A$ over $R=\comp$ is stated and proved in theorem \ref{sem_comm_alg} above.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Complex Frobenius Algebras}
+
+Frobenius algebras are algebras $A$ with a fixed isomorphism $A\cong A^*$. This kind of algebras were first considered by Frobenius when studying algebras $A$ such that its first and second regular representations $\rho_1:A\rightarrow \operatorname{End}_\comp (A)$ and $\rho_2:A\rightarrow \operatorname{End}_\comp (A^* )$ are isomorphic. These representations are given by the assignments $\rho_1(x)(y)=xy$ and $\rho_2(x)(\varphi )(y)=\varphi (xy)$, where $x,y\in A$ and $\varphi \in A^*$. An isomorphism between these representations is a linear bijection $f:A\to A^*$ such that $\rho_2(x)f=f\rho_1(x)$ for each $x\in A$. The existence of such an isomorphism $f$ is equivalent to the existence of a linear form $\theta: A\to \comp$ such that $f(x)(y)=\theta (xy)$.
+
+\begin{defi}\label{def_frob_alg}
+Let $A$ be a finite dimensional, associative $\comp$-algebra with unit. Assume that there exists a linear form $\theta :A\to \comp$ on $A$ such that the bilinear form $(x,y)\mapsto \theta (xy)$ is non-degenerate. Then the pair $(A,\theta )$ is called a \emph{Frobenius algebra}. The Frobenius structure is called \emph{symmetric} if $\theta (xy)=\theta (yx)$ for all $x,y\in A$.
+\end{defi}
+
+The previous definition implies that every commutative Frobenius algebra is symmetric.
+
+\begin{obs}
+From now on, we will only consider \emph{symmetric Frobenius algebras}.
+\end{obs}
+
+Instead of using a linear form $\theta$, we can equivalently define a Frobenius algebra as an algebra $A$ together with a bilinear form $g:A\otimes A\rightarrow \comp $ such that $g$ is non-degenerate and \emph{multiplication invariant}
+$$g(xy,z)=g(x,yz)$$
+for all $x,y,z \in A$. In fact, given $(A,\theta )$, we can define such a bilinear form by setting
+$$g(x,y):=\theta (xy).$$
+And conversely, given $g$, we have the linear form $\theta (x) :=g(x,1)$. The symmetric structure is reflected in $g$ by the equation $g(x,y)=g(y,x)$.
+
+\begin{obs}
+Note that multiplication invariance is necessary for having a well defined link between $g$ and $\theta$.
+\end{obs}
+
+Another (equivalent) way of defining a Frobenius structure is by means of a trilinear form $c:A^{\otimes 3}\rightarrow A$ such that, as for $g$, is non-degenerate and multiplication invariant. In this case, having $\theta$, we define $c$ as $c(x,y,z):=\theta (xyz)$ and conversely, $\theta (x)=c(x,1,1)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Commutative Frobenius Algebras over $\comp$}
+
+The following is a list of equivalent ways of defining a Frobenius structure on a commutative $\comp$-algebra $A$.
+
+\begin{proposition}\label{equiv_conditions_frob}
+For an associative, commmutative $\comp$-algebra $A$ with unit and equipped with a linear form $\theta :A\to \comp$, the following conditions are equivalent:
+\begin{enumerate}
+\item $(A,\theta )$ is a Frobenius algebra.
+\item The subspace $\opnm{Ker} \theta$ contains no non-trivial ideals.
+\item There is a symmetric, non-degenerate bilinear form $g:A\otimes A\rightarrow \comp$ defined on $A$, which is multiplication invariant.
+\item There is a symmetric, non-degenerate and multiplication invariant 3-tensor $c:A^{\otimes 3}\rightarrow \comp$.
+\item There is a canonical isomorphism $A\cong A^*$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+$(1)\Rightarrow (2)$: Assume that $\mathfrak{a}\subset \opnm{Ker} \theta$ is an ideal; if $x\in \mathfrak{a}$, then $\theta (xy)=0$ for each $y\in A$, and thus $x=0$.
+
+$(2)\Rightarrow (3)$: Given $\theta$, define $g(x,y)=\theta (xy)$.
+
+$(3)\Rightarrow (4)$: Given $g$, define $c(x,y,z)=g(xy,z)$.
+
+$(4)\Rightarrow (5)$: Given $c$, we have a non-degenerate form $\theta :A\to \comp$ given by $\theta (x)=c(x,1,1)$. This form provides an isomorphism $\overline{\theta}:A\cong A^*$ given by $\overline{\theta}(x)(y)=\theta (xy)$.
+
+$(5)\Rightarrow (1)$: Let $\Phi :A\to A^*$ be an isomorphism. Define $\theta :A\to \comp$ by $\theta =\Phi (1)$.
+\end{proof}
+
+\begin{obs}
+If we denote by $S^iA^*$ the space of symmetric tensors, then the symmetry condition for $g$ and $c$ is expressed as $g\in S^2A^*$ and $c\in S^3A^*$. Recall that, given $\varphi ,\psi \in A^*$, then the symmetric product $\varphi \psi$ is given by
+$$\varphi \psi =\frac{1}{2}(\varphi \otimes \psi + \psi \otimes \varphi ).$$
+In particular, for $\varphi=\psi$, we have that $\varphi \psi =\varphi \otimes \psi$ (recall that $\varphi \otimes \psi :A\otimes A\to \comp$ is given by $(x,y)\mapsto \varphi (x)\psi (y)$).
+\end{obs}
+
+Assume now that $A=\bigoplus_i\comp e_i$ is a semisimple Frobenius $\comp$-algebra with linear form $\theta :A\to \comp$. Then note that, for each $i$, we have $\theta (e_i)\neq 0$; indeed, as $e_ie_j=\delta_{ij}e_i$, if $\theta (e_i)=0$ then $\overline{\theta}(e_i)=0$, contradicting the fact that $(x,y)\mapsto \theta (xy)$ is non-degenerate.
+
+The proof of the following result is a straightforward computation.
+
+\begin{lemma}
+Let $A=\bigoplus_i \comp e_i$ be a semisimple Frobenius algebra with linear form $\theta$. Then, if $\{e^1,\dots ,e^n\}\subset A^*$ is the dual basis for $\{e_1,\dots ,e_n\}$, then
+$$\theta =\sum_i\lambda_ie^i \quad , \quad g=\sum_i\lambda_i(e^i)^2 \quad {\rm and} \quad c=\sum_i\lambda_i(e^i)^3,$$
+where $\lambda_i =\theta (e_i)$.
+\end{lemma}
+\begin{proof}
+Compute the right hand side of the previous equalities, using the duality between $\{e_i\}$ and $\{e^i\}$ and the definition of symmetric product.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Noncommutative Case}
+
+Definition \ref{def_frob_alg} and its consequences can be applied to an associative, unital but not neccesarily commutative $\comp$-algebra with some changes. Note that if $A$ is a noncommutative algebra, the symmetry of $\theta$ could no longer be available (this property is always present in the commutative case). Instead of giving a detailed description of the noncommutative case, we focus on the main relevant results.
+
+The analogue of proposition \ref{equiv_conditions_frob} is the following
+
+\begin{proposition}
+For an associative $\comp$-algebra $A$ with unit and linear form $\theta :A\to \comp$, the following conditions are equivalent:
+\begin{enumerate}
+\item $(A,\theta )$ is a Frobenius algebra.
+\item The subspace $\opnm{Ker} \theta$ contains non non-trivial left or right ideals.
+\item There is a non-degenerate bilinear form $g:A\otimes A\rightarrow \comp$ defined on $A$, which is multiplication invariant.
+\item There is a canonical isomorphism of left $A$-modules $A\cong A^*$.
+\item There is a canonical isomorphism of right $A$-modules $A\cong A^*$.
+\end{enumerate}
+\end{proposition}
+
+\begin{obs}
+As in this case $A$ may be noncommutative, there are some subtleties to take care about; for example, for a bilinear map $g:A\otimes A\to \comp$ there is a notion of nondegeneracy in the first coordinate and another one in the second. But, at the end, any one of these ``left'' and ``right'' notions lead to the same concepts. In the next sections, we deal with some of these concepts in the case of an arbitrary (commutative) coefficient ring. For algebras over fields these issues are exposed with detail in \cite{kock:_frobenius}.
+\end{obs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Frobenius Algebras Over Commutative Rings}
+
+The definition of Frobenius algebra generalizes to include algebras over arbitrary commutative rings. In what follows, $R$ denotes a commutative ring with unit. Recall also that the algebra structure is provided by a ring homomorphism $\iota :R\to A$, and this map makes $A$ both a left and right $R$-module defining $ax$ as $\iota (a)x$ and $xa$ as $x\iota (a)$, respectively. We will consider the case for $A$ not necessarily commutative from the beginning, as the commutative case may be deduced easily from this general case.
+
+\begin{defi}
+Let $A$ be a non-necessarily commutative $R$-algebra which verifies the following properties:
+\begin{enumerate}
+\item $A$ is projective and finitely generated as an $R$-module.
+\item There exists an isomorphism of left $R$-modules $\Theta :A\to A^*$.
+\end{enumerate}
+Then the pair $(A,\Theta )$ is called a \emph{Frobenius algebra (over $R$)}.
+\end{defi}
+
+Note first that, unlike the case for $R=\comp$, we stated the definition in terms of the isomorphism between $A$ and its dual. This is just for simplicity; for if we have an $R$-linear map $\theta :A\to R$, then the condition of $(x,y)\mapsto \theta (xy)$ being non-degenerate only assures that the induced map $\overline{\theta}:A\to A^*$ is injective, and so we have to add another condition for surjectivity.
+
+By considering $\theta:=\Theta (1):A\to R$ we obtain a linear map such that $\overline{\theta}=\Theta$. As we stated in the previous paragraph, we could have started with $\theta$, asking the following two conditions:
+\begin{enumerate}[a.]
+\item $\theta$ is non-degenerate (which assures the injectivity of $\Theta$); in other words, if $\Theta (x)(y)=0$ for each $x\in A$, then $y=0$.
+\item the induced map $\overline{\theta}$ is surjective (we have to explicitly ask for this condition): that is, given a linear form $\varphi :A\to R$, then there exists a point $x\in A$ such that $\overline{\theta}(x)(y)=\varphi (y)$ for all $y\in A$.
+\end{enumerate}
+
+Having an isomorphism $\Theta$ of left $R$-modules induces a right $R$-module isomorphism $\Theta':A\to A^*$,
+$$\Theta'(x)(y)=\Theta (y)(x)$$
+and conversely. Thus, the definition of Frobenius algebra can be stated replacing the left isomorphism $\Theta$ with $\Theta'$. In case of using $\Theta'$, the condition of non-degeneracy is the same as the one given above, replacing $\Theta$ with $\Theta '$. But in terms of $\Theta$, we have that $\theta'$ is non-degenerate if and only if the condition $\Theta (x)(y)=0$ for each $y$ implies that $x=0$. Likewise, the condition for surjectivity states that given a linear form $\varphi :A\to R$, then there exists a point $x\in A$ such that $\Theta '(x)(y)=\Theta (y)(x)=\varphi (x)$ for all $y\in A$.
+
+The Frobenius algebra $(A,\Theta)$ is said to be \emph{symmetric} if $\Theta (x)(y)=\Theta '(x)(y)$. Recall that all Frobenius algebras that we will encounter are symmetric.
+
+\begin{obs}
+The condition on $A$ to be a projective $R$-module is a useful generalization \cite{eilen_naka:_dim_II}. However, in the cases that we consider, the coefficient ring is always a local ring, and thus the notions of projective module and free-module are the same.
+\end{obs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Another Characterization for Semisimple Frobenius Algebras}
+
+There is a more geometric approach to commutative, semisimple Frobenius $\comp$-algebras. This characterization is used in \cite{moore_segal1}; we first recall some basic definitions.
+
+Let $X=\text{Spec}\, A$ be the prime spectrum of the algebra $A$, i.e. the set of prime ideals $\mathfrak{p}\subset A$ ($A$ itself is \emph{not} considered). If $\mathfrak{a}$ is any ideal in $A$, let $V(\mathfrak{a})$ be the set of prime ideals in $A$ which contain $\mathfrak{a}$. Define a topology on $X$ by declaring the sets of the form $V(\mathfrak{a})$ to be closed. This is the Zariski topology, and induces on $X=\text{Spec}\, A$ a structure of a quasi-compact topological space.\footnote{A space is said to be \emph{quasi-compact} if it is compact but not Hausdorff.}
+
+For any prime ideal $\mathfrak{p}\subset A$, we can consider the localization $A_{\mathfrak{p}}$ of $A$ at $\mathfrak{p}$, which is a local ring with maximal ideal $\{x/s \; : \; x\in \mathfrak{p} \text{ and } s\in A\setminus \mathfrak{p}\}$. Given $x\in A$, let $V(x)$ denote the closed subset defined by the ideal generated by $x$. Let us also denote by $A_x$ the ring $A$ localized at $x$ (i.e. by considering the subset $\{x^n \; : \; n\geqslant 0\}$). Now, the subsets $U_x:=V(x)^c$ are easily seen to be members of a basis for the Zariski topology; we then define
+$$\scr{O}(U_x):=A_x.$$
+This assignment (which can be extended to every open subset of $X$) is a sheaf of rings on $X$ and it is called the structure sheaf. In particular, we have that the stalk $\scr{O}_\mathfrak{p}$ is isomorphic to the localization $A_\mathfrak{p}$. Detailed constructions can be found in \cite{mumford:_red}.
+
+\begin{lemma}
+If $(A,\theta )$ is a semisimple Frobenius algebra over $\comp$, then $X$ is a finite topological space, with cardinal equal to the dimension of $A$.
+\end{lemma}
+\begin{proof}
+Every ideal of $A\cong \bigoplus_{i=1}^n\comp e_i$ is isomorphic to an ideal of the form $\bigoplus_i\mathfrak{a}_i$, where $\mathfrak{a}_i$ is an ideal of $\comp e_i$. As each summand $ \comp e_i$ is isomorphic to $\comp$ we have that $X=\{\mathfrak{m}_1,\dots ,\mathfrak{m}_n\}$, where $\mathfrak{m}_i=\bigoplus_{j\neq i}\comp e_j$.
+\end{proof}
+
+Using the notation on preceeding paragraphs, we have that
+$$\scr{O}(X)=\scr{O}(U_1)=A_1\cong A,$$
+by the obvious isomorphism $\frac{x}{1}\mapsto x$. Now, defining a linear form $\theta_X :\scr{O}(X)\rightarrow \comp$ by the assignment $\frac{x}{1}\mapsto \theta (x)$, we obtain a Frobenius algebra structure on $\scr{O}(X)$ and thus, by definition, an isomorphism of Frobenius algebras $(\scr{O}(X),\theta_X)\cong (A,\theta )$ (a morphism of Frobenius algebras is an algebra homomorphism which preserve the linear forms; see section \ref{subsec_morphisms} for the appropriate definitions).
+
+Identifying $X=\text{Spec}\, A$ with the set of orthogonal idempotents $\{e_1,\dots ,e_n\}$ such that $\sum_ie_i=1$, let $\comp^X$ denote the set of maps $X\rightarrow \comp$. Let $\chi_i$ denote the characteristic function for the set $\{e_i\}$, i.e. $\chi_i(e_i)=1$ and $\chi_i(x)=0$ otherwise. Given $x\in A$, we can write it as a linear combination $x=\sum_i\lambda_ie_i$ over $\comp$. Then, it is easy to see that the assignment
+$$x\longmapsto \sum_i\lambda_i\chi_i$$
+defines an isomorphism between the algebras $A$ and $\comp^X$. The linear form which defines the Frobenius structure on $\comp^X$ is $\theta_X (\chi_i)=\theta (e_i)$, and can be regarded as a measure on $X$.
+
+\begin{obs}
+The conclusion in the previous paragraph has a converse statement; assume that $X$ is a finite measure space with objects $e_1,\dots ,e_n$ and measure $\mu$. Denoting, as before, by $\chi_i$ the characteristic function of the set $\{e_i\}$, then any measurable function $f:X\to \comp$ can be represented as $f=\sum_i\lambda_i\chi_i$, where $\lambda_i=f(e_i)$. Let $A$ be the space of measurable functions and define $\theta :A\to \comp$ by
+$$\theta (f)=\sum_i\lambda_i\mu\left (\{e_i\}\right ).$$
+Then, the pair $(A,\theta )$ is a Frobenius algebra.
+\end{obs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Euler Element}
+
+Let $(A,\theta )$ be a non-necessarily commutative and symmetric Frobenius algebra over $\comp$ and let $g:A\otimes A\rightarrow \comp$ the induced non-degenerate bilinear form. We then have a $g$-orthogonal basis $B=\{e_1,\dots ,e_n\}$ of the $\comp$-vector space $A$ which diagonalizes $g$; more precisely,
+$$g(e_i,e_j)=\theta (e_ie_j)=0$$
+when $i\neq j$. Let $\{e^1,\dots ,e^n\}$ be the dual basis for $B$. We define the element $\chi_B \in A$ by the following formula
+$$\chi_B :=\sum_i e_i\overline{\theta }^{-1}(e^i).$$
+Suppose now that $\overline{\theta}^{-1}(e^i)=\sum_j\lambda^{(i)}_je_j\in A$. Then
+\begin{equation}\label{coef_euler}
+\delta_{ik}=e^i(e_k)=\overline{\theta}(\overline{\theta}^{-1}(e^i))(e_k)=\sum_j\lambda^{(i)}_j\theta (e_je_k)=\lambda_k^{(i)}\theta (e_k^2),
+\end{equation}
+and thus $\overline{\theta}^{-1}(e^i)=\frac{e_i}{\theta (e_i^2)}$, which gives the following expression
+$$\chi_B=\sum_i\frac{e^2_i}{\theta (e_i^2)}.$$
+
+We will now get rid of the subindex $B$.
+
+\begin{pyd}
+The definition of $\chi_B$ does not depend on the choice of basis $B$. Its common value will be denoted by $\chi$ an called the \emph{Euler element} or the \emph{distinguished element} of $A$.
+\end{pyd}
+\begin{proof}
+A more general statement is proved in proposition \ref{cardy_well_def}.
+\end{proof}
+
+\begin{obs}
+In fact, it is not necessary to invoque an orthogonal basis for the definition of $\chi$. This kind of basis was taken into account just to simplify the computations.
+\end{obs}
+
+This Euler element can be used to recover the traces of the multiplication endomorphisms.
+
+\begin{proposition}\label{traza_euler}\label{euler_trace}
+If $x\in A$, then $\theta (x\chi )={\rm tr}(L_x)$. In particular, $\theta (\chi )=\dim_\comp (A)$.
+\end{proposition}
+\begin{proof}
+By linearity, it suffices to prove the result for the operators $L_{e_i}$. So let $B=\{e_1,\dots ,e_n\}$ and suppose that
+$$L_{e_i}(e_j)=e_ie_j=\sum_i\gamma_{ij}^ke_k.$$
+Then, $\text{tr}(L_{e_i})=\sum_j\gamma_{ij}^j$. On the other hand, we compute
+\begin{equation}\label{euler_traza}
+e_i\chi =\sum_je_ie_j\overline{\theta}^{-1}(e^j)=\sum_{j,k}\gamma_{ij}^ke_k\overline{\theta}^{-1}(e^j)=\sum_{j,k}\frac{\gamma_{ij}^k}{\theta (e_j^2)}e_ke_j.
+\end{equation}
+Applying $\theta$ to equation \eqref{euler_traza} we get
+$$
+\begin{aligned}
+\theta (e_i\chi ) &= \sum_{j,k}\gamma_{ij}^k\frac{\theta (e_ke_j)}{\theta (e_j^2)} 
+                         = \sum_j\gamma_{ij}^j\frac{\theta (e_j^2)}{\theta (e_j^2)} \\
+                         &= \sum_j \gamma_{ij}^j 
+                         = \text{tr}(L_{e_i}), \\
+\end{aligned}
+$$
+as desired.
+\end{proof}
+
+\begin{defi}
+The \emph{trace form} for $A$ is the symmetric bilinear form $\text{tr}:A\otimes A\rightarrow \comp$ defined by the equation
+$$\text{tr}(x\otimes y)=\opnm{tr}(L_{xy})=\opnm{tr}(L_xL_y).$$
+\end{defi}
+
+The following result proves that semisimplicity is strongly related to the Euler element.
+
+\begin{proposition}
+The trace form is non-degenerate if and only if the Euler element is invertible.
+\end{proposition}
+\begin{proof}
+Assume first that the trace form is non-degenerate. The Euler element $\chi$ is invertible if and only if the linear map $L_\chi$ is invertible. Suppose that $x\in \opnm{Ker} L_\chi$, i.e. $\chi x=0$ and let $y\in A$ be any vector.  Then, by the previous proposition and the symmetry of $\theta$,
+$$\opnm{tr}(x\otimes y)=\opnm{tr}(L_{xy})=\theta (xy\chi )=\theta (\chi xy)=0$$
+for each $y\in A$. As $\text{tr}$ is non-degenerate, $x=0$ and then $L_\chi$ is an isomorphism.
+
+Suppose now that $\chi$ is a unit in $A$ and that $\text{tr}(L_xL_y)=0$ for all $x\in A$. Then we have
+$$0=\text{tr}(L_xL_y)=\theta (xy\chi).$$
+As $(x,y)\mapsto \theta (xy)$ is non-degenerate, we must have $y\chi=0$, and the result now follows.
+\end{proof}
+
+Before proving a corollary, we state a theorem of Dieudonné.
+
+\begin{theorem}[\cite{schafer:_naalgebras}, Theorem 2.6]\label{dieudonne}
+Assume $A$ is a finite dimensional algebra over a field $\mathbbm{F}$ (of arbitrary characteristic) satisfying:
+\begin{enumerate}
+\item the trace form $\operatorname{tr}:A\otimes A\to \mathbbm{F}$ is non-degenerate and
+\item $\mathfrak{a}^2\neq 0$ for every ideal $\mathfrak{a}\neq 0$ in $A$.
+\end{enumerate}
+Then $A$ is semisimple.
+\end{theorem}
+
+\begin{cor}\label{euler_inv}
+If the Euler element $\chi \in A$ is invertible then $A$ is semisimple.
+\end{cor}
+\begin{proof}
+If the Euler element $\chi$ is invertible, then the trace form is non-degenerate. Let now $\mathfrak{a}$ be a non-zero ideal in $A$ and suppose that $xy=0$ for each $x,y\in \mathfrak{a}$ (elements of $\mathfrak{a}^2$ are defined as finite sums $\sum_ix_iy_i$ with $x_i,y_i\in \mathfrak{a}$). Take now a basis $B=\{x_1,\dots ,x_r,x_{r+1},\dots ,x_k\}$ of $A$ such that
+\begin{enumerate}
+\item $B$ is orthogonal; i.e. $\theta (x_ix_j)=0$ if $i\neq j$ and
+\item $\{x_1,\dots ,x_r\}$ is a basis of $\mathfrak{a}$.
+\end{enumerate}
+Let $\{x^1,\dots ,x^k\}$ be the basis dual to $B$ and consider now the equation \eqref{coef_euler}
+$$\delta_{ij}=x^i(x_j)=\lambda^{(i)}_j\theta (x_j^2),$$
+where the coefficients $\lambda^{(i)}_j$ are defined by $\overline{\theta}^{-1}(x^i)=\sum_j\lambda^{(i)}_jx_j$. If we take $1\leqslant i=j\leqslant r$ then, as $x_j\in \mathfrak{a}$, $x_j^2=0$ and the previous equation makes no sense. This contradiction shows that such an ideal $\mathfrak{a}\neq 0$ cannot exist. The corollary now follows from theorem \ref{dieudonne}.
+\end{proof}
+
+\begin{obs}
+In fact, semisimplicity of the algebra $A$ is \emph{equivalent} to the invertibility of $\chi$. See \cite{abrams:_frobenius}, Theorem 2.3.3.
+\end{obs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Morphisms}
+\label{subsec_morphisms}
+
+Given Frobenius $\comp$-algebras $(A,\theta )$ and $(B,\tau )$, a \emph{morphism} $\varphi :(A,\theta )\rightarrow (B,\tau )$ is an algebra homomorphism $\varphi :A\rightarrow B$ such that $\tau \varphi =\theta$. By an algebra homomorphism we mean a $\comp$-linear map which is multiplicative and preserves the unit.
+
+\begin{lemma}
+Any morphism $\varphi :(A,\theta )\rightarrow (B,\tau )$ between Frobenius algebras is injective.
+\end{lemma}
+\begin{proof}
+Assume $\varphi (x)=0$ and let $y\in A$. Then $\theta (xy)=\tau (\varphi (xy))=\tau (\varphi (x)\varphi (y))=0$; thus, as $\theta$ is non-degenerate, $x=0$.
+\end{proof}
+
+In particular, any morphism $(A,\theta )\rightarrow (A,\theta )$ is an isomorphism (i.e. $\varphi^{-1}$ is also a morphism of Frobenius algebras).
+
+\begin{obs}
+The fact that Frobenius algebras are also coalgebras alters the landscape a little bit more. Given a Frobenius $\comp$-algebra $(A,\theta )$, there exists a unique coassociative comultiplication on $A$ for which $\theta$ is the counit and certain relation (called the Frobenius relation) holds. If we bring this coalgebra structure to the stage, then we can define a morphism of Frobenius algebras as a morphism of algebras which preserves the linear form and also the coalgebra structure. With this definition, the category of Frobenius algebras is in fact a grupoid; i.e. every morphism between Frobenius algebras is an isomorphism. For a detailed treatment, we refer the reader to \cite{kock:_frobenius}.
+\end{obs}
+
+We denote by $\operatorname{Hom}_{\comp {\rm -alg}}((A,\theta ),(B,\tau ))$ the set of algebra homomorphisms $A\rightarrow B$ which preserve the linear forms.
+
+\begin{lemma}
+Let $(A,\theta )$ be an $n$-dimensional, commutative, semisimple Frobenius algebra. Then, if $\Sigma_n$ denotes the group of permutation of $n$ letters, we have a group isomorphism
+$$\operatorname{Hom}_{\comp \text{-}{\rm alg}}((A,\theta ),(A,\theta ))\cong \Sigma_n.$$
+\end{lemma}
+\begin{proof}
+Every homomorphism $(A,\theta )\rightarrow (A,\theta )$ is completely defined by its values on the idempotents $e_1,\dots ,e_n$ which define the decomposition $A=\bigoplus_ie_iA$. In particular, any permutation $\sigma$ defines a morphism (isomorphism in fact)
+$$\varphi (e_i)=e_{\sigma (i)}$$
+of the Frobenius algebra $(A,\theta )$.
+
+Let now $\varphi :(A,\theta )\rightarrow (A,\theta )$ be an isomorphism of the semisimple Frobenius algebra $A$; then the images $\varphi (e_i)$ are again central, orthogonal idempotents. Now assume that
+$$\varphi (e_i)=\sum a_je_j.$$
+As $e_ie_j=\delta_{ij}e_i$, we have that the complex coefficients $a_i$ are equal to $0$ or $1$. Thus, $\varphi (e_i)=\sum_{j\in J}e_j$, where $J=\{j\; | \; a_j=1\}$. Considering the inverse map, we have
+$$e_i=\varphi^{-1}\Bigl (\sum_{j\in J}e_j\Bigr )=\sum_{j\in J}\varphi^{-1}(e_j).$$
+Unless $\# J=1$, the previous decomposition for $e_i$ is impossible, as the following argument shows: assume that the idempotent $e_i$ can be decomposed as a sum $a+b$ of two orthogonal elements; let $a=\sum_k\lambda_ke_k$ and $b=\sum_k\mu_ke_k$; then $0=ab=\sum_k\lambda_k\mu_ke_k$, and hence $\lambda_k\mu_k=0$. This fact implies the existence of subsets $I_a,I_b\subset \{1,\dots ,n\}$ such that $I_a\cup I_b=\{1,\dots ,n\}$, $I_a\cap I_b=\emptyset$ and $a=\sum_{k\in I_a}\lambda_ke_k$, $b=\sum_{k\in I_b}\mu_ke_k$; now
+$$e_i=a+b=\sum_{k\in I_a}\lambda_ke_k+\sum_{k\in I_b}\lambda_ke_k;$$
+as $\{e_1,\dots ,e_n\}$ is a basis, then $a=0$ (if $i\in I_b$) or $b=0$ (if $i\in I_a$). The lemma is proved.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Structure Equations}
+\label{structure_equations}
+
+We will now provide a more analytic approach to the Frobenius algebra structure on a finite dimensional vector space. Instead of specifying a product and other relations in terms of maps, we will introduce these notions by means of coordinates on a fixed basis.
+
+Let us first fix some notation and terminology. Let $A$ be a finite dimensional complex vector space with a nondegenerate bilinear form $g:A\otimes A\to \comp$ defined on $A$ and fix a basis $B=\{e_1,\dots ,e_n\}$ of $A$. Let $g_{ij}:=g(e_i,e_j)$ be the coefficients of the matrix of $g$ in terms of the basis $B$. As $g$ is nondegenerate, we have an isomorphism $\widetilde{g}:A\to A^*$. If $x\in A$, then the linear form $\widetilde{g}(x)$ is said to be obtained from $x$ by \emph{lowering an index}; considering the inverse map $\widetilde{g}^{-1}:A^*\to A$, the vector $\widetilde{g}^{-1}(\varphi )$ is said to be obtained from the linear form $\varphi$ by \emph{raising an index} (these lowering and raising refers to the coefficients in terms of the basis $B^*$ and $B$ respectively). Moreover, if $B^*$ denotes the basis of $A^*$ dual to $B$, the matrix of the linear map $\widetilde{g}$ with respect to the basis $B$ and $B^*$ is equal to $(g_{ij})$, and thus the matrix of $\widetilde{g}^{-1}$ with respect to $B^*$ and $B$ is $(g_{ij})^{-1}$.
+
+Assume now that $A$ is a vector space as in the previous paragraph and assume that we have a trilinear map $c:A\otimes A\otimes A\to \comp$ such that the bilinear form $g:A\otimes A\to \comp$ given by $g(x,y)=c(x,y,e_1)$ is nondegenerate. Before moving on, let us make a couple of remarks: 
+\begin{itemize}
+\item The first one is that the vector $e_1$ will play the role of the unit of the algebra $A$;
+\item the second is that we cannot start from the bilinear form $g$, as we need the mapping $c$ and the construction of $c$ from $g$ involves the multiplication on $A$, which we are trying to define.
+\end{itemize}
+Let $c_{ijk}:=c(e_i,e_j,e_k)$ and $g_{ij}:=c(e_i,e_j,e_1)=g(e_i,e_j)$. Thus, in the basis $B$, the coordinate expressions of $c$ and $g$ are given by
+$$g=\sum_{i,j}g_{ij}\; e_i\otimes e_j \quad ,\quad c=\sum_{i,j,k}c_{ijk}\; e_i\otimes e_j\otimes e_k.$$
+Fixing $i,j$ we obtain a linear form $c_{ij}:A\to \comp$ given by $c_{ij}(e_k)=c(e_i,e_j,e_k)$. In the basis $B^*$, this map is written as $c_{ij}=\sum_kc_{ijk}e^k$. Now we compute
+$$
+\begin{aligned}
+\widetilde{g}^{-1}(c_{ij}) &= \sum_kc_{ijk}\widetilde{g}^{-1}(e^k) \\
+                  				 &= \sum_kc_{ijk}\left (\sum_rg^{kr}e_r\right ) \\
+                  				 &= \sum_r\left (\sum_kg^{kr}c_{ijk}\right )e_r, \\
+\end{aligned}
+$$
+where $(g^{ij})$ denotes the inverse of the matrix $(g_{ij})$. Let $c_{ij}^k:=\sum_rg^{kr}c_{ijk}$. We now construct a product structure on $A$ by defining
+$$e_ie_j=\sum_kc_{ij}^ke_k.$$
+The unitarity relations for $A$ are deduced from the previous equation by computing $e_1e_i=e_i$ for each $i$, which shields the identities
+$$c_{1i}^k=\delta_{ik}.$$
+Particularly important in Quantum Field Theory are the equations expressing the associativity of the product, which are given by
+$$\sum_rc_{ij}^rc_{rk}^s=\sum_rc_{jk}^rc_{ir}^s,$$
+for $i,j,k,s=1,\dots ,n$. In particular, the vector space $A$ becomes a Frobenius algebra, symmetric if and only if the bilinear form $g$ is symmetric (recall that the linear map $\theta :A\to \comp$ can be defined from $c$ by $\theta (e_i)=c(e_i,e_1,e_1)$).
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Examples}
+Frobenius algebras are rather ubiquitous: there are important examples of them not only in algebra, but also in geometry and physics. We will list some of them below, an, of course, encounter more in subsequent chapters. 
+
+\paragraph{Matrix Algebras}
+Let $(A,\theta )$ be a finite-dimensional Frobenius algebra and consider the matrix algebra $M_n(A)$; the composite map
+$$M_n(A)\stackrel{\text{tr}}{\longrightarrow }A\stackrel{\theta }{\longrightarrow }\comp$$
+is easily seen to be a non-degenerate form on $M_n(A)$. Thus, $M_n(A)$ is again a Frobenius algebra. Moreover, as $\text{tr}(ab)=\text{tr}(ba)$, this Frobenius structure is symmetric.
+
+Assume now that $A$ is a finite dimensional simple $\comp$-algebra; then $A$ is (isomorphic to) $M_n(\comp )$ for some $n\in \natu$ (in fact, there exists a division algebra $D$ over $\comp$ such that $A\cong M_n(D )$; but $\comp$ is algebraically closed, and so $D\cong \comp$). Then, the trace map provides $A$ with a structure of a symmetric Frobenius algebra.
+
+More generally, if $A$ is semisimple, then $A\cong \bigoplus_iM_{d_i}(\comp )$ and 
+$$\theta :=\sum_i\text{tr}_i$$
+is a Frobenius form, where $\text{tr}_i$ is the trace map on $M_{d_i}(\comp )$.
+
+
+
+\paragraph{Group Algebras}
+If $G$ is a finite group (not necessarily abelian), then, by Maschke's theorem (see \cite{lang:_algebra}, Ch. {\sc xviii}, theorem 1.2), the group-algebra $\comp G$ is semisimple and thus can be given a structure of Frobenius algebra. Without relying on the Artin-Wedderburn isomorphism, we can define a non-degenerate linear form $\theta :\comp G\rightarrow \comp$ directly by setting
+$$\theta \Bigl ( \sum_{g\in G}\lambda_gg \Bigr ):=\lambda_1,$$
+where $1$ is the identity in $G$. In fact, this definition for $\theta$ shows that we can indeed define a Frobenius structure on $\field G$, where $\field$ is any field.
+
+
+
+\paragraph{Characters}
+Let $G$ be a finite group of order $n$. A \emph{class function} on $G$ is a map $\chi :G\rightarrow \comp$ such that $\chi (ghg^{-1})=\chi (h)$ for all $g,h\in G$. Let us denote by $R(G)$ the $\comp$-algebra of class functions on $G$ (the ``$R$'' comes from ``representation'', and $R(G)$ is usually called the \emph{representation ring} of $G$; see below). We can define an inner product on $R(G)$ by the formula
+$$\langle \chi ,\xi \rangle =\frac{1}{n}\sum_{g\in G}\chi (g)\overline{\xi (g)}.$$
+Now, a (\emph{linear}) \emph{representation} of the group $G$ is a group homomorphism $\rho :G\rightarrow \operatorname{Hom}_\comp (V,V)$, where $V$ is a (finite-dimensional) complex vector space. Such a representation induces a class function $\chi_\rho :G\rightarrow \comp$ given by taking the trace of each endomorphism $\rho (g):V\rightarrow V$. It is a well-known result that characters of irreducible representations\footnote{A representation $\rho :G\rightarrow \operatorname{Hom}_\comp (V,V)$ is called \emph{irreducible} if there exist no non-trivial invariant subspaces of $V$ (i.e. subspaces $W\neq 0,V$ such that $\rho (g)(W)\subset W$; see \cite{serre:_representations}, theorem 1 (Maschke's theorem in the context of representation theory).} of  a group $G$ forms an orthonormal basis (with respect to the previously defined inner product) for $R(G)$. Then, in particular, this inner product is non-degenerate and provides $R(G)$ with a structure of a Frobenius algebra.
+
+
+
+
+\paragraph{Cohomology Rings}
+Let $M$ be a compact, orientable, $n$-dimensional smooth manifold. For each $i=0,\dots ,n$ we can consider its $i$th-de Rham cohomology group $H^i(M)$, which is a real vector space. The wedge product of differential forms endows
+$$H^*(M)=\bigoplus_{i=0}^nH^i(M),$$
+with a structure of a (graded) ring. As $M$ is compact and orientable, we have a volume form (which is a nowhere vanishing $n$-form), and so we can integrate differential forms over $M$. By Stokes theorem, integration is still well-defined when working with closed forms modulo exact forms; thus, we have a linear form
+$$\int_M :H^*(M)\rightarrow \re .$$
+Now, Poincar\'e duality states that, for such a manifold, the pairing given by
+$$H^i(M)\otimes H^{n-i}(M)\longrightarrow \re$$
+$$\omega \otimes \tau \longmapsto \int_M\omega \wedge \tau$$
+is non-degenerate. This induces a non-degenerate pairing
+$$H^*(M)\otimes H^*(M)\longrightarrow \re$$
+which endows $H^*(M)$ with the structure of a Frobenius algebra. Note that, as every $k$-form is zero for $k>n$, this algebra cannot be semisimple, as it has nilpotent elements.
+
+\paragraph{The Verlinde Algebra}
+The theory of Riemann surfaces has proved to be extremely useful tool not only in mathematics, but also in theoretical physics, particularly in the study of Conformal Field Theories (CFTs for short). In \cite{verlinde:2dcft} , E. Verlinde studies a certain type of CFT, called rational, by considering the \emph{fusion rules} of the primary fields of the theory. These fusion rules are in fact the structure constants of an algebra, which turns out to have a Frobenius structure.
+
+Let $\EuScript{M}_{0,3}$ denote the moduli space of Riemann surfaces of genus $g=0$ and with $n=3$ punctures. If $G$ is a correlation function (certain map defined on the moduli space $\EuScript{M}_{0,3}$), there are some vector bundles $V_{0,3}$ over $\EuScript{M}_{0,3}$ associated with the map $G$. Let $V_{0,ijk}$ be the components of the bundle $V_{0,3}$ corresponding to the sphere with fields $\phi_i,\phi_j,\phi_k$ at the three punctures and set
+$$N_{ijk}=\text{rank}\; V_{0,ijk}.$$
+By considering certain conjugation matrices to raise the index $k$, the fusion rule for the operators $\phi_i$ and $\phi_j$ is expressed by
+$$\phi_i \cdot \phi_j=\sum_kN_{ij}^k\phi_k.$$
+These coefficients $N_{ij}^k$ are in fact the structure constants for the multiplication of the fusion rule (Verlinde) algebra (cf. section \ref{structure_equations}). A further analysis shields an associativity equation involving the constants $N_{ij}^k$, as well as commutativity. Moreover, the matrices $N_i$ given by $(N_i)_{jk}=N_{ij}^k$ are mutually commuting and symmetric; thus, they can be diagonalized simultaneously. These structure provides the fusion rule algebra with the structure of a commutative, semisimple, Frobenius structure.
+
+\paragraph{More From Physics}
+
+Other examples of Frobenius algebras in physics besides the one described in the previous entry are given by quantum cohomology of manifolds \cite{abrams:_frobenius} and the chiral ring of certain Landau-Ginzburg theories \cite{dvv:top_strings}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Correspondence Between {\sc tft}s and Frobenius Algebras}
+
+Let $R=\comp$ and $Z:\tsf{Cob}(2)\to \tsf{Vect}$ be a 2-dimensional {\sc tqft}, where $\tsf{Vect}$ is the category of (finite-dimensional) complex vector spaces. In this case, objects of $\tsf{Cob}(2)$ can be taken to be disjoint unions of circles and the empty set. In fact, the standard circle $S^1$ can be regarded as a generator with respect to the product $\sqcup$, as every object of $\tsf{Cob}(2)$ is diffeomorphic to a disjoint union of circles. Let $A$ be the image of the generator $S^1$,
+$$Z(S^1)=A.$$
+We will make a brief description of how $A$ becomes a Frobenius algebra from properties of the funtor $Z$. Pictures are also included to help in clarifying ideas. For more details about the meaning of the following figures, see section \ref{remarks}.
+
+Multiplication of the algebra is given by the image of the <<pair of pants>> cobordism between $S^1\sqcup S^1$ and $S^1$; in other words, the arrow $S^1\sqcup S^1 \to S^1$ is mapped by $Z$ to an arrow $A\otimes A\to A$, which is the multiplication of the algebra $A$. The unit is given by the image of the cobordism between the empty set $\emptyset$ and $S^1$, while the Frobenius form $\theta$ is obtained by applying $Z$ to the cobordism $S^1\to \emptyset$. See figure \ref{frobenius_closed} for a pictorial description.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_closed} \\
+\end{center}
+\vspace{-10pt}
+\caption{Frobenius algebra structure for $A=Z(S^1)$. Morphisms on top are in $\tsf{Cob}(2)$ and the ones at the bottom are the linear maps ontained in $\tsf{Vect}$ after applying the functor $Z$: (A) Unit of the algebra $A$; (B) <<Pair of pants>> cobordism which provides the multiplication in the algebra $A$; (C) Linear form making $A$ a Frobenius algebra.}
+\label{frobenius_closed}
+\end{figure}
+
+Further properties of the algebra $A$ come from cobordism equivalences; examples of these properties are associativity and commutativity. A brief description is given in figure \ref{frobenius_closed_2}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_closed_2} \\
+\end{center}
+\vspace{-10pt}
+\caption{Properties of the Frobenius algebra $A$ deduced from cobordism equivalences: (A) Commutativity; (B) This property is expressing the fact that the image of $1\in \comp$ by the map $\comp \to A$ is precisely the unit of the algebra $A$. It is worth noting that the cilinder in the right hand side corresponds to the identity map $A\to A$; (C) Associativity.}
+\label{frobenius_closed_2}
+\end{figure}
+
+It only remains to provide a meaning to the phrase ``morphism of {\sc tqft}s''; so let $Z_1,Z_2$ be two 2-dimensional {\sc tqft}s. A \emph{morphism} $\Phi :Z_1\to Z_2$ is a natural transformation which preserves the multiplicative structure; i.e. it is a family of linear maps
+$$\Phi=\{\Phi_n:A_1^{\otimes n}\to A_2^{\otimes n}\; | \; n\geqslant 0\},\footnote{Recall that $S^1$ is a generator for the category $\tsf{Cob}(2)$.}$$
+where $A_1:=Z_1(S^1)$, $A_2=Z_2(S^1)$, $A^{\otimes 0}=\comp$, $\Phi_0=\text{id}:\comp \to \comp$, $\Phi_1:A_1\to A_2$, $\Phi_n=\Phi_1^{\otimes n}$, and such that the diagram
+$$
+\xymatrix{
+A_1^{\otimes n} \ar[r]^{\Phi_n} \ar[d]_{Z_1(W)} & A_2^{\otimes n} \ar[d]^{Z_2(W)} \\
+A_1^{\otimes k} \ar[r]^{\Phi_k} & A_2^{\otimes k} }
+$$
+commutes for each cobordism $W:(S^1)^{\sqcup n}\to (S^1)^{\sqcup k}$.
+
+\begin{obs}
+The ``multiplicative structure'' in this categorical context is what is known as a \emph{monoidal structure}. In fact, as $\tsf{Cob}(D)$ and $\tsf{Vect}_R$ are monoidal categories, then any {\sc tqft} $Z$ must be a monoidal functor (i.e. a functor which preserves the multiplicative structure) and any morphism $\Phi :Z_1\to Z_2$ between {\sc tqft}s should be a monoidal natural transformation (i.e. a natural transformation which is compatible with the products). For details about monoidal categories, the reader is referred to the classical reference \cite{kn:mclane}.
+\end{obs}
+
+Let now $\tsf{TQFT}(2)$ be the category of $2$-dimensional {\sc tqft}s and $\tsf{Frob}$ the category of finite-dimensional, unital, commutative Frobenius algebras over $\comp$.
+
+\begin{theorem}[\cite{abrams:_frobenius}, Theorem 3.3.1. See also the appendix of \cite{moore_segal1}]\label{abrams}
+The functor $\tsf{TQFT}(2)\to \tsf{Frob}$ given by the assignments
+$$
+\begin{aligned}
+Z &\longmapsto (Z(S^1),\theta ) \\
+\Phi &\longmapsto \Phi_1 \\
+\end{aligned}
+$$
+is an equivalence of categories.
+\end{theorem}
+
+\begin{obs}
+Moreover, the previous equivalence also preserves the multiplicative structure.
+\end{obs}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calabi-Yau Categories: Open-Closed Field Theories}
+\label{sec_octfts}
+
+Let us consider the case $D=2$ and $R=\comp$. Field theories as the ones considered in the previous section are called \emph{closed} field theories, as they describe the behaviour of closed strings (represented by manifolds diffeomorphic to $S^1$). But this representation is rather restrictive, as strings can also be regarded as spaces diffeomorphic to a closed interval (in fact, the word ``string'' first reminds us of a curve isomorphic to an interval and not to $S^1$). In the general case, these open-closed theories are obtained when one considers (compact) manifolds with boundary besides closed ones.
+
+As for closed theories, there is a precise formulation of an open-closed theory, which was given by G. Moore and G. Segal in \cite{moore_segal1}. Unlike the ones for closed theories, the axioms for open-closed theories are quite involved, as we will soon check. This is mainly because of the interaction between open and closed strings, which translates into a significant amount of algebro-geometric relations.
+
+The first step is to give a precise definition of the geometric category for the open-closed theory. As in the case for closed theories, in the following paragraphs we also include pictorial descriptions of the structures involved.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Algebro-Geometric Data}
+\label{data}
+
+An open-closed {\sc tqft} of dimension 2 (over $\comp$) consists of the following objects:
+
+\begin{enumerate}
+\item A category $\scr{B}$, called the \emph{category of labels}, \emph{boundary conditions} or \emph{branes}. Its objects will be denoted by letters $a,b,c,\dots$. Morphisms are defined in the following way: given labels $a,b$, an arrow $a\to b$ is a 1-dimensional, oriented, smooth manifold with boundary. This is to be interpreted as a closed, oriented, 1-dimensional interval such that its endpoints (connected components of the boundary) are labeled by the objects $a$ and $b$.
+
+$$\begin{xy}
+(0,0)*+{a}; (10,0)*+{b.} **\dir{-} ?(.6)* %
+\dir{>}
+\end{xy}$$
+
+We then require first that the set of arrows from $a$ to $b$, denoted $O_{ab}$, is a finite-dimensional $\comp$-vector space, and the composition law $O_{ab}\otimes O_{bc}\to O_{ac}$ should be an associative, bilinear product (if $\sigma :a\to b$ and $\tau :b\to c$ are arrows in $\scr{B}$, we will denote the image of $\sigma\otimes \tau$ by $\tau \sigma$). More structure enjoyed by $\scr{B}$ will be discussed soon.
+
+\item A cobordism category $\tsf{Cob}_{\scr{B}}(2)$, defined in the following way: its objects are disjoint unions of the empty set and compact, oriented, 1-dimensional manifolds such that their boundary is either empty or their boundary components are labelled by objects of $\scr{B}$ (i.e. its objects are disjoint unions of the empty set, manifolds diffeomorphic to the oriented circle $S^1$ (empty boundary) or the closed oriented interval $[0,1]$; the connected components of the boundary (the two extreme points) are labelled using boundary conditions; that is, objects of the category $\scr{B}$). Given objects $\Sigma_1,\Sigma_2$, an arrow $W:\Sigma_1\to \Sigma_2$ is a 2-dimensional manifold $W$ such that $\partial W=\Sigma_1\cup \Sigma_2\cup W'$, where $W'$, which is called the \emph{constrained boundary}, is a cobordism from $\partial \Sigma_1$ to $\partial \Sigma_2$ (we will come again later to this). In particular, the strip corresponding to the cobordism between the interval with endpoints $a$ and $b$ with itself should correspond to the identity map of the vector space $O_{ab}$ (the given description is suggesting, as in the closed case, the existence of a functor between the cobordism category $\tsf{Cob}_{\scr{B}}(2)$ and the category of vector spaces; see section \ref{remarks} for more on this topic). Check figure \ref{frobenius_openclosed_1} for pictorial details.
+
+\item Each vector space $O_{aa}$ comes equipped with a nondegenerate linear form $\theta_a:O_{aa}\to \comp$ (that is, the bilinear map $O_{aa}\otimes O_{aa}\to \comp$ given by $\sigma \otimes \tau \mapsto\theta_a(\tau \sigma)$ is nondegenerate).
+
+\item Generalizing the previous item, each composite map
+\begin{equation}\label{ngpair}
+O_{ab}\otimes O_{ba}\longrightarrow O_{aa}\stackrel{\theta_a}{\longrightarrow} \comp
+\end{equation}
+is a perfect pairing and
+\begin{equation}\label{symmetry}
+\theta_{a}(\sigma \tau )=\theta_b(\tau \sigma ).
+\end{equation}
+See figure \ref{frobenius_openclosed_perfectpairings}.
+
+\item For each label $a\in \scr{B}$, there exist transition maps $\iota_a:A\to O_{aa}$ and $\iota^a:O_{aa}\to A$. These maps should verify the following additional properties:
+	\begin{enumerate}
+	\item $\iota_a$ is a unit-preserving algebra homomorphism and $\iota^a$ is $\comp$-linear.
+	
+	\item $\iota_a$ is central; i.e. the equality
+	$$\iota_a(x)\sigma =\sigma \iota_b (x)$$
+	holds for each $x\in A$ and $\sigma \in O_{ab}$.
+	
+	\item There exists and adjoint relation between $\iota_a$ and $\iota^a$ given by
+	$$\theta (\iota^a(\sigma )x)=\theta_a(\sigma \iota_a (x))$$
+	for any $\sigma \in O_{aa}$.
+	
+	\item The \emph{Cardy condition}: we need a little work before defining this property. First of all, it should be noted that the vector space $O_{ba}$ is canonically isomorphic to $O_{ab}^*$ by means of a nondegenerate pairing like \eqref{ngpair}. Let $\overline{\theta}_{ab}:O_{ba}\to O_{ab}^*$ be the induced isomorphism,
+	$$\overline{\theta}_{ab}(\tau )(\sigma )=\theta_a(\sigma \tau).$$
+	Let now $\{\sigma_i\}$ be a basis for $O_{ab}$ and let $\{\sigma^i\}$ be its dual basis. Define a linear map $\pi_b^a:O_{aa}\to O_{bb}$ by the equation
+	$$\pi_b^a(\tau )=\sum_i\sigma_i\tau \overline{\theta}_{ab}^{-1}(\sigma^i).$$
+	Then $\pi_b^a,\iota_b$ and $\iota^a$ should verify the so-called \emph{Cardy condition}
+	$$\pi_b^a=\iota_b\iota^a.$$
+		\end{enumerate}
+\end{enumerate}
+
+For the interpretation of the following pictures it is necessary to have in mind the figures corresponding to the closed sector \ref{frobenius_closed} and \ref{frobenius_closed_2}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_openclosed_1} \\
+\end{center}
+\vspace{-10pt}
+\caption{Basic components for the open sector of an open-closed {\sc tft}; figures represent objects and arrows (cobordisms) between intervals and unions of them; enpoints are labelled using objects of the category $\scr{B}$. Below these figures, the algebraic data encoded by these geometric structures is displayed (see section \ref{remarks} for the functorial framework): {\bf (A)} The basic object for the open sector, a labeled interval, which is also viewed as an arrow between labels $a$ and $b$. {\bf (B)} The pairing corresponding to the <<pair of pants>> cobordism. {\bf (C)} Frobenius form for the algebra $O_{aa}$. {\bf (D)} Unit for the algebra $O_{aa}$; {\bf (E)} The cilinder corresponds to the identity map.}
+\label{frobenius_openclosed_1}
+\end{figure}
+
+Note that by restricting to closed manifolds, we obtain a Frobenius algebra $(A,\theta )$, corresponding to the closed sector.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_openclosed_perfectpairings} \\
+\end{center}
+\vspace{-10pt}
+\caption{Perfect pairings. As for the closed sector, recall that the cylinder on the right corresponds to the identity map $\opnm{id}:O_{ab}\to O_{ab}$.}
+\label{frobenius_openclosed_perfectpairings}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_openclosed_propertiestransitions} \\
+\end{center}
+\vspace{-10pt}
+\caption{Properties of the transition homomorphism $\iota_a$: {\bf (A)} The map $\iota_a$ is multiplicative; the figure on the left represents the map $A\otimes A\to O_{aa}\otimes O_{aa}\to O_{aa}$ given by $x\otimes y\mapsto \iota_{a}(x)\iota_a(y)$ and the figure on the right represents the composition map $A\otimes A\to A\to O_{aa}$ given by $x\otimes y\mapsto \iota_a(xy)$. {\bf (B)} This relation expresses the fact that $\iota_a$ is unit-preserving; on the left we have the composition $\comp \to A\to O_{aa}$ of the unit map with $\iota_a$ and on the right, the unit for the algebra $O_{aa}$. {\bf (C)} This last image corresponds to the centrality condition; that is, to the fact that the image of the homomorphism $\iota_a$ lies within the centre of the algebra $O_{aa}$. On the left, we have the composite $A\otimes O_{ba}\to O_{bb}\otimes O_{ba}\to O_{ba}$ given by $x\otimes \sigma \mapsto \sigma \iota_a(x)$; the image on the right corresponds to the map $O_{ba}\otimes A\to O_{ba}\otimes O_{aa}\to O_{ba}$ given by $\sigma \otimes x\mapsto \iota_a(x)\sigma$.}
+\label{frobenius_openclosed_propertiestransitions}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_openclosed_adjointrelation} \\
+\end{center}
+\vspace{-10pt}
+\caption{The adjoint relation. The figure on the left corresponds to $\theta (\iota^a(\sigma )x)$ and the one on the right to the term $\theta_a(\sigma \iota_a (x))$. Take a look again at figure \ref{frobenius_openclosed_1}.}
+\label{frobenius_openclosed_adjointrelation}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{frobenius_openclosed_cardy} \\
+\end{center}
+\vspace{-10pt}
+\caption{The Cardy condition. The first diagram on the left, the <<double twist>>, represents the linear map $\pi^a_b$. The one on the right is the composite $\iota_b\iota^a$.}
+\label{frobenius_openclosed_cardy}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Some Remarks on the Definitions}
+\label{remarks}
+
+Before turning to the characterization of the category of branes, let us discuss some important issues.
+
+
+\subsubsection{Generalities on $\scr{B}$}
+
+Given a label $a\in \scr{B}(U)$, the existence of a linear form $\theta_a:O_{aa}\to \comp$ makes $O_{aa}$ into a non-necessarily commutative Frobenius algebra, also symmetric by equation \eqref{symmetry}. Regarding the map $\pi^b_a$, note that its definition was given after fixing a basis of the vector space $O_{ba}$. The independence of the chosen basis is proved (in a more general setting) in proposition \ref{cardy_well_def}.
+
+
+\subsubsection{String Interactions and Cobordisms}
+
+To be accurate, the definition of closed and open-closed field theories are based on the figures that we included later to clarify the algebraic data, and not conversely. These pictures describe the evolution of closed and open strings and their interactions in time, and are called \emph{world-sheets} or also \emph{spacetimes}. There are four kinds of 2-dimensional {\sc tft}s, according to the properties of these world-sheets:
+\begin{itemize}
+\item Closed oriented (repectively unoriented) theories: They only consider closed oriented (respectively unoriented) strings (i.e. 1-dimensional manifolds diffeomorphic to the circle). These are the objects of the category $\tsf{Cob}(2)$ defined before.
+\item Open-closed oriented (respectively unoriented) theories: Besides closed strings, we also take into consideration open, oriented (respectively unoriented) strings (i.e. 1-dimensional manifolds diffeomorphic to a closed interval).
+\end{itemize}
+The world-sheets corresponding to open and/or closed strings are depicted in section \ref{data}, after the description of the objects  involved in an open-closed theory. The shape of these world-sheets is a consequence of the interactions between strings and, in a functorial interpretation, they are regarded as arrows between disjoint unions of 1-manifolds. The allowable interactions, which are taken from \cite{pol:_string1}, are shown in figure \ref{interactions}, and these include splittings or joinings (for both types of strings), open $\leftrightarrow$ closed transitions, etc. The algebraic conditions imposed to the structure maps are derived from homotopy equivalences between the different world-sheets, which turn into equalities in the target algebraic category (the category of complex vector spaces in this case).
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{strings} \\
+\end{center}
+\vspace{-10pt}
+\caption{String interactions (O stands for ``open string'' and C for ``closed string''): {\bf (A)} C+O$\leftrightarrow$O. {\bf (B)} O+O$\leftrightarrow$O+O. {\bf (C)} O$\leftrightarrow$C. {\bf (D)} O+O$\leftrightarrow$O. {\bf (E)} C+C$\leftrightarrow$C.}
+\label{interactions}
+\end{figure}
+
+
+Before giving the functorial definition, let us first describe morphisms in more detail. Let $\Sigma_1$ and $\Sigma_2$ be disjoint unions of 1-dimensional, oriented manifolds. A morphism $\Sigma_1\to \Sigma_2$ will be a 2-dimensional manifold $W$ such that $\partial W=\Sigma_1 \cup \Sigma_2 \cup W'$, where $W'$ is a cobordism from $\partial \Sigma_1$ to $\partial \Sigma_2$.\footnote{As the boundaries of $\Sigma_1$ and $\Sigma_2$ consist of a finite number of points, then this cobordism can be regarded as an arrow in the category $\tsf{Cob}(1)$.} This cobordism is called the \emph{constrained boundary}; see figure \ref{constrained_boundary}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm]{constrained_boundary} \\
+\end{center}
+\vspace{-10pt}
+\caption{A cobordism from a disjoint union of an open and a closed string to a disjoint union of two open strings. The constrained boundary is marked with red lines.}
+\label{constrained_boundary}
+\end{figure}
+
+There is another layer of structure, which is attached to the endpoints of the open strings; these are called D-branes, and several considerations lead to consider them as part of an additive category, which we have denoted by $\scr{B}$. These branes are boundary conditions for the boundary of the string; in other words, they impose restrictions to the behaviour of the strings in spacetime. Recall that, given objects $a,b\in \scr{B}$, arrows between them (i.e. open strings with labelled endpoints, which are all diffeomorphic) are represented by a vector space $O_{ab}$. That is, we are distinguishing all the topologically-equivalent open strings by means of the behaviour of its endpoints.
+
+Now, we define the cobordism category $\tsf{Cob}_{\scr{B}}(2)$: its objects are 1-dimensional manifolds diffeomorphic to disjoint unions of circles (closed strings) and closed intervals (open strings) with endpoints labelled with objects of $\scr{B}$; arrows between these manifolds are the previously described cobordisms (with constrained boundaries considered for open strings).
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=7cm]{transitions} \\
+\end{center}
+\vspace{-10pt}
+\caption{The transition maps $\iota_a$ and $\iota^a$ are given by the decay of a closed string into an open one (i.e. a cobordism from the circle $S^1$ to the interval $\begin{xy}
+(0,0)*+{a}; (10,0)*+{a} **\dir{-} ?(.6)* %
+\dir{>}
+\end{xy}$) and viceversa, respectively.}
+\label{transitions}
+\end{figure}
+
+Let us now sketch a functorial definition for an open-closed theory: it is a functor
+$$Z:\tsf{Cob}_{\scr{B}}(2)\longrightarrow \tsf{Vect}$$
+from the cobordism category to the category of finite-dimensional complex vector spaces, such that:
+
+\begin{itemize}
+
+\item $Z$ sends disjoint unions to tensor products (i.e. it is a monoidal functor);
+
+\item Diffeomorphic cobordisms have equal images through $Z$;\footnote{As was considered before for closed theories, the word ``diffeomorphism'' here means ``orientation-preserving diffeomorphism''.}
+
+\item the image of an open string $\begin{xy}
+(0,0)*+{a}; (10,0)*+{b} **\dir{-} ?(.6)* %
+\dir{>}
+\end{xy}$, is the vector space $O_{ab}$.
+
+\end{itemize}
+
+Moreover, $Z$ is subject to the following conditions:
+
+\begin{enumerate}
+
+\item The restriction of $Z$ to the subcategory $\tsf{Cob}(2)$ is a closed theory.
+
+\item For each label $a\in \scr{B}$, there exists a linear form $\theta_a:O_{aa}\to \comp$ which makes $O_{aa}$ a Frobenius algebra (the product is given by the pair of pants for open strings).
+
+\item The composition of $\theta_a$ and the image of the pair of pants cobordism $O_{ab}\otimes O_{ba}\to O_{aa}$ (see figure \ref{frobenius_openclosed_1}B) is a perfect pairing. In particular, $Z$ is involutory; that is, the image of a 1-manifold (circle or interval) with the opposite orientation is canonically isomorphic to the corresponding dual vector space. For example, $Z(\begin{xy}
+(0,0)*+{b}; (10,0)*+{a} **\dir{-} ?(.6)* %
+\dir{>}
+\end{xy})=O_{ba}\cong O_{ab}^*$.
+
+\item The diagram
+$$\xymatrix{
+O_{ab}\otimes O_{ba} \ar[dd]_{\text{twist}} \ar[r] & O_{aa} \ar[dr]^{\theta_a} & \\
+ & & \comp \\
+O_{ba}\otimes O_{ab} \ar[r] & O_{bb} \ar[ur]_{\theta_b} & }
+$$
+commutes.
+
+\item The image of the closed-to-open cobordism (see figure \ref{interactions}) is a central algebra homomorphism, denoted by $\iota_a$.
+
+\item If $\iota^a$ denotes the image of the open-to-closed transition, then $\theta (\iota^a(\sigma )x)=\theta_a (\sigma \iota_a(x))$, where $\sigma$ is an element of the vector space $O_{aa}$ and $\theta $ is the linear form of the Frobenius algebra $A=Z(S^1)$ corresponding to the closed sector (the image of the circle).
+
+\item The Cardy condition holds.
+
+\end{enumerate}
+
+
+Consistency of the previous algebraic structures is proved in a sewing theorem in the appendix of \cite{moore_segal1}, using techniques of Morse theory. There are several interpretations of branes in physics. For a nice, basic and brief exposition of different interpretations of branes in string theory, the reader is referred to \cite{moore:_whatisbrane}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boundary Conditions in the Semisimple Case}
+\label{subsec_boundary_semisimple}
+
+In this section we will discuss some results of G. Moore and G. Segal \cite{moore_segal1} regarding the structure of the algebras $O_{ab}$ corresponding to the open sector. We will only consider the case for which the Frobenius algebra $A$ of the closed sector is semisimple.
+
+Let $A$ be an associative, commutative, semisimple Frobenius algebra over $\comp$, and supppose $\dim_\comp A=n$. We then have a system of orthogonal idempotents $e_1,\dots ,e_n$ which determine the simple components; i.e.
+$$A\cong \bigoplus_i\comp e_i,$$
+and each summand $\comp e_i$ is isomorphic to $\comp$.
+
+\begin{theorem}[\cite{moore_segal1}, Theorem 2]\label{theorem_2}
+For each object $a\in \scr{B}$, the algebra $O_{aa}$ is semisimple.
+\end{theorem}
+\begin{proof}
+Let $\sigma_i:=\iota_a(e_i)$; then, $\{\sigma_1,\dots ,\sigma_n\}$ is a set of central, orthogonal idempotents in $O_{aa}$; as $\iota_a(1)=1$ and $1=\sum_ie_i$,
+$$1=\sum_i\sigma_i$$
+and thus $O_{aa}$ can be decomposed as a sum $\bigoplus \sigma_iO_{aa}$. We will show that each summand is a simple algebra.
+
+Let $O_i$ be the ideal $\sigma_iO_{aa}$; then, as $\sigma_i$ is central, $O_i$ is an algebra over $\comp e_i\cong \comp$, and so we can restrict our attention to each summand.
+
+By definition of $\pi_a^a$ and centrality, we have that the restriction of $\pi^a_a$ to $O_i$ takes values in $O_i$. Assume now that $\iota^a(\sigma_ix)=\sum_k\alpha_ke_k$; applying $\iota_a$ we obtain $\iota_a\iota^a (\sigma_ix)=\sum_k\alpha_k\sigma_k$. On the other hand, we have that $\pi^a_a(\sigma_ix)=\sigma_iy$ for some $y\in O_{aa}$. By the Cardy condition, we then have that $\sigma_iy=\sum_k\alpha_k\sigma_k$. Multiplying by $\sigma_i$ and by $\sigma_{j}$ for $j\neq i$, we obtain that $\alpha_k=\delta_{ik}$. This implies that $\iota^a(\sigma_i x)=\alpha_ie_i$ or, in other words, that the restriction of $\iota^a$ to $O_i$ takes values in $\comp e_i$. We can then conclude that there exists a complex number $\alpha$ such that
+$$\iota^a(\sigma_i)=\alpha e_i.$$
+By the Cardy condition, we have
+$$\alpha \sigma_i=\iota_a (\iota^a (\sigma_i))=\pi_a^a (\sigma_i)=\chi_{O_i},$$
+where $\chi_{O_i}$ is the Euler element of the algebra $O_i$ (the last equality holds as $\sigma_i$ is the unit of the algebra $O_i$). Applying $\theta_a$ to this last equality, we get
+$$\alpha \theta_a(\sigma_i)=\theta_a (\chi_{O_i})=\dim_\comp O_i$$
+by \ref{euler_trace}. So if $\sigma_i\neq 0$ then $\dim_{\comp}O_i>0$, $\alpha \neq 0$ and hence the Euler element $\chi_{O_i}$ is invertible. By \ref{euler_inv}, the algebra $O_i$ is then semisimple and can be represented as a sum
+$$O_i=\bigoplus_jO_{ij}$$
+of simple algebras. By definition, the map $\pi_a^a$ sends each summand $O_{ij}$ to itself. We will rely again on the Cardy condition to show that the algebra $O_i$ is in fact simple. Assume that $\tau_j$ is the unit of the simple algebra $O_{ij}$, and then $O_i=\sum_j\tau_jO_i$ (that is, $O_{ij}=\tau_jO_i$); then $\iota^a(\tau_j)=\alpha' e_i$, and applying $\iota_a$ we obtain that $\iota_a(\iota^a(\tau_j))=\alpha \alpha' \sigma_i$. By the Cardy condition, it is valid to write the identity
+$$\alpha \alpha'\sigma_i=\lambda \tau_j$$
+for some complex number $\lambda$. But, as $\sigma_i=\sum_j\tau_j$, for the previous equality to make sense it is necessary that $\tau_k=0$ for $k\neq j$; in other words, $O_i=O_{ij}$ and thus it is simple. This finishes the proof.
+\end{proof}
+
+\begin{obs}\label{dimensions}
+By the previous result, we have that $O_{aa}$ can be regarded as a sum $\bigoplus_i M(a,i)$ of matrix algebras $M(a,i):=\opnm{M}_{d_{(a,i)}}(\comp )$. In other words, we can find complex vector spaces $V_{a,i}$ such that
+\begin{equation}\label{iso_theorem2_ms}
+O_{aa}\cong \bigoplus_{i=1}^n\opnm{End}(V_{a,i}),
+\end{equation}
+where $\dim V_{a,i}=d(a,i)$. Moreover, the matrix algebra $\opnm{M}(a,i)=\opnm{End}(V_{a,i})$ corresponds under the isomorphism \eqref{iso_theorem2_ms} with the subalgebra $\iota_a(e_i)O_{aa}$. Elements of $O_{aa}$ will be denoted by a tuple $\sigma =(\sigma_1,\dots ,\sigma_n)$, where $\sigma_i\in M(a,i)$. If $\varepsilon_i\in O_{aa}$ denotes the tuple consisting of the identity matrix $1_{a,i}\in M(a,i)$ in the $i$-th coordinate and all others equals to zero, then $\iota_a(e_i)=\varepsilon_i$ or is equal to zero.
+\end{obs}
+
+We can give an explicit characterization for the morphisms $\theta_a$, $\iota^a$ and $\pi^a_b$. For $\sigma =(\sigma_1,\dots ,\sigma_n )\in O_{aa}$, the equality $\theta_a(\sigma \tau)=\theta_a (\tau \sigma)$ implies that
+$$\theta_a(\sigma )=\sum_i\lambda_i \opnm{tr}(\sigma_i)$$
+for some constants $\lambda_i \in \comp$.
+
+We will now find an expression for the isomorphism $\overline{\theta}_a^{-1}$ (recall that $\overline{\theta}_a:O_{aa}\to O_{aa}^*$ is given by $\overline{\theta}_a(\sigma )(\tau )=\theta_a(\tau \sigma )$). For simplicity, in this computation we will work with one summand $M(a,i)$, considering
+$$\overline{\theta}_a:M(a,i)\longrightarrow M(a,i)^*.$$
+Let us denote by $\{\varepsilon_{jk}\}$ the canonical basis for $M(a,i)$ (the only non-zero entry of the matrix $\varepsilon_{jk}$ is the one corresponding to the $j$-th row and the $k$-th column), and let $\{\varepsilon^{jk}\}$ be the corresponding dual basis. Fix now $j,k$ and assume that $\overline{\theta}_a^{-1}(\varepsilon^{jk})=\sum_{r,s}\alpha_{rs}\varepsilon_{rs}$. Applying $\overline{\theta}_a$ and then evaluating at $\varepsilon_{lt}$ we obtain $\alpha_{rs}=\frac{\delta^{jl}_{kt}}{\lambda_i }$ and thus
+$$\overline{\theta}_a^{-1}(\varepsilon^{jk})=\frac{\varepsilon_{kj}}{\lambda_i}.$$
+
+Recall that the adjoint relation for $\iota_a$ and $\iota^a$ is given by
+$$\theta (\iota^a (\sigma )x)=\theta_a(\sigma \iota_a(x)),$$
+where $\sigma \in O_{aa}$ is arbitrary. Take $\sigma =(\sigma_1,\dots ,\sigma_n)\in O_{aa}$, $x=e_i$ and assume that $\iota^a(\sigma )=\sum_j\beta_je_j$. By the adjoint relation we then have $\theta (\iota^a(\sigma )e_i)=\beta_i \theta (e_i)=\theta_a (\sigma \varepsilon_i)=\theta_a (\sigma_i\varepsilon_i)=\lambda_i\opnm{tr}(\sigma_i)$ and thus
+$$\iota^a(\sigma )=\sum_i\frac{\lambda_i\opnm{tr}(\sigma_i)}{\theta (e_i)}e_i.$$
+
+We can now use the Cardy condition to derive an expression for the map $\pi^a_b$. Let $\sigma:=(\sigma_1,\dots ,\sigma_n)\in O_{aa}$; then, as $\pi^a_b=\iota_b\iota^a$, we have that
+$$
+\pi^a_b(\sigma ) = \iota_b \left (\sum_i\frac{\lambda_i\opnm{tr}(\sigma_i)}{\theta (e_i)}e_i\right ) = \sum_i\frac{\lambda_i\opnm{tr}(\sigma_i)}{\theta (e_i)}\iota_b(e_i)
+$$
+
+Fix now a label $a$ and consider $\pi^a_a:O_{aa}\to O_{aa}$. As $\pi_a^a$ preserves summands (see the proof of \ref{theorem_2}), we can restrict our attention to the restriction $\pi^a_a:M(a,i)\to M(a.i)$. Let $\varepsilon_{jk}\}$ be the canonical basis of $M(a,i)$ and $\{\varepsilon^{jk}\}$ its dual. We then have
+$$
+\begin{aligned}
+\chi_{M(a,i)}=\pi_a^a (1_{a,i}) &= \sum_{j,k}\varepsilon_{jk}\overline{\theta}_a^{-1}(\varepsilon^{jk}) \\
+																&= \frac{1}{\lambda_i}\sum_{j,k}\varepsilon_{jk}\varepsilon_{kj} \\
+																&= \frac{1}{\lambda_i}\sum_k\left (\sum_j\varepsilon_{jj}\right ) \\
+																&= \frac{d_{a,i}}{\lambda_i}1_{a,i}.\\
+\end{aligned}
+$$
+On the other hand,
+$$\iota_a(\iota^a(1_{a,i}))=\frac{\lambda_i\opnm{tr}(1_{a,i})}{\theta (e_i)}\iota_a(e_i)=\frac{\lambda_i d_{a,i}}{\theta (e_i)}1_{a,i}.$$
+By the Cardy condition, $\pi^a_a(1_{a,i})=\iota_a(\iota^a(1_{a,i}))$ and thus $\frac{d_{a,i}}{\lambda_i}=\frac{\lambda_i d_{a,i}}{\theta (e_i)}$ which yields the equality
+$$\lambda_i^2=\theta (e_i).$$
+Fixing a square root $\lambda_i=\sqrt{\theta (e_i)}$ for each $i$, we arrive at the following expressions
+$$
+\begin{aligned}
+\theta_a (\sigma ) &= \sum_i\sqrt{\theta (e_i)} \opnm{tr}(\sigma_i), \\
+\iota^a(\sigma )   &= \sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}e_i, \\
+\pi_b^a(\sigma )   &= \sum_i\frac{\opnm{tr}(\sigma_i)}{\sqrt{\theta (e_i)}}\iota_b(e_i), \\
+\end{aligned}
+$$
+where in the last equality, the trace $\opnm{tr}$ is the one corresponding to $O_{aa}$.
+
+A characterization like the one provided in theorem \ref{theorem_2} holds for the spaces $O_{ab}$.
+
+\begin{lemma}[\cite{moore_segal1}]\label{ms_theorem2_bis}
+If $C$ is semisimple, then for each pair $a,b\in \scr{B}$ we have an isomorphism
+\begin{equation}\label{semisimple_2bis}
+O_{ab}\cong \bigoplus_{i=1}^n\operatorname{Hom}_{\comp }(V_{a,i},V_{b,i}),
+\end{equation}
+for some finite-dimensional complex vector spaces $V_{a,i},V_{b,i}$.
+\end{lemma}
+
+Note that the vector spaces in the right hand side of equation \eqref{semisimple_2bis} are the ones appearing in the decompositions of $O_{aa}$ and $O_{bb}$; see remark \ref{dimensions}.
+
+\begin{proof}
+By the centrality condition, we have that
+$$O_{ab,i}:=\iota_a(e_i)O_{ab}=O_{ab}\iota_b(e_i),$$
+and $O_{ab,i}$ is then a $(O_{a,i},O_{b,i})$-bimodule, where $O_{a,i}:=\iota_a(e_i)O_{aa}$. By the previous result, there exists vector spaces $V_{a,i}$ and $V_{b,i}$ such that $O_{a,i}\cong \operatorname{End}_{\comp}(V_{a,i})$ and $O_{b,i}\cong \operatorname{End}_{\comp}(V_{b,i})$
+
+Things to check:
+\begin{itemize}
+\item The unique irreducible representation of $\opnm{End}(V)$ is $V$.
+\item The unique $(\opnm{End}(V),\opnm{End}(W))$-bimodule is $V^*\otimes W$.
+\end{itemize}
+
+Hence, a nonnegative integer $n_{ab}$ exists verifying
+$$O_{ab,i}\cong (V_{a,i}^*\otimes V_{b,i})^{n_{ab}}.$$
+Let $\{v_\alpha\}$ and $\{w_\beta\}$ be basis for $V_{a,i}$ and $V_{b,i}$ respectively. Then $\left \{v_{\alpha ,k}^*\otimes w_{\beta ,k}\right \}$ ($k=1,\dots ,n$) is a basis for $O_{ab,i}$, where $\{v^*_\alpha \}$ is the basis of $V_{a,i}^*$ dual to $\{v_\alpha \}$ (the index $k$ indicates the corresponding summand $V_{a,i}^*\otimes V_{b,i}$). We can now invoke the Cardy condition. If $\sigma \in O_{aa}$, then by definition of $\pi^a_b$ we have that
+$$\pi^a_b(\sigma )=n_{ab}\sum_i\opnm{tr}_{V_{i,a}}(\sigma )\iota_a(e_i).$$
+Comparison with the expression for $\iota_b\iota^a(\sigma )$ yields $n_{ab}=1$.
+\end{proof}
+
+\begin{obs}\label{dimensions_2}
+Note that the vector spaces $V_{a,i}$ can be taken as the ones appearing on remark \ref{dimensions}.
+\end{obs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Maximal Category of Boundary Conditions}
+\label{max_cat_moore_segal}
+
+This section will be devoted to the description of a particular class of categories of boundary conditions. We will just write a brief overview of the main definitions and results. For details, the interested reader may consult the original article \cite{moore_segal1}. In chapter \ref{local_description}, all the statements are proved in a more general setting.
+
+For the following definition to make sense we need to consider small categories.
+
+\begin{defi}
+We will say that a category of branes $\scr{B}$ is \emph{maximal} if, given another category of branes $\scr{B}$, there exists an injective map $\opnm{sk}\scr{B}'\to \opnm{sk}\scr{B}$, where $\opnm{sk}$ stands for ``skeleton''.
+\end{defi}
+
+The following theorem is crucial for the description of the category $\scr{B}$.
+
+\begin{theorem}
+Any maximal category of boundary conditions $\scr{B}$ enjoys the following properties:
+\begin{itemize}
+\item $\scr{B}$ is additive.
+\item There exists a functorial action $\tsf{Vect}\times \scr{B}\to \scr{B}$ of the category of finite dimensional complex vector spaces and
+\item $\scr{B}$ is pseudo-abelian (for the definition of pseudo-abelian category, see \ref{linear_cats}).
+\item There exists a label $a_0$ such that $\iota_{a_0}:A\to O_{a_0a_0}$ is an isomorphism.
+\end{itemize}
+\end{theorem}
+
+Let us give a brief discussion of the ideas behind this theorem (a complete treatment is given in \ref{maximal_cardy_fibrations}). Basically, we can enlarge any category of boundary conditions by defining an additive structure and/or a functorial action of the category of vector spaces and/or kernels of idempotent maps. In other words, given labels $a,b$ and a complex vector space $V$, we can build up a new category of boundary conditions in which the labels $a\oplus b$ and $V\otimes a$ are meaningful (that is, for these new labels we can define all the transition homomorphisms and verify that the centrality condition, adjoint relation and Cardy condition hold). A similiar consideration holds regarding the pseudo-abelian structure: we have idempotent elements $p\in O_{aa}$; then, we can consider both the kernel $\opnm{Ker}p$ and the cokernel $\opnm{Coker}p$ and verify that all the axioms are still satisfied after adding these objects to the collection of branes.
+
+\begin{proposition}
+For each $i=1,\dots ,n$ there exists an object $a_i\in \scr{B}$ such that $O_{a_ia_i}\cong \comp$ as $\comp$-algebras.
+\end{proposition}
+
+This proposition is equivalent, thanks to \ref{ms_theorem2_bis}, to the existence of a boundary condition $a_0$ such that $\iota_{a_0}:C\cong O_{a_0a_0}$ (see chapter 4 for more details). It basically states that we have one-dimensional vector spaces among the open algebras.
+
+The following result classifies maximal categories of labels in the semisimple case.
+
+\begin{theorem}[\cite{moore_segal1}, Theorem 3]\label{theorem_3}
+If the Frobenius algebra $A$ corresponding to the closed sector is semisimple, then the category of branes $\scr{B}$ is equivalent to the category $\tsf{Vect}(X)$ of vector bundles over the space $X=\{e_1,\dots ,e_n\}$ consisting of the orthogonal idempotents in $A$ such that $\sum_ie_i=1$.
+\end{theorem}
+
+Let now $E\to X$ be a vector bundle over $X$; then, if $E_i$ denotes the fiber over $e_i\in X$, the assignment
+$$E\longmapsto (E_1,\dots ,E_n)$$
+defines an equivalence (in fact, an isomorphism) between the category $\tsf{Vect}(X)$ and the $n$-fold product $\tsf{Vect}^n$. Hence, $\scr{B}$ is a 2-vector space of rank $n$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bundles of Algebras and F-manifolds}
+
+Vector bundles with an algebra structure on the fibers will be the main characters in most part of this work, so we will first focus on generalities about this kind of bundles.
+
+\begin{obs}
+We will work with ringed spaces $(M,\scr{O}_M)$. As a matter of notation, we will often write only $M$ instead of $(M,\scr{O}_M)$ and also $\scr{O}$ for the structure sheaf, when no possibility of confusion about the base manifold can occur. On the other hand, these ringed spaces will always be smooth ($C^\infty $) manifolds or complex manifolds, with the usual structure sheaves.
+\end{obs}
+
+Let $M$ be a ringed space with structure sheaf $\scr{O}_M$. A \emph{bundle of algebras} over $M$ is a (complex or holomorphic) vector bundle $E\rightarrow M$ together with a bundle map
+$$\mu :E\otimes E\longrightarrow E$$
+(equivalently, with an $\scr{O}_M$-linear morphism $\Gamma (E)\otimes \Gamma (E)\rightarrow \Gamma (E)$) such that, for each $x\in M$, the restriction $\mu_x$ of $\mu$ to $E_x\otimes E_x$ is a multiplication which induces an associative $\comp$-algebra structure on $E_x$. Moreover, we require the existence of a global section $1:M\rightarrow \Gamma (E)$ such that $1(x)=1_x$ is the unit of the algebra $E_x$.
+
+These algebra bundles are also called \emph{bundles with multiplication}. If $X,Y$ are sections of $E$, we will denote their product by $XY$. When $E=TM$ for some space $M$, then $M$ is called a \emph{manifold with multiplication} (\emph{on the tangent sheaf}).
+
+The next examples show some important examples of algebra bundles in the literature.
+
+\begin{ej}\label{azumaya_example}
+An \emph{Azumaya bundle} or \emph{Azumaya algebra over $M$} is a vector bundle $E$ over $M$ such that the fibers $E_x$ are isomorphic to a matrix algebra $\text{M}_n(\comp )$; see section \ref{subsec_azumaya}. Equivalently, a sheaf of algebras $\EuScript{A}$ over $M$ is called an \emph{Azumaya algebra} over $M$ if it is locally isomorphic to the sheaf $\text{M}_n(\scr{O}_M)$ (this is the same as saying that $\EuScript{A}$ is locally free as a sheaf of $\scr{O}_M$-modules and the reduced fibre $\EuScript{A}_x\otimes_{\scr{O}_{M,x}}k_x$ is isomorphic to $\text{M}_n(\comp )$ for each $x\in M$, where $k_x$ is the field $\scr{O}_{M,x}/\{f \, | \, f(x)=0\}$). By defining a certain equivalence relation on these isomorphism classes we obtain the Brauer group $\text{Br}(M)$ of $M$. By a theorem of Serre, for certain spaces $M$ (e.g. compact ones), this Brauer group is isomorphic to the torsion subgroup of the third cohomology group $H^3(M;\ent )$; see \cite{grothendieck68:_le_group_de_brauer_i}. 
+\end{ej}
+
+\begin{ej}
+Algebra bundles were considered by Dixmier and Douady in \cite{dd:_champs} to give a geometric description of the third cohomology group of a topological space: if $H$ is a separable Hilbert space, $\text{U}(H)$ its unitary group and $\mathbbm{P}\text{U}(H)$ the corresponding projective group, then there exists a bijection between the group of isomorphism classes of principal $\mathbbm{P}\text{U}(H)$-bundles and the third cohomology group $H^3(M;\ent )$. As the group $\mathbbm{P}\text{U}(H)$ can be identified with the group of automorphisms $\scr{K}\rightarrow \scr{K}$ of the $C^*$-algebra of compact operators on $H$, we then obtain that the group $H^3(M,\ent )$ is in bijective correspondence with isomorphism classes of (locally trivial) bundles over $M$ with fiber $\scr{K}$. As $\scr{K}^{\otimes 2}\cong \scr{K}$, the set of isomorphism classes of algebra bundles with fiber $\scr{K}$ is a group under the tensor product, which is called the infinite Brauer group; the previous bijection then turns out to be a group isomorphism. See also \cite{brylinski:_loop_spaces} and \cite{parker:_brgroup}.
+\end{ej}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Spectral Cover of a Manifold}
+
+We shall now focus on the definition of the spectral cover of a bundle of algebras. We consider the particular case that is useful to us and refer the reader to the appropriate literature for further details.
+
+Assume that $E$ is a bundle of algebras over $M$ with the property that for each $x\in M$, the fibre $E_x$ is a commutative, semisimple $\comp$-algebra. That is, $E_x$ has a decomposition $E_x=\bigoplus_ie_i(x)E_x$, where $\{e_i(x)\}$ is a basis of orthogonal, simple idempotents for $E_x$. Consider now the subset $S_E\subset E^*$ consisting of algebra homomorphisms; that is, over each $x\in M$, $S_E$ contains all linear functionals $\varphi_x:E_x\to \comp$ such that $\varphi_x$ is multiplicative and $\varphi_x(1)=1$. We give to $S_E$ the subspace topology.
+
+\begin{proposition}\label{alg_bundle_idemp_sec}
+Let $x_0\in M$ be a point such that $E_{x_0}$ is semisimple. Then, there exists an open neighborhood $U\ni x_0$ such that $E_x$ is semisimple for each $x\in U$. Moreover, there exist unique, up to reordering, local sections $e_1,\dots ,e_n:U\to E$ such that $e_ie_j=\delta_{ij}e_i$ and $E=\bigoplus_ie_iE$ over $U$.
+\end{proposition}
+
+Such an open subset will be said to be \emph{semisimple}.
+
+\begin{proof}
+Assume that $E_{x_0}$ is semisimple, with decomposition $E_{x_0}=\bigoplus_ie_i(x_0)E_{x_0}$. We then have an isomorphism of algebras $E_{x_0}\to \comp^n$, where the algebra structure on the right is the trivial one. This isomorphism is given by $e_i(x_0)\mapsto e_i$, where $e_i$ is the $i$-th vector of the canonical basis. Let $X_0$ (which we can identify with a tuple $z_0\in \comp^n$) be a vector such that the left translation $L_{X_0}$ has $n$ distinct eigenvalues $\lambda_{1,0},\dots ,\lambda_{n,0}$ (and thus $z_0=(\lambda_{1,0},\dots ,\lambda_{n,0}))$. We can then find an open subset $U\ni x_0$ and maps $\lambda_1,\dots ,\lambda_n:U\to \comp$ such that
+\begin{enumerate}
+\item $\lambda_i(x_0)=\lambda_{i,0}$ for each $i$ and
+\item $\lambda_i(x)\neq \lambda_j(x)$ for each $x\in U$ and distinct $i,j$.
+\end{enumerate}
+We now define a (local) section $X:U\to \comp^n$ by
+$$X(x)=(\lambda_1(x),\dots ,\lambda_n(x)).$$
+Then, for each $x\in U$, the map $L_{X(x)}\in E_x$ has $n$ distinct eigenvalues, and thus the algebra $E_x$ is semisimple.
+
+The idempotent sections $e_i$ are defined in this trivialization chart by the equation
+$$e_i(x)=e_i,$$
+and uniqueness follows from uniqueness of the decomposition \eqref{gen_eigenspace}.
+\end{proof}
+
+The previous result produces the following
+
+\begin{cor}
+The set $S_E$ together with the canonical projection $\pi :S_E\to M$ is a $\dim M$-sheeted covering space.
+\end{cor}
+\begin{proof}
+Pick a point $x\in M$ and let $U\ni x$ be a semisimple neighborhood, with local idempotent sections $e_1,\dots ,e_n:U\to E$, where $n=\dim M$. If $\varphi_x:E_x\to \comp$ is an algebra homomorphism, then its kernel is a maximal ideal. Hence, there exists an index $i$ such that
+$$\opnm{Ker}\varphi_x =\bigoplus _{j\neq i}e_j(x)E_x.$$
+In other words, we have $\varphi_x(e_j(x))=\delta_{ij}$, and we can then identify $S_E$ with a subset of $E$ itself, namely by the correspondence $\varphi_x\mapsto e_i(x)$. In particular, this shows also that $\pi^{-1}(U)$ is precisely the disjoint union of $n$ copies of $U$, each sheet corresponding to the image of $U$ by each idempotent section.
+\end{proof}
+
+\begin{defi}
+When $E=TM$, the covering $\pi :S_{TM}\to M$ is called the \emph{spectral cover of $M$}. We will denote it just by $S$ instead of $S_{TM}$.
+\end{defi}
+
+\begin{obs}
+The \emph{caustic} $K\subset M$ consists precisely of points $x\in M$ for which $E_x$ is not semisimple. The caustic is either empty or an hypersurface in $M$ (\cite{hertling:_fman}, proposition 2.6). We will deal with bundles for which $K=\emptyset$. In this case, the spectral cover is an (unramified) $n$-sheeted covering space; ramifications appear over points $x\in K$. For more details, see \cite{hertling:_fman}.
+\end{obs}
+
+These constructions are part of a more general framework, namely that of the \emph{analytic spectrum}, introduced by C. Houzel \cite{houzel_gal2} to study finite morphism of analytic spaces. He defines the analytic spectrum for algebras of finite presentation over an analytic space, which include finite algebras (those algebras which are coherent modules): let $\Gamma$ be a finite presentation $\scr{O}_M$-algebra and $f:N\to M$ a space over $M$ (in particular, if $E$ is a vector bundle, then its sheaf of sections is coherent and thus of finite presentation). Define a contravariant functor $S_\Gamma$ from spaces over $M$ to the category of sets by
+$$S_\Gamma (N,f)=\operatorname{Hom}_{\scr{O}_N\text{-}{\rm alg}}(f^*\Gamma ,\scr{O}_N)$$
+(the pair $(N,f)$ is short for $f:N\to M$).\footnote{Note that if $\Gamma$ is an $\scr{O}_M$-algebra, then so is $f^*\Gamma$.} This functor is then representable, and we have a bijection between $S_\Gamma (N,f)$ and holomorphic maps $N\to \operatorname{Specan} \Gamma$, where $\operatorname{Specan}\Gamma$ is the analytic spectrum. Even with these nice algebras, the space $\operatorname{Specan}\Gamma$ may have singularities. For detailed descriptions we refer the reader to \cite{houzel_gal2}; check also \cite{fischer:_cng}. The case in which we are interested deals with a bundle of algebras $E$ such that $E_x$ is semisimple for each $x$ (see below). If $M=N$ and $f:M\to M$, then the construction of the analytic spectrum provides a bijection between the subspace of the dual bundle $(f^*E)^*$ consisting of morphisms of algebras and maps $M\to \operatorname{Specan}\Gamma_E$.\footnote{Note that there is an isomorphism between $\Gamma_{E^*}$ and $\Gamma_{E}^*=\opnm{Hom}_{\scr{O}_M}(\Gamma_E,\scr{O}_M)$ induced by the pairing between $\Gamma_{E^*}$ and $\Gamma_E$.} For $f=\text{id}_M$, this is just expressing that every morphism of algebras $\varphi :E\to \comp$ is determined by a map $M\to \operatorname{Specan}\Gamma_E$ (for each $x$ this is just choosing the kernel of the restriction $\varphi_x:E_x\to \comp$).
+
+\begin{proposition}\label{isom_1}
+For a bundle of algebras $E$ over $M$ there exists an isomorphism of $\mathscr{O}_M$-algebras
+\begin{equation}\label{iso_2}
+\pi_*\scr{O}_{S_E}\cong \Gamma_E,
+\end{equation}
+\end{proposition}
+\begin{proof}
+consider the sequence of maps
+$$\Gamma_E\longrightarrow p_*\mathscr{O}_{E^*}\longrightarrow \pi_*\mathscr{O}_{S_E},$$
+$$X\longmapsto \widetilde{X}\longmapsto \widetilde{X}|_S$$
+where $p:E^*\rightarrow M$ is the canonical projection (we are considering $S_E$ as a subspace of $E^*$; then $\pi$ is just the restriction of $p$ to $S_E$), and $\widetilde{X}:p^{-1}(U)=E^*|_U\rightarrow \comp$ is the map given by
+$$\widetilde{X}(x,\varphi )=\varphi (X(x)).$$
+The composite map
+\begin{equation}\label{iso}
+\Gamma_E\longrightarrow \pi_*\scr{O}_{S_E}
+\end{equation}
+is then easily seen to be an isomorphism of $\mathscr{O}_M$-algebras (recall that $(x,\varphi )\in S_E$ if and only if $\varphi$ is an algebra homomorphism).
+
+The inverse can be described easily: Given a map $\widetilde{f}:\pi^{-1}(U)\rightarrow \comp$, let $X_{\widetilde{f}}\in \Gamma_E(U)$ be the local section defined as follows: pick an $x\in U$ an assume that $U$ is semisimple (if it is not, we can choose a smaller open neighborhood around $x$); let $\{e_i\}$ be a local frame of idempotent sections for $E|_U$. Then
+$$X_{\widetilde{f}}(x)=\sum_i\widetilde{f}(x,\varphi_i)e_i(x),$$
+where $\varphi_i:E_x\rightarrow \comp$ is the algebra homomorphism which verifies $\varphi_i(e_i(x))\neq 0$ (in fact, $\varphi_i (e_i(x))=1$ as $\varphi_i(1)=1$). The assignment $\widetilde{f}\mapsto X_{\widetilde{f}}$ is then the inverse of \eqref{iso}.
+\end{proof}
+
+Combining the previous result with propositions \ref{direct_covering} and \ref{fibre}, for a point $x_0\in M$ we obtain isomorphisms
+$$
+\Gamma_{E,x_0} \cong \bigoplus_{y\in \pi^{-1}(x_0)}\scr{O}_{S_E,y}$$
+$$
+E_{x_0}        \cong \Gamma_{E,x_0}\otimes_{\scr{O}_{x_0}}\comp\cong \bigoplus_{y\in \pi^{-1}(x_0)}\scr{O}_{S_E,y} \otimes_{\scr{O}_{x_0}}\comp .$$
+
+Moreover, each summand $\scr{O}_{S,y}\otimes_{\scr{O}_{x_0}}\comp$ is invariant under ths action of any multiplication operator, and thus it is the space of generalized eigenvectors.
+
+We can now prove the following result, which is in fact Housel's definition of the spectral cover.
+
+\begin{proposition}
+Let $E\to M$ be a bundle of associative and commutative algebras. Then
+\begin{enumerate}
+\item The analytic spectrum $S_E$ represents the functor (which we denote with the same symbol) $S_E (N,f)=\operatorname{Hom}_{\scr{O}_N-\text{alg}}(f^*E,\comp)$ from spaces over $M$ to the category of sets (here $\comp$ means the trivial line bundle $N\times \comp$).
+\item If $E_x$ is semisimple for each $x$, then $\pi :S_E\to M$ is a covering space.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Let us first fix some notation: for $y\in N$, the orthogonal complement (with respect to the product of the algebra $E_{f(y)}$) of the simple component spanned by $u(y)$ is the hyperplane spanned by all the other simple idempotents; we will denote this complement by $\langle u(y) \rangle ^{\perp}$. We define a biyection
+$$\Phi :C^\infty (N,S_E)\longrightarrow \operatorname{Hom}_{\scr{O}_N-\text{alg}}(f^*E,\comp )$$
+by the following rule: for $u:N\to S_E$, let $\Phi (u):f^*E\to \comp$ be the unique map which verifies
+\begin{enumerate}[(a)]
+\item $\Phi (u)_y:E_{f(y)}\to \comp$ is a unit-preserving morphism of algebras for each $y\in N$ and
+\item $\opnm{Ker} (\Phi (u)_y)=\langle u(y)\rangle ^{\perp}$.
+\end{enumerate}
+Assume that $\Phi (u)=\Phi (v)$; then, for each $y\in N$, $\langle u(y) \rangle ^{\perp }=\opnm{Ker} \Phi (u)_y=\opnm{Ker} \Phi (v)_y=\langle v(y)\rangle ^{\perp }$, and then necessarily $u(y)=v(y)$. To check surjectivity, let $\varphi :f^*E\to N\times \comp$ be a morphism of algebra bundles. Define $u:N\to S_E$ by the assignment $u(y)=e_{\varphi}(y)$, where $e_{\varphi}(y)$ is the unique simple idempotent which verifies $\varphi_y (e_{\varphi}(y))=1$, where $\varphi_y:E_{f(y)}\to \comp$ is the restriction of $\varphi$ to the fibre $E_{f(y)}$. To check smoothness, consider the following commutative diagram
+$$
+\xymatrix{
+N\ar[r]^u \ar[dr]_f & S_E \ar[d]^{\pi } \\
+                    & M.}
+$$
+Then, smoothness of $u$ follows from smoothness of $\pi$, $f$ and the next item.
+
+For the second assertion, let $x\in M$ and $U\ni x$ a semisimple neighborhood, with local frame $\{e_1,\dots ,e_n\}$. Then $\pi^{-1}(U)=\bigsqcup_i\widetilde{U}_i$, where $\widetilde{U}_i\cong U$ is the image of the section $e_i:U\to E|_U$.
+\end{proof}
+
+%We will now focus on the analytic spectrum of a bundle of algebras. This spectrum was introduced by Houzel in \cite{houzel_gal2} to study finite morphisms of analytic spaces; it is a generalization of the usual notion of spectrum of a ring. From now on, it will be assumed that the multiplication on the bundles in consideration is also commutative.
+%
+%We work on the category of analytic (ringed) spaces over a fixed analytic space $(M,\scr{O}_M)$; this is the general setting, but we will in fact restrict our attention only to complex manifolds (i.e. non-singular analytic spaces) and, in particular, vector bundles over $M$.\footnote{Recall that, given ringed spaces $(X,\scr{O}_X)$ and $(Y,\scr{O}_Y)$, a morphism $(X,\scr{O}_X)\rightarrow (Y,\scr{O}_Y)$ is a holomorphic map $f:X\rightarrow Y$ together with a sheaf morphism $\scr{O}_Y\rightarrow f_*\scr{O}_X$ (or, equivalently, a sheaf map $f^*\scr{O}_Y\rightarrow \scr{O}_X$, by the adjunction between the inverse and direct image sheaves).} Regarding analytic spaces, the interested reader may consult \cite{fischer:_cng}. 
+%
+%\begin{defi}
+%A sheaf $\EuScript{A}$ of $\scr{O}_M$-algebras over $M$ is said to be \emph{finite} if and only if it is a coherent sheaf of $\scr{O}_M$-modules.
+%\end{defi}
+%
+%We will not discuss the definition of coherent sheaf here, which is treated in many books of basic algebraic geometry, as for example \cite{hartshorne:_alg_geom}. The fact that really interest us is that, given a bundle of algebras $E$, its sheaf of sections $\Gamma_E$, being a locally-free $\scr{O}_M$-module, is in particular coherent and so it is a finite $\scr{O}_M$-algebra over $M$.
+%
+%Let $E$ be a vector bundle over $M$ and $f:N\rightarrow M$ a space over $M$. Define a contravariant functor $S_E$ from spaces over $M$ to the category of sets, given by $$S_E(N)=\operatorname{Hom}_{\scr{O}_N \text{-alg}}(f^*\Gamma_E,\scr{O}_N).$$
+%Equivalently, we can consider the functor (which we denote by the same symbol) $S_E(N)=\operatorname{Hom}_{\scr{O}_M \text{-alg}}(\Gamma_E,f^*\scr{O}_N)$, by means of the adjunction between $f^*$ and $f_*$.
+%This functor turns out to be representable (\cite{houzel_gal2}, Proposition 1).
+%
+%\begin{defi}\label{anspec}
+%The \emph{analytic spectrum} of $\Gamma_E$ (or just $E$) is the analytic space $\text{Specan}\, E$ over $M$ which represents the functor $S_E$.
+%\end{defi}
+%
+%\begin{obs}
+%Even in this restricted setting, the analytic spectrum may have singularities.
+%\end{obs}
+%
+%\begin{obs}
+%The analytic spectrum is defined for more general sheaves of algebras, those of finite presentation, by considering the functor $N\mapsto S_\EuScript{A}(N)$, for an $\scr{O}_M$-algebra $\EuScript{A}$ of finite presentation and complex spaces $N,M$. For a detailed treatment, we refer again to \cite{houzel_gal2}.
+%\end{obs}
+%
+%From now on, we will focus only on the case of a vector bundle $E$ over $M$ and the finite algebra $\Gamma_E$.
+%
+%We will denote the analytic spectrum of a bundle $E$ by $(\text{Specan}\, E,\pi )$ where $\pi :\text{Specan}\, E\rightarrow M$ is the projection, or just by $\text{Specan}\, E$, as in definition \ref{anspec}. We thus obtain a pair $(\text{Specan}\, E,\eta )$, with
+%$$\eta :\text{Hol}_M(-,\text{Specan}\, E)\stackrel{\cong}{\longrightarrow} S_E$$
+%a natural isomorphism, where $\text{Hol}_M(N,L)$ denotes the space of holomorphic maps $N\rightarrow L$ over $M$. By Yoneda's lemma, the natural isomorphism $\eta$ can be identified with the morphism of $\scr{O}_M$-algebras
+%$$\eta_\Lambda(\text{id}_\Lambda):\Gamma_E\longrightarrow \pi_*\scr{O}_\Lambda,$$
+%where $\Lambda =\text{Specan}\, E$ (to ease the notation). This map is an isomorphism (\cite{houzel_gal2}, Proposition 8).
+%
+%The following result gives a description of the fibers of the analytic spectrum and justifies its name.
+%
+%\begin{proposition}
+%Let $\pi :\Lambda \rightarrow M$ be the analytic spectrum of $E$. Then:
+%\begin{enumerate}
+%\item each fiber $\Lambda_x=\pi^{-1}(x)$ has finite cardinality (in fact, $\pi :\Lambda\rightarrow M$ is a finite morphism, as it is also closed);
+%\item $\Lambda_x$ is in bijective correspondence with maximal ideals in $E_x$ and
+%\item the projection $\pi :\Lambda \rightarrow M$ is finite and flat of degree equal to the dimension of $M$.
+%\end{enumerate}
+%\end{proposition}
+%
+%For the case we are considering, there is a nice description of the analytic spectrum, as a subset of the dual bundle $E^*$.
+%
+%Given $E$ with multiplication, consider the symmetric bundle $SE$. As for vector spaces, we can view $\Gamma_E$ inside $\Gamma_{SE}$. Now, sections of $SE$ can be identified with polynomial maps on $E^*$ in the following way: assume $\{X_1,\dots ,X_m\}$ is a local frame for $E$ over $U$. Then every local section $Y$ of $\Gamma_{SE}$ is of the form $Y=\sum \lambda_{i_1,\dots ,i_m}X_1^{i_1}\otimes \cdots \otimes X_{m}^{i_m}$ for some maps $\lambda_{i_1\dots i_m}\in \scr{O}(U)$. If $(x,\xi )$ is a point in $E^*$, then
+%$$Y(x,\xi )=\sum \lambda_{i_1,\dots ,i_m}(x)\xi (X_1(x))^{i_1} \dots \xi (X_{m}(x))^{i_m}.$$
+%Assume now that we restrict attention only to points $(x,\xi )$ such that $\xi :E_x\rightarrow \comp$ is also an algebra homomorphism (with the notation of preceeding paragraphs, $(x,\xi ) =(x,\Lambda_i )$ for some $i=1,\dots ,n$). Suppose that near $x$ we have $\bigl (\sum_i\lambda_iX_i\bigr )(y,\Lambda_j)=0$ for each $j$; then
+%$$\Lambda_j\Bigl (\sum_i\lambda_i(y)X_i(y)\Bigr )=0,$$
+%and, being $\{X_1,\dots ,X_m\}$ a local frame, necessarily $\lambda_i=0$ in a neighbourhood of $x$ for each $i=1,\dots ,m$. Thus, the map
+%\begin{equation}\label{canonical_map}
+%\Gamma_E\longrightarrow \pi_*\scr{O}_{\Lambda }
+%\end{equation}
+%is injective, where $\Lambda =\{(x,\xi )\in E^* \, | \, \xi :E_x\rightarrow \comp \text{ is an algebra homomorphism}\}$. On the other hand, let $f:\pi^{-1}(V)\rightarrow \comp$ be a map defined in a neighbourhood $V$ of $x\in M$. We then have that the linear system
+%$$\lambda_1 \Lambda_j(X_1)+\cdots +\lambda_m \Lambda_j(X_m)=f(\Lambda_j)\quad (j=1,\dots ,n)$$
+%has infinitely many solutions as $n\leqslant m$.
+%
+%
+%\begin{proposition}
+%The map \eqref{canonical_map} is an isomorphism of $\scr{O}_M$-algebras.
+%\end{proposition}
+%
+%\begin{proposition}
+%The set $\Lambda =\bigsqcup_{x\in \text{supp}\, \Gamma_E}\operatorname{Hom}_{\comp \text{-alg}}(E_x,\comp )\subset E^*$ is an analytic spectrum for $E$.
+%\end{proposition}
+%\begin{proof}
+%We have to construct an isomorphism
+%$$\eta_N:\text{Hol}_M(N,\Lambda )\longrightarrow S_E(N)$$
+%natural in $N$. 
+%\end{proof}
+%
+%
+%
+%
+%If $E_x=\bigoplus_{i=1}^{n_x}e_iE_x$ is the eigenspace decomposition for the fiber $E_x$, recall from section \ref{sfa} that the set of maximal ideals of $E_x$ is in bijective correspondence with the set $\{\Lambda_1,\dots ,\Lambda_{n_x}\}=\operatorname{Hom}_{\comp \text{-alg}}(E_x,\comp )\subset E^*_x$. Then, the support of the sheaf $\Gamma_E$
+%$$\text{supp}\, \Gamma_E=\{x\in M \, | \, E_x\neq 0\}$$
+%is the image of the structural morphism $\pi :\Lambda\rightarrow M$. Thus, we have that  
+%$$\Lambda=\bigsqcup_{x\in \text{supp}\, \Gamma_E}\operatorname{Hom}_{\comp \text{-alg}}(E_x,\comp )\subset E^*.$$
+%
+%There is a more concrete description, without relying in the previous proposition: recall that for any finite-dimensional $\comp$-algebra $V$, the symmetric algebra $SV$ can be identified with polynomial maps $V^*\rightarrow \comp$; more precisely, if $\{x_1,\dots ,x_n\}$ is a basis for $V$, then
+%$$SV\cong \comp [x_1,\dots ,x_n];$$
+%if $p$ is a monomial $x_{i_1}^{r_1}\otimes \dots \otimes x_{i_k}^{r_k}$, then $p(\varphi )=\varphi (x_{i_1})^{r_1}\dots \varphi (x_{i_k})^{r_k}$.\footnote{It is often more natural to define the symmetric algebra as $SV^*$; the definition we use here is chosen mainly because $V$ is an algebra, and we need to keep track on its multiplication.} Consider now the regular representation $L:V\rightarrow \operatorname{Hom}_\comp (V,V)$; this morphism can be extended to a morphism of algebras
+%$$L:SV\longrightarrow \operatorname{Hom}_\comp (V,V)$$
+%in an obvious way. Let $\text{ev}_1:\operatorname{Hom}_\comp (V,V)\rightarrow V$ be the evaluation map $\text{ev}_1(f)=f(1)$. Then the kernel of the composite map
+%$$\text{ev}_1L:S(V)\longrightarrow V$$
+%(which is the (surjective) morphism that maps the multiplication in $SV$ to the multiplication in $V$) is an ideal $\mathfrak{a}$ in $SV$. Assume that the first element of the basis of $V$ is $x_1=1$, the unit of the algebra $V$. Then $\mathfrak{a}$ is the ideal generated by the polynomials
+%\begin{equation}\label{generators}
+%x_1-1 \quad , \quad x_i\otimes x_j-\sum_k\lambda_{ij}^kx_k \quad (i,j=1,\dots ,n),
+%\end{equation}
+%where $x_ix_j=\sum_k\lambda_{ij}^kx_k$ in $V$.
+%
+%The previous constructions can be applied in the context of vector bundles: if $E$ is a vector bundle with multiplication, then we get an algebra bundle $SE$; then, the $\scr{O}_M$-sheaf of sections $\Gamma_{SE}$ is isomorphic to the $\scr{O}_M$-sheaf of functions in $\tau_*\scr{O}_{E^*}$ which are polynomials on the fibers (here $\tau :E^*\rightarrow M$ is the bundle projection). The kernel of the morphism $\text{ev}_1L:\Gamma_{SE}\rightarrow \Gamma_E$ defines an ideal sheaf in $\tau_*\scr{O}_{E^*}$, which is defined locally by the polynomials \eqref{generators}. Pick now an arbitrary open subset $W\subset E^*$ and let $\tau (W)= U\subset M$. Then we can construct an ideal
+%$$\mathfrak{A}(W)\subset \scr{O}_{E^*}(W)$$
+%by generating it with the restrictions $p|_W$, where $p\in \opnm{Ker} \{(\text{ev}_1L):\Gamma_{SE}(U)\rightarrow \Gamma_E(U)\}$.
+%
+%\begin{proposition}
+%For the analytic spectrum $L$ of $E$, we have the following conclusions:
+%\begin{enumerate}
+%\item The support of the quotient sheaf $\scr{O}_{E^*}/\mathfrak{A}$ is the analytic spectrum $L=\text{Specan}\, E$ and the map
+%$$\Gamma_E\longrightarrow \tau_*\scr{O}_L$$
+%is an isomorphism of $\scr{O}_M$-algebras.
+%\item The previous isomorphism induces isomorphisms $e_iE_x\cong \scr{O}_{L,\Lambda_i}$ over each $x\in M$.
+%\end{enumerate}
+%\end{proposition}
+%\begin{proof}
+%
+%\end{proof}
+%
+%
+%\begin{cor}\label{splitting}
+%For each $x\in M$ there exists an open neighbourhood $U\ni x$ such that the restriction $E|_U$ splits as a sum of multiplication invariant subbundles $e_iE$.
+%\end{cor}
+%
+%\begin{obs}\label{caustic}
+%Given a point $x\in M$ and a neighbourhood $U$ as in corollary \ref{splitting}, the eigenspace decomposition over a point $y\in U$ may have more summands than the one induced by the splitting around $x$. Let $P(x)$ be the vector given by
+%$$P(x)=(\dim_\comp e_{1,x}E_x,\dots ,\dim_\comp e_{n,x}E_x).$$
+%Now, if $M$ is connected, there exists a unique vector $\beta$ such that the subset $\{x\in M\, | \, P(x)=\beta \}$ is open in $M$. The complement of this subset is called the \emph{caustic} and is an hypersurface or empty. Note that $E_x$ is semisimple if and only if $P(x)=(1,\dots ,1)$. In this case, if $U\ni x$ is as in corollary \ref{splitting}, then for every $y\in U$, the induced decomposition over $y$ is the same as its eigenspace decomposition. This is treated in detail in \cite{hertling:_fman}.
+%\end{obs}
+%
+%We are interested in the case where each $e_iE$ has rank 1; i.e. when the multiplication is semisimple. We have that the subset $\{x\in M \, | \, E_x \text{ is semisimple}\}$ is open and we have locally defined (and uniquely determined) sections
+%$$e_i:U\longrightarrow E|_U$$
+%such that $e_ie_j=\delta_{ij}e_i$; i.e. $\{e_1,\dots ,e_n\}$ is a local basis of orthogonal, idempotent sections. Singularities of $\Lambda$ arises in the complement of semisimple points, and so in a neighbourhood of a semisimple point, $L$ is actually a manifold.
+%
+%Assume now that each point $x\in M$ is semisimple. Then, in a neighbourhood of each point we have a splitting of the bundle $E$ as a sum of line bundles $e_iE$
+%$$E=\bigoplus_{i=1}^ne_iE;$$
+%each subbundle $e_iE$ is called an \emph{eigenline bundle} for $L$: if $X$ is any local section of $E$, then the multiplication operator $L_X$ can be diagonalized and each fiber $(e_iE)_x$ is an eigenspace for the restriction of $L$ to $E_x$.
+
+%\begin{obs}
+%The analytic spectrum $\pi :\Lambda \rightarrow M$ is branched over the caustic, i.e. over the points where $E_x$ is not semisimple (see remark \ref{caustic}). So, on the open subset of semisimple points, $\pi$ is unramified and thus \'etale. In fact, semisimplicity is equivalent to being \'etale (see \cite{hertling:_fman}, Theorem 3.2).
+%\end{obs}
+
+In the following sections we shall encounter bundles of algebras with an additional layer of structure, namely a nondegenerate, symmetric linear form $\theta :E\to \comp$ (recall that in the context of vector bundles, $\comp$ denotes the trivial vector bundle $M\times \comp$). In this case, $\theta$ defines an isomorphism $\overline{\theta}:E\cong E^*$ defined in the usual way. Moreover, if $X,Y$ are sections of $E$, then the equation
+$$g(X,Y):=\theta (XY)$$
+defines a metric on $E$. Frobenius manifolds provide examples of bundles with this property.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{F-Manifolds}
+
+We now take $E=TM$, the tangent bundle to an $n$-dimensional connected manifold $M$, and suppose that we have an associative and commutative multiplication on $TM$, with a global vector field $1:M\rightarrow TM$. We will also assume that this multiplication is semisimple at each point of $M$. In this case, the analytic spectrum of $TM$ will be called the spectral cover.
+
+\begin{defi}
+A manifold $M$ such that $T_xM$ is semisimple for each $x\in M$ is called \emph{massive}.\footnote{This terminology comes from \emph{massive perturbations} in a conformal field theory.}
+\end{defi}
+
+We then have a local decomposition
+\begin{equation}\label{decomp}
+TM|_U=\bigoplus_{i=1}^ne_iTM
+\end{equation}
+of $TM$ into line bundles and the set $\{e_1,\dots ,e_n\}$ is a basis of orthogonal idempotent sections of $TM$ over $U$, with $\sum_ie_i=1$.
+
+Given this idempotent local fields, we would like to to know if they come from a system of local coordinates. This is equivalent to the commutativity condition
+$$[e_i,e_j]=0$$
+for all $i,j=1,\dots ,n$ and for each $U$ with a decomposition \eqref{decomp}.
+
+\begin{defi}
+An \emph{F-manifold} is a manifold with multiplication $M$ such that the following product rule
+\begin{equation}\label{f_manifold}
+\EuScript{L}_{XY}(\mu )=X\EuScript{L}_Y(\mu )+Y\EuScript{L}_X(\mu )
+\end{equation}
+holds for all local vector fields $X,Y$ on $M$ ($\mu$ is the multiplication tensor and $\EuScript{L}$ the Lie derivative).
+\end{defi}
+
+As $\mu$ is a $(2,1)$-tensor, so is $\EuScript{L}_X(\mu )$ and it can be computed as
+\begin{equation}\label{lie_derivative}
+\EuScript{L}_X(\mu )(Y,Z)=[X,YZ]-[X,Y]Z-[X,Z]Y.
+\end{equation}
+
+An inmediate consequence of this definition is the following
+
+\begin{lemma}
+$\EuScript{L}_{e_i}(\mu )=0$ for each $i=1,\dots ,n$.
+\end{lemma}
+\begin{proof}
+An easy computation using \eqref{f_manifold} and the equality $e_i^2=e_i$ shows that $\EuScript{L}_{e_i}(\mu )=2e_i\EuScript{L}_{e_i}(\mu )$. Multiplying by $e_i$, we then have that $e_i\EuScript{L}_{e_i}(\mu )=0$, and the result follows.
+\end{proof}
+
+\begin{proposition}\label{canonical_coord}
+Let $M$ be an F-manifold. For each $x\in M$, there exists a neighbourhood $U\ni x$ with local coordinates $(x_1,\dots ,x_n)$ such that
+$$e_i=\partial_{x_i}.$$
+\end{proposition}
+\begin{proof}
+Pick a semisimple neighbourhood $U\ni x$ and let $TM|_U=\bigoplus_{i=1}^ne_iTM$. We must show that $[e_i,e_j]=0$ for each $i,j=1,\dots ,n$. By the previous lemma and equation \eqref{lie_derivative}
+\begin{equation}\label{eigenvector}
+0=\EuScript{L}_{e_i}(\mu )(e_j,e_j)=[e_i,e_j]-2e_j[e_i,e_j],
+\end{equation}
+which implies that $[e_i,e_j]$ is an eigenvector with (constant) eigenvalue equal to $\frac{1}{2}$ for the multiplication operator $L_{e_j}$; i.e. $[e_i,e_j]\in e_jTM$. Applying $L_{e_j}$ to equation \eqref{eigenvector} shields $0=e_j[e_i,e_j]=L_{e_j}([e_i,e_j])$, as desired.
+\end{proof}
+
+\begin{defi}
+A coordinate chart as the one obtained in proposition \ref{canonical_coord} is called a \emph{canonical coordinates chart}.
+\end{defi}
+
+Note that this canonical coordinates are uniquely determined, up to reordering; in such an open subset we then have a chart $(x_1,\dots ,x_n)$ such that $\{\partial_{x_1},\dots ,\partial_{x_n}\}$ is a basis of orthogonal idempotents and each line bundle $\partial_{x_i}TM$ over $U$ is a simple summand of $TM|_U$. Massive manifolds can then be classified as the only F-manifolds which admit canonical coordinates.
+
+\begin{obs}
+The approach adopted here is the one in \cite{hertling:_fman}, and shows that this canonical coordinates, as defined by Dubrovin for Frobenius manifolds in \cite{dubrovin:_2dtft} (cf. also \cite{hitchin:_frob_manifolds}), are available for more general manifolds with multiplication, i.e. F-manifolds. These F-manifolds where first considered by Y. Manin, motivated by K. Saito's work, to avoid the metric as part of the structure.
+\end{obs}
+
+We now define a particular class of vector fields, which have an important role when dealing with Frobenius manifolds.
+
+\begin{defi}
+Let $M$ be an F-manifold. An \emph{Euler vector field of weight} $d\in \comp$ is a global vector field $\chi \in \EuScript{T}(M)$ such that
+$$\EuScript{L}_\chi (\mu )(X,Y)=dXY$$
+for all vector fields $X,Y$.
+\end{defi}
+
+Of particular importance are Euler fields of weight $d=1$ (if no weight is mentioned, we will assume that it has weight equal to 1), and not every F-manifold has such vector fields; see \cite{hertling:_fman}, section 3.2. From equation \eqref{f_manifold} follows easily that the unit field $1$ is an Euler field of weight $d=0$.
+
+\begin{ej}
+The canonical (and most important, in the sense that every F-manifold of dimension $n$ is locally equivalent to it) example of an F-manifold is complex $n$-space $\comp^n$; let $(z_1,\dots ,z_n)$ denote the usual coordinate chart and  let $e_i:=\partial_{z_i}$; define the multiplication by the formula
+$$e_ie_j:=\delta_{ij}e_i.$$
+Then
+\begin{enumerate}
+\item the multiplication is semisimple and satisfies equation \eqref{f_manifold};
+\item $\sum_ie_i$ is the unit field and
+\item every massive F-manifold is locally like this manifold.
+\end{enumerate}
+\end{ej}
+
+
+\clearpage
+
+{\small
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resumen del Cap\'itulo \ref{fsfts}}
+
+El objetivo central de este cap\'itulo es el de introducir las teor\'ias cu\'anticas de campo abiertas-cerradas como asi tambi\'en la clasificaci\'on de estas dada por G. Moore y G. Segal en el caso semisimple. Para esto se necesita primero introducir las teor\'ias cerradas, las cuales est\'an \'intimamente ligadas a las \'algebras de Frobenius, a las cuales tambi\'en les dedicamos una concisa introducci\'on. Finalizamos con los fibrados de \'algebras, los cuales, junto con las teor\'ias abiertas-cerradas, juegan un papel fundamental en lo que resta de este trabajo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Teor\'ias Topol\'ogicas de Campos}
+
+Comenzemos con una definici\'on previa. Dado un entero positivo $D$, definimos la categor\'ia de cobordismos $\tsf{Cob}(D)$ como la categor\'ia cuyos objetos son variedades suaves, orientadas y cerradas de dimensi\'on $D-1$; dadas dos tales variedades $\Sigma_1,\Sigma_2$, unm morfismo $\Sigma_1\to \Sigma_2$ es un cobordismo orientado (es decir, el morfismo es una variedad suave y orientada $W$ de dimensi\'on $D$ tal que $\partial W=\Sigma_1\sqcup \Sigma_2^-$, donde el super\'indice $^-$ indica orientaci\'on opuesta). Una Teor\'ia Cu\'antica de Campos (Topol\'ogica) (abreviado {\sc tft} por sus siglas en ingl\'es) de dimensi\'on $D$ sobre un anillo conmutativo $R$ (que en nuestro caso consideramos igual a $\re$ \'o $\comp$) consiste de un funtor $Z:\tsf{Cob}(D)\to \tsf{Vect}_R$ de la categor\'ia de cobordimos en la categor\'ia de $R$-espacios vectoriales de dimensi\'on finita que verifica:
+\begin{itemize}
+\item Si $W\cong W'$ son cobordismos difeomorfos, entonces $Z(W)=Z(W')$.
+\item $Z$ es multiplicativo, en el sentido que $Z(\Sigma_1\sqcup \Sigma_2)=Z(\Sigma_1)\otimes Z(\Sigma_2)$.
+\item $Z(\emptyset )=R$.
+\end{itemize}
+A partir de ahora, consideramos $D=2$. Estas teor\'ias de campo mantienen una estrecha relaci\'on con las \'algebras de Frobenius, tema que se discute a continuaci\'on.
+
+\subsubsection{{\small \'Algebras de Frobenius}}
+
+Estas \'algebras fueron consideradas originalmente por Frobenius, quien estudiaba \'algebras $A$ cuyas primer y segunda representaciones regulares eran isomorfas. Esto es equivalente a la existencia de una forma lineal $\theta :A\to \comp$ tal que la forma bilineal dada por $(x,y)\mapsto \theta (xy)$ es no-degenerada. En particular (equivalentemente) tenemos que $A\cong A^*$. Particularmente importantes para nosotros son las \'algebras conmutativas y semisimples, y en ellas nos enfocamos en lo que sigue. Recordemos que una $\comp$-\'algebra es semisimple si es suma de subm\'odulos simples (es decir, que no tienen subm\'odulos no triviales). En particular si $\dim_\comp A=n$, se demuestra la existencia de idempotentes simples $e_1,\dots ,e_n$ (que forman una base) tales que $A=\bigoplus_{i=1}^ne_iA$ (en particular, cada sumando $e_iA$ es un \'algebra simple con neutro igual a $e_i$) y $\sum_{i=1}^ne_i=1$.
+Existe una caracterizaci\'on de las \'algebras de Frobenius semisimples dada por G. Moore y G. Segal, que describimos brevemente a continuaci\'on.
+
+Llamemos $X$ al espectro de ideales primos $\opnm{Spec}A$ del \'algebra $A$. Entonces se puede mostrar que $X$ es un espacio topol\'ogico finito, cuyo cardinal es igual a la dimensi\'on de $A$. Consideramos entonces el \'algebra $\comp ^X$ de funciones $X\to \comp$. Si $\chi_i$ denota la funci\'on caracter\'istica del conjunto $\{e_i\}$, entonces la correspondencia $x\mapsto \sum_i\lambda_i\chi_i$ define un isomorfismo entre las \'algebras $A$ y $\comp ^X$, donde $x=\sum_i\lambda_ie_i$.
+
+A continuaci\'on se define un elemento importante asociado a un \'algebra $A$, que llamamos el \emph{elemento de Euler}. Dada una base $\{e_i\}$ de $A$, sea $\{e^i\}$ su dual. Se define el elemento de Euler $\chi \in A$ por la f\'ormula
+$$\chi =\sum_ie_i\overline{\theta}^{-1}(e^i),$$
+donde $\overline{\theta}:A\to A^*$ es el isomorfismo inducido por $\theta$ (la definici\'on no depende de la base elegida). Es notable destacar que la existencia de un inverso para $\chi$ en $A$ es equivalente a que la traza $\opnm{tr}:A\otimes A \to \comp$, $\opnm{tr}(x\otimes y)=\opnm{tr}(L_{xy})$ sea no degenerada (dado $x\in A$, $L_x:A\to A$ es el operador de multiplicaci\'on). Esto provee, v\'ia un teorema de Dieudonn\'e, una manera de deducir si cierta \'algebra $A$ es semisimple: $\chi \in A$ es inversible si y solo si $A$ es semisimple.
+A continuaci\'on se definen los homomorfismos de \'algebras de Frobenius y se da una descripci\'on del grupo de endomorfismos de un \'algebra semisimple y conmutativa.
+Completamos la introducci\'on a las \'algebras de Frobenius dando una descripci\'on de las ecuaciones de estructura de un \'algebra, que expresan el producto, la asociatividad, la conmutatividad y la existencia de un elemento neutro en base a coordenadas en una base fija. Se complementa con una descripci\'on de varios ejemplos en el \'algebra, la geometr\'ia y la f\'isica en donde aparecen \'algebras de Frobenius.
+
+\subsubsection{{\small La Correspondencia Entre \'Algebras de Frobenius y {\sc tft}s}}
+
+En esta secci\'on se decribe la relaci\'on entre las teor\'ias de campo y las \'algebras de Frobenius, conocida por los especialistas desde hace tiempo y demostrada finalmente por L. Abrams en su tesis, y de la cual incluimos un breve resumen.
+
+Dada una {\sc tft} de dimensi\'on 2, representada por un functor $Z:\tsf{Cob}(2)\to \tsf{Vect}_\comp$, llamemos $A$ al espacio $Z(S^1)$, donde $S^1$ indica el c\'irculo unitario. Considerando entonces los cobordismos $\emptyset \to S^1$, $S^1\sqcup S^1\to S^1$ (<<pantalones>>) y $S^1\to \emptyset$, al aplicar $Z$ obtenemos respectivamente la unidad de $A$, la multiplicaci\'on y la forma lineal $\theta$. Distintas propiedades topol\'ogicas se traducen al aplicar $Z$ en propiedades algebraicas del \'algebra $A$, que resulta ser un \'algebra de Frobenius. Mas a\'un, la correspondencia es tambi\'en v\'alida en el otro sentido; y de esto se puede deducir una equivalencia entre la categor\'ia de teor\'ias topol\'ogicas de campos $\tsf{TQFT}(2)$ de dimensi\'on 2, y la categor\'ia de $\comp$-\'algebras de Frobenius con unidad, conmutativas, de dimensi\'on finita.
+
+
+\subsection{Teor\'ias Abiertas-Cerradas}
+
+Las cuerdas cerradas no describen todas las opciones originalmente consideradas por los f\'isicos. El caso general, adem\'as de las cuerdas cerradas, inlcuye tambi\'en a las cuerdas abiertas. Asi como para las teor\'ias cerradas, se tiene tambi\'en una formulaci\'on precisa de las teor\'ias que admiten tambi\'en cuerdas abiertas, dada por G. Moore y G. Segal \cite{moore_segal1}. Pasamos a continuaci\'on a discutir las nuevas estructuras introducidas para construir una teor\'ia que admita tambi\'en las cuerdas abiertas.
+
+La diferencia principal con las teor\'ias cerradas es la introducci\'on de una categor\'ia de condiciones de borde, la \emph{categor\'ia de branas}, que notamos por $\scr{B}$. Los objetos de $\scr{B}$ consisten de ``etiquetas'' asignadas a los extremos de los intervalos que representan a las cuerdas abiertas, que notamos por $a,b,c,\dots $; un morfismo $a\to b$ en esta categor\'ia es precisamente una variedad suave, orientada, con borde de dimensi\'on 1. Notando por $O_{ab}$ el conjunto de mapas $a\to b$, requerimos entonces que $O_{ab}$ sea un $\comp$-espacio vectorial tal que la ley de composici\'on $O_{ab}\otimes O_{bc}\to O_{ac}$ sea asociativa y bilineal.
+
+La existencia de las nuevas cuerdas abiertas hace que tambi\'en debamos cambiar la categor\'ia $\tsf{Cob}(2)$ por una nueva, que notamos $\tsf{Cob}_\scr{B}(2)$, construida a partir de la primera adjuntando a los intervalos con extremos descriptos por objetos de $\scr{B}$. Los morfismos en esta nueva categor\'ia son tambi\'en cobordismos $W:\Sigma_1\to \Sigma_2$ entre uniones disjuntas de c\'irculos e intervalos de tal forma que $\partial W=\Sigma_1\cup \Sigma_2\cup W'$, donde $W'$ es un cobordismo $\partial \Sigma_1\to \partial \Sigma_2$.
+
+Asi como las teor\'ias cerradas, este tipo de teor\'ias tiene tambi\'en una descripci\'on funtorial, que viene dada por un funtor
+$$Z:\tsf{Cob}_\scr{B}(2)\longrightarrow \tsf{Vect},$$
+cuya restricci\'on a la categor\'ia $\tsf{Cob}(2)$ es una teor\'ia cerrada. La imagen de un intervalo con extremos $a,b\in \scr{B}$ se nota $O_{ab}$. A continuaci\'on damos una descripci\'on de las estructuras algebraicas subyacentes.
+
+Dada una brana $a\in \scr{B}$, los espacios vectoriales $O_{aa}$ debe tambi\'en estar munidos de una forma lineal $\theta_{a}:O_{aa}\to \comp$ de tal forma que la forma bilineal $O_{aa}\otimes O_{aa}\to O_{aa}\stackrel{\theta}{\to}\comp$ sea no degenerada; en particular, $(O_{aa},\theta_a )$ es un \'algebra de Frobenius, no necesariamente conmutativa). Para otro objeto $b\in \scr{B}$, tenemos tambi\'en el espacio vectorial $O_{ab}$, relacionado con $O_{aa}$ via la composici\'on
+$$O_{ab}\otimes O_{ba}\longrightarrow O_{aa}\stackrel{\theta_a}{\longrightarrow}\comp,$$
+que debe ser una forma no degenerada. En particular resulta $O_{ba}\cong O_{ab}^*$.
+
+La interacci\'on entre cuerdas abiertas y cerradas se describe de la siguiente manera: una cuerda cerrada puede evolucionar a una abierta con el mismo extremo, digamos $a\in \scr{B}$, y viceversa. Estas evoluciones resultan ser cobordismos, es decir, morfismos en la categor\'ia $\tsf{Cob}_\scr{B}(2)$. La imagen de estos cobordismos se notan $\iota_a :A\to O_{aa}$ (cerrada a abierta) e $\iota^a:O_{aa}\to A$ (abierta a cerrada). Propiedades de estas interacciones fuerzan a exigir que $\iota_a$ sea un homomorfismo central de $\comp$-\'algebras y que $\iota^a$ sea $\comp$-lineal.
+
+Otras propiedades de estos morfismos los relacionan con las formas lineales $\theta$ y $\theta_a$, que proveen las estructuras de \'algebras de Frobenius a $A$ y $O_{aa}$ respectivamente. Mas precisamente, se debe verificar la relaci\'on de adjunci\'on $\theta (\iota^a(\sigma )x)=\theta_a(\sigma \iota_a (x))$, donde $x\in A$ y $\sigma \in O_{aa}$.
+
+Una \'ultima condici\'on, llamada la \emph{condici\'on de Cardy}, debe verificarse; la describimos a continuaci\'on. Consideremos una base  $\{\sigma_i\}$ de $O_{ab}$ y sea $\{\sigma ^i\}$ su dual. Definimos un mapa lineal $\pi^a_b:O_{aa}\to O_{bb}$ por la ecuaci\'on
+$$\pi_b^a(\tau )=\sum_i\sigma_i\tau \overline{\theta}_{ab}^{-1}(\sigma^i).$$
+Entonces, $\pi_b^a,\iota_b$ e $\iota^a$ deben verificar
+$$\pi_b^a=\iota_b\iota^a.$$
+
+
+\subsubsection{{\small Caracterizaci\'on de una Categor\'ia de Branas Maximal}}
+
+Para lo que sigue, se considera que el \'algebra del sector cerrado $A$ es semisimple. Por medio de la condici\'on de Cardy podemos deducir los siguientes datos fundamentales:
+\begin{itemize}
+\item Las \'algebras $O_{aa}$ son semisimples (en otras palabras, son isomorfas a sumas de \'algebras de matrices)
+\item En general, para $a,b\in \scr{B}$ no necesariamente iguales, tenemos que $O_{ab}$ es isomorfo a un espacio vectorial de la forma $\bigoplus_i\operatorname{Hom}_\comp (V_{a,i},V_{b,i})$.
+\end{itemize}
+
+Una categor\'ia de branas $\scr{B}$ es \emph{maximal}si y solo si dada cualquier otra tal categor\'ia $\scr{B}'$, se tiene un mapa inyectivo $\opnm{sk}\scr{B}'\to \opnm{sk}\scr{B}$. En particular, las siguientes propiedades se verifican para una categor\'ia maximal
+\begin{itemize}
+\item $\scr{B}$ es aditiva.
+\item Se tiene definida una acci\'on $V\otimes a$ de los espacio vectoriales complejos de dimensi\'on finita sobre $a\in \scr{B}$.
+\item $\scr{B}$ es pseudo-abeliana.
+\item Existe una brana $a_0$ para la cual $\iota_{a_0}:A\to O_{a_0a_0}$ es un isomorfismo; equivalentemente, para cada \'indice $i$ se tiene una brana $a_i\in \scr{B}$ tal que $O_{a_ia_i}\cong \comp$ como $\comp$-\'algebras.
+\end{itemize}
+
+Esto da lugar a la siguiente caracterizaci\'on dada por G. Moore y G. Segal.
+
+\medskip
+{\bf Teorema.}
+{\it Si el \'algebra de Frobenius $A$ correspondiente al sector cerrado de una teor\'ia abierta-cerrada es semisimple, entonces la categor\'ia de branas $\scr{B}$ (maximal) es equivalente a la categor\'ia $\tsf{Vect}(X)$ de fibrados vectoriales sobre el espacio finito $X=\{e_1,\dots ,e_n\}$ formado por los idempotentes ortogonales del \'algebra $A$ tales que $\sum_ie_i=1$.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fibrados de \'Algebras y F-variedades}
+
+Sea $M$ una variedad y $\scr{O}_M$ un haz de funciones sobre $M$. Un fibrado de \'algebras sobre $M$ es un fibrado complejo (suave u holomorfo) $E\to M$ junto con un morfismo de fibrados $\mu :E\otimes E\to E$ (multiplicaci\'on) tal que para cada $x\in M$, la restricci\'on $\mu_x$ de $\mu$ a $E_x\otimes E_x$ induce en $E_x$ una estructura de $\comp$-\'algebra asociativa con unidad $1_x$. Se pide adem\'as que exista una secci\'on, que notamos $1:M\to E$, tal que $1(x)=1_x$ para cada $x\in M$. Notemos que esta definici\'on no implica la existencia de trivialidad local, en el siguiente sentido: dado $x\in M$, sabemos que existe una vecindad $U\ni x$ tal que $E|_U$ es isomorfo a $U\times \comp^n$; pero la definici\'on de fibrado de \'algebras no implica que esta trivializaci\'on local preserve la estructura de \'algebra. Ver la siguiente secci\'on.
+
+Diremos que $M$ es una \emph{variedad con multiplicaci\'on} si $TM$ es un fibrado de \'algebras.
+
+
+\subsubsection{{\small El Recubrimiento Espectral}}
+
+Sea $E$ un fibrado de \'algebras sobre $M$. La siguiente proposici\'on es fundamental en la siguiente discusi\'on.
+
+\medskip
+{\bf Proposici\'on.}
+{\it Sea $x_0\in M$ tal que $E_{x_0}$ es semisimple. Entonces existe una vecindad $U\ni x_0$ tal que $E_x$ es semisimple para cada $x\in U$. Mas a\'un, existe una bse local de secciones $e_1,\dots ,e_n:U\to E$ tal que $e_ie_j=\delta_{ij}e_i$ y $E=\bigoplus_ie_iE$ sobre $U$.}
+\medskip
+
+Tenemos adem\'as que, en el contexto del resultado anterior, el conjunto de puntos $x\in M$ tales que $E_x$ no es semisimple puede ser una hipersuperficie (ver la discusi\'on del p\'arrafo anterior a la presente secci\'on).
+
+En lo que sigue vamos a considerar fibrados tales que $E_x$ es semisimple. Notemos con $S_E$ al conjunto de homomorfismos de \'algebras $E_x\to \comp$ ($x\in M$).
+
+\medskip
+{\bf Proposici\'on y Definici\'on.}
+{\it La proyecci\'on can\'onica $\pi :S_E\to M$ es un recubrimiento de $n$ hojas. Cuando $M$ es una variedad con multiplicaci\'on y $E=TM$, llamamos a $S_E$ el \emph{recubrimiento espectral} de $M$.}
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End:

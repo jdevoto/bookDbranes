@@ -1,0 +1,182 @@
+%\usepackage{amsfonts,amsmath,palatino,enumerate,mathpazo}
+\documentclass[12pt, a4paper, reqno]{amsbook}
+\usepackage{amssymb}
+%Sans Serif Font
+\renewcommand{\sfdefault}{pr4}
+\usepackage{textcomp}
+
+
+%%%%%%%%%%%%
+% PAQUETES %
+%%%%%%%%%%%%
+\usepackage[all]{xy}
+\usepackage{euscript} 
+\usepackage{layout}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{pstricks}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage[dvips]{geometry}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\usepackage[multiple]{footmisc}    % Para multiples footnotes (separados por comas).
+																	 % Modo de uso:
+																	 % \footnote{.....}%
+																	 % \footnote{.....}%
+
+\newcommand{\makenote}[1]{\marginpar{\raggedright\sffamily\scriptsize#1}}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}{-30pt}{15pt}{\Large\bfseries\sffamily}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}{-20pt}{10pt}{\large\bfseries\sffamily}}
+\renewcommand{\subsubsection}{\@startsection{subsection}{2}{\z@}{-15pt}{10pt}{\bfseries\sffamily}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}{15pt}{-15pt}{\bfseries\sffamily}}
+
+% Teoremas Tipo (si se hace en castellano)
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{cor}[proposition]{Corollary}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{pyd}[proposition]{Proposition \& Definition}
+
+\theoremstyle{definition}
+%\theorembodyfont{\rmfamily}
+
+\newtheorem{defi}[proposition]{Definition}
+\newtheorem{ej}[proposition]{Example}
+\newtheorem{obs}[proposition]{Remark}
+\newtheorem{notation}[proposition]{Notation}
+
+
+%%% Comandos
+
+%% Numeros
+
+\newcommand{\natu}{\mathbbm{N}} 
+\newcommand{\ent}{\mathbbm{Z}}
+\newcommand{\rat}{\mathbbm{Q}}
+\newcommand{\re}{\mathbbm{R}} 
+\newcommand{\comp}{\mathbbm{C}}
+\newcommand{\field}{\mathbbm{F}}
+\newcommand{\vect}{\text{Vect}}
+\newcommand{\rproj}{\mathbbm{RP}}
+\newcommand{\cproj}{\mathbbm{CP}}
+
+\newcommand{\tsf}[1]{\mathsf{#1}}
+\newcommand{\fp}[3]{ #1 \times_{#3} #2}
+\newcommand{\bit}[1]{\textit{\textbf{#1}}}
+\newcommand{\bitu}[2]{\bit{#1}^{\bit{#2}}}
+\newcommand{\bitd}[2]{\bit{#1}_{\bit{#2}}}
+\newcommand{\scr}{\mathscr}
+\newcommand{\mbm}{\mathbbm}
+\newcommand{\equi}{\text{Eq}(\tsf{Vect})} 
+\newcommand{\tcal}[1]{\!
+  \text{\textcalligra{#1}}\, }
+\newcommand{\eus}[1]{\EuScript{#1}}
+\newcommand{\opnm}{\operatorname}
+\newcommand{\coh}[1]{\operatorname{H}^{#1}}
+\newcommand{\rcoh}[1]{\widetilde{\operatorname{H}}^{#1}}
+\newcommand{\ccoh}[1]{\check{\operatorname{H}}^{#1}}
+\newcommand{\hgy}[1]{\operatorname{H}_{#1}}
+\newcommand{\rhgy}[1]{\widetilde{\operatorname{H}}_{#1}}
+\newcommand{\pr}{\operatorname{pr}}
+
+
+\renewcommand\qedsymbol{Q.E.D.}
+\renewcommand{\contentsname}{Contents \& Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Jorge Define
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mr}[1]{\mathscr{#1}} 
+\renewcommand{\top}{\textsf{Top}}
+\newcommand{\Top}{\mr{T}op}
+\newcommand{\obj}{\text{obj}}
+\newcommand{\kk}{\mathscr{K}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hyphenation{vec-to-ria-les va-rie-da-des si-guien-tes pro-pie-da-des res-pues-tas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{D-Branes and Two Vectos bundles}
+\author{Anibal Amoreo \and Jorge A. Devoto}
+\date{version: \today}
+\makeindex
+\begin{document}
+
+\maketitle
+
+\bigskip
+\bigskip
+
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{\string Introduction}
+\input{intro.tex}
+
+
+% Chapter 1
+\chapter{Bundles and Sheaves}\label{bs}
+\input{bundles.tex}
+
+
+
+% Chapter 2
+\chapter{Frobenius Structures and Field Theories}
+\label{fsfts}
+\input{tfts.tex}
+
+% Chapter 3
+\chapter{Cardy Fibrations}
+\label{cfib}
+\input{cy_fibrations.tex}
+
+% Chapter 4
+\chapter{Local Description of Cardy Fibrations}
+\label{local_description}
+\input{local_description.tex}
+
+% Chapter 5
+\chapter{D-Branes and Twisted Vector Bundles}
+\label{dbtvb}
+\input{branes_and_twisted_bundles.tex}
+
+% Chapter 6
+%\chapter{The Symmetric Group and F-Manifolds}\label{coxeter}
+%\input{coxeter.tex}
+
+%\chapter{Appendix.}
+%\input{appendix.tex}
+
+%\printindex{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{mybib}
+\bibliographystyle{acm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\end{large}
+
+\end{document}
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End:
